@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2020 at 01:04 PM
+-- Generation Time: Nov 12, 2020 at 02:05 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -20,6 +20,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `fakeid`
 --
+DROP DATABASE IF EXISTS `fakeid`;
+CREATE DATABASE IF NOT EXISTS `fakeid` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `fakeid`;
 
 -- --------------------------------------------------------
 
@@ -43,6 +46,49 @@ INSERT INTO `address` (`id`, `district`, `street_building_name`, `post_code`, `s
 (1, 'København N', '17', '2200', 'Lygten'),
 (2, 'København N', '17', '2200', 'Lygten'),
 (3, 'København N', '37', '2200', 'Lygten');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `audit_user`
+--
+
+CREATE TABLE `audit_user` (
+  `id` int(11) NOT NULL,
+  `new_id` int(11) DEFAULT NULL,
+  `new_name` varchar(50) DEFAULT NULL,
+  `new_date_of_birth` varchar(6) DEFAULT NULL,
+  `new_CVR` varchar(8) DEFAULT NULL,
+  `new_address_id` int(11) DEFAULT NULL,
+  `new_company_name` varchar(50) DEFAULT NULL,
+  `new_CPR` varchar(10) DEFAULT NULL,
+  `new_spouse_id` int(11) DEFAULT NULL,
+  `new_marital_status_id` int(11) DEFAULT NULL,
+  `new_gender_value` varchar(4) DEFAULT NULL,
+  `new_serialnumber` varchar(50) DEFAULT NULL,
+  `old_id` int(11) DEFAULT NULL,
+  `old_name` varchar(50) DEFAULT NULL,
+  `old_date_of_birth` varchar(6) DEFAULT NULL,
+  `old_CVR` varchar(9) DEFAULT NULL,
+  `old_address_id` int(11) DEFAULT NULL,
+  `old_company_name` varchar(50) DEFAULT NULL,
+  `old_CPR` varchar(10) DEFAULT NULL,
+  `old_spouse_id` int(11) DEFAULT NULL,
+  `old_marital_status_id` int(11) DEFAULT NULL,
+  `old_gender_value` varchar(4) DEFAULT NULL,
+  `old_serialnumber` varchar(50) DEFAULT NULL,
+  `action` varchar(4) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `db_host` varchar(50) NOT NULL,
+  `db_user` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `audit_user`
+--
+
+INSERT INTO `audit_user` (`id`, `new_id`, `new_name`, `new_date_of_birth`, `new_CVR`, `new_address_id`, `new_company_name`, `new_CPR`, `new_spouse_id`, `new_marital_status_id`, `new_gender_value`, `new_serialnumber`, `old_id`, `old_name`, `old_date_of_birth`, `old_CVR`, `old_address_id`, `old_company_name`, `old_CPR`, `old_spouse_id`, `old_marital_status_id`, `old_gender_value`, `old_serialnumber`, `action`, `timestamp`, `db_host`, `db_user`) VALUES
+(1, 5, 'Lisa Lalalaa', '081290', NULL, 1, NULL, '0812900002', NULL, 8, '0002', '23wefsdvsdg', 5, 'Lisa Lalala', '081290', NULL, 1, NULL, '0812900002', NULL, 8, '0002', '23wefsdvsdg', 'U', '2020-11-12 13:00:31', 'root', 'localhost');
 
 -- --------------------------------------------------------
 
@@ -93,7 +139,7 @@ CREATE TABLE `user` (
   `spouse_id` int(11) DEFAULT NULL,
   `marital_status_id` int(4) NOT NULL,
   `gender_value` varchar(4) NOT NULL,
-  `serial_number` varchar(50) NOT NULL,
+  `serialnumber` varchar(50) NOT NULL,
   `CVR` varchar(8) DEFAULT NULL
 ) ;
 
@@ -101,17 +147,149 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `date_of_birth`, `address_id`, `company_name`, `CPR`, `spouse_id`, `marital_status_id`, `gender_value`, `serial_number`, `CVR`) VALUES
-(5, 'Lisa Lalala', '081290', 1, NULL, '0812900002', NULL, 8, '0002', '23wefsdvsdg', NULL),
+INSERT INTO `user` (`id`, `name`, `date_of_birth`, `address_id`, `company_name`, `CPR`, `spouse_id`, `marital_status_id`, `gender_value`, `serialnumber`, `CVR`) VALUES
+(5, 'Lisa Lalalaa', '081290', 1, NULL, '0812900002', NULL, 8, '0002', '23wefsdvsdg', NULL),
 (8, 'Lars Lalala', '181292', 1, NULL, '1812920001', NULL, 8, '0002', '23wefddsdvsdg', NULL);
+
+--
+-- Triggers `user`
+--
+DELIMITER $$
+CREATE TRIGGER `trg_delete_user` BEFORE DELETE ON `user` FOR EACH ROW BEGIN
+	INSERT INTO audit_user 
+    	(old_id, 
+         old_name,
+         old_date_of_birth,
+         old_CVR,
+         old_address_id,
+         old_company_name,
+         old_CPR,
+         old_spouse_id,
+         old_marital_status_id,
+         old_gender_value,
+         old_serialnumber,
+         action,
+         db_host,
+         db_user
+        )
+     VALUES (OLD.id,
+             OLD.name,
+             OLD.date_of_birth, 
+             OLD.CVR,
+             OLD.address_id,
+             OLD.company_name,
+             OLD.CPR,
+             OLD.spouse_id,
+             OLD.marital_status_id,
+             OLD.gender_value,
+             OLD.serialnumber,
+             'D', 
+            SUBSTRING(CURRENT_USER(),1,LOCATE('@', CURRENT_USER())-1), 				SUBSTRING(CURRENT_USER(),LOCATE('@', CURRENT_USER())+1)
+            );
+  END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `trg_insert_user` BEFORE INSERT ON `user` FOR EACH ROW BEGIN
+	INSERT INTO audit_user 
+    	(new_id, 
+         new_name,
+         new_date_of_birth,
+         new_CVR,
+         new_address_id,
+         new_company_name,
+         new_CPR,
+         new_spouse_id,
+         new_marital_status_id,
+         new_gender_value,
+         new_serialnumber,
+         action,
+         db_host,
+         db_user
+        )
+     VALUES (NEW.id,
+             NEW.name,
+             NEW.date_of_birth, 
+             NEW.CVR,
+             NEW.address_id,
+             NEW.company_name,
+             NEW.CPR,
+             NEW.spouse_id,
+             NEW.marital_status_id,
+             NEW.gender_value,
+             NEW.serialnumber,
+             'I', 
+            SUBSTRING(CURRENT_USER(),1,LOCATE('@', CURRENT_USER())-1), 				SUBSTRING(CURRENT_USER(),LOCATE('@', CURRENT_USER())+1)
+            );
+  END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `trg_update_user` BEFORE UPDATE ON `user` FOR EACH ROW BEGIN
+	INSERT INTO audit_user 
+        (old_id, 
+        old_name,
+        old_date_of_birth,
+        old_CVR,
+        old_address_id,
+        old_company_name,
+        old_CPR,
+        old_spouse_id,
+        old_marital_status_id,
+        old_gender_value,
+        old_serialnumber,
+        new_id, 
+         new_name,
+         new_date_of_birth,
+         new_CVR,
+         new_address_id,
+         new_company_name,
+         new_CPR,
+         new_spouse_id,
+         new_marital_status_id,
+         new_gender_value,
+         new_serialnumber,
+         action,
+         db_host,
+         db_user
+        )
+     VALUES (
+        OLD.id,
+        OLD.name,
+        OLD.date_of_birth, 
+        OLD.CVR,
+        OLD.address_id,
+        OLD.company_name,
+        OLD.CPR,
+        OLD.spouse_id,
+        OLD.marital_status_id,
+        OLD.gender_value,
+        OLD.serialnumber,
+            NEW.id,
+             NEW.name,
+             NEW.date_of_birth, 
+             NEW.CVR,
+             NEW.address_id,
+             NEW.company_name,
+             NEW.CPR,
+             NEW.spouse_id,
+             NEW.marital_status_id,
+             NEW.gender_value,
+             NEW.serialnumber,
+             'U', 
+            SUBSTRING(CURRENT_USER(),1,LOCATE('@', CURRENT_USER())-1), 				SUBSTRING(CURRENT_USER(),LOCATE('@', CURRENT_USER())+1)
+            );
+  END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_family_realation`
+-- Table structure for table `user_family_relation`
 --
 
-CREATE TABLE `user_family_realation` (
+CREATE TABLE `user_family_relation` (
   `user_id` int(11) NOT NULL,
   `family_relation_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -124,6 +302,12 @@ CREATE TABLE `user_family_realation` (
 -- Indexes for table `address`
 --
 ALTER TABLE `address`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `audit_user`
+--
+ALTER TABLE `audit_user`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -143,15 +327,14 @@ ALTER TABLE `martial_status`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `serial_number` (`serial_number`),
   ADD KEY `address_id` (`address_id`),
   ADD KEY `marital_status_id` (`marital_status_id`),
   ADD KEY `spouse_id` (`spouse_id`);
 
 --
--- Indexes for table `user_family_realation`
+-- Indexes for table `user_family_relation`
 --
-ALTER TABLE `user_family_realation`
+ALTER TABLE `user_family_relation`
   ADD PRIMARY KEY (`user_id`,`family_relation_id`),
   ADD KEY `family_relation_id` (`family_relation_id`);
 
@@ -164,6 +347,12 @@ ALTER TABLE `user_family_realation`
 --
 ALTER TABLE `address`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `audit_user`
+--
+ALTER TABLE `audit_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `family_relation`
@@ -193,14 +382,15 @@ ALTER TABLE `user`
 ALTER TABLE `user`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`),
   ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`marital_status_id`) REFERENCES `martial_status` (`id`),
-  ADD CONSTRAINT `user_ibfk_3` FOREIGN KEY (`spouse_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `user_ibfk_3` FOREIGN KEY (`spouse_id`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `CONSTRAINT_1` CHECK (`gender_value` in ('0001','0002'));
 
 --
--- Constraints for table `user_family_realation`
+-- Constraints for table `user_family_relation`
 --
-ALTER TABLE `user_family_realation`
-  ADD CONSTRAINT `user_family_realation_ibfk_1` FOREIGN KEY (`family_relation_id`) REFERENCES `family_relation` (`id`),
-  ADD CONSTRAINT `user_family_realation_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+ALTER TABLE `user_family_relation`
+  ADD CONSTRAINT `user_family_relation_ibfk_1` FOREIGN KEY (`family_relation_id`) REFERENCES `family_relation` (`id`),
+  ADD CONSTRAINT `user_family_relation_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
