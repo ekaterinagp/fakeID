@@ -1,13 +1,25 @@
 <?php
 
-$host = '127.0.0.1';
-$db = 'fakeid';
-$charset = 'utf8mb4';
 
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset"; // using 'mysql:connecting to the host; specifying dbname';
+if(getenv("CLEARDB_DATABASE_URL")){
+    //deployment settings
+    //Get Heroku ClearDB connection information
+    $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+    $host       = $cleardb_url["host"];
+    $user       = $cleardb_url["user"];
+    $password   = $cleardb_url["pass"];
+    $db         = substr($cleardb_url["path"],1);
 
-$username = 'root'; // default for xampp phpmyadmin mysql
-$password = ''; // default for xampp phpmyadmin mysql
+}else {
+    $host ='127.0.0.1';
+    $db = 'fakeid';
+    $username = 'root'; 
+    $password = ''; 
+}
+    $charset = 'utf8mb4';
+    
+    $dsn = "mysql:host=$host;dbname=$db;charset=$charset"; // using 'mysql:connecting to the host; specifying dbname';
+
 $options = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -15,7 +27,7 @@ $options = [
 ];
 
 try{
-    $connection = new PDO($dsn, $username, $password, $options);      
+    $connection = new PDO($dsn, $user, $password, $options);      
 } catch(PDOException $e){
     throw new PDOException($e->getMessage(), (int)$e->getCode()); // throw me errors
 }

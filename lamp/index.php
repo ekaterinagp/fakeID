@@ -1,3 +1,6 @@
+  <?php
+  require_once(__DIR__.'/connection.php');
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +17,18 @@
 <body>
 
   <?php
+$sql = "SELECT * FROM user";
+$statement = $connection->prepare($sql);
 
+if($statement->execute()){
+    $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $connection = null;
+
+foreach($users as $user){
+        
+        echo '<p>'.$user['name'].'</p>';
+}
+}
 
   ?>
 
