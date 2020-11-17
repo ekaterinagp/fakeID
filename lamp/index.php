@@ -32,7 +32,7 @@ foreach($users as $user){
 
   ?>
 
-  <h2>Here comes FakeID in LAMP</h2>
+  <h2>Here comes FakeID in LAMP now its automati</h2>
 
 </body>
 
