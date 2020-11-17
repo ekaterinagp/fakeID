@@ -13,7 +13,7 @@ if(getenv("CLEARDB_DATABASE_URL")){
 }else {
     $host ='127.0.0.1';
     $db = 'fakeid';
-    $username = 'root'; 
+    $user = 'root'; 
     $password = ''; 
 }
     $charset = 'utf8mb4';
