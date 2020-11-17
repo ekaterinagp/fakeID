@@ -18,7 +18,7 @@
 
   ?>
 
-  <h2>Here comes FakeID in LAMP now its automatic</h2>
+  <h2>Here comes FakeID in LAMP now its automati</h2>
 
 </body>
 
