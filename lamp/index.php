@@ -18,19 +18,21 @@
   <body>
 
     <?php
-    $sql = "SELECT * FROM user";
-    $conn  = new Database();
-    $statement = $conn->connectToDatabase()->prepare($sql);
-    // echo $conn->selectAllUsers();
-    if ($statement->execute()) {
-      $users = $statement->fetchAll(PDO::FETCH_ASSOC);
-      $conn = null;
-
-      foreach ($users as $user) {
-
-        echo '<p>' . $user['name'] . '</p>';
+      function getAllUsers(){
+        $sql = "SELECT * FROM user";
+        $conn  = new Database();
+        $statement = $conn->connectToDatabase()->prepare($sql);
+        // echo $conn->selectAllUsers();
+        if ($statement->execute()) {
+          $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+          $conn = null;
+          return $users;
       }
     }
+      foreach (getAllUsers() as $user) {
+        echo '<p>' . $user['name'] . '</p>';
+      }
+    
 
     ?>
 

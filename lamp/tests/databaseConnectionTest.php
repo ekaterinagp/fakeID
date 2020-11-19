@@ -16,13 +16,10 @@ class DatabaseConnectionTest extends TestCase{
         $this->conn = new Database();
         return $this->conn->connectToDatabase();
     }
-
    
-
-    public function testGetUserCount () {
-        {
-            $this->Database = new Database();
-            $this->assertEquals(2, $this->Database->selectAllusers($this->getConnection()), 'should return 2 users' );
-        }
+    public function testConnectionObjectIsNotEmpty(){
+        $this->assertNotNull($this->getConnection());
     }
+
+ 
 }
