@@ -59,9 +59,12 @@ class DisplayAllUsersTest extends TestCase
         $this->assertEquals(65, $this->User->calculateAge($birthday));
     }
 
-    // public function testUserHasMaritalStatusReadable()
-    // {
-    // }
+    public function testUserHasMaritalStatusReadable()
+    {
+
+        $maritalStatus = $this->User->maritalStatus = 8;
+        $this->assertEquals('single', $this->User->getMaritalStatus($maritalStatus));
+    }
     // public function testUserHasGenderReadable(){
 
     // }

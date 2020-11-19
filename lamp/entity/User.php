@@ -40,9 +40,6 @@ class User
             $year = "20" . $oldDate['year'];
         }
 
-
-
-
         if (strlen($oldDate['month']) > 1) {
             $month =  $oldDate['month'];
         } else {
@@ -56,8 +53,7 @@ class User
         }
 
         $newDate = $year . "-" . $month . "-" . $day;
-        // $newDate = date("d-m-y", strtotime($birthday));
-        // echo $newDate;
+
         $age = floor((time() - strtotime($newDate)) / 31556926);
         // echo $age;
         return $age;
@@ -95,7 +91,11 @@ class User
     function setMaritalStatus()
     {
     }
-    function getMaritalStatus()
+    //add for all statuses
+    function getMaritalStatus($status_id)
     {
+        if ($status_id == 8) {
+            return "single";
+        }
     }
 }
