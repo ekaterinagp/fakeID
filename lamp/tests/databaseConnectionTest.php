@@ -2,7 +2,6 @@
 require_once(__DIR__ . '../../connection.php');
 
 use PHPUnit\Framework\TestCase;
-use TDD\Database;
 
 class DatabaseConnectionTest extends TestCase{
    // only instantiate pdo once for test clean-up/fixture load
