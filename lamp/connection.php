@@ -2,7 +2,6 @@
 
 
 if (getenv("CLEARDB_DATABASE_URL")) {
-    //deployment settings
     //Get Heroku ClearDB connection information
     $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
     $host       = $cleardb_url["host"];
@@ -28,5 +27,5 @@ $options = [
 try {
     $connection = new PDO($dsn, $user, $password, $options);
 } catch (PDOException $e) {
-    throw new PDOException($e->getMessage(), (int)$e->getCode()); // throw me errors
+    throw new PDOException($e->getMessage(), (int)$e->getCode());
 }
