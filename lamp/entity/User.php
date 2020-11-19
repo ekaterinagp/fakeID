@@ -59,6 +59,14 @@ class User
         return $age;
     }
 
+    public function getName()
+    {
+    }
+
+    public function setName()
+    {
+    }
+
 
 
     public function isChild($birthday)

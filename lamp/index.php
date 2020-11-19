@@ -16,26 +16,38 @@
 
   <body>
 
+    <h2>Here comes FakeID in LAMP now its automatically deployed</h2>
     <?php
-      function getAllUsers(){
-        $sql = "SELECT * FROM user";
-        $conn  = new Database();
-        $statement = $conn->connectToDatabase()->prepare($sql);
-        if ($statement->execute()) {
-          $users = $statement->fetchAll(PDO::FETCH_ASSOC);
-          $conn = null;
-          return $users;
-      }
-    }
-      foreach (getAllUsers() as $user) {
-        echo '<p>' . $user['name'] . '</p>';
-      }
-    
+    require_once(__DIR__ . '/sharedFunctions.php');
+    // function getAllUsers()
+    // {
+    //   $sql = "SELECT * FROM user";
+    //   $conn  = new Database();
+    //   $statement = $conn->connectToDatabase()->prepare($sql);
+    //   if ($statement->execute()) {
+    //     $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+    //     $conn = null;
+    //     return $users;
+    //   }
+    // }
+
+    $getFunction = new SharedFunctions();
 
     ?>
+    <div class="container">
+      <?php
 
-    <h2>Here comes FakeID in LAMP now its automatically deployed</h2>
+      foreach ($getFunction->getAllUsers() as $user) {
+        echo '<div class="singleUser"><p>' . $user['name'] . '</p><p>' . $user['date_of_birth'] . '</p> <p>' . $user['gender_value'] . '</p> <p>' . $user['CVR'] . '</p> <p>' . $user['marital_status_id'] . '</p></div>';
+      }
 
+
+      ?>
+    </div>
+
+
+
+    <script src="js/script.js"></script>
   </body>
 
   </html>

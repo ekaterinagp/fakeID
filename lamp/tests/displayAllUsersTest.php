@@ -2,9 +2,10 @@
 
 use PHPUnit\Framework\TestCase;
 
-require_once(__DIR__ . '/../index.php');
+// require_once(__DIR__ . '/../index.php');
 require_once(__DIR__ . '/../connection.php');
 require_once(__DIR__ . '/../entity/User.php');
+require_once(__DIR__ . '/../sharedFunctions.php');
 
 
 
@@ -13,11 +14,13 @@ class DisplayAllUsersTest extends TestCase
     public function setUp(): void
     {
         $this->User = new User();
+        $this->SharedFunctions = new SharedFunctions();
     }
 
     public function tearDown(): void
     {
         $this->User = null;
+        $this->SharedFunctions = null;
     }
 
     public function testGetUserCount()
@@ -28,7 +31,8 @@ class DisplayAllUsersTest extends TestCase
 
     public function testUserReceivedFromDatabaseHasAttributes()
     {
-        $users = getAllUsers();
+        // $this->SharedFunctions = new SharedFunctions();
+        $users = $this->SharedFunctions->getAllUsers();
         $this->assertNotEmpty($users);
         $this->assertArrayHasKey('name', $users[0]);
         $this->assertArrayHasKey('date_of_birth', $users[0]);
