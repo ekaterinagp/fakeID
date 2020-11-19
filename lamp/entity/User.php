@@ -30,9 +30,7 @@ class User
     {
 
         $oldDate = date_parse_from_format("dmY", $birthday);
-
-
-
+        // echo json_encode($oldDate);
 
         if ($oldDate['year'] >= 20) {
             $year = "19" . $oldDate['year'];
@@ -59,7 +57,7 @@ class User
 
         $newDate = $year . "-" . $month . "-" . $day;
         // $newDate = date("d-m-y", strtotime($birthday));
-        echo $newDate;
+        // echo $newDate;
         $age = floor((time() - strtotime($newDate)) / 31556926);
         // echo $age;
         return $age;

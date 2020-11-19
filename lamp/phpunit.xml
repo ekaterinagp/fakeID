@@ -3,7 +3,7 @@
     processIsolation="false"
     stopOnFailure="false"
     bootstrap="tests/autoload.php"
-    beStrictAboutOutputDuringTests="true"
+  
     >
     <php>
         <ini name="memory_limit" value="-1"/>

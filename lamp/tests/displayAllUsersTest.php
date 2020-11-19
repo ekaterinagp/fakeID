@@ -41,22 +41,22 @@ class DisplayAllUsersTest extends TestCase
 
     public function testUserhasAgeReadable()
     {
-        $birthday = $this->User->birthday = '010112';
+        $birthday = $this->User->birthday = '010155';
         $this->assertEquals(
             $this->User->formatBirthday($birthday),
-            '01-01-12'
+            '01-01-55'
         );
     }
     public function testUserIsChild()
     {
-        $birthday = $this->User->birthday = '010112';
+        $birthday = $this->User->birthday = '010155';
         $this->assertTrue($this->User->isChild($birthday));
     }
 
     public function testCalculateAge()
     {
-        $birthday = $this->User->birthday =  '010112';
-        $this->assertEquals(8, $this->User->calculateAge($birthday));
+        $birthday = $this->User->birthday =  '010155';
+        $this->assertEquals(65, $this->User->calculateAge($birthday));
     }
 
     // public function testUserHasMaritalStatusReadable()
