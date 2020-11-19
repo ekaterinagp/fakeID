@@ -40,7 +40,7 @@ class DisplayAllUsersTest extends TestCase
         $this->assertArrayHasKey('CPR', $users[0]);
         $this->assertArrayHasKey('gender_value', $users[0]);
         $this->assertArrayHasKey('marital_status_id', $users[0]);
-        $this->assertArrayHasKey('serialnumber', $users[0]);
+        $this->assertArrayHasKey('serial_number', $users[0]);
     }
 
     public function testUserhasAgeReadable()
@@ -66,13 +66,29 @@ class DisplayAllUsersTest extends TestCase
     public function testUserHasMaritalStatusReadable()
     {
 
-        $maritalStatus = $this->User->maritalStatus = 8;
-        $this->assertEquals('single', $this->User->getMaritalStatus($maritalStatus));
+        $maritalStatus = $this->User->maritalStatus = 1;
+        $this->assertEquals('unmarried', $this->User->getMaritalStatus($maritalStatus));
     }
-    // public function testUserHasGenderReadable(){
 
-    // }
-    // public function testIfUserIsEmployee(){
+    /**
+     * @dataProvider genderProvider
+     */
+    public function testUserHasGenderReadable($genderValue, $expected){
+        $this->assertEquals($expected, $this->User->getGenderValue($genderValue));
+    }
 
-    // }
+    public function genderProvider() {
+        return [
+             ['0002', 'female'],
+            ['0001', 'male'],
+        ];
+    }
+
+    public function testIfUserIsEmployee(){
+        $this->User->CVR = '12345678';
+        $this->assertTrue($this->User->isEmployee());
+    }
+    public function testIfUserIsNotEmployee(){
+        $this->assertFalse($this->User->isEmployee());
+    }
 }

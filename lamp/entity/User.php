@@ -102,8 +102,24 @@ class User
     //add for all statuses
     function getMaritalStatus($status_id)
     {
-        if ($status_id == 8) {
-            return "single";
+        if ($status_id == 1) {
+            return "unmarried";
+        }
+    }
+
+    function getGenderValue($gender_id){
+        if($gender_id === '0002'){
+            return 'female';
+        }else{
+            return 'male';
+        }
+    }
+
+    function isEmployee(){
+        if($this->CVR ){
+            return true;
+        }else{
+            return false;
         }
     }
 }
