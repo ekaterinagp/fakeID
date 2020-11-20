@@ -1,5 +1,6 @@
   <?php
   require_once(__DIR__ . '/connection.php');
+  require_once(__DIR__ . '/entity/User.php');
   ?>
   <!DOCTYPE html>
   <html lang="en">
@@ -27,9 +28,9 @@
       <?php
 
       foreach ($getFunction->getAllUsers() as $user) {
-        echo '<div class="singleUser"><p>' . $user['name'] . '</p><p>' . $user['date_of_birth'] . '</p> <p>' . $user['gender_value'] . '</p> <p>' . $user['CVR'] . '</p> <p>' . $user['marital_status_id'] . '</p></div>';
+        $User = new User();
+        echo '<div class="singleUser"><p>' . $user['name'] . '</p><p>' . $User->calculateAge($user['date_of_birth']) . '</p> <p>' . $User->getGenderValue($user['gender_value']) . '</p> <p>' . $user['CVR'] . '</p> <p>' . $User->getMaritalStatus($user['marital_status_id']) . '</p></div>';
       }
-
 
       ?>
     </div>
