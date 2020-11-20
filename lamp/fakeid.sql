@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `fakeid`
 --
-DROP DATABASE IF EXISTS `fakeid`;
+-- DROP DATABASE IF EXISTS `fakeid`;
 CREATE DATABASE IF NOT EXISTS `fakeid` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `fakeid`;
 
