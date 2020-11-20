@@ -83,11 +83,9 @@ class DisplayAllUsersTest extends TestCase
         ];
     }
 
-    public function testIfUserIsEmployee(){
-        $this->User->CVR = '12345678';
-        $this->assertTrue($this->User->isEmployee());
-    }
-    public function testIfUserIsNotEmployee(){
-        $this->assertFalse($this->User->isEmployee());
-    }
+    // public function testIfUserIsEmployee(){
+    //     $this->User->CVR = '12345678';
+    //     $this->assertTrue($this->User->isEmployee());
+    // }
+ 
 }

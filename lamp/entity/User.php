@@ -10,15 +10,11 @@ class User
     public $birthday;
     public $gender;
     public $CPR;
-    public $company;
-    public $CVR;
+    public $isEmployee;
     public $maritalStatus;
     public $spouse;
     public $children;
     public $serialnumber;
-
-
-
 
     public function formatBirthday($birthday)
     {
@@ -65,7 +61,7 @@ class User
 
     public function setName()
     {
-        
+
     }
 
 
@@ -116,11 +112,11 @@ class User
         }
     }
 
-    function isEmployee(){
-        if($this->CVR ){
-            return true;
-        }else{
-            return false;
-        }
-    }
+    // function isEmployee(){
+    //     if($this->CVR ){
+    //         return true;
+    //     }else{
+    //         return false;
+    //     }
+    // }
 }

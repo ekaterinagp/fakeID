@@ -18,7 +18,7 @@
   <h1>FakeID</h1>
   <div class="menu-right">
     <a href="/" class="active">Overview</a>
-    <a href="/create">Create</a>
+    <a href="create.php">Create</a>
   </div>
 </header>
 
