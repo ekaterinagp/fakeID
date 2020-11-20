@@ -38,7 +38,7 @@
 
 foreach ($getFunction->getAllUsers() as $user) {
         $User = new User();
-        echo '<div class="singleUser"><p>' . $user['name'] . '</p><p>' . $User->calculateAge($user['date_of_birth']) . '</p> <p>' . $User->getGenderValue($user['gender_value']) . '</p> <p>' . $user['CVR'] . '</p> <p>' . $User->getMaritalStatus($user['marital_status_id']) . '</p></div>';
+        echo '<div class="singleUser"><p>' . $user['name'] . '</p><p>' . $User->calculateAge($user['date_of_birth']) . '</p> <p>' . $User->getGenderValue($user['gender_value']) . '</p> <p>' . $User->isEmployee(['CVR']) . '</p> <p>' . $User->getMaritalStatus($user['marital_status_id']) . '</p> <button>Login</button></div>';
       }
 
       ?>

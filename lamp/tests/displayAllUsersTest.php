@@ -72,20 +72,22 @@ class DisplayAllUsersTest extends TestCase
     /**
      * @dataProvider genderProvider
      */
-    public function testUserHasGenderReadable($genderValue, $expected){
+    public function testUserHasGenderReadable($genderValue, $expected)
+    {
         $this->assertEquals($expected, $this->User->getGenderValue($genderValue));
     }
 
-    public function genderProvider() {
+    public function genderProvider()
+    {
         return [
             ['0002', 'female'],
             ['0001', 'male'],
         ];
     }
 
-    // public function testIfUserIsEmployee(){
-    //     $this->User->CVR = '12345678';
-    //     $this->assertTrue($this->User->isEmployee());
-    // }
- 
+    public function testIfUserIsEmployee()
+    {
+        $this->User->CVR = '12345678';
+        $this->assertNotNull("Employee", $this->User->isEmployee());
+    }
 }

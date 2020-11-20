@@ -61,7 +61,6 @@ class User
 
     public function setName()
     {
-
     }
 
 
@@ -104,19 +103,21 @@ class User
         }
     }
 
-    function getGenderValue($gender_id){
-        if($gender_id === '0002'){
+    function getGenderValue($gender_id)
+    {
+        if ($gender_id === '0002') {
             return 'female';
-        }else{
+        } else {
             return 'male';
         }
     }
 
-    // function isEmployee(){
-    //     if($this->CVR ){
-    //         return true;
-    //     }else{
-    //         return false;
-    //     }
-    // }
+    function isEmployee()
+    {
+        if ($this->CVR) {
+            return "Employee";
+        } else {
+            return null;
+        }
+    }
 }

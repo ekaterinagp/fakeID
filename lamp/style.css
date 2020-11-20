@@ -5,41 +5,47 @@
 
 .singleUser {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   border-bottom: 1px solid grey;
 }
 
-main{
-  margin:0 8rem;
+main {
+  margin: 0 8rem;
 }
-header{
-margin:0 2rem;
-display: grid;
-grid-template-columns: 1fr 1fr;
-align-items: center;
+
+header {
+  margin: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
 }
-.menu-right{
+
+.menu-right {
   justify-self: right;
 }
-.menu-right a{
+
+.menu-right a {
   color: black;
   text-decoration: none;
   padding: 0 2rem;
 }
-.menu-right:last-child{
+
+.menu-right:last-child {
   padding-right: 0;
 }
 
-form{
-  display:grid;
+form {
+  display: grid;
   grid-template-columns: 1fr;
 }
-label{
-  display:grid;
+
+label {
+  display: grid;
   grid-template-columns: 1fr;
 }
-input{
-  padding:10px;
+
+input {
+  padding: 10px;
   border-radius: 5px;
   outline: none;
 }
