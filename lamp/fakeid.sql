@@ -22,7 +22,7 @@ SET time_zone
 --
 -- Database: `fakeid`
 --
-/*DROP DATABASE IF EXISTS `fakeid`;*/
+-- DROP DATABASE IF EXISTS `fakeid`;
 CREATE DATABASE
 IF NOT EXISTS `fakeid` DEFAULT CHARACTER
 SET utf8mb4
@@ -203,7 +203,7 @@ CREATE TABLE `user`
 
 INSERT INTO `user`
   (`id`, `name`, `date_of_birth
-  `, `address_id`, `company_name`, `CPR`, `spouse_id`, `marital_status_id`, `gender_value`, `serial_number`, `CVR`) VALUES
+`, `address_id`, `company_name`, `CPR`, `spouse_id`, `marital_status_id`, `gender_value`, `serial_number`, `CVR`) VALUES
 (1, 'Lisa Lalalaa', '081290', 1, NULL, '0812900002', NULL, 1, '0002', '0001', NULL),
 (2, 'Lars Lalala', '181292', 1, NULL, '1812920001', NULL, 1, '0001', '0002', NULL);
 
