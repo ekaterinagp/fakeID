@@ -65,7 +65,6 @@ class DisplayAllUsersTest extends TestCase
 
     public function testUserHasMaritalStatusReadable()
     {
-
         $maritalStatus = $this->User->maritalStatus = 1;
         $this->assertEquals('unmarried', $this->User->getMaritalStatus($maritalStatus));
     }
@@ -79,7 +78,7 @@ class DisplayAllUsersTest extends TestCase
 
     public function genderProvider() {
         return [
-             ['0002', 'female'],
+            ['0002', 'female'],
             ['0001', 'male'],
         ];
     }

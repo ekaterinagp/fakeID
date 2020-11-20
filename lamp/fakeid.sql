@@ -44,7 +44,7 @@ CREATE TABLE `address` (
 
 INSERT INTO `address` (`id`, `district`, `street_building_name`, `post_code`, `street_name`) VALUES
 (1, 'København N', '17', '2200', 'Lygten'),
-(2, 'København N', '37', '2200', 'Lygten'),
+(2, 'København N', '37', '2200', 'Lygten');
 
 -- --------------------------------------------------------
 
@@ -76,7 +76,7 @@ CREATE TABLE `audit_user` (
   `old_marital_status_id` int(11) DEFAULT NULL,
   `old_gender_value` varchar(4) DEFAULT NULL,
   `old_serial_number` varchar(50) DEFAULT NULL,
-  `action` varchar(4) NOT NULL,
+  `db_action` varchar(4) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
   `db_host` varchar(50) NOT NULL,
   `db_user` varchar(50) NOT NULL
@@ -100,24 +100,24 @@ CREATE TABLE `family_relation` (
 -- Table structure for table `marital_status`
 --
 
-CREATE TABLE `marital_status` (
-  `id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- CREATE TABLE `marital_status` (
+--   `id` int(11) NOT NULL,
+--   `name` varchar(50) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `marital_status`
 --
 
-INSERT INTO `marital_status` (`id`, `name`) VALUES
-(1, 'unmarried'),
-(2, 'married'),
-(3, 'divorced'),
-(4, 'widow'),
-(5, 'registered_partnership'),
-(6, 'abolition_of_registered_partnership'),
-(7, 'deceased'),
-(8, 'unknown');
+-- INSERT INTO `marital_status` (`id`, `name`) VALUES
+-- (1, 'unmarried'),
+-- (2, 'married'),
+-- (3, 'divorced'),
+-- (4, 'widow'),
+-- (5, 'registered_partnership'),
+-- (6, 'abolition_of_registered_partnership'),
+-- (7, 'deceased'),
+-- (8, 'unknown');
 
 -- --------------------------------------------------------
 
@@ -312,11 +312,11 @@ ALTER TABLE `audit_user`
 ALTER TABLE `family_relation`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `marital_status`
---
-ALTER TABLE `marital_status`
-  ADD PRIMARY KEY (`id`);
+-- --
+-- -- Indexes for table `marital_status`
+-- --
+-- ALTER TABLE `marital_status`
+--   ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
@@ -342,13 +342,13 @@ ALTER TABLE `user_family_relation`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `audit_user`
 --
 ALTER TABLE `audit_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `family_relation`
@@ -359,10 +359,10 @@ ALTER TABLE `family_relation`
 --
 -- AUTO_INCREMENT for table `marital_status`
 --
-ALTER TABLE `marital_status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+-- ALTER TABLE `marital_status`
+--   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
---
+-- --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
@@ -377,7 +377,6 @@ ALTER TABLE `user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`),
-  ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`marital_status_id`) REFERENCES `marital_status` (`id`),
   ADD CONSTRAINT `user_ibfk_3` FOREIGN KEY (`spouse_id`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `CONSTRAINT_1` CHECK (`gender_value` in ('0001','0002'));
 
