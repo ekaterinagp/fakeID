@@ -34,9 +34,9 @@
 
     ?>
     <div class="container">
-    <form action="">
+    <form action="api/api-create-user.php" method="POST">
     <label for=""> Name
-        <input type="text">
+        <input type="text" name="name">
     </label>
     <label for=""> Address
         <select name="address_id" id="">
@@ -59,6 +59,7 @@
     <label for=""> Not Employee
         <input type="radio"name="isEmployee" value='false'>
     </label>
+    <input type="submit" value="Submit">
     </form>
     
     
