@@ -19,17 +19,6 @@
     <h2>Here comes FakeID in LAMP now its automatically deployed</h2>
     <?php
     require_once(__DIR__ . '/sharedFunctions.php');
-    // function getAllUsers()
-    // {
-    //   $sql = "SELECT * FROM user";
-    //   $conn  = new Database();
-    //   $statement = $conn->connectToDatabase()->prepare($sql);
-    //   if ($statement->execute()) {
-    //     $users = $statement->fetchAll(PDO::FETCH_ASSOC);
-    //     $conn = null;
-    //     return $users;
-    //   }
-    // }
 
     $getFunction = new SharedFunctions();
 
