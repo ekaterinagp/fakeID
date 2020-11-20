@@ -10,6 +10,7 @@ class User
     public $birthday;
     public $gender;
     public $CPR;
+    public $CVR;
     public $isEmployee;
     public $maritalStatus;
     public $spouse;
@@ -112,12 +113,16 @@ class User
         }
     }
 
-    function isEmployee()
+
+    //doesn't work
+    function isEmployee($CVR)
     {
-        if ($this->CVR) {
+
+        if ($CVR !== null) {
             return "Employee";
         } else {
-            return null;
+
+            return "Not employee";
         }
     }
 }
