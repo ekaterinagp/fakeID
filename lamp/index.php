@@ -14,29 +14,39 @@
     <title>
       FakeID</title>
   </head>
+<header>
+  <h1>FakeID</h1>
+  <div class="menu-right">
+    <a href="/">Overview</a>
+    <a href="/create">Create</a>
+  </div>
+</header>
+
 
   <body>
+    <main>
 
-    <h2>Here comes FakeID in LAMP now its automatically deployed</h2>
-    <?php
+      <h2></h2>
+      <?php
     require_once(__DIR__ . '/sharedFunctions.php');
-
+    
     $getFunction = new SharedFunctions();
 
     ?>
     <div class="container">
       <?php
 
-      foreach ($getFunction->getAllUsers() as $user) {
+foreach ($getFunction->getAllUsers() as $user) {
         $User = new User();
         echo '<div class="singleUser"><p>' . $user['name'] . '</p><p>' . $User->calculateAge($user['date_of_birth']) . '</p> <p>' . $User->getGenderValue($user['gender_value']) . '</p> <p>' . $user['CVR'] . '</p> <p>' . $User->getMaritalStatus($user['marital_status_id']) . '</p></div>';
       }
 
       ?>
     </div>
-
-
-
+    
+    
+    
+  </main>
     <script src="js/script.js"></script>
   </body>
 
