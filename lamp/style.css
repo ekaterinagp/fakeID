@@ -5,12 +5,16 @@
 
 .singleUser {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap:.1rem;
   border-bottom: 1px solid grey;
+}
+.singleUser p{
+  text-transform: capitalize;
 }
 
 main{
-  margin:0 8rem;
+  margin:0 10vw;
 }
 header{
 margin:0 2rem;
@@ -31,15 +35,47 @@ align-items: center;
 }
 
 form{
+  width: 400px;
+  margin:auto;
   display:grid;
   grid-template-columns: 1fr;
 }
 label{
   display:grid;
   grid-template-columns: 1fr;
+  margin: .5rem;
 }
-input{
+.labelRadio{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.labelRadio label{
   padding:10px;
-  border-radius: 5px;
+  border-radius: 10px;
+  border:1px solid lightgray;
+  cursor: pointer;
+  text-align: center;
+  margin: 1rem;
+}
+.labelRadio input{
+  display: none;
+}
+input[type="radio"]:checked+label{
+  border:4px solid lightgray;
+}
+input, select{
+  padding:10px;
+  border-radius: 10px;
+  border: 1px solid lightgrey;
   outline: none;
+}
+button{
+  padding:.5rem 1rem;
+  border-radius: 10px;
+  border: 1px solid lightgrey;
+  margin: auto;
+}
+
+a.active{
+  text-decoration: underline;
 }

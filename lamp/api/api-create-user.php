@@ -28,7 +28,7 @@ if($_POST){
     if(empty($_POST['gender_value'])){
         $errorFunction->sendErrorMessage('Gender is required', __LINE__);
     }
-    if($_POST['isEmployee']){
+    if($_POST['isEmployee'] == 'true'){
         $companyName = 'EE A/S';
         $CVR = '12345678';
     }
@@ -45,7 +45,6 @@ if($_POST){
   
   
     $data = [
-  
       ':name' => $_POST['name'],
       ':address_id' => $_POST['address_id'],
       ':date_of_birth' => $_POST['date_of_birth'],
@@ -57,8 +56,11 @@ if($_POST){
   
   
   if($statement->execute($data)){
-    echo '{​​"status":1, "message":"New user created"}​​';
-  }
+    // echo '{​​"status":1, "message":"New user created"}​​';
+    header('Location: http://localhost/fakeid/lamp/');
+    
+}
 
 }
+
 

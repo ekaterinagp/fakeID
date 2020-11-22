@@ -17,8 +17,8 @@
 <header>
   <h1>FakeID</h1>
   <div class="menu-right">
-    <a href="/">Overview</a>
-    <a class="active" href="/create.php">Create</a>
+    <a href="index.php">Overview</a>
+    <a class="active" href="lamp/create.php">Create</a>
   </div>
 </header>
 
@@ -47,18 +47,20 @@
     <label for=""> Date of Birth
         <input type="text" name="date_of_birth">
     </label>
-    <label for=""> Female
-        <input type="radio" name="gender_value" value='0002'>
-    </label>
-    <label for=""> male
-        <input type="radio" name="gender_value" value='0001'>
-    </label>
-    <label for=""> Is Employee
-        <input type="radio" name="isEmployee" value='true'>
-    </label>
-    <label for=""> Not Employee
-        <input type="radio"name="isEmployee" value='false'>
-    </label>
+    <div class="labelRadio">
+        
+        <input type="radio" id="female" name="gender_value" value='0002'>
+        <label for="female"> Female </label>
+        <input id="male" type="radio" name="gender_value" value='0001'>
+        <label for="male"> Male </label>
+    </div>
+    <div class="labelRadio">
+        <input type="radio" id="employee" name="isEmployee" value='true'>
+        <label for="employee"> Is Employee </label>
+        <input type="radio" id="not" name="isEmployee" value='false'>
+        <label for="not"> Not Employee </label>
+       
+    </div>
     <input type="submit" value="Submit">
     </form>
     
