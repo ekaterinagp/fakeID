@@ -1,7 +1,4 @@
 <?php
-namespace TDD;
-use \PDO;
-use \PDOException;
 
  class Database {
     private $connection;

@@ -18,9 +18,9 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `fakeid`
+-- Database: `fakeidd`
 --
-DROP DATABASE IF EXISTS `fakeid`;
+-- DROP DATABASE IF EXISTS `fakeid`;
 CREATE DATABASE IF NOT EXISTS `fakeid` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `fakeid`;
 
@@ -44,8 +44,7 @@ CREATE TABLE `address` (
 
 INSERT INTO `address` (`id`, `district`, `street_building_name`, `post_code`, `street_name`) VALUES
 (1, 'København N', '17', '2200', 'Lygten'),
-(2, 'København N', '17', '2200', 'Lygten'),
-(3, 'København N', '37', '2200', 'Lygten');
+(2, 'København N', '37', '2200', 'Lygten');
 
 -- --------------------------------------------------------
 
@@ -65,7 +64,7 @@ CREATE TABLE `audit_user` (
   `new_spouse_id` int(11) DEFAULT NULL,
   `new_marital_status_id` int(11) DEFAULT NULL,
   `new_gender_value` varchar(4) DEFAULT NULL,
-  `new_serialnumber` varchar(50) DEFAULT NULL,
+  `new_serial_number` varchar(50) DEFAULT NULL,
   `old_id` int(11) DEFAULT NULL,
   `old_name` varchar(50) DEFAULT NULL,
   `old_date_of_birth` varchar(6) DEFAULT NULL,
@@ -76,21 +75,14 @@ CREATE TABLE `audit_user` (
   `old_spouse_id` int(11) DEFAULT NULL,
   `old_marital_status_id` int(11) DEFAULT NULL,
   `old_gender_value` varchar(4) DEFAULT NULL,
-  `old_serialnumber` varchar(50) DEFAULT NULL,
-  `action` varchar(4) NOT NULL,
+  `old_serial_number` varchar(50) DEFAULT NULL,
+  `db_action` varchar(4) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
   `db_host` varchar(50) NOT NULL,
   `db_user` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `audit_user`
---
 
-INSERT INTO `audit_user` (`id`, `new_id`, `new_name`, `new_date_of_birth`, `new_CVR`, `new_address_id`, `new_company_name`, `new_CPR`, `new_spouse_id`, `new_marital_status_id`, `new_gender_value`, `new_serialnumber`, `old_id`, `old_name`, `old_date_of_birth`, `old_CVR`, `old_address_id`, `old_company_name`, `old_CPR`, `old_spouse_id`, `old_marital_status_id`, `old_gender_value`, `old_serialnumber`, `action`, `timestamp`, `db_host`, `db_user`) VALUES
-(1, 5, 'Lisa Lalalaa', '081290', NULL, 1, NULL, '0812900002', NULL, 8, '0002', '23wefsdvsdg', 5, 'Lisa Lalala', '081290', NULL, 1, NULL, '0812900002', NULL, 8, '0002', '23wefsdvsdg', 'U', '2020-11-12 13:00:31', 'root', 'localhost');
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `family_relation`
@@ -105,23 +97,27 @@ CREATE TABLE `family_relation` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `martial_status`
+-- Table structure for table `marital_status`
 --
 
-CREATE TABLE `martial_status` (
-  `id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- CREATE TABLE `marital_status` (
+--   `id` int(11) NOT NULL,
+--   `name` varchar(50) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `martial_status`
+-- Dumping data for table `marital_status`
 --
 
-INSERT INTO `martial_status` (`id`, `name`) VALUES
-(1, 'married'),
-(2, 'divorced'),
-(6, 'widowed'),
-(8, 'single');
+-- INSERT INTO `marital_status` (`id`, `name`) VALUES
+-- (1, 'unmarried'),
+-- (2, 'married'),
+-- (3, 'divorced'),
+-- (4, 'widow'),
+-- (5, 'registered_partnership'),
+-- (6, 'abolition_of_registered_partnership'),
+-- (7, 'deceased'),
+-- (8, 'unknown');
 
 -- --------------------------------------------------------
 
@@ -139,7 +135,7 @@ CREATE TABLE `user` (
   `spouse_id` int(11) DEFAULT NULL,
   `marital_status_id` int(4) NOT NULL,
   `gender_value` varchar(4) NOT NULL,
-  `serialnumber` varchar(50) NOT NULL,
+  `serial_number` varchar(50) NOT NULL,
   `CVR` varchar(8) DEFAULT NULL
 ) ;
 
@@ -147,9 +143,9 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `date_of_birth`, `address_id`, `company_name`, `CPR`, `spouse_id`, `marital_status_id`, `gender_value`, `serialnumber`, `CVR`) VALUES
-(5, 'Lisa Lalalaa', '081290', 1, NULL, '0812900002', NULL, 8, '0002', '23wefsdvsdg', NULL),
-(8, 'Lars Lalala', '181292', 1, NULL, '1812920001', NULL, 8, '0002', '23wefddsdvsdg', NULL);
+INSERT INTO `user` (`id`, `name`, `date_of_birth`, `address_id`, `company_name`, `CPR`, `spouse_id`, `marital_status_id`, `gender_value`, `serial_number`, `CVR`) VALUES
+(1, 'Lisa Lalalaa', '081290', 1, NULL, '0812900002', NULL, 1, '0002', '0001', NULL),
+(2, 'Lars Lalala', '181292', 1, NULL, '1812920001', NULL, 1, '0001', '0002', NULL);
 
 --
 -- Triggers `user`
@@ -167,8 +163,8 @@ CREATE TRIGGER `trg_delete_user` BEFORE DELETE ON `user` FOR EACH ROW BEGIN
          old_spouse_id,
          old_marital_status_id,
          old_gender_value,
-         old_serialnumber,
-         action,
+         old_serial_number,
+         db_action,
          db_host,
          db_user
         )
@@ -182,7 +178,7 @@ CREATE TRIGGER `trg_delete_user` BEFORE DELETE ON `user` FOR EACH ROW BEGIN
              OLD.spouse_id,
              OLD.marital_status_id,
              OLD.gender_value,
-             OLD.serialnumber,
+             OLD.serial_number,
              'D', 
             SUBSTRING(CURRENT_USER(),1,LOCATE('@', CURRENT_USER())-1), 				SUBSTRING(CURRENT_USER(),LOCATE('@', CURRENT_USER())+1)
             );
@@ -202,8 +198,8 @@ CREATE TRIGGER `trg_insert_user` BEFORE INSERT ON `user` FOR EACH ROW BEGIN
          new_spouse_id,
          new_marital_status_id,
          new_gender_value,
-         new_serialnumber,
-         action,
+         new_serial_number,
+         db_action,
          db_host,
          db_user
         )
@@ -217,7 +213,7 @@ CREATE TRIGGER `trg_insert_user` BEFORE INSERT ON `user` FOR EACH ROW BEGIN
              NEW.spouse_id,
              NEW.marital_status_id,
              NEW.gender_value,
-             NEW.serialnumber,
+             NEW.serial_number,
              'I', 
             SUBSTRING(CURRENT_USER(),1,LOCATE('@', CURRENT_USER())-1), 				SUBSTRING(CURRENT_USER(),LOCATE('@', CURRENT_USER())+1)
             );
@@ -237,7 +233,7 @@ CREATE TRIGGER `trg_update_user` BEFORE UPDATE ON `user` FOR EACH ROW BEGIN
         old_spouse_id,
         old_marital_status_id,
         old_gender_value,
-        old_serialnumber,
+        old_serial_number,
         new_id, 
          new_name,
          new_date_of_birth,
@@ -248,8 +244,8 @@ CREATE TRIGGER `trg_update_user` BEFORE UPDATE ON `user` FOR EACH ROW BEGIN
          new_spouse_id,
          new_marital_status_id,
          new_gender_value,
-         new_serialnumber,
-         action,
+         new_serial_number,
+         db_action,
          db_host,
          db_user
         )
@@ -264,7 +260,7 @@ CREATE TRIGGER `trg_update_user` BEFORE UPDATE ON `user` FOR EACH ROW BEGIN
         OLD.spouse_id,
         OLD.marital_status_id,
         OLD.gender_value,
-        OLD.serialnumber,
+        OLD.serial_number,
             NEW.id,
              NEW.name,
              NEW.date_of_birth, 
@@ -275,7 +271,7 @@ CREATE TRIGGER `trg_update_user` BEFORE UPDATE ON `user` FOR EACH ROW BEGIN
              NEW.spouse_id,
              NEW.marital_status_id,
              NEW.gender_value,
-             NEW.serialnumber,
+             NEW.serial_number,
              'U', 
             SUBSTRING(CURRENT_USER(),1,LOCATE('@', CURRENT_USER())-1), 				SUBSTRING(CURRENT_USER(),LOCATE('@', CURRENT_USER())+1)
             );
@@ -316,11 +312,11 @@ ALTER TABLE `audit_user`
 ALTER TABLE `family_relation`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `martial_status`
---
-ALTER TABLE `martial_status`
-  ADD PRIMARY KEY (`id`);
+-- --
+-- -- Indexes for table `marital_status`
+-- --
+-- ALTER TABLE `marital_status`
+--   ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
@@ -346,13 +342,13 @@ ALTER TABLE `user_family_relation`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `audit_user`
 --
 ALTER TABLE `audit_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `family_relation`
@@ -361,12 +357,12 @@ ALTER TABLE `family_relation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `martial_status`
+-- AUTO_INCREMENT for table `marital_status`
 --
-ALTER TABLE `martial_status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+-- ALTER TABLE `marital_status`
+--   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
---
+-- --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
@@ -381,7 +377,6 @@ ALTER TABLE `user`
 --
 ALTER TABLE `user`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`),
-  ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`marital_status_id`) REFERENCES `martial_status` (`id`),
   ADD CONSTRAINT `user_ibfk_3` FOREIGN KEY (`spouse_id`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `CONSTRAINT_1` CHECK (`gender_value` in ('0001','0002'));
 

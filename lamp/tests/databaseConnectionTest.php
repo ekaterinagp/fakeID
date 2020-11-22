@@ -2,7 +2,6 @@
 require_once(__DIR__ . '../../connection.php');
 
 use PHPUnit\Framework\TestCase;
-use TDD\Database;
 
 class DatabaseConnectionTest extends TestCase{
    // only instantiate pdo once for test clean-up/fixture load
@@ -16,13 +15,10 @@ class DatabaseConnectionTest extends TestCase{
         $this->conn = new Database();
         return $this->conn->connectToDatabase();
     }
-
    
-
-    public function testGetUserCount () {
-        {
-            $this->Database = new Database();
-            $this->assertEquals(2, $this->Database->selectAllusers($this->getConnection()), 'should return 2 users' );
-        }
+    public function testConnectionObjectIsNotEmpty(){
+        $this->assertNotNull($this->getConnection());
     }
+
+ 
 }
