@@ -26,7 +26,7 @@ class DisplayAllUsersTest extends TestCase
     public function testGetUserCount()
     {
         $this->Database = new Database();
-        $this->assertEquals(2, $this->Database->selectAllusers($this->Database->connectToDatabase()), 'should return 2 users');
+        $this->assertEquals(4, $this->Database->selectAllusers($this->Database->connectToDatabase()), 'should return 4 users');
     }
 
     public function testUserReceivedFromDatabaseHasAttributes()
@@ -72,20 +72,22 @@ class DisplayAllUsersTest extends TestCase
     /**
      * @dataProvider genderProvider
      */
-    public function testUserHasGenderReadable($genderValue, $expected){
+    public function testUserHasGenderReadable($genderValue, $expected)
+    {
         $this->assertEquals($expected, $this->User->getGenderValue($genderValue));
     }
 
-    public function genderProvider() {
+    public function genderProvider()
+    {
         return [
             ['0002', 'female'],
             ['0001', 'male'],
         ];
     }
-
-    // public function testIfUserIsEmployee(){
-    //     $this->User->CVR = '12345678';
-    //     $this->assertTrue($this->User->isEmployee());
-    // }
- 
+    //doesn't work
+    public function testIfUserIsEmployee()
+    {
+        $this->User->CVR = null;
+        $this->assertNotNull("Employee", $this->User->isEmployee($this->User->CVR));
+    }
 }

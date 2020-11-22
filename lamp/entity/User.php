@@ -10,6 +10,7 @@ class User
     public $birthday;
     public $gender;
     public $CPR;
+    public $CVR;
     public $isEmployee;
     public $maritalStatus;
     public $spouse;
@@ -61,7 +62,6 @@ class User
 
     public function setName()
     {
-
     }
 
 
@@ -104,19 +104,25 @@ class User
         }
     }
 
-    function getGenderValue($gender_id){
-        if($gender_id === '0002'){
+    function getGenderValue($gender_id)
+    {
+        if ($gender_id === '0002') {
             return 'female';
-        }else{
+        } else {
             return 'male';
         }
     }
 
-    // function isEmployee(){
-    //     if($this->CVR ){
-    //         return true;
-    //     }else{
-    //         return false;
-    //     }
-    // }
+
+    //doesn't work
+    function isEmployee($CVR)
+    {
+
+        if ($CVR !== null) {
+            return "Employee";
+        } else {
+
+            return "Not employee";
+        }
+    }
 }

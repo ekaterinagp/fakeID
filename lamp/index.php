@@ -14,13 +14,13 @@
     <title>
       FakeID</title>
   </head>
-<header>
-  <h1>FakeID</h1>
-  <div class="menu-right">
-    <a href="/" class="active">Overview</a>
-    <a href="create.php">Create</a>
-  </div>
-</header>
+  <header>
+    <h1>FakeID</h1>
+    <div class="menu-right">
+      <a href="/" class="active">Overview</a>
+      <a href="create.php">Create</a>
+    </div>
+  </header>
 
 
   <body>
@@ -28,31 +28,32 @@
 
       <h2></h2>
       <?php
-    require_once(__DIR__ . '/sharedFunctions.php');
-    
-    $getFunction = new SharedFunctions();
+      require_once(__DIR__ . '/sharedFunctions.php');
 
-    ?>
-    <div class="container">
-      <?php
 
-foreach ($getFunction->getAllUsers() as $user) {
-        $User = new User();
-        echo '<div class="singleUser"><p>' . $user['name'] . '</p>
-        <p>' . $User->calculateAge($user['date_of_birth']) . '</p>
-        <p>' . $User->getGenderValue($user['gender_value']) . '</p>
-        <p>' . $user['CVR'] . '</p>
-        <p>' . $User->getMaritalStatus($user['marital_status_id']) . '</p>
-        <button class="loginBtn">Log in</button>
-        </div>';
-      }
+      $getFunction = new SharedFunctions();
 
       ?>
-    </div>
-    
-    
-    
-  </main>
+      <div class="container">
+        <?php
+
+          foreach ($getFunction->getAllUsers() as $user) {
+            $User = new User();
+            echo '<div class="singleUser"><p>' . $user['name'] . '</p>
+            <p>' . $User->calculateAge($user['date_of_birth']) . '</p>
+            <p>' . $User->getGenderValue($user['gender_value']) . '</p>
+            <p>' . $user['CVR'] . '</p>
+            <p>' . $User->getMaritalStatus($user['marital_status_id']) . '</p>
+            <button class="loginBtn">Log in</button>
+            </div>';
+          }
+
+        ?>
+      </div>
+
+
+
+    </main>
     <script src="js/script.js"></script>
   </body>
 
