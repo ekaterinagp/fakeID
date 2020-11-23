@@ -26,7 +26,7 @@ class displayAllUsersTest extends TestCase
     public function testGetUserCount()
     {
         $this->Database = new Database();
-        $this->assertEquals(11, $this->Database->selectAllusers($this->Database->connectToDatabase()), 'should return 11 users');
+        $this->assertEquals(4, $this->Database->selectAllusers($this->Database->connectToDatabase()), 'should return 4 users');
     }
     public function testDBResponseNotEmpty()
     {
