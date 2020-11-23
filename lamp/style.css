@@ -5,12 +5,16 @@
 
 .singleUser {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap:.1rem;
   border-bottom: 1px solid grey;
 }
+.singleUser p{
+  text-transform: capitalize;
+}
 
-main {
-  margin: 0 8rem;
+main{
+  margin:0 10vw;
 }
 
 header {
@@ -32,4 +36,71 @@ header {
 
 .menu-right:last-child {
   padding-right: 0;
+}
+
+form{
+  width: 400px;
+  margin:auto;
+  display:grid;
+  grid-template-columns: 1fr;
+}
+.form-field{
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: .5rem;
+}
+.form-field label{
+  visibility: hidden;
+  transform: translateY(-35px);
+  transition: all .1s;
+  padding-left: 8px;
+}
+.form-field input:not(:placeholder-shown) + label,
+.form-field select:not(:invalid) + label
+{
+  transform: translateY(0);
+  visibility: visible;
+}
+select:invalid {
+  color: gray;
+}
+option[value=""][disabled] {
+  display: none;
+}
+option {
+  color: black;
+}
+.labelRadio{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.labelRadio label{
+  padding:10px;
+  border-radius: 10px;
+  border:1px solid lightgray;
+  cursor: pointer;
+  text-align: center;
+  margin: 1rem;
+}
+.labelRadio input{
+  display: none;
+}
+input[type="radio"]:checked+label{
+  border:4px solid lightgray;
+}
+input, select{
+  padding:10px;
+  border-radius: 10px;
+  border: 1px solid lightgrey;
+  outline: none;
+}
+button{
+  padding:.5rem 1rem;
+  border-radius: 10px;
+  border: 1px solid lightgrey;
+  margin: auto;
+}
+
+a.active{
+  text-decoration: underline;
 }
