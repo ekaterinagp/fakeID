@@ -1,37 +1,23 @@
-<phpunit
-    colors="true"
-    processIsolation="false"
-    stopOnFailure="false"
-    bootstrap="tests/autoload.php"
-  
-    >
-    <php>
-        <ini name="memory_limit" value="-1"/>
-        <ini name="apc.enable_cli" value="1"/>
-    </php>
-
-    <!-- Add or exclude any additional test suites you want to run here -->
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.4/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         cacheResultFile=".phpunit.cache/test-results"
+       
+      
+    
+          colors="true">
+        
     <testsuites>
-        <testsuite name="app">
+        <testsuite name="default">
             <directory suffix="Test.php">tests</directory>
         </testsuite>
     </testsuites>
 
-
-    <!--
-    <logging>
-        <log
-            type="coverage-html"
-            target="./tmp/coverage/html/"
-            charset="UTF-8"
-            highlight="true"
-            lowUpperBound="60"
-            highLowerBound="90"
-        />
-        <log
-            type="coverage-clover"
-            target="./tmp/coverage/clover.xml"
-        />
-    </logging>
-    -->
+    <coverage cacheDirectory=".phpunit.cache/code-coverage"
+              processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">lamp</directory>
+        </include>
+    </coverage>
 </phpunit>
