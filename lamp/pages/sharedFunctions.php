@@ -15,7 +15,8 @@ class SharedFunctions
     }
   }
   function sendErrorMessage($message, $line){
-    echo '{​​"status":0, "message": '.$message.', "line":'.$line.'}​​';
+    $response = ['status' => 0, 'message'=> $message, 'line' => $line];
+    echo json_encode($response);
     exit;
   }
 }

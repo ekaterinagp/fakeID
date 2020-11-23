@@ -4,8 +4,8 @@ $errorFunction = new SharedFunctions();
 
 
 $CPR;
-$CVR;
-$companyName;
+$CVR = null;
+$companyName = null;
 
 if ($_POST) {
     if (empty($_POST['name'])) {
@@ -19,8 +19,15 @@ if ($_POST) {
     if (empty($_POST['address_id'])) {
         $errorFunction->sendErrorMessage('address is required', __LINE__);
     }
-    if (empty($_POST['date_of_birth'])) {
-        $errorFunction->sendErrorMessage('date_of_birth is required', __LINE__);
+    if(empty($_POST['date_of_birth'])){
+        $errorFunction->sendErrorMessage('date of birth is required', __LINE__);
+    }
+   
+    if(strlen($_POST['date_of_birth']) > 6 ){
+        $errorFunction->sendErrorMessage('date of birth should be DDMMYY', __LINE__);
+    }
+    if(strlen($_POST['date_of_birth']) < 6 ){
+        $errorFunction->sendErrorMessage('date of birth should be DDMMYY', __LINE__);
     }
     if (empty($_POST['isEmployee'])) {
         $errorFunction->sendErrorMessage('Employee status is required', __LINE__);
@@ -53,10 +60,11 @@ if ($_POST) {
         ':CVR' => $CVR,
         ':CPR' => $CPR,
     ];
-
-
-    if ($statement->execute($data)) {
-        // echo '{​​"status":1, "message":"New user created"}​​';
-        header('Location: http://localhost/fakeid/lamp/');
-    }
+  
+  
+  if($statement->execute($data)){
+    $response = ['status'=> 1, 'message' => 'user created'];
+    echo json_encode($response);
+  }
 }
+
