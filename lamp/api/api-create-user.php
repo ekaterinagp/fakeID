@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__ . '/../pages/sharedFunctions.php');
+require_once(__DIR__ . '/../pages/connection.php');
 $errorFunction = new SharedFunctions();
 
 
@@ -35,7 +36,7 @@ if ($_POST) {
     $CPR = $_POST['date_of_birth'] . $_POST['gender_value'];
 
 
-    require_once(__DIR__ . '/../connection.php');
+
 
     $sql = "INSERT INTO user(name, address_id, date_of_birth,company_name, CVR, CPR, gender_value, marital_status_id )
      VALUES (:name,:address_id, :date_of_birth, :company_name, :CVR, :CPR, :gender_value, 8 )";
