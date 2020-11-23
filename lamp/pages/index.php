@@ -1,6 +1,6 @@
   <?php
   require_once(__DIR__ . '/connection.php');
-  require_once(__DIR__ . '../src/entity/User.php');
+  require_once(__DIR__ . './../src/entity/User.php');
   ?>
   <!DOCTYPE html>
   <html lang="en">
@@ -55,7 +55,7 @@
 
 
     </main>
-    <script src="js/script.js"></script>
+    <script src="../js/script.js"></script>
   </body>
 
   </html>

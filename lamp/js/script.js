@@ -8,7 +8,7 @@ window.addEventListener("load", () => {
 });
 
 function getAllUsers() {
-  let endpoint = "api/api-get-users.php";
+  let endpoint = path+"api/api-get-users.php";
   return new Promise((resolve, reject) => {
     fetch(endpoint)
       .then((res) => res.json())
@@ -27,7 +27,7 @@ function configurePath() {
 }
 
 async function init() {
+  path = configurePath()
   let users = await getAllUsers();
   console.log(users);
-  path = configurePath()
 }
