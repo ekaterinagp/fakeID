@@ -114,7 +114,7 @@ class User
     }
 
 
-    //doesn't work
+
     function isEmployee($CVR)
     {
 

@@ -9,7 +9,7 @@ require_once(__DIR__ . '/../sharedFunctions.php');
 
 
 
-class DisplayAllUsersTest extends TestCase
+class displayAllUsersTest extends TestCase
 {
     public function setUp(): void
     {
