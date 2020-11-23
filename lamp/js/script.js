@@ -1,4 +1,7 @@
 "use strict";
+const baseUrl = window.location;
+const pathname = baseUrl.pathname;
+let path;
 
 window.addEventListener("load", () => {
   init();
@@ -15,7 +18,16 @@ function getAllUsers() {
   });
 }
 
+function configurePath() {
+  if(pathname.includes('/fakeid/lamp/')){
+    return  '/fakeid/lamp/';
+  }else{
+    return '/';
+  }
+}
+
 async function init() {
   let users = await getAllUsers();
   console.log(users);
+  path = configurePath()
 }

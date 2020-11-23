@@ -34,7 +34,7 @@
 
     ?>
     <div class="container">
-    <form action="api/api-create-user.php" method="POST">
+    <form method="POST">
     <div class="form-field">
             <input type="text" name="name" placeholder="Name">
         <label for=""> Name</label>
@@ -64,13 +64,14 @@
         <label for="not"> Not Employee </label>
        
     </div>
-    <input type="submit" value="Submit">
+    <input type="submit"  onclick="submitCreateForm()">
     </form>
     
     
     
-  </main>
+    </main>
     <script src="js/script.js"></script>
+    <script src="js/create.js"></script>
   </body>
 
   </html>

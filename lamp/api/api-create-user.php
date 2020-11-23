@@ -4,8 +4,8 @@ $errorFunction = new SharedFunctions();
 
 
 $CPR;
-$CVR;
-$companyName;
+$CVR = null;
+$companyName = null;
 
 if($_POST){
     if(empty($_POST['name'])){
@@ -20,7 +20,14 @@ if($_POST){
         $errorFunction->sendErrorMessage('address is required', __LINE__);
     }
     if(empty($_POST['date_of_birth'])){
-        $errorFunction->sendErrorMessage('date_of_birth is required', __LINE__);
+        $errorFunction->sendErrorMessage('date of birth is required', __LINE__);
+    }
+   
+    if(strlen($_POST['date_of_birth']) > 6 ){
+        $errorFunction->sendErrorMessage('date of birth should be DDMMYY', __LINE__);
+    }
+    if(strlen($_POST['date_of_birth']) < 6 ){
+        $errorFunction->sendErrorMessage('date of birth should be DDMMYY', __LINE__);
     }
     if(empty($_POST['isEmployee'])){
         $errorFunction->sendErrorMessage('Employee status is required', __LINE__);
@@ -56,9 +63,9 @@ if($_POST){
   
   
   if($statement->execute($data)){
-    echo '{​​"status":1, "message":"New user created"}​​';
-}
-
+    $response = ['status'=> 1, 'message' => 'user created'];
+    echo json_encode($response);
+  }
 }
 
 
