@@ -1,6 +1,6 @@
   <?php
   require_once(__DIR__ . '/connection.php');
-  require_once(__DIR__ . '/entity/User.php');
+  require_once(__DIR__ . '../src/entity/User.php');
   ?>
   <!DOCTYPE html>
   <html lang="en">
@@ -37,17 +37,17 @@
       <div class="container">
         <?php
 
-          foreach ($getFunction->getAllUsers() as $user) {
-            $isEmployee;
-            $User = new User();
-            echo '<div class="singleUser"><p>' . $user['name'] . '</p>
+        foreach ($getFunction->getAllUsers() as $user) {
+          $isEmployee;
+          $User = new User();
+          echo '<div class="singleUser"><p>' . $user['name'] . '</p>
             <p>' . $User->calculateAge($user['date_of_birth']) . '</p>
             <p>' . $User->getGenderValue($user['gender_value']) . '</p>
-            <p>' . $User->isEmployee($user['CVR']). '</p>
+            <p>' . $User->isEmployee($user['CVR']) . '</p>
             <p>' . $User->getMaritalStatus($user['marital_status_id']) . '</p>
             <button class="loginBtn">Log in</button>
             </div>';
-          }
+        }
 
         ?>
       </div>

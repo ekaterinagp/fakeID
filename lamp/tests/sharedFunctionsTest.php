@@ -1,8 +1,8 @@
 
 <?php
-require_once(__DIR__ . '../../connection.php');
-require_once(__DIR__ . '/../sharedFunctions.php');
-require_once(__DIR__ . '/../entity/User.php');
+require_once(__DIR__ . '/../pages/connection.php');
+require_once(__DIR__ . '/../pages/sharedFunctions.php');
+require_once(__DIR__ . '/../src/entity/User.php');
 
 use PHPUnit\Framework\TestCase;
 
