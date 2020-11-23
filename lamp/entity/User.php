@@ -142,6 +142,3 @@ class User
         }
     }
 }
-
-$user = new User();
-echo $user->calculateAge('010105');
