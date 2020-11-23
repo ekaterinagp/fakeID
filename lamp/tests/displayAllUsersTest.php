@@ -3,9 +3,9 @@
 use PHPUnit\Framework\TestCase;
 
 // require_once(__DIR__ . '/../index.php');
-require_once(__DIR__ . '/../connection.php');
-require_once(__DIR__ . '/../entity/User.php');
-require_once(__DIR__ . '/../sharedFunctions.php');
+require_once(__DIR__ . '/../pages/connection.php');
+require_once(__DIR__ . '/../src/entity/User.php');
+require_once(__DIR__ . '/../pages/sharedFunctions.php');
 
 
 
@@ -129,7 +129,7 @@ class displayAllUsersTest extends TestCase
     public function maritalStatusProvider()
     {
         return [
-            'status is unmarried' => [1, 'single'],
+            'status is single' => [1, 'single'],
             'status is married' =>  [2, 'married'],
             'status is divorced' =>  [3, 'divorced'],
             'status is widow' =>  [4, 'widow'],
@@ -137,6 +137,7 @@ class displayAllUsersTest extends TestCase
             'status is AbolitionOfRegisteredPartnership' =>  [6, 'abolitionOfRegisteredPartnership'],
             'status is Deceased' =>  [7, 'deceased'],
             'status is unknown' =>  [8, 'unknown'],
+            'status is undefined' =>  [null, "undefined"],
         ];
     }
 

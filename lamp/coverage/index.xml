@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<phpunit xmlns="https://schema.phpunit.de/coverage/1.0">
+  <build time="Mon Nov 23 14:22:26 CET 2020" phpunit="9.4.3" coverage="9.2.3">
+    <runtime name="PHP" version="7.4.3" url="https://secure.php.net/"/>
+    <driver name="xdebug" version="2.9.8"/>
+  </build>
+  <project source="C:\xampp\htdocs\fakeID\lamp\src\entity">
+    <tests>
+      <test name="databaseConnectionTest::testConnectionObjectIsNotEmpty" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testUserhasAgeReadable with data set &quot;format is 01-01-05&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testUserhasAgeReadable with data set &quot;format is 01-01-55&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testUserhasAgeReadable with data set &quot;format is 01-12-88&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testUserhasAgeReadable with data set &quot;format is 31-01-65&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testUserIsChild with data set &quot;User is a child&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testUserIsChild with data set &quot;User is not a child&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testCalculateAge with data set &quot;age is 65&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testCalculateAge with data set &quot;age is 16&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testCalculateAge with data set &quot;age is 35&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testCalculateAge with data set &quot;age is 5&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is single&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is married&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is divorced&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is widow&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is RegisteredPartnership&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is AbolitionOfRegisteredPartnership&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is Deceased&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is unknown&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testUserHasGenderReadable with data set &quot;gender is female&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testUserHasGenderReadable with data set &quot;gender is male&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testIfUserIsEmployee with data set &quot;user is employee&quot;" size="unknown" result="0" status="PASSED"/>
+      <test name="displayAllUsersTest::testIfUserIsEmployee with data set &quot;user is not employee&quot;" size="unknown" result="0" status="PASSED"/>
+    </tests>
+    <directory name="/">
+      <totals>
+        <lines total="150" comments="4" code="146" executable="51" executed="39" percent="76.47"/>
+        <methods count="15" tested="4" percent="26.67"/>
+        <functions count="0" tested="0" percent="0"/>
+        <classes count="1" tested="0" percent="0.00"/>
+        <traits count="0" tested="0" percent="0"/>
+      </totals>
+      <file name="User.php" href="User.php.xml">
+        <totals>
+          <lines total="150" comments="4" code="146" executable="51" executed="39" percent="76.47"/>
+          <methods count="15" tested="4" percent="26.67"/>
+          <functions count="0" tested="0" percent="0"/>
+          <classes count="1" tested="0" percent="0.00"/>
+          <traits count="0" tested="0" percent="0"/>
+        </totals>
+      </file>
+    </directory>
+  </project>
+</phpunit>

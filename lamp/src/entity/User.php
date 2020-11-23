@@ -37,16 +37,17 @@ class User
             $year = "20" . $oldDate['year'];
         }
 
-        if (strlen($oldDate['month']) > 1) {
-            $month =  $oldDate['month'];
-        } else {
+        if (strlen($oldDate['month']) < 1) {
             $month = "0" . $oldDate['month'];
+        } else {
+            $month = $oldDate['month'];
         }
 
-        if (strlen($oldDate['day']) > 1) {
-            $day =  $oldDate['day'];
-        } else {
+        if (strlen($oldDate['day']) < 1) {
+
             $day = "0" . $oldDate['day'];
+        } else {
+            $day =  $oldDate['day'];
         }
 
         $newDate = $year . "-" . $month . "-" . $day;
@@ -68,7 +69,7 @@ class User
 
     public function isChild($birthday)
     {
-        if ($this->calculateAge($birthday )<18) {
+        if ($this->calculateAge($birthday) < 18) {
             return true;
         } else {
             return false;
@@ -101,23 +102,29 @@ class User
     {
         if ($status_id == 1) {
             return "single";
-        }else if($status_id == 2){
-            return "married";
-        }else if($status_id == 3){
-            return "divorced";
-        }else if($status_id == 4){
-            return "widow";
-        }else if($status_id == 5){
-            return "registeredPartnership";
-        }else if($status_id == 6){
-            return "abolitionOfRegisteredPartnership";
-        }else if($status_id == 7){
-            return "deceased";
-        }else if($status_id == 8){
-            return "unknown";
-        }else {
-            return false;
         }
+        if ($status_id == 2) {
+            return "married";
+        }
+        if ($status_id == 3) {
+            return "divorced";
+        }
+        if ($status_id == 4) {
+            return "widow";
+        }
+        if ($status_id == 5) {
+            return "registeredPartnership";
+        }
+        if ($status_id == 6) {
+            return "abolitionOfRegisteredPartnership";
+        }
+        if ($status_id == 7) {
+            return "deceased";
+        }
+        if ($status_id == 8) {
+            return "unknown";
+        }
+        return "undefined";
     }
     // Single=1, Married=2,Divorced=3,Widow=4, RegisteredPartnership=5, AbolitionOfRegisteredPartnership=6, Deceased=7,Unknown=8
 

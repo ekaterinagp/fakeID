@@ -14,5 +14,8 @@
   "license": "ISC",
   "devDependencies": {
     "cypress": "^5.6.0"
+  },
+  "dependencies": {
+    "php-parser": "^3.0.2"
   }
 }

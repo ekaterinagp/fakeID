@@ -1,0 +1,1274 @@
+<?xml version="1.0"?>
+<phpunit xmlns="https://schema.phpunit.de/coverage/1.0">
+  <file name="User.php" path="\">
+    <totals>
+      <lines total="150" comments="4" code="146" executable="51" executed="39" percent="76.47"/>
+      <methods count="15" tested="4" percent="26.67"/>
+      <functions count="0" tested="0" percent="0"/>
+      <classes count="1" tested="0" percent="0.00"/>
+      <traits count="0" tested="0" percent="0"/>
+    </totals>
+    <class name="User" start="4" executable="51" executed="39" crap="41.72">
+      <namespace name=""/>
+      <method name="formatBirthday" signature="formatBirthday($birthday)" start="20" end="24" crap="1" executable="1" executed="1" coverage="100"/>
+      <method name="calculateAge" signature="calculateAge($birthday)" start="26" end="57" crap="5.06" executable="15" executed="13" coverage="86.666666666667"/>
+      <method name="getName" signature="getName()" start="59" end="61" crap="2" executable="1" executed="0" coverage="0"/>
+      <method name="setName" signature="setName()" start="63" end="65" crap="2" executable="1" executed="0" coverage="0"/>
+      <method name="isChild" signature="isChild($birthday)" start="69" end="76" crap="2" executable="3" executed="3" coverage="100"/>
+      <method name="setAddress" signature="setAddress()" start="78" end="80" crap="2" executable="1" executed="0" coverage="0"/>
+      <method name="getAddress" signature="getAddress()" start="81" end="83" crap="2" executable="1" executed="0" coverage="0"/>
+      <method name="setSpouse" signature="setSpouse()" start="84" end="86" crap="2" executable="1" executed="0" coverage="0"/>
+      <method name="getSpouse" signature="getSpouse()" start="87" end="89" crap="2" executable="1" executed="0" coverage="0"/>
+      <method name="setChild" signature="setChild()" start="90" end="92" crap="2" executable="1" executed="0" coverage="0"/>
+      <method name="getChildren" signature="getChildren()" start="93" end="95" crap="2" executable="1" executed="0" coverage="0"/>
+      <method name="setMaritalStatus" signature="setMaritalStatus()" start="96" end="98" crap="2" executable="1" executed="0" coverage="0"/>
+      <method name="getMaritalStatus" signature="getMaritalStatus($status_id)" start="100" end="127" crap="9.02" executable="17" executed="16" coverage="94.117647058824"/>
+      <method name="getGenderValue" signature="getGenderValue($gender_id)" start="130" end="137" crap="2" executable="3" executed="3" coverage="100"/>
+      <method name="isEmployee" signature="isEmployee($CVR)" start="141" end="149" crap="2" executable="3" executed="3" coverage="100"/>
+    </class>
+    <coverage>
+      <line nr="23">
+        <covered by="displayAllUsersTest::testUserhasAgeReadable with data set &quot;format is 01-01-05&quot;"/>
+        <covered by="displayAllUsersTest::testUserhasAgeReadable with data set &quot;format is 01-01-55&quot;"/>
+        <covered by="displayAllUsersTest::testUserhasAgeReadable with data set &quot;format is 01-12-88&quot;"/>
+        <covered by="displayAllUsersTest::testUserhasAgeReadable with data set &quot;format is 31-01-65&quot;"/>
+      </line>
+      <line nr="29">
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is a child&quot;"/>
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is not a child&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 65&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 16&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 35&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 5&quot;"/>
+      </line>
+      <line nr="32">
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is a child&quot;"/>
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is not a child&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 65&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 16&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 35&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 5&quot;"/>
+      </line>
+      <line nr="33">
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is not a child&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 65&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 35&quot;"/>
+      </line>
+      <line nr="34">
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is a child&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 16&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 5&quot;"/>
+      </line>
+      <line nr="35">
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is a child&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 16&quot;"/>
+      </line>
+      <line nr="37">
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 5&quot;"/>
+      </line>
+      <line nr="40">
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is a child&quot;"/>
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is not a child&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 65&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 16&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 35&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 5&quot;"/>
+      </line>
+      <line nr="43">
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is a child&quot;"/>
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is not a child&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 65&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 16&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 35&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 5&quot;"/>
+      </line>
+      <line nr="46">
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is a child&quot;"/>
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is not a child&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 65&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 16&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 35&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 5&quot;"/>
+      </line>
+      <line nr="49">
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is a child&quot;"/>
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is not a child&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 65&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 16&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 35&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 5&quot;"/>
+      </line>
+      <line nr="52">
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is a child&quot;"/>
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is not a child&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 65&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 16&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 35&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 5&quot;"/>
+      </line>
+      <line nr="54">
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is a child&quot;"/>
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is not a child&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 65&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 16&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 35&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 5&quot;"/>
+      </line>
+      <line nr="56">
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is a child&quot;"/>
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is not a child&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 65&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 16&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 35&quot;"/>
+        <covered by="displayAllUsersTest::testCalculateAge with data set &quot;age is 5&quot;"/>
+      </line>
+      <line nr="71">
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is a child&quot;"/>
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is not a child&quot;"/>
+      </line>
+      <line nr="72">
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is a child&quot;"/>
+      </line>
+      <line nr="74">
+        <covered by="displayAllUsersTest::testUserIsChild with data set &quot;User is not a child&quot;"/>
+      </line>
+      <line nr="102">
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is single&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is married&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is divorced&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is widow&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is RegisteredPartnership&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is AbolitionOfRegisteredPartnership&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is Deceased&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is unknown&quot;"/>
+      </line>
+      <line nr="103">
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is single&quot;"/>
+      </line>
+      <line nr="105">
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is married&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is divorced&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is widow&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is RegisteredPartnership&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is AbolitionOfRegisteredPartnership&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is Deceased&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is unknown&quot;"/>
+      </line>
+      <line nr="106">
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is married&quot;"/>
+      </line>
+      <line nr="108">
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is divorced&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is widow&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is RegisteredPartnership&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is AbolitionOfRegisteredPartnership&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is Deceased&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is unknown&quot;"/>
+      </line>
+      <line nr="109">
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is divorced&quot;"/>
+      </line>
+      <line nr="111">
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is widow&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is RegisteredPartnership&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is AbolitionOfRegisteredPartnership&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is Deceased&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is unknown&quot;"/>
+      </line>
+      <line nr="112">
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is widow&quot;"/>
+      </line>
+      <line nr="114">
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is RegisteredPartnership&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is AbolitionOfRegisteredPartnership&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is Deceased&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is unknown&quot;"/>
+      </line>
+      <line nr="115">
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is RegisteredPartnership&quot;"/>
+      </line>
+      <line nr="117">
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is AbolitionOfRegisteredPartnership&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is Deceased&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is unknown&quot;"/>
+      </line>
+      <line nr="118">
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is AbolitionOfRegisteredPartnership&quot;"/>
+      </line>
+      <line nr="120">
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is Deceased&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is unknown&quot;"/>
+      </line>
+      <line nr="121">
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is Deceased&quot;"/>
+      </line>
+      <line nr="123">
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is unknown&quot;"/>
+      </line>
+      <line nr="124">
+        <covered by="displayAllUsersTest::testUserHasMaritalStatusReadable with data set &quot;status is unknown&quot;"/>
+      </line>
+      <line nr="132">
+        <covered by="displayAllUsersTest::testUserHasGenderReadable with data set &quot;gender is female&quot;"/>
+        <covered by="displayAllUsersTest::testUserHasGenderReadable with data set &quot;gender is male&quot;"/>
+      </line>
+      <line nr="133">
+        <covered by="displayAllUsersTest::testUserHasGenderReadable with data set &quot;gender is female&quot;"/>
+      </line>
+      <line nr="135">
+        <covered by="displayAllUsersTest::testUserHasGenderReadable with data set &quot;gender is male&quot;"/>
+      </line>
+      <line nr="143">
+        <covered by="displayAllUsersTest::testIfUserIsEmployee with data set &quot;user is employee&quot;"/>
+        <covered by="displayAllUsersTest::testIfUserIsEmployee with data set &quot;user is not employee&quot;"/>
+      </line>
+      <line nr="144">
+        <covered by="displayAllUsersTest::testIfUserIsEmployee with data set &quot;user is employee&quot;"/>
+      </line>
+      <line nr="147">
+        <covered by="displayAllUsersTest::testIfUserIsEmployee with data set &quot;user is not employee&quot;"/>
+      </line>
+    </coverage>
+    <source>
+      <line no="1">
+        <token name="T_OPEN_TAG">&lt;?php</token>
+      </line>
+      <line no="2"/>
+      <line no="3"/>
+      <line no="4">
+        <token name="T_CLASS">class</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">User</token>
+      </line>
+      <line no="5">
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="6"/>
+      <line no="7">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$id</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="8">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$name</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="9">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$address</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="10">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$birthday</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="11">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$gender</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="12">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$CPR</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="13">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$CVR</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="14">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$isEmployee</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="15">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$maritalStatus</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="16">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$spouse</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="17">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$children</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="18">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$serialnumber</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="19"/>
+      <line no="20">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">formatBirthday</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$birthday</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+      </line>
+      <line no="21">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="22"/>
+      <line no="23">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_STRING">implode</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'-'</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">str_split</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$birthday</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">2</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="24">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="25"/>
+      <line no="26">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">calculateAge</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$birthday</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+      </line>
+      <line no="27">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="28"/>
+      <line no="29">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_VARIABLE">$oldDate</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">date_parse_from_format</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"dmY"</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$birthday</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="30">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_COMMENT">// echo json_encode($oldDate);</token>
+      </line>
+      <line no="31"/>
+      <line no="32">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$oldDate</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'year'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_IS_GREATER_OR_EQUAL">&gt;=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">20</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="33">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$year</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"19"</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOT">.</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$oldDate</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'year'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="34">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_ELSE">else</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$oldDate</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'year'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LT">&lt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">10</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="35">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$year</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"200"</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOT">.</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$oldDate</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'year'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="36">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_ELSE">else</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="37">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$year</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"20"</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOT">.</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$oldDate</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'year'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="38">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="39"/>
+      <line no="40">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_STRING">strlen</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$oldDate</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'month'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_GT">&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">1</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="41">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$month</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE">  </token>
+        <token name="T_VARIABLE">$oldDate</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'month'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="42">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_ELSE">else</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="43">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$month</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"0"</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOT">.</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$oldDate</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'month'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="44">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="45"/>
+      <line no="46">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_STRING">strlen</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$oldDate</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'day'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_GT">&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">1</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="47">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$day</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE">  </token>
+        <token name="T_VARIABLE">$oldDate</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'day'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="48">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_ELSE">else</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="49">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$day</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"0"</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOT">.</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$oldDate</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'day'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="50">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="51"/>
+      <line no="52">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_VARIABLE">$newDate</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$year</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOT">.</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"-"</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOT">.</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$month</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOT">.</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"-"</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOT">.</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$day</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="53"/>
+      <line no="54">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_VARIABLE">$age</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">floor</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_STRING">time</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_MINUS">-</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">strtotime</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$newDate</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DIV">/</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">31556926</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="55">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_COMMENT">// echo $age;</token>
+      </line>
+      <line no="56">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$age</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="57">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="58"/>
+      <line no="59">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">getName</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+      </line>
+      <line no="60">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="61">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="62"/>
+      <line no="63">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">setName</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+      </line>
+      <line no="64">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="65">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="66"/>
+      <line no="67"/>
+      <line no="68"/>
+      <line no="69">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">isChild</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$birthday</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+      </line>
+      <line no="70">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="71">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">calculateAge</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$birthday</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LT">&lt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">18</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="72">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">true</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="73">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_ELSE">else</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="74">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">false</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="75">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="76">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="77"/>
+      <line no="78">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">setAddress</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+      </line>
+      <line no="79">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="80">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="81">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">getAddress</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+      </line>
+      <line no="82">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="83">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="84">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">setSpouse</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+      </line>
+      <line no="85">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="86">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="87">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">getSpouse</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+      </line>
+      <line no="88">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="89">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="90">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">setChild</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+      </line>
+      <line no="91">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="92">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="93">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">getChildren</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+      </line>
+      <line no="94">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="95">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="96">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">setMaritalStatus</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+      </line>
+      <line no="97">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="98">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="99">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_COMMENT">//add for all statuses</token>
+      </line>
+      <line no="100">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">getMaritalStatus</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$status_id</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+      </line>
+      <line no="101">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="102">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$status_id</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_IS_EQUAL">==</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">1</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="103">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"single"</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="104">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="105">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$status_id</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_IS_EQUAL">==</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">2</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="106">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"married"</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="107">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="108">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$status_id</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_IS_EQUAL">==</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">3</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="109">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"divorced"</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="110">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="111">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$status_id</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_IS_EQUAL">==</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">4</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="112">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"widow"</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="113">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="114">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$status_id</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_IS_EQUAL">==</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">5</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="115">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"registeredPartnership"</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="116">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="117">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$status_id</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_IS_EQUAL">==</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">6</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="118">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"abolitionOfRegisteredPartnership"</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="119">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="120">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$status_id</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_IS_EQUAL">==</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">7</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="121">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"deceased"</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="122">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="123">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$status_id</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_IS_EQUAL">==</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">8</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="124">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"unknown"</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="125">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="126">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">false</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="127">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="128">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_COMMENT">// Single=1, Married=2,Divorced=3,Widow=4, RegisteredPartnership=5, AbolitionOfRegisteredPartnership=6, Deceased=7,Unknown=8</token>
+      </line>
+      <line no="129"/>
+      <line no="130">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">getGenderValue</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$gender_id</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+      </line>
+      <line no="131">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="132">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$gender_id</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_IS_IDENTICAL">===</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'0002'</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="133">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'female'</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="134">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_ELSE">else</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="135">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'male'</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="136">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="137">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="138"/>
+      <line no="139"/>
+      <line no="140"/>
+      <line no="141">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">isEmployee</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$CVR</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+      </line>
+      <line no="142">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="143">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$CVR</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_IS_NOT_IDENTICAL">!==</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">null</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="144">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"Employee"</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="145">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_ELSE">else</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="146"/>
+      <line no="147">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">""</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="148">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="149">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="150">
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="151"/>
+    </source>
+  </file>
+</phpunit>
