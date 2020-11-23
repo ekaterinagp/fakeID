@@ -35,20 +35,23 @@
     ?>
     <div class="container">
     <form action="api/api-create-user.php" method="POST">
-    <label for=""> Name
-        <input type="text" name="name">
-    </label>
-    <label for=""> Address
-        <select name="address_id" id="">
-        <option value="1" name="address_id" >Lygten 17</option>
-        <option value="2" name="address_id">Lygten 37</option>
-    </select>
-    </label>
-    <label for=""> Date of Birth
-        <input type="text" name="date_of_birth">
-    </label>
+    <div class="form-field">
+            <input type="text" name="name" placeholder="Name">
+        <label for=""> Name</label>
+    </div>
+    <div class="form-field">
+        <select name="address_id" id="" placeholder="Select Address" required>
+            <option value="" disabled selected >Select Address</option>
+            <option value="1">Lygten 17</option>
+            <option value="2">Lygten 37</option>
+        </select>
+        <label for=""> Address </label>
+    </div>
+    <div class="form-field">
+        <input type="text" name="date_of_birth" placeholder="Date of Birth">
+        <label for=""> Date of Birth</label>
+    </div>
     <div class="labelRadio">
-        
         <input type="radio" id="female" name="gender_value" value='0002'>
         <label for="female"> Female </label>
         <input id="male" type="radio" name="gender_value" value='0001'>

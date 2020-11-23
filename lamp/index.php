@@ -39,12 +39,11 @@
 
           foreach ($getFunction->getAllUsers() as $user) {
             $isEmployee;
-            if($user['CVR']){  $isEmployee = 'Employee'; }else {$isEmployee = ''; }
             $User = new User();
             echo '<div class="singleUser"><p>' . $user['name'] . '</p>
             <p>' . $User->calculateAge($user['date_of_birth']) . '</p>
             <p>' . $User->getGenderValue($user['gender_value']) . '</p>
-            <p>' . $isEmployee. '</p>
+            <p>' . $User->isEmployee($user['CVR']). '</p>
             <p>' . $User->getMaritalStatus($user['marital_status_id']) . '</p>
             <button class="loginBtn">Log in</button>
             </div>';

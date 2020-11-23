@@ -44,11 +44,31 @@ form{
   display:grid;
   grid-template-columns: 1fr;
 }
-
-label {
+.form-field{
   display: grid;
   grid-template-columns: 1fr;
   margin: .5rem;
+}
+.form-field label{
+  visibility: hidden;
+  transform: translateY(-35px);
+  transition: all .1s;
+  padding-left: 8px;
+}
+.form-field input:not(:placeholder-shown) + label,
+.form-field select:not(:invalid) + label
+{
+  transform: translateY(0);
+  visibility: visible;
+}
+select:invalid {
+  color: gray;
+}
+option[value=""][disabled] {
+  display: none;
+}
+option {
+  color: black;
 }
 .labelRadio{
   display: grid;
