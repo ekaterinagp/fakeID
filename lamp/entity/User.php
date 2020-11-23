@@ -68,7 +68,7 @@ class User
 
     public function isChild($birthday)
     {
-        if ($this->calculateAge($birthday < 18)) {
+        if ($this->calculateAge($birthday )<18) {
             return true;
         } else {
             return false;
@@ -100,9 +100,26 @@ class User
     function getMaritalStatus($status_id)
     {
         if ($status_id == 1) {
-            return "unmarried";
+            return "single";
+        }else if($status_id == 2){
+            return "married";
+        }else if($status_id == 3){
+            return "divorced";
+        }else if($status_id == 4){
+            return "widow";
+        }else if($status_id == 5){
+            return "registeredPartnership";
+        }else if($status_id == 6){
+            return "abolitionOfRegisteredPartnership";
+        }else if($status_id == 7){
+            return "deceased";
+        }else if($status_id == 8){
+            return "unknown";
+        }else {
+            return false;
         }
     }
+    // Single=1, Married=2,Divorced=3,Widow=4, RegisteredPartnership=5, AbolitionOfRegisteredPartnership=6, Deceased=7,Unknown=8
 
     function getGenderValue($gender_id)
     {
@@ -117,12 +134,14 @@ class User
     //doesn't work
     function isEmployee($CVR)
     {
-
         if ($CVR !== null) {
             return "Employee";
         } else {
 
-            return "Not employee";
+            return "";
         }
     }
 }
+
+$user = new User();
+echo $user->calculateAge('010105');
