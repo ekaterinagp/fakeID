@@ -19,7 +19,7 @@ require_once(__DIR__ . '/../lamp/pages/sharedFunctions.php');
   <h1>FakeID</h1>
   <div class="menu-right">
     <a href="index.php">Overview</a>
-    <a class="active" href="lamp/create.php">Create</a>
+    <a class="active" href="create.php">Create</a>
   </div>
 </header>
 
@@ -35,7 +35,7 @@ require_once(__DIR__ . '/../lamp/pages/sharedFunctions.php');
 
     ?>
     <div class="container">
-      <form action="api/api-create-user.php" method="POST">
+      <form method="POST">
         <div class="form-field">
           <input type="text" name="name" placeholder="Name">
           <label for=""> Name</label>
@@ -65,13 +65,14 @@ require_once(__DIR__ . '/../lamp/pages/sharedFunctions.php');
           <label for="not"> Not Employee </label>
 
         </div>
-        <input type="submit" value="Submit">
+        <input type="submit" onclick="submitCreateForm()">
       </form>
 
 
 
   </main>
-  <script src="js/script.js"></script>
+  <script src="../js/script.js"></script>
+  <script src="../js/create.js"></script>
 </body>
 
 </html>
