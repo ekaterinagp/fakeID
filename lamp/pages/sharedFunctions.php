@@ -37,4 +37,43 @@ class SharedFunctions
       return json_decode(json_encode($object));
     }
   }
+
+
+  function getAllAvailableAddress()
+  {
+
+    $sql = "SELECT * FROM address";
+    $conn  = new Database();
+    $statement = $conn->connectToDatabase()->prepare($sql);
+    if ($statement->execute()) {
+      $addresses = $statement->fetchAll(PDO::FETCH_ASSOC);
+      return $addresses;
+    }
+  }
+
+  function getAddressByID($id)
+  {
+    $sql = "SELECT * FROM address WHERE id=$id";
+    $conn  = new Database();
+    $statement = $conn->connectToDatabase()->prepare($sql);
+    if ($statement->execute()) {
+      $address = $statement->fetch(PDO::FETCH_ASSOC);
+      $conn = null;
+      $object = (object) $address;
+      return json_decode(json_encode($object));
+    }
+  }
+
+
+  function countAllAddresses()
+  {
+    $sql = "SELECT count(*) FROM address";
+    $conn  = new Database();
+    $statement = $conn->connectToDatabase()->prepare($sql);
+    if ($statement->execute()) {
+      $addresses = $statement->fetchAll(PDO::FETCH_ASSOC);
+      $conn = null;
+      return $addresses[0]['count(*)'];
+    }
+  }
 }

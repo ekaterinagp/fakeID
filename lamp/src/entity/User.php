@@ -74,8 +74,9 @@ class User
         }
     }
 
-    function setAddress()
+    function setAddress($addressObject)
     {
+        return "$addressObject->street_name, $addressObject->street_building_name $addressObject->district $addressObject->post_code";
     }
     function getAddress()
     {

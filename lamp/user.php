@@ -17,15 +17,19 @@ require_once(__DIR__ . '/../lamp/pages/sharedFunctions.php');
 
 <body>
 
+
+
   <?php
   $id = $_GET['id'];
   $getFunction = new SharedFunctions();
   $user =  $getFunction->getUserById($id);
+  $address = $getFunction->getAddressByID($user->address_id);
   // echo json_encode($user);
   $User = new User();
+  echo '<h2>User  ' . $user->name . ' </h2>';
   echo '<div class="user"><h3>Name</h3><p>' . $user->name . '</p>
   <h3>Date of birth</h3><p>' . $User->formatBirthday($user->date_of_birth) . '</p>
-  <h3>Address</h3><p>' . $user->address_id . '</p>
+  <h3>Address</h3><p>' . $User->setAddress($address) . '</p>
   <h3>CPR</h3><p>' . $user->CPR . '</p>
   <h3>Gender</h3><p>' . $User->getGenderValue($user->company_name) . '</p>
   <h3>Marital status</h3><p>' . $User->getMaritalStatus($user->marital_status_id) . '</p>

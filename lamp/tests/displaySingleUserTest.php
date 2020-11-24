@@ -33,8 +33,8 @@ class displaySingleUserTest extends TestCase
    */
   public function testUserHasAttributes($attribute, $expected)
   {
-    $this->sharedFunctions = new SharedFunctions();
-    $user = $this->sharedFunctions->getUserByID(2);
+    $this->SharedFunctions = new SharedFunctions();
+    $user = $this->SharedFunctions->getUserByID(2);
     $this->assertObjectHasAttribute($attribute, $expected);
   }
 
@@ -50,5 +50,12 @@ class displaySingleUserTest extends TestCase
       'user has key gender' =>  ['gender_value', $user],
       'user has key marital status' =>  ['marital_status_id', $user],
     ];
+  }
+
+  public function testGetUserByID()
+  {
+    $this->SharedFunctions = new SharedFunctions();
+    $userByID = $this->SharedFunctions->getUserByID(2);
+    $this->assertEquals(2, $userByID->id);
   }
 }
