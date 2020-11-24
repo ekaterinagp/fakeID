@@ -6,11 +6,11 @@ it('finds the content "type"', () => {
 
 describe("Create an employee user", () => {
   let user = {
-    name: "Martina Ro",
-    dateOfBirth: "021055",
+    name: "Martina RoRoRo",
+    dateOfBirth: "021025",
     address_id: 1,
     genderValue: "0002",
-    isEmployee: "true",
+    isEmployee: false,
     // profileAddressId: 2,
     // description: `Martin Rhode description`
   };
@@ -21,8 +21,20 @@ describe("Create an employee user", () => {
     cy.get('select[name="address_id"]').select(
       user.address_id == 2 ? "Lygten 37" : "Lygten 17"
     );
-    cy.get('input[name="gender_value"]').check(user.genderValue);
-    cy.get('input[name="isEmployee"]').check(user.isEmployee);
+    // cy.get('input[name="gender_value"]').check(user.genderValue);
+    if (user.genderValue == "0002") {
+      cy.get("label").contains("Female").click();
+    } else {
+      cy.get("label").contains("Male").click();
+    }
+
+    if (user.isEmployee == false) {
+      cy.get("label").contains("Not Employee").click();
+    } else {
+      cy.get("label").contains("Is Employee").click();
+    }
+
+    // cy.get('input[name="isEmployee"]').check(user.isEmployee);
     cy.get('input[type="submit"]').click();
   });
 
