@@ -37,18 +37,17 @@ class User
             $year = "20" . $oldDate['year'];
         }
 
-        if (strlen($oldDate['month']) < 1) {
+        $month = $oldDate['month'];
+        if (strlen($oldDate['month']) == 1) {
             $month = "0" . $oldDate['month'];
-        } else {
-            $month = $oldDate['month'];
         }
 
-        if (strlen($oldDate['day']) < 1) {
+        $day =  $oldDate['day'];
+        if (strlen($oldDate['day']) == 1) {
 
             $day = "0" . $oldDate['day'];
-        } else {
-            $day =  $oldDate['day'];
         }
+
 
         $newDate = $year . "-" . $month . "-" . $day;
 
