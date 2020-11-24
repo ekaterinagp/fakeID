@@ -1,5 +1,6 @@
 <?php
-require_once(__DIR__ . './../pages/sharedFunctions.php');
+require_once(__DIR__ . '/../pages/sharedFunctions.php');
+require_once(__DIR__ . '/../pages/connection.php');
 $errorFunction = new SharedFunctions();
 
 
@@ -19,14 +20,14 @@ if ($_POST) {
     if (empty($_POST['address_id'])) {
         $errorFunction->sendErrorMessage('address is required', __LINE__);
     }
-    if(empty($_POST['date_of_birth'])){
+    if (empty($_POST['date_of_birth'])) {
         $errorFunction->sendErrorMessage('date of birth is required', __LINE__);
     }
-   
-    if(strlen($_POST['date_of_birth']) > 6 ){
+
+    if (strlen($_POST['date_of_birth']) > 6) {
         $errorFunction->sendErrorMessage('date of birth should be DDMMYY', __LINE__);
     }
-    if(strlen($_POST['date_of_birth']) < 6 ){
+    if (strlen($_POST['date_of_birth']) < 6) {
         $errorFunction->sendErrorMessage('date of birth should be DDMMYY', __LINE__);
     }
     if (empty($_POST['isEmployee'])) {
@@ -42,7 +43,6 @@ if ($_POST) {
     $CPR = $_POST['date_of_birth'] . $_POST['gender_value'];
 
 
-    require_once(__DIR__ . './../pages/connection.php');
 
     $sql = "INSERT INTO user(name, address_id, date_of_birth,company_name, CVR, CPR, gender_value, marital_status_id )
      VALUES (:name,:address_id, :date_of_birth, :company_name, :CVR, :CPR, :gender_value, 8 )";
@@ -60,11 +60,10 @@ if ($_POST) {
         ':CVR' => $CVR,
         ':CPR' => $CPR,
     ];
-  
-  
-  if($statement->execute($data)){
-    $response = ['status'=> 1, 'message' => 'user created'];
-    echo json_encode($response);
-  }
-}
 
+
+    if ($statement->execute($data)) {
+        $response = ['status' => 1, 'message' => 'user created'];
+        echo json_encode($response);
+    }
+}

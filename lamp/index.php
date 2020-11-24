@@ -1,6 +1,7 @@
   <?php
-  require_once(__DIR__ . '/connection.php');
-  require_once(__DIR__ . './../src/entity/User.php');
+  require_once(__DIR__ . '/../lamp/pages/connection.php');
+  require_once(__DIR__ . '/../lamp/src/entity/User.php');
+  require_once(__DIR__ . '/../lamp/pages/sharedFunctions.php');
   ?>
   <!DOCTYPE html>
   <html lang="en">
@@ -28,7 +29,7 @@
 
       <h2></h2>
       <?php
-      require_once(__DIR__ . '/sharedFunctions.php');
+
 
 
       $getFunction = new SharedFunctions();
