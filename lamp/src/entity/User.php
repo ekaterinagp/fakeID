@@ -44,7 +44,6 @@ class User
 
         $day =  $oldDate['day'];
         if (strlen($oldDate['day']) == 1) {
-
             $day = "0" . $oldDate['day'];
         }
 

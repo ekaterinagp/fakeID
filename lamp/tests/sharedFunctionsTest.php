@@ -8,6 +8,9 @@ use PHPUnit\Framework\TestCase;
 
 class sharedFunctionsTest extends TestCase
 {
+
+
+
     function testIfCompany()
     {
         $User = new User();
