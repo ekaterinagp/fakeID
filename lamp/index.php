@@ -41,7 +41,7 @@
         foreach ($getFunction->getAllUsers() as $user) {
           $isEmployee;
           $User = new User();
-          echo '<div class="singleUser"><p>' . $user['name'] . '</p>
+          echo '<div class="singleUser" id="' . $user['id'] . '" ><a href="user.php?id=' . $user['id'] . '"><p>' . $user['name'] . '</p></a>
             <p>' . $User->calculateAge($user['date_of_birth']) . '</p>
             <p>' . $User->getGenderValue($user['gender_value']) . '</p>
             <p>' . $User->isEmployee($user['CVR']) . '</p>
@@ -56,7 +56,7 @@
 
 
     </main>
-    <script src="../js/script.js"></script>
+    <script src="../lamp/js/script.js"></script>
   </body>
 
   </html>

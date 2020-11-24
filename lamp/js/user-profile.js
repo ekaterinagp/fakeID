@@ -7,16 +7,10 @@ window.addEventListener("load", () => {
   init();
 });
 
-function getAllUsers() {
-  let endpoint = path + "api/api-get-users.php";
-  return new Promise((resolve, reject) => {
-    fetch(endpoint)
-      .then((res) => res.json())
-      .then((users) => {
-        resolve(users);
-      });
-  });
-}
+let urlParams = new URLSearchParams(window.location.search);
+
+let id = urlParams.get("id");
+console.log(id);
 
 function getUserById(id) {
   const endpoint = path + `api/api-get-single-user.php?id=` + id;
@@ -24,17 +18,10 @@ function getUserById(id) {
     fetch(endpoint)
       .then((res) => res.json())
       .then((user) => {
-        console.log(user);
         resolve(user);
       });
   });
 }
-
-// function getId(id) {
-//   console.log(id);
-//   // getUserById(id);
-//   window.location.href = path + id + "/user.php";
-// }
 
 function configurePath() {
   if (pathname.includes("/fakeid/lamp/")) {
@@ -46,6 +33,6 @@ function configurePath() {
 
 async function init() {
   path = configurePath();
-  let users = await getAllUsers();
-  console.log(users);
+  let user = await getUserById(id);
+  console.log(user);
 }

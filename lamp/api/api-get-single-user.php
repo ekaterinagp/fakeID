@@ -1,6 +1,6 @@
 <?php
 require_once(__DIR__ . '/../pages/connection.php');
-$id = 2;
+$id = $_GET['id'];
 $sql = "SELECT * FROM user WHERE id='" . $id . "'";
 
 $connection = new Database();
