@@ -44,7 +44,6 @@ class User
 
         $day =  $oldDate['day'];
         if (strlen($oldDate['day']) == 1) {
-
             $day = "0" . $oldDate['day'];
         }
 
@@ -75,8 +74,9 @@ class User
         }
     }
 
-    function setAddress()
+    function setAddress($addressObject)
     {
+        return "$addressObject->street_name, $addressObject->street_building_name $addressObject->district $addressObject->post_code";
     }
     function getAddress()
     {

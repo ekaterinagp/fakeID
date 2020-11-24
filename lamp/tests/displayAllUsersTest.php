@@ -171,4 +171,58 @@ class displayAllUsersTest extends TestCase
             'user is not employee' =>  [null, ''],
         ];
     }
+
+    public function testCountAllAddress()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $addressesNumber = $this->SharedFunctions->countAllAddresses();
+        $this->assertEquals(2, $addressesNumber);
+    }
+
+    /**
+     * @dataProvider addressAttributeProvier
+     */
+    public function testAddressHasAttributes($attribute, $expected)
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $addresses = $this->SharedFunctions->getAllAvailableAddress();
+        $this->assertArrayHasKey($attribute, $expected);
+    }
+
+    public function addressAttributeProvier()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $address = $this->SharedFunctions->getAllAvailableAddress();
+        return [
+            'address has key id' => ['id', $address[0]],
+            'address has key street_name' => ['street_name', $address[0]],
+            'address has key street_building_name' => ['street_building_name', $address[0]],
+            'address has key district' =>  ['district', $address[0]],
+            'address has key post_code' =>  ['post_code', $address[0]],
+
+        ];
+    }
+
+    public function testGetAddressByIDIsObject()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $addressByID = $this->SharedFunctions->getAddressByID(1);
+        $this->assertIsObject($addressByID);
+    }
+
+    public function testGetAddressByID()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $addressByID = $this->SharedFunctions->getAddressByID(1);
+        $this->assertEquals(1, $addressByID->id);
+    }
+
+    public function testSetAddress()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $addressByID = $this->SharedFunctions->getAddressByID(1);
+        $this->User = new User();
+        $address = $this->User->setAddress($addressByID);
+        $this->assertEquals('Lygten, 17 København N 2200', $address);
+    }
 }
