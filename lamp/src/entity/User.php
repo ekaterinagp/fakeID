@@ -23,12 +23,19 @@ class User
         return (implode('-', str_split($birthday, 2)));
     }
 
+    public function isChild($birthday)
+    {
+        if ($this->calculateAge($birthday) < 18) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function calculateAge($birthday)
     {
 
         $oldDate = date_parse_from_format("dmY", $birthday);
-        // echo json_encode($oldDate);
-
         if ($oldDate['year'] >= 20) {
             $year = "19" . $oldDate['year'];
         } else if ($oldDate['year'] < 10) {
@@ -65,14 +72,7 @@ class User
 
 
 
-    public function isChild($birthday)
-    {
-        if ($this->calculateAge($birthday) < 18) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+
 
     function setAddress($addressObject)
     {

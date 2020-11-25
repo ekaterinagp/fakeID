@@ -23,19 +23,21 @@ class displayAllUsersTest extends TestCase
         $this->SharedFunctions = null;
     }
 
+    public function testDBResponseNotEmpty()
+    {
+        $users = $this->SharedFunctions->getAllUsers();
+        $this->assertNotEmpty($users);
+    }
+
+
+
     public function testGetUserCount()
     {
         $this->Database = new Database();
         $this->assertEquals(9, $this->Database->selectAllusers($this->Database->connectToDatabase()), 'should return 9 users');
     }
-    public function testDBResponseNotEmpty()
-    {
-        $this->SharedFunctions = new SharedFunctions();
-        $users = $this->SharedFunctions->getAllUsers();
-        echo var_dump($users[0]);
 
-        $this->assertNotEmpty($users);
-    }
+
     /**
      * @dataProvider attributeProvier
      */
@@ -209,7 +211,7 @@ class displayAllUsersTest extends TestCase
         $addressByID = $this->SharedFunctions->getAddressByID(1);
         $this->assertIsObject($addressByID);
     }
-
+    //Add data provider?
     public function testGetAddressByID()
     {
         $this->SharedFunctions = new SharedFunctions();
