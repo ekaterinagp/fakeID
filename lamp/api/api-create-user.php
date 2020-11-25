@@ -8,7 +8,6 @@ $CPR;
 $CVR = null;
 $companyName = null;
 
-if ($_POST) {
     if (empty($_POST['name'])) {
         $errorFunction->sendErrorMessage('name is required', __LINE__);
     }
@@ -66,4 +65,3 @@ if ($_POST) {
         $response = ['status' => 1, 'message' => 'user created'];
         echo json_encode($response);
     }
-}
