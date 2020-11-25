@@ -11,6 +11,6 @@ async function submitCreateForm() {
     const data = await response.json();
     console.log(data)
     if(data.status == 1){
-        window.location.href= path + 'pages/';
+        window.location.href= path + '/';
     }
 }

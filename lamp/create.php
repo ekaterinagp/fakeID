@@ -71,8 +71,8 @@ require_once(__DIR__ . '/../lamp/pages/sharedFunctions.php');
 
 
   </main>
-  <script src="../js/script.js"></script>
-  <script src="../js/create.js"></script>
+  <script src="./js/script.js"></script>
+  <script src="./js/create.js"></script>
 </body>
 
 </html>

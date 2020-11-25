@@ -43,7 +43,6 @@ function getUsers($id=0){
     $users = $statement->fetchAll(PDO::FETCH_ASSOC);
     $conn = null;
     echo json_encode($users);
-    //implement http status code
     return json_encode($users);
   
     $conn = null;

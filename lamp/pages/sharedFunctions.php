@@ -18,6 +18,7 @@ class SharedFunctions
   }
   function sendErrorMessage($message, $line)
   {
+    http_response_code(400);
     $response = ['status' => 0, 'message' => $message, 'line' => $line];
     echo json_encode($response);
     exit;
