@@ -66,8 +66,8 @@ function createUser()
         $sharedFunctions->sendErrorMessage('name is required', __LINE__);
     }
 
-    if (strlen($_POST['name']) < 2) {
-        $sharedFunctions->sendErrorMessage('name is too short', __LINE__);
+    if (empty($_POST['name'])) {
+        $sharedFunctions->sendErrorMessage('name is required', __LINE__);
     }
 
     if (empty($_POST['address_id'])) {
@@ -125,4 +125,24 @@ function updateUser()
 {
     global $conn;
     global $sharedFunctions;
+    //write bunch of if else for different scopes
+    //trigger for employees can not have married status
+    if (empty($_POST['name'])) {
+        $sharedFunctions->sendErrorMessage('name is required', __LINE__);
+    }
+    if (empty($_POST['name'])) {
+        $sharedFunctions->sendErrorMessage('name is required', __LINE__);
+    }
+
+    $sql = 'UPDATE user SET spouse_id=:spouse_id WHERE id=:id; UPDATE user SET spouse_id=:d WHERE id=:spouse_id;';
+    $statement = $conn->connectToDatabase()->prepare($sql);
+    $data = [
+        ':id' => $_POST['id'],
+        ':spouse_id' => $_POST['spouse_id'],
+    ];
+
+    if ($statement->execute($data)) {
+        $response = ['status' => 1, 'message' => 'spouse updated '];
+        echo json_encode($response);
+    }
 }

@@ -99,4 +99,39 @@ class sharedFunctionsTest extends TestCase
 
         ];
     }
+
+    public function testGetAllPossibleSpousesAsArray()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $spousesList = $this->SharedFunctions->getAllAvailableSpouses();
+        $this->assertIsArray($spousesList);
+    }
+
+    /**
+     * @dataProvider spousesAttributeProvier
+     */
+    public function testPossibleSpousesHaveAttributes($attribute, $expected)
+    {
+        $this->assertArrayHasKey($attribute, $expected);
+    }
+
+    public function spousesAttributeProvier()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $spousesList = $this->SharedFunctions->getAllAvailableSpouses();
+        return [
+            'spouse has key id' => ['id', $spousesList[0]],
+            'spouse has key name' => ['name', $spousesList[0]],
+            'spouse has key date_of_birth' => ['date_of_birth', $spousesList[0]],
+            'spouse has key address_id' =>  ['address_id', $spousesList[0]],
+            'spouse has key CPR' =>  ['CPR', $spousesList[0]],
+        ];
+    }
+
+    public function testNoEmployeesInSpouseList()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $spousesList = $this->SharedFunctions->getAllAvailableSpouses();
+        $this->assertNull($spousesList[0]['company_name']);
+    }
 }

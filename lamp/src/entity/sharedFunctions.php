@@ -89,4 +89,16 @@ class SharedFunctions
       return $addresses;
     }
   }
+
+  function getAllAvailableSpouses()
+  {
+    $sql = " SELECT * FROM `user` WHERE marital_status_id = 1 OR marital_status_id = 3 OR marital_status_id = 4 OR marital_status_id = 6 OR marital_status_id = 7 OR marital_status_id = 8 AND company_name=null";
+    $conn  = new Database();
+    $statement = $conn->connectToDatabase()->prepare($sql);
+    if ($statement->execute()) {
+      $spouses = $statement->fetchAll(PDO::FETCH_ASSOC);
+      $conn = null;
+      return $spouses;
+    }
+  }
 }
