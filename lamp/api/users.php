@@ -118,6 +118,11 @@ function createUser(){
 }
 
 
+//###### FIND USER  ##########
+
+function returnQueryString($searchString){
+    return 'SELECT * FROM user WHERE name LIKE %lisa%';
+}
 //###### UPDATE USER  ##########
 
 function updateUser(){

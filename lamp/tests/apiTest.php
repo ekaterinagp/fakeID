@@ -36,9 +36,16 @@ class apiTest extends TestCase{
 		);
     }
     
+    public function testSearchApi(){
+        $searchString = '?name=Lisa';
+        $sql = 'SELECT * from user WHERE name LIKE %lisa%';
+        $this->assertEquals($sql, returnQueryString($searchString));
+    }
+
+
+
     protected function getConnection() {
 		return new PDO('sqlite::memory:');
 	}
-  
 
 }
