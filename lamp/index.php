@@ -43,7 +43,7 @@
         foreach ($getFunction->getAllUsers() as $user) {
           $isEmployee;
           if($user['CVR']){
-            $User = new UserEmployee();
+            $User = new UserEmployee($user['CVR'], $user['company_name']);
             $maritalStatus = '';
           }else{
             $User = new UserNotEmployee();

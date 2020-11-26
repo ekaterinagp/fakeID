@@ -25,19 +25,19 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
   $address = $getFunction->getAddressByID($user->address_id);
   // echo json_encode($user);
   if($user->CVR){
-    $User = new UserEmployee();
+    $User = new UserEmployee($user->CVR, $user->company_name);
     $maritalStatus = '';
   }else{
     $User = new UserNotEmployee();
     $maritalStatus = $User->getMaritalStatus($user->marital_status_id);
-
+    
   }
   echo '<h2>User  ' . $user->name . ' </h2>';
   echo '<div class="user"><h3>Name</h3><p>' . $user->name . '</p>
   <h3>Date of birth</h3><p>' . $User->formatBirthday($user->date_of_birth) . '</p>
   <h3>Address</h3><p>' . $User->setAddress($address) . '</p>
-  <h3>CPR</h3><p>' . $user->CVR . '</p>
-  <h3>Gender</h3><p>' . $User->getGenderValue($user->company_name) . '</p>
+  <h3>CPR</h3><p>' . $user->CPR . '</p>
+  <h3>Gender</h3><p>' . $User->getGenderValue($user->gender_value) . '</p>
   <h3>Marital status</h3><p>' . $maritalStatus . '</p>
 
  </div>';
