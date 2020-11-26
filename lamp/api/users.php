@@ -1,6 +1,6 @@
 <?php
-require_once(__DIR__ . '/../entity/sharedFunctions.php');
-require_once(__DIR__ . '/../../utilities/connection.php');
+require_once(__DIR__ . '/../src/entity/sharedFunctions.php');
+require_once(__DIR__ . '/../utilities/connection.php');
 $conn  = new Database();
 $sharedFunctions = new SharedFunctions();
 $request_method=$_SERVER["REQUEST_METHOD"];
@@ -36,19 +36,18 @@ function getUsers($id=0){
     $users = new SharedFunctions();
     $users = $users->getAllUsers();
     global $conn;
-    $sql = "SELECT * FROM user";
+
+    $sql = "SELECT * FROM user INNER JOIN address ON address.id = user.address_id";
 
     if($id != null){
-        $sql = "SELECT * FROM user WHERE id = $id";
+        $sql = "SELECT * FROM user INNER JOIN address ON address.id = user.address_id WHERE user.id = $id";
     }
     $statement = $conn->connectToDatabase()->prepare($sql);
     $statement->execute();
-    $users = $statement->fetch(PDO::FETCH_ASSOC);
+    $users = $statement->fetchAll(PDO::FETCH_ASSOC);
     $conn = null;
     echo json_encode($users);
     return $users;
-    $conn = null;
-    exit;
 }
 
 
