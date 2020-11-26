@@ -23,35 +23,36 @@ class sharedFunctionsTest extends TestCase
         $this->assertNotEmpty($users);
     }
 
-    function testErrorFunction(){
+    function testErrorFunction()
+    {
         $response = $this->SharedFunctions->sendErrorMessage('test message', __LINE__);
-        $exptectdRespone = '{"status":0,"message":"test message","line":27}';
-        $this->assertArrayHasKey('status', $response );
+        $exptectdRespone = '{"status":0,"message":"test message","line":' . (__LINE__ - 1) . '}';
+        $this->assertArrayHasKey('status', $response);
         $this->assertEquals($exptectdRespone, json_encode($response));
     }
-    
+
 
     public function testCountAllAddress()
-     {
+    {
         $addressesNumber = $this->SharedFunctions->countAllAddresses();
         $this->assertEquals(2, $addressesNumber);
-    }  
-         
+    }
+
 
     public function testGetAddressByIDIsObject()
     {
         $addressByID = $this->SharedFunctions->getAddressByID(1);
         $this->assertIsObject($addressByID);
     }
-/**
-     * @dataProvider addressAttributeProvier
+    /**
+     * @dataProvider addressObjectAttributeProvier
      */
     public function testAddressHasAttributes($attribute, $expected)
     {
         $this->assertArrayHasKey($attribute, $expected);
     }
 
-    public function addressAttributeProvier()
+    public function addressObjectAttributeProvier()
     {
         $this->SharedFunctions = new SharedFunctions();
         $address = $this->SharedFunctions->getAllAvailableAddress();
@@ -64,12 +65,38 @@ class sharedFunctionsTest extends TestCase
 
         ];
     }
-    //Add data provider?
+
     public function testGetAddressByID()
     {
         $addressByID = $this->SharedFunctions->getAddressByID(1);
         $this->assertEquals(1, $addressByID->id);
-    } 
+    }
 
-   
+    public function testGetListOfAddressesAsArray()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $addressesList = $this->SharedFunctions->getAddressList();
+        $this->assertIsArray($addressesList);
+    }
+
+    /**
+     * @dataProvider addressAttributeProvier
+     */
+
+    public function testGetListAddresses($attribute, $expected)
+    {
+        $this->assertContains($attribute, $expected);
+    }
+
+    public function addressAttributeProvier()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $addresses = $this->SharedFunctions->getAddressList();
+
+        return [
+            'first address is Lygten, 17' => ['17', $addresses[0]],
+            'second address is Lygten, 37' => ['37', $addresses[1]],
+
+        ];
+    }
 }

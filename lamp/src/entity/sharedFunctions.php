@@ -8,7 +8,7 @@ class SharedFunctions
   {
     http_response_code(400);
     $response = ['status' => 0, 'message' => $message, 'line' => $line];
-    echo json_encode($response);
+    // echo json_encode($response);
     return $response;
     exit;
   }
@@ -75,6 +75,18 @@ class SharedFunctions
       $addresses = $statement->fetchAll(PDO::FETCH_ASSOC);
       $conn = null;
       return $addresses[0]['count(*)'];
+    }
+  }
+
+  function getAddressList()
+  {
+    $sql = "SELECT * FROM address";
+    $conn  = new Database();
+    $statement = $conn->connectToDatabase()->prepare($sql);
+    if ($statement->execute()) {
+      $addresses = $statement->fetchAll(PDO::FETCH_ASSOC);
+      $conn = null;
+      return $addresses;
     }
   }
 }
