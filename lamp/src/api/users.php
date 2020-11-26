@@ -1,9 +1,10 @@
 <?php
-require_once(__DIR__ . '/../pages/sharedFunctions.php');
-require_once(__DIR__ . '/../pages/connection.php');
+require_once(__DIR__ . '/../entity/sharedFunctions.php');
+require_once(__DIR__ . '/../../utilities/connection.php');
 $conn  = new Database();
-$errorFunction = new SharedFunctions();
+$sharedFunctions = new SharedFunctions();
 $request_method=$_SERVER["REQUEST_METHOD"];
+header('Content-Type: application/json');
 
 switch($request_method){
     case 'GET':
@@ -26,67 +27,66 @@ switch($request_method){
     // Invalid Request Method
         header("HTTP/1.0 405 Method Not Allowed");
         break;
-
 }
 
 
 //###### GET ALL USERS OR SINGLE BASED ON ID  ##########
 
 function getUsers($id=0){
+    $users = new SharedFunctions();
+    $users = $users->getAllUsers();
     global $conn;
     $sql = "SELECT * FROM user";
+
     if($id != null){
         $sql = "SELECT * FROM user WHERE id = $id";
     }
     $statement = $conn->connectToDatabase()->prepare($sql);
-    if ($statement->execute()) {
-    $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $statement->execute();
+    $users = $statement->fetch(PDO::FETCH_ASSOC);
     $conn = null;
     echo json_encode($users);
-    return json_encode($users);
-  
+    return $users;
     $conn = null;
     exit;
-  }
-  echo 0;
 }
 
 
 //###### CREATE NEW USER  ##########
 
 function createUser(){
-    global $errorFunction;
+    global $sharedFunctions;
     global $conn;
     $CPR = '';
     $CVR = null;
     $companyName = null;
     
         if (empty($_POST['name'])) {
-            $errorFunction->sendErrorMessage('name is required', __LINE__);
+            $sharedFunctions->sendErrorMessage('name is required', __LINE__);
         }
     
         if (strlen($_POST['name']) < 2) {
-            $errorFunction->sendErrorMessage('name is too short', __LINE__);
+            $sharedFunctions->sendErrorMessage('name is too short', __LINE__);
         }
     
         if (empty($_POST['address_id'])) {
-            $errorFunction->sendErrorMessage('address is required', __LINE__);
+            $sharedFunctions->sendErrorMessage('address is required', __LINE__);
         }
         if (empty($_POST['date_of_birth'])) {
-            $errorFunction->sendErrorMessage('date of birth is required', __LINE__);
+            $sharedFunctions->sendErrorMessage('date of birth is required', __LINE__);
         }
     
         if (strlen($_POST['date_of_birth']) > 6) {
-            $errorFunction->sendErrorMessage('date of birth should be DDMMYY', __LINE__);
+            $sharedFunctions->sendErrorMessage('date of birth should be DDMMYY', __LINE__);
         }
         if (strlen($_POST['date_of_birth']) < 6) {
-            $errorFunction->sendErrorMessage('date of birth should be DDMMYY', __LINE__);
+            $sharedFunctions->sendErrorMessage('date of birth should be DDMMYY', __LINE__);
         }
         if (empty($_POST['isEmployee'])) {
-            $errorFunction->sendErrorMessage('Employee status is required', __LINE__);
+            $sharedFunctions->sendErrorMessage('Employee status is required', __LINE__);
         }
         if (empty($_POST['gender_value'])) {
-            $errorFunction->sendErrorMessage('Gender is required', __LINE__);
+            $sharedFunctions->sendErrorMessage('Gender is required', __LINE__);
         }
         if ($_POST['isEmployee'] == 'true') {
             $companyName = 'EE A/S';

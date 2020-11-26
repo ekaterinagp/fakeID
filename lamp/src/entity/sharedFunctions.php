@@ -1,9 +1,17 @@
 <?php
-require_once(__DIR__ . "/../pages/connection.php");
+require_once(__DIR__ . "/../../utilities/connection.php");
 class SharedFunctions
 {
 
 
+  function sendErrorMessage($message, $line)
+  {
+    http_response_code(400);
+    $response = ['status' => 0, 'message' => $message, 'line' => $line];
+    echo json_encode($response);
+    return $response;
+    exit;
+  }
 
   function getAllUsers()
   {
@@ -16,18 +24,10 @@ class SharedFunctions
       return $users;
     }
   }
-  function sendErrorMessage($message, $line)
-  {
-    http_response_code(400);
-    $response = ['status' => 0, 'message' => $message, 'line' => $line];
-    echo json_encode($response);
-    exit;
-  }
 
 
   function getUserByID($id)
   {
-
     $sql = "SELECT * FROM user WHERE id=$id";
     $conn  = new Database();
     $statement = $conn->connectToDatabase()->prepare($sql);

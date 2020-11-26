@@ -2,9 +2,9 @@
 
 use PHPUnit\Framework\TestCase;
 
-require_once(__DIR__ . '/../pages/connection.php');
+require_once(__DIR__ . '/../utilities/connection.php');
 require_once(__DIR__ . '/../src/entity/User.php');
-require_once(__DIR__ . '/../pages/sharedFunctions.php');
+require_once(__DIR__ . '/../src/entity/sharedFunctions.php');
 
 class displaySingleUserTest extends TestCase
 {

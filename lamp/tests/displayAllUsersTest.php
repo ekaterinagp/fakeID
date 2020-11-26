@@ -3,9 +3,9 @@
 use PHPUnit\Framework\TestCase;
 
 // require_once(__DIR__ . '/../index.php');
-require_once(__DIR__ . '/../pages/connection.php');
+require_once(__DIR__ . '/../utilities/connection.php');
 require_once(__DIR__ . '/../src/entity/User.php');
-require_once(__DIR__ . '/../pages/sharedFunctions.php');
+require_once(__DIR__ . '/../src/entity/sharedFunctions.php');
 
 
 
@@ -31,11 +31,11 @@ class displayAllUsersTest extends TestCase
 
 
 
-    public function testGetUserCount()
-    {
-        $this->Database = new Database();
-        $this->assertEquals(9, $this->Database->selectAllusers($this->Database->connectToDatabase()), 'should return 9 users');
-    }
+    // public function testGetUserCount()
+    // {
+    //     $this->Database = new Database();
+    //     $this->assertEquals(9, $this->Database->selectAllusers($this->Database->connectToDatabase()), 'should return 9 users');
+    // }
 
 
     /**
@@ -44,15 +44,7 @@ class displayAllUsersTest extends TestCase
     public function testUserReceivedFromDatabaseHasAttributes($attribute, $expected)
     {
         $this->SharedFunctions = new SharedFunctions();
-        $users = $this->SharedFunctions->getAllUsers();
         $this->assertArrayHasKey($attribute, $expected);
-        // $this->assertArrayHasKey('name', $users[0]);
-        // $this->assertArrayHasKey('date_of_birth', $users[0]);
-        // $this->assertArrayHasKey('address_id', $users[0]);
-        // $this->assertArrayHasKey('CPR', $users[0]);
-        // $this->assertArrayHasKey('gender_value', $users[0]);
-        // $this->assertArrayHasKey('marital_status_id', $users[0]);
-        // $this->assertArrayHasKey('serial_number', $users[0]);
     }
     public function attributeProvier()
     {
@@ -174,12 +166,7 @@ class displayAllUsersTest extends TestCase
         ];
     }
 
-    public function testCountAllAddress()
-    {
-        $this->SharedFunctions = new SharedFunctions();
-        $addressesNumber = $this->SharedFunctions->countAllAddresses();
-        $this->assertEquals(2, $addressesNumber);
-    }
+  
 
     /**
      * @dataProvider addressAttributeProvier
