@@ -3,8 +3,15 @@ require_once(__DIR__ . '/../src/entity/sharedFunctions.php');
 require_once(__DIR__ . '/../utilities/connection.php');
 $conn  = new Database();
 $sharedFunctions = new SharedFunctions();
+
 $request_method=$_SERVER["REQUEST_METHOD"];
+
+
 header('Content-Type: application/json');
+
+if (isset($_SERVER['QUERY_STRING']) && $request_method == 'GET') {
+    $queryString =  $_SERVER['QUERY_STRING'];
+}
 
 switch($request_method){
     case 'GET':
@@ -12,6 +19,9 @@ switch($request_method){
         if(!empty($_GET["id"])){
             $id=intval($_GET["id"]);
             getUsers($id);
+        }else if($queryString){
+            $query = returnQueryString($queryString );
+            filterUsers($query);
         }else{
             getUsers();
         }
@@ -121,8 +131,32 @@ function createUser(){
 //###### FIND USER  ##########
 
 function returnQueryString($searchString){
-    return 'SELECT * FROM user WHERE name LIKE %lisa%';
+    parse_str($searchString, $paramsArray); 
+    json_encode($paramsArray);
+
+    $whereArr = array();
+    if(array_key_exists( 'name', $paramsArray)) $whereArr[] = "name LIKE '%{$paramsArray['name']}%'";
+    if(array_key_exists('gender', $paramsArray)) $whereArr[] = "gender_value = {$paramsArray['gender']}";
+    if(array_key_exists('marital-status', $paramsArray)) $whereArr[] = "marital_status_id = {$paramsArray['marital-status']}"; 
+    if(array_key_exists('employee-status', $paramsArray)){
+        $paramsArray['employee-status'] == 'true' ? $whereArr[] = "CVR IS NOT NULL" : $whereArr[] = "CVR IS NULL" ;
+    } 
+    // if($paramsArray['age'] != "") $whereArr[] = "date_of_birth = {$field2}"; <--- FIgure out later!!!
+    $whereStr = implode(" AND ", $whereArr);
+
+    $query = "SELECT * FROM user WHERE {$whereStr}";
+    return $query;
 }
+
+function filterUsers($query){
+    global $conn;
+    $statement = $conn->connectToDatabase()->prepare($query);
+    if ($statement->execute()) {
+        $response = $statement->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($response);
+    }
+}
+
 //###### UPDATE USER  ##########
 
 function updateUser(){
