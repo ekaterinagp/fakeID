@@ -10,28 +10,15 @@ class User
     public $birthday;
     public $gender;
     public $CPR;
-    public $CVR;
-    public $isEmployee;
-    public $maritalStatus;
-    public $spouse;
-    public $children;
-    public $serialnumber;
 
+    
     public function formatBirthday($birthday)
     {
 
         return (implode('-', str_split($birthday, 2)));
     }
 
-    public function isChild($birthday)
-    {
-        if ($this->calculateAge($birthday) < 18) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
+    
     public function calculateAge($birthday)
     {
 
@@ -71,9 +58,6 @@ class User
     }
 
 
-
-
-
     function setAddress($addressObject)
     {
         return "$addressObject->street_name, $addressObject->street_building_name $addressObject->district $addressObject->post_code";
@@ -81,52 +65,9 @@ class User
     function getAddress()
     {
     }
-    function setSpouse()
-    {
-    }
-    function getSpouse()
-    {
-    }
-    function setChild()
-    {
-    }
-    function getChildren()
-    {
-    }
-    function setMaritalStatus()
-    {
-    }
+    
     //add for all statuses
-    function getMaritalStatus($status_id)
-    {
-        if ($status_id == 1) {
-            return "single";
-        }
-        if ($status_id == 2) {
-            return "married";
-        }
-        if ($status_id == 3) {
-            return "divorced";
-        }
-        if ($status_id == 4) {
-            return "widow";
-        }
-        if ($status_id == 5) {
-            return "registeredPartnership";
-        }
-        if ($status_id == 6) {
-            return "abolitionOfRegisteredPartnership";
-        }
-        if ($status_id == 7) {
-            return "deceased";
-        }
-        if ($status_id == 8) {
-            return "unknown";
-        }
-        return "undefined";
-    }
-    // Single=1, Married=2,Divorced=3,Widow=4, RegisteredPartnership=5, AbolitionOfRegisteredPartnership=6, Deceased=7,Unknown=8
-
+  
     function getGenderValue($gender_id)
     {
         if ($gender_id === '0002') {

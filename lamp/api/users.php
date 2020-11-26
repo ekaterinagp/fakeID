@@ -94,8 +94,8 @@ function createUser(){
         $CPR = $_POST['date_of_birth'] . $_POST['gender_value'];
     
     
-        $sql = "INSERT INTO user(name, address_id, date_of_birth,company_name, CVR, CPR, gender_value, marital_status_id )
-         VALUES (:name,:address_id, :date_of_birth, :company_name, :CVR, :CPR, :gender_value, 8 )";
+        $sql = "INSERT INTO user(name, address_id, date_of_birth,company_name, CVR, CPR, gender_value )
+         VALUES (:name,:address_id, :date_of_birth, :company_name, :CVR, :CPR, :gender_value )";
     
         $statement = $conn->connectToDatabase()->prepare($sql);
     
