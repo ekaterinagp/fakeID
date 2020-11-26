@@ -13,7 +13,7 @@ let id = urlParams.get("id");
 console.log(id);
 
 function getUserById(id) {
-  const endpoint = path + `api/api-get-single-user.php?id=` + id;
+  const endpoint = path + `api/users/` + id;
   return new Promise((resolve, reject) => {
     fetch(endpoint)
       .then((res) => res.json())

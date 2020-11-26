@@ -1,7 +1,7 @@
 <?php
-require_once(__DIR__ . '/../lamp/pages/connection.php');
+require_once(__DIR__ . '/../lamp/utilities/connection.php');
 require_once(__DIR__ . '/../lamp/src/entity/User.php');
-require_once(__DIR__ . '/../lamp/pages/sharedFunctions.php');
+require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,8 +71,8 @@ require_once(__DIR__ . '/../lamp/pages/sharedFunctions.php');
 
 
   </main>
-  <script src="../js/script.js"></script>
-  <script src="../js/create.js"></script>
+  <script src="./js/script.js"></script>
+  <script src="./js/create.js"></script>
 </body>
 
 </html>

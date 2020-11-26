@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . '/../pages/connection.php');
+require_once(__DIR__ . '/../utilities/connection.php');
 
 use PHPUnit\Framework\TestCase;
 

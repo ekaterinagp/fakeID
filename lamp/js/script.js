@@ -8,7 +8,7 @@ window.addEventListener("load", () => {
 });
 
 function getAllUsers() {
-  let endpoint = path + "api/api-get-users.php";
+  let endpoint = path + "api/users";
   return new Promise((resolve, reject) => {
     fetch(endpoint)
       .then((res) => res.json())
@@ -19,7 +19,7 @@ function getAllUsers() {
 }
 
 function getUserById(id) {
-  const endpoint = path + `api/api-get-single-user.php?id=` + id;
+  const endpoint = path + `api/users/` + id;
   return new Promise((resolve, reject) => {
     fetch(endpoint)
       .then((res) => res.json())

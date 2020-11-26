@@ -1,7 +1,9 @@
   <?php
-  require_once(__DIR__ . '/../lamp/pages/connection.php');
+  require_once(__DIR__ . '/../lamp/utilities/connection.php');
   require_once(__DIR__ . '/../lamp/src/entity/User.php');
-  require_once(__DIR__ . '/../lamp/pages/sharedFunctions.php');
+  require_once(__DIR__ . '/../lamp/src/entity/UserEmployee.php');
+  require_once(__DIR__ . '/../lamp/src/entity/UserNotEmployee.php');
+  require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
   ?>
   <!DOCTYPE html>
   <html lang="en">
@@ -40,12 +42,19 @@
 
         foreach ($getFunction->getAllUsers() as $user) {
           $isEmployee;
-          $User = new User();
+          if($user['CVR']){
+            $User = new UserEmployee($user['CVR'], $user['company_name']);
+            $maritalStatus = '';
+          }else{
+            $User = new UserNotEmployee();
+            $maritalStatus = $User->getMaritalStatus($user['marital_status_id']);
+        
+          }
           echo '<div class="singleUser" id="' . $user['id'] . '" ><a href="user.php?id=' . $user['id'] . '"><p class="userName">' . $user['name'] . '</p></a>
             <p>' . $User->calculateAge($user['date_of_birth']) . '</p>
             <p>' . $User->getGenderValue($user['gender_value']) . '</p>
-            <p>' . $User->isEmployee($user['CVR']) . '</p>
-            <p>' . $User->getMaritalStatus($user['marital_status_id']) . '</p>
+            <p>' . $user['CVR'] . '</p>
+            <p>' . $maritalStatus . '</p>
             <button class="loginBtn">Log in</button>
             </div>';
         }
