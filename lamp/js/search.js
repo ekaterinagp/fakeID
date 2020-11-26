@@ -1,8 +1,9 @@
 "use strict"
 const form = document.querySelector('.filtersContainer')
+const usersContainer = document.querySelector('.container');
 
 const displayFilteredUsers = (users) => {
-    
+
 }
 
 const fetchFilteredUsers = async (event) => {

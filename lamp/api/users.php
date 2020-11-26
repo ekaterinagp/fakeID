@@ -20,7 +20,7 @@ switch($request_method){
             $id=intval($_GET["id"]);
             getUsers($id);
         }else if($queryString){
-            $query = returnQueryString($queryString );
+            $query= returnQueryString($queryString );
             filterUsers($query);
         }else{
             getUsers();
@@ -131,20 +131,49 @@ function createUser(){
 //###### FIND USER  ##########
 
 function returnQueryString($searchString){
-    parse_str($searchString, $paramsArray); 
-    json_encode($paramsArray);
-
-    $whereArr = array();
-    if(array_key_exists( 'name', $paramsArray)) $whereArr[] = "name LIKE '%{$paramsArray['name']}%'";
-    if(array_key_exists('gender', $paramsArray)) $whereArr[] = "gender_value = {$paramsArray['gender']}";
-    if(array_key_exists('marital-status', $paramsArray)) $whereArr[] = "marital_status_id = {$paramsArray['marital-status']}"; 
-    if(array_key_exists('employee-status', $paramsArray)){
-        $paramsArray['employee-status'] == 'true' ? $whereArr[] = "CVR IS NOT NULL" : $whereArr[] = "CVR IS NULL" ;
-    } 
-    // if($paramsArray['age'] != "") $whereArr[] = "date_of_birth = {$field2}"; <--- FIgure out later!!!
+	$paramsArray = array();
+	foreach (explode('&', $searchString) as $pair) {
+		list($key, $value) = explode('=', $pair);
+        if('' == trim($value)){
+			continue;
+        }
+        $paramsArray[$key][] = urldecode($value);
+    }
+    $whereArr = [];
+    
+    foreach($paramsArray as $key=>$value){
+        foreach($value as $val){
+            if( $key == 'gender'){
+                $whereArr[] = "gender_value = {$val}";  
+            } 
+            else if( $key == 'marital-status'){
+                $whereArr[] = "marital_status_id  = {$val}";
+             } 
+            else if( $key == 'employee-status'){
+                $val == 'true' ? $whereArr[] = "CVR IS NOT NULL" : $whereArr[] = "CVR IS NULL" ;
+            } 
+            // if($paramsArray['age'] != "") $whereArr[] = "date_of_birth = {$field2}"; <--- FIgure out later!!!
+        }       
+        
+    }
     $whereStr = implode(" AND ", $whereArr);
-
+    $wordArray = explode(' ', $whereStr);
+    // echo json_encode($wordArray);
+    foreach($wordArray as $word){
+        echo json_encode($wordArray);
+        
+        if(count(array_keys($wordArray, $word)) > 1){
+            if($word == '=' || $word == 'AND' || $word == 'IS' || $word == 'NULL'|| $word == 'NOT') break;
+            $index = array_search($word, array_values($wordArray));
+            array_splice($wordArray, $index+3, 1, 'OR'); //$wordArray[$index+3];
+            array_splice($wordArray, $index, 0, '(');
+            array_splice($wordArray, $index+8, 0, ')');
+        }
+    }
+    $whereStr = implode(' ', $wordArray);
     $query = "SELECT * FROM user WHERE {$whereStr}";
+    // echo $query;
+
     return $query;
 }
 
