@@ -82,7 +82,7 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
   </div>
 
   <div class="form-field <?php if ($user->company_name || $user->marital_status_id == 2 || $user->marital_status_id == 5) echo 'hidden'; ?>">
-    <select name="spouse" id="">
+    <select name="spouse_id" id="">
       <option value="" disabled selected>Select Spouse</option>
       <?php
       foreach ($getFunction->getAllAvailableSpouses($id) as $spouse) {

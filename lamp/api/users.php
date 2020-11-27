@@ -18,12 +18,13 @@ switch ($request_method) {
         break;
 
     case 'POST':
-        createUser();
-        break;
-    case 'PUT' || 'PATCH':
-        $id = intval($_GET["id"]);
+        if (!empty($_GET["id"])) {
+            $id = intval($_GET["id"]);
+            updateUser($id);
+        } else {
 
-        updateUser($id);
+            createUser();
+        }
         break;
     default:
         // Invalid Request Method
@@ -125,8 +126,6 @@ function createUser()
 
 function updateUser($id)
 {
-    $_PATCH = [];
-    parse_str(file_get_contents('php://input'), $_PATCH);
     global $conn;
     global $sharedFunctions;
     //trigger for if one employee status changes, it also changes for the other?
@@ -134,49 +133,50 @@ function updateUser($id)
     if(!$id){
         $sharedFunctions->sendErrorMessage('id is required', __LINE__);
     }
-    if (empty($_PATCH['name'])) {
+    if (empty($_POST['name'])) {
         $sharedFunctions->sendErrorMessage('name is required', __LINE__);
     }
 
 
-    if (isset($_PATCH['spouse_id'])) {
+    if (isset($_POST['spouse_id'])) {
         $sql = 'UPDATE user SET spouse_id=:spouse_id WHERE id=:id; UPDATE user SET spouse_id=:id WHERE id=:spouse_id;';
 
         $data = [
             ':id' =>$id,
-            ':spouse_id' => $_PATCH['spouse_id'],
+            ':spouse_id' => $_POST['spouse_id'],
         ];
     }
 
-    if (isset($_PATCH['name'])) {
+    if ($_POST['name']) {
         $sql = 'UPDATE user SET name=:name WHERE id=:id';
 
         $data = [
-            ':name' => $_PATCH['name'],
+            ':name' => $_POST['name'],
             ':id' => $id
         ];
     }
 
-    // if (isset($_PATCH['marital_status_id'])) {
-    //     $sql = 'UPDATE user SET marital_status_id=:marital_status_id WHERE id=:id; UPDATE user SET marital_status_id=:marital_status_id WHERE id=:spouse_id;';
+    if (isset($_POST['marital_status_id'])) {
+        $sql = 'UPDATE user SET marital_status_id=:marital_status_id WHERE id=:id; UPDATE user SET marital_status_id=:marital_status_id WHERE id=:spouse_id;';
 
-    //     $data = [
-    //         ':marital_status_id' => $_PATCH['marital_status_id'],
-    //         ':id' =>$id,
-    //         ':spouse_id' => $_PATCH['spouse_id'],
-    //     ];
-    // }
+        $data = [
+            ':marital_status_id' => $_POST['marital_status_id'],
+            ':id' =>$id,
+            ':spouse_id' => $_POST['spouse_id'],
+        ];
+    }
 
-    if (isset($_PATCH['address_id'])) {
+    if (isset($_POST['address_id'])) {
         $sql = 'UPDATE user SET address_id=:address_id WHERE id=:id';
 
         $data = [
-            ':address_id' => $_PATCH['address_id'],
+            ':address_id' => $_POST['address_id'],
             ':id' =>$id
         ];
     }
 
     $statement = $conn->connectToDatabase()->prepare($sql);
+    
     if ($statement->execute($data)) {
         $response = ['status' => 1, 'message' => 'user updated '];
         echo json_encode($response);
