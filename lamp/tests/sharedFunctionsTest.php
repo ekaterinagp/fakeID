@@ -103,7 +103,7 @@ class sharedFunctionsTest extends TestCase
     public function testGetAllPossibleSpousesAsArray()
     {
         $this->SharedFunctions = new SharedFunctions();
-        $spousesList = $this->SharedFunctions->getAllAvailableSpouses();
+        $spousesList = $this->SharedFunctions->getAllAvailableSpouses(2);
         $this->assertIsArray($spousesList);
     }
 
@@ -118,7 +118,7 @@ class sharedFunctionsTest extends TestCase
     public function spousesAttributeProvier()
     {
         $this->SharedFunctions = new SharedFunctions();
-        $spousesList = $this->SharedFunctions->getAllAvailableSpouses();
+        $spousesList = $this->SharedFunctions->getAllAvailableSpouses(2);
         return [
             'spouse has key id' => ['id', $spousesList[0]],
             'spouse has key name' => ['name', $spousesList[0]],
@@ -131,7 +131,14 @@ class sharedFunctionsTest extends TestCase
     public function testNoEmployeesInSpouseList()
     {
         $this->SharedFunctions = new SharedFunctions();
-        $spousesList = $this->SharedFunctions->getAllAvailableSpouses();
+        $spousesList = $this->SharedFunctions->getAllAvailableSpouses(2);
         $this->assertNull($spousesList[0]['company_name']);
+    }
+
+    public function testNoUserWithIdOnTheSpouseList()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $spousesList = $this->SharedFunctions->getAllAvailableSpouses(2);
+        $this->assertNotContains(2,  $spousesList);
     }
 }

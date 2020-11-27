@@ -90,9 +90,9 @@ class SharedFunctions
     }
   }
 
-  function getAllAvailableSpouses()
+  function getAllAvailableSpouses($id)
   {
-    $sql = " SELECT * FROM `user` WHERE marital_status_id = 1 OR marital_status_id = 3 OR marital_status_id = 4 OR marital_status_id = 6 OR marital_status_id = 7 OR marital_status_id = 8 AND company_name=null";
+    $sql = " SELECT * FROM `user` WHERE CVR IS NULL AND marital_status_id IN(3,8,4,6,7,1) AND id<> $id ";
     $conn  = new Database();
     $statement = $conn->connectToDatabase()->prepare($sql);
     if ($statement->execute()) {

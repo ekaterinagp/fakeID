@@ -126,7 +126,8 @@ function updateUser()
     global $conn;
     global $sharedFunctions;
     //write bunch of if else for different scopes
-    //trigger for employees can not have married status
+    //trigger for if one employee status changes, it also changes for the other?
+    //trigger for not be able to add spouse for employee
     if (empty($_POST['name'])) {
         $sharedFunctions->sendErrorMessage('name is required', __LINE__);
     }
@@ -134,15 +135,45 @@ function updateUser()
         $sharedFunctions->sendErrorMessage('name is required', __LINE__);
     }
 
-    $sql = 'UPDATE user SET spouse_id=:spouse_id WHERE id=:id; UPDATE user SET spouse_id=:d WHERE id=:spouse_id;';
-    $statement = $conn->connectToDatabase()->prepare($sql);
-    $data = [
-        ':id' => $_POST['id'],
-        ':spouse_id' => $_POST['spouse_id'],
-    ];
+    if (($_POST['spouse_id'])) {
+        $sql = 'UPDATE user SET spouse_id=:spouse_id WHERE id=:id; UPDATE user SET spouse_id=:id WHERE id=:spouse_id;';
+        $statement = $conn->connectToDatabase()->prepare($sql);
+        $data = [
+            ':id' => $_POST['id'],
+            ':spouse_id' => $_POST['spouse_id'],
+        ];
+    }
+
+    if (($_POST['name'])) {
+        $sql = 'UPDATE user SET name=:name WHERE id=:id';
+        $statement = $conn->connectToDatabase()->prepare($sql);
+        $data = [
+            ':name' => $_POST['name'],
+            ':id' => $_POST['id']
+        ];
+    }
+
+    if (($_POST['marital_status_id'])) {
+        $sql = 'UPDATE user SET marital_status_id=:marital_status_id WHERE id=:id; UPDATE user SET marital_status_id=:marital_status_id WHERE id=:spouse_id;';
+        $statement = $conn->connectToDatabase()->prepare($sql);
+        $data = [
+            ':marital_status_id' => $_POST['marital_status_id'],
+            ':id' => $_POST['id'],
+            ':spouse_id' => $_POST['spouse_id'],
+        ];
+    }
+
+    if (($_POST['address_id'])) {
+        $sql = 'UPDATE user SET address_id=:address_id WHERE id=:id';
+        $statement = $conn->connectToDatabase()->prepare($sql);
+        $data = [
+            ':address_id' => $_POST['address_id'],
+            ':id' => $_POST['id']
+        ];
+    }
 
     if ($statement->execute($data)) {
-        $response = ['status' => 1, 'message' => 'spouse updated '];
+        $response = ['status' => 1, 'message' => 'user updated '];
         echo json_encode($response);
     }
 }

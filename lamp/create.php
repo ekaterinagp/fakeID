@@ -65,9 +65,9 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
           <label for="not"> Not Employee </label>
 
         </div>
-        <input type="submit" onclick="submitCreateForm()">
+        <input type="submit" onclick="submitCreateForm(event)">
       </form>
-
+    </div>
 
 
   </main>
