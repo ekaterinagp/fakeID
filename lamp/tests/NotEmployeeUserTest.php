@@ -9,7 +9,8 @@ require_once(__DIR__ . '/../src/entity/sharedFunctions.php');
 
 
 
-class NotEmployeeTest extends TestCase{
+class NotEmployeeTest extends TestCase
+{
     public function setUp(): void
     {
         $this->User = new UserNotEmployee();
@@ -21,7 +22,7 @@ class NotEmployeeTest extends TestCase{
         $this->User = null;
         $this->SharedFunctions = null;
     }
-        /**
+    /**
      * @dataProvider isChildProvider
      */
 
@@ -38,7 +39,7 @@ class NotEmployeeTest extends TestCase{
             'User is not a child' => ['010155', false],
         ];
     }
-    
+
     /**
      * @dataProvider maritalStatusProvider
      */
@@ -62,6 +63,18 @@ class NotEmployeeTest extends TestCase{
             'status is undefined' =>  [null, "undefined"],
         ];
     }
+
+    public function testGetSpouse()
+    {
+        $test =  $this->SharedFunctions->getSpouseNameByID(6);
+        $this->assertNotEmpty($test);
+    }
+
+    // public function testGetSpouseEqual()
+    // {
+    //     $test =  $this->SharedFunctions->getSpouseNameByID(6);
+    //     $this->assertEquals("Marina Ronni", $test[0]["name"]);
+    // }
 
 
 }

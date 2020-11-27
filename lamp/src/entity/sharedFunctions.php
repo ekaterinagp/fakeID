@@ -100,4 +100,17 @@ class SharedFunctions
       return $spouses;
     }
   }
+
+  function getSpouseNameByID($id)
+  {
+    $sql = " SELECT user.name FROM user WHERE spouse_id= $id";
+    $conn  = new Database();
+    $statement = $conn->connectToDatabase()->prepare($sql);
+    if ($statement->execute()) {
+      $spouseName = $statement->fetchAll(PDO::FETCH_ASSOC);
+      $conn = null;
+
+      return $spouseName;
+    }
+  }
 }

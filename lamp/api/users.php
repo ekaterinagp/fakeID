@@ -130,7 +130,7 @@ function updateUser($id)
     global $sharedFunctions;
     //trigger for if one employee status changes, it also changes for the other?
     //trigger for not be able to add spouse for employee
-    if(!$id){
+    if (!$id) {
         $sharedFunctions->sendErrorMessage('id is required', __LINE__);
     }
     if (empty($_POST['name'])) {
@@ -140,7 +140,7 @@ function updateUser($id)
 
     if (isset($_POST['spouse_id'])) {
         $sql = 'UPDATE user SET spouse_id=:spouse_id WHERE id=:id; UPDATE user SET spouse_id=:id WHERE id=:spouse_id;';
-
+        $statement = $conn->connectToDatabase()->prepare($sql);
         $data = [
             ':id' =>$id,
             ':spouse_id' => $_POST['spouse_id'],
@@ -149,7 +149,7 @@ function updateUser($id)
 
     if ($_POST['name']) {
         $sql = 'UPDATE user SET name=:name WHERE id=:id';
-
+        $statement = $conn->connectToDatabase()->prepare($sql);
         $data = [
             ':name' => $_POST['name'],
             ':id' => $id
@@ -168,7 +168,7 @@ function updateUser($id)
 
     if (isset($_POST['address_id'])) {
         $sql = 'UPDATE user SET address_id=:address_id WHERE id=:id';
-
+        $statement = $conn->connectToDatabase()->prepare($sql);
         $data = [
             ':address_id' => $_POST['address_id'],
             ':id' =>$id
