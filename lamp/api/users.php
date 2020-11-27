@@ -123,52 +123,59 @@ function createUser()
 
 function updateUser()
 {
+    global $request_method;
+    $_PATCH = [];
+    parse_str(file_get_contents('php://input'), $_PATCH);
+    
     global $conn;
     global $sharedFunctions;
     //write bunch of if else for different scopes
     //trigger for if one employee status changes, it also changes for the other?
     //trigger for not be able to add spouse for employee
-    if (empty($_POST['name'])) {
-        $sharedFunctions->sendErrorMessage('name is required', __LINE__);
+    if(empty($_PATCH['id'])){
+        $sharedFunctions->sendErrorMessage('id is required', __LINE__);
+        exit;
+        
     }
-    if (empty($_POST['name'])) {
+    if (empty($_PATCH['name'])) {
         $sharedFunctions->sendErrorMessage('name is required', __LINE__);
     }
 
-    if (($_POST['spouse_id'])) {
+
+    if (isset($_PATCH['spouse_id'])) {
         $sql = 'UPDATE user SET spouse_id=:spouse_id WHERE id=:id; UPDATE user SET spouse_id=:id WHERE id=:spouse_id;';
 
         $data = [
-            ':id' => $_POST['id'],
-            ':spouse_id' => $_POST['spouse_id'],
+            ':id' => $_PATCH['id'],
+            ':spouse_id' => $_PATCH['spouse_id'],
         ];
     }
 
-    if (($_POST['name'])) {
+    if (isset($_PATCH['name'])) {
         $sql = 'UPDATE user SET name=:name WHERE id=:id';
 
         $data = [
-            ':name' => $_POST['name'],
-            ':id' => $_POST['id']
+            ':name' => $_PATCH['name'],
+            ':id' => $_PATCH['id']
         ];
     }
 
-    if (($_POST['marital_status_id'])) {
+    if (isset($_PATCH['marital_status_id'])) {
         $sql = 'UPDATE user SET marital_status_id=:marital_status_id WHERE id=:id; UPDATE user SET marital_status_id=:marital_status_id WHERE id=:spouse_id;';
 
         $data = [
-            ':marital_status_id' => $_POST['marital_status_id'],
-            ':id' => $_POST['id'],
-            ':spouse_id' => $_POST['spouse_id'],
+            ':marital_status_id' => $_PATCH['marital_status_id'],
+            ':id' => $_PATCH['id'],
+            ':spouse_id' => $_PATCH['spouse_id'],
         ];
     }
 
-    if (($_POST['address_id'])) {
+    if (isset($_PATCH['address_id'])) {
         $sql = 'UPDATE user SET address_id=:address_id WHERE id=:id';
 
         $data = [
-            ':address_id' => $_POST['address_id'],
-            ':id' => $_POST['id']
+            ':address_id' => $_PATCH['address_id'],
+            ':id' => $_PATCH['id']
         ];
     }
 
@@ -178,3 +185,5 @@ function updateUser()
         echo json_encode($response);
     }
 }
+
+

@@ -8,8 +8,7 @@ class SharedFunctions
   {
     http_response_code(400);
     $response = ['status' => 0, 'message' => $message, 'line' => $line];
-    // echo json_encode($response);
-    return $response;
+    echo json_encode($response);
     exit;
   }
 
