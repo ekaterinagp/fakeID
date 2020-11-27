@@ -1,8 +1,9 @@
 "use strict"
 window.addEventListener('load', init);
 
-const form = document.querySelector('.filtersContainer')
+const filterForm = document.querySelector('.filtersContainer')
 const usersContainer = document.querySelector('.container');
+let showHideFiltersBtn = document.querySelector('.filterBtn')
 
 let users;
 
@@ -41,17 +42,17 @@ const getMaritalStatus = (statusID) =>{
    return statusID;
 }
 
-const fetchFilteredUsers = async (event) => {
-   let querystring = new FormData(form);
-   querystring = new URLSearchParams(querystring).toString()
-   const response = await fetch(path+'api/users?' +  querystring);
-   const data = await response.json()
-   displayFilteredUsers(data)
-}
+// const fetchFilteredUsers = async (event) => {
+//    let querystring = new FormData(form);
+//    querystring = new URLSearchParams(querystring).toString()
+//    const response = await fetch(path+'api/users?' +  querystring);
+//    const data = await response.json()
+//    displayFilteredUsers(data)
+// }
 
 
-const updateSearch = (event) => {
-   let formData = new FormData(form)
+const updateSearch = () => {
+   let formData = new FormData(filterForm)
    let data = [...formData]
    let filteredUsers =[];
    data.map(param => {
@@ -64,13 +65,22 @@ const updateSearch = (event) => {
       }
    })
    displayFilteredUsers(filteredUsers)
+}
 
+const showHideFilters = () => {
+   let filterFormHeight = filterForm.clientHeight;
+   if (filterFormHeight > 0){
+      filterForm.style.maxHeight = 0;
+      showHideFiltersBtn.textContent ='Show Filters'
+   } else{
+      showHideFiltersBtn.textContent ='Hide Filters'
+      filterForm.style.maxHeight = '100vh';
+   }
 }
 
 
-
-
 async function init() {
-   form.addEventListener('change', updateSearch)
+   filterForm.addEventListener('change', updateSearch)
    users = await getAllUsers();
+   showHideFiltersBtn.addEventListener('click', showHideFilters)
  }

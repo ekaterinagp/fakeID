@@ -122,6 +122,10 @@ a.active{
   width:100%;
 }
 .filtersContainer{
+  transition: all .2s;
+  max-height: 0;
+  overflow: hidden;
+  width:auto;
   display:grid;
   grid-template-columns: 2fr 1fr;
   margin:1rem;
