@@ -35,9 +35,7 @@ const displayFilteredUsers = (users) => {
    })
 }
 
-const calculateAge = (birthday) => {
-   return birthday;
-}
+
 const getMaritalStatus = (statusID) =>{
    return statusID;
 }
@@ -50,14 +48,27 @@ const getMaritalStatus = (statusID) =>{
 //    displayFilteredUsers(data)
 // }
 
-
 const updateSearch = () => {
    let formData = new FormData(filterForm)
    let data = [...formData]
    let filteredUsers =[];
+   if(data.length == 0){
+      filteredUsers = users;
+   }
    data.map(param => {
       if(param[0] === 'CVR' && param[1] == 'null'){
          let newUsers = users.filter(user => user[param[0]] == null)
+         filteredUsers.push(...newUsers);
+      }else if(param[0]=== 'age'){
+         let newUsers = users.filter(user => {
+            let userAge = calculateAge(user.date_of_birth);
+            if(param[1] == 'child' && userAge == 'Child'){
+               return user
+            }
+            if(param[1] == 'adult' && userAge == 'Adult'){
+               return user;
+            }
+         })
          filteredUsers.push(...newUsers);
       }else{
          let newUsers = users.filter(user => user[param[0]] == param[1])
@@ -65,6 +76,27 @@ const updateSearch = () => {
       }
    })
    displayFilteredUsers(filteredUsers)
+}
+
+const calculateAge = (dateOFBirth) => {
+   let formattedDateOfBirth = dateOFBirth.split('')
+   let day = formattedDateOfBirth[0].toString()+formattedDateOfBirth[1].toString();
+   let month = formattedDateOfBirth[2].toString()+formattedDateOfBirth[3].toString();
+   let year = formattedDateOfBirth[4].toString()+formattedDateOfBirth[5].toString();
+    if(parseInt(year)> 20){
+      year = `19${year}`
+   }else{
+      year = `20${year}`
+   }
+   let today = new Date()
+   let age = today.getFullYear() - year;
+   if (today.getMonth() < month || (today.getMonth() == month && today.getDate() < day)) {
+      age--;
+   }
+   if(age >= 18){
+      return 'Adult';
+   }
+   return 'Child'
 }
 
 const showHideFilters = () => {

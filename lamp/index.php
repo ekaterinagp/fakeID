@@ -46,10 +46,10 @@
       <h3>Age</h3>
 
         <div class="labelRadio">
-          <input type="checkbox" id="child" value="child" >
+          <input type="checkbox" id="child" value="child" name="age" >
           <label for="child">Child</label>
        
-              <input type="checkbox" id="adult" value="adult" >
+              <input type="checkbox" id="adult" value="adult" name="age" >
               <label for="adult">Adult</label>
             </div>
           </div>
