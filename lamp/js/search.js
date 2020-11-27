@@ -69,53 +69,39 @@ const updateSearch = () => {
    let formData = formatFormData()
    let data = [...new FormData(filterForm)]
    let filteredUsers = users.filter(user => {
-      let trueArray = []
-      for(let property in formData){
-            let key = property
-            let value = formData[property]
-            if(Array.isArray(value)){
-               value.forEach(val => {
-                  if(key == 'CVR' && val== 'null') val = null;
-               if (key == 'age'){
-                  let userAge = calculateAge(user.date_of_birth);
-                  if(val == 'child' && userAge == 'Child'){
-                     trueArray.push(true)
-                     }else if(val == 'adult' && userAge == 'Adult'){
-                        trueArray.push(true)
-                  }else{
-                     trueArray.push(false)
-                  }
-               }
-               user[key] == value? trueArray.push(true) : trueArray.push(false)
-               return;
-               })
-            }
-            if(key == 'CVR' && value== 'null') value = null;
-            if (key == 'age'){
-               let userAge = calculateAge(user.date_of_birth);
-               if(value == 'child' && userAge == 'Child'){
-                  trueArray.push(true)
-                  }else if(value == 'adult' && userAge == 'Adult'){
-                     trueArray.push(true)
-               }else{
-                  trueArray.push(false)
-               }
-            }
-            if(user[key] == value){
-               trueArray.push(true)
-            }else {
-               trueArray.push(false)
-            }
+   let trueArray = []
+   for(let property in formData){
+      let key = property
+      let value = formData[property]
+      console.log(key, value)
+      if(Array.isArray(value)){ //not working
+         value.forEach(val => {
+            if(key == 'CVR' && val== 'null') val = null;
+            if(key == 'age' ){
+               user.age = userAge
+            } 
+            user[key] == val? trueArray.push(true) : trueArray.push(false)  
+            return;          
+         })
+      }else{
+         if(key == 'CVR' && value== 'null') value = null;
+         if(key == 'age' ) user.age = userAge
+         if(user[key] == value){
+            trueArray.push(true)
+         }else {
+            trueArray.push(false)
          }
-         console.log(trueArray)
-         if(!trueArray.includes(false)){
-            return user;
       }
-   })
-      console.log(filteredUsers)
-      displayFilteredUsers(filteredUsers)
+   }
+   console.log(trueArray)
+   if(!trueArray.includes(false)){
+      return user;
 }
-
+})
+console.log(filteredUsers)
+displayFilteredUsers(filteredUsers)
+   }
+         
 const calculateAge = (dateOFBirth) => {
    let formattedDateOfBirth = dateOFBirth.split('')
    let day = formattedDateOfBirth[0].toString()+formattedDateOfBirth[1].toString();
@@ -132,9 +118,9 @@ const calculateAge = (dateOFBirth) => {
       age--;
    }
    if(age >= 18){
-      return 'Adult';
+      return 'adult';
    }
-   return 'Child'
+   return 'child'
 }
 
 const showHideFilters = () => {
