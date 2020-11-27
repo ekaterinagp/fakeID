@@ -56,11 +56,15 @@ const updateSearch = () => {
       filteredUsers = users;
    }
    data.map(param => {
+      let newUsers;
+      if(filteredUsers.length !== 0){
+         users = filteredUsers;
+         console.log(users)
+      }
       if(param[0] === 'CVR' && param[1] == 'null'){
-         let newUsers = users.filter(user => user[param[0]] == null)
-         filteredUsers.push(...newUsers);
+         newUsers = users.filter(user => user[param[0]] == null)
       }else if(param[0]=== 'age'){
-         let newUsers = users.filter(user => {
+         newUsers = users.filter(user => {
             let userAge = calculateAge(user.date_of_birth);
             if(param[1] == 'child' && userAge == 'Child'){
                return user
@@ -69,12 +73,15 @@ const updateSearch = () => {
                return user;
             }
          })
-         filteredUsers.push(...newUsers);
+         
       }else{
-         let newUsers = users.filter(user => user[param[0]] == param[1])
-         filteredUsers.push(...newUsers);
+         newUsers = users.filter(user => user[param[0]] == param[1])
       }
+      filteredUsers.push(...newUsers);
    })
+   filteredUsers = filteredUsers.filter(function(user, pos) {
+      return filteredUsers.indexOf(user) == pos;
+  })
    displayFilteredUsers(filteredUsers)
 }
 

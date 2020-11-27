@@ -18,35 +18,34 @@ it("loads", () => {
 
   describe("click on show filters and filter based on gender", () => {
     it("show male users", () => {
-      cy.get(".filterBtn").click();
       
       cy.get('label[for=male]').click();
 
       cy.get('.singleUser').children().contains('Male');
-      cy.get('.singleUser').children().not().contains('Female');
     });
 });
 
   describe("click on show filters and filter based on employment", () => {
     it("show no employees", () => {
-      cy.get(".filterBtn").click();
       
       cy.get('label[for=employee]').click();
       cy.get('.singleUser').children().not().contains('12345678');
     });
-  });
+});
 
-  describe("click all filters and show all users", () => {
-    it("show all users", () => {
-      cy.get(".filterBtn").click();
-      cy.get('.labelRadio').each(label => {
-          cy.get(label).click()
-      })
-    
-      cy.get('.container').children().should('have.length', allUsersCount.length);
-    });
-  });
 
+describe("Click on random filters and check result", () => {
+    it('show correct filtering', () => {
+
+        cy.get(".labelRadio label").eq(Math.floor(Math.random()*5)).click()
+        cy.get(".labelRadio label").eq(Math.floor(Math.random()*5)).click()
+        cy.get(".labelRadio label").eq(Math.floor(Math.random()*5)).click()
+        cy.get(".labelRadio label").eq(Math.floor(Math.random()*5)).click()
+
+        cy.get('.container').should('be.visible')
+        cy.get('.container').contains('Log in')
+    })
+})
 
   /*and as for cypress - write a test which select all the filters, 
   then unselect few in random order, then search names in results and eventually sort alphabetically, 
