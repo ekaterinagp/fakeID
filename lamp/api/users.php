@@ -131,7 +131,7 @@ function updateUser()
     //write bunch of if else for different scopes
     //trigger for if one employee status changes, it also changes for the other?
     //trigger for not be able to add spouse for employee
-    if(empty($_PATCH['id'])){
+    if(empty($_GET['id'])){
         $sharedFunctions->sendErrorMessage('id is required', __LINE__);
         exit;
         
