@@ -1,4 +1,3 @@
-"use strict"
 window.addEventListener('load', init);
 
 const filterForm = document.querySelector('.filtersContainer')
@@ -48,40 +47,76 @@ const getMaritalStatus = (statusID) =>{
 //    displayFilteredUsers(data)
 // }
 
+
+ const formatFormData = () =>{
+    let formData = new FormData(filterForm);
+    var object = {};
+    formData.forEach((value, key) => {
+        if(!Reflect.has(object, key)){
+            object[key] = value;
+            return;
+        }
+        if(!Array.isArray(object[key])){
+            object[key] = [object[key]];    
+        }
+        object[key].push(value);
+    });
+ return object;
+ }
+
+
 const updateSearch = () => {
-   let formData = new FormData(filterForm)
-   let data = [...formData]
-   let filteredUsers =[];
-   if(data.length == 0){
-      filteredUsers = users;
-   }
-   data.map(param => {
-      let newUsers;
-      if(filteredUsers.length !== 0){
-         users = filteredUsers;
-         console.log(users)
-      }
-      if(param[0] === 'CVR' && param[1] == 'null'){
-         newUsers = users.filter(user => user[param[0]] == null)
-      }else if(param[0]=== 'age'){
-         newUsers = users.filter(user => {
-            let userAge = calculateAge(user.date_of_birth);
-            if(param[1] == 'child' && userAge == 'Child'){
-               return user
-            }
-            if(param[1] == 'adult' && userAge == 'Adult'){
-               return user;
-            }
-         })
-         
+   let formData = formatFormData()
+   let data = [...new FormData(filterForm)]
+   
+
+   let conditionArray =[]
+   for(let property in formData){
+      let key = property
+      let value = formData[property]
+      if(Array.isArray(value)){
+         let multipleOfSame = []
+            value.forEach(val => {
+                if(key == 'CVR'){
+                  let string;
+                  val== 'null' ? string = null : string = val
+                  multipleOfSame.push(`user.CVR == ${string}`)
+               }else if (key == 'age'){
+                  let string;
+                  val =='child'? string  = 'Child' : string = 'Adult';
+                  multipleOfSame.push(`userAge  == "${string}"`)
+               }else{
+                  multipleOfSame.push(`user.${key} == ${val}`)
+               }
+            })
+            conditionArray.push(`(${multipleOfSame.join(' || ')})`)
+         }
+      else if(key == 'gender_value'){
+         conditionArray.push(`user.gender_value == ${value}`)
+      }else if(key == 'CVR'){
+         let string;
+         value == 'null' ? string = null : string = value
+         conditionArray.push(`user.CVR == ${string}`)
+      }else if (key == 'age'){
+         let string;
+         value =='child'? string = 'Child' : string = 'Adult';
+         conditionArray.push(`userAge == "${string}"`)
       }else{
-         newUsers = users.filter(user => user[param[0]] == param[1])
+         conditionArray.push(`user.marital_status == ${value}`)
       }
-      filteredUsers.push(...newUsers);
+   }
+   let conditionString= conditionArray.join(' && ')
+   let filteredUsers = users.filter(user=> {
+      let userAge = calculateAge(user.date_of_birth)
+      console.log(conditionString)
+      if(eval(conditionString)){
+         return user;
+      }
    })
-   filteredUsers = filteredUsers.filter(function(user, pos) {
-      return filteredUsers.indexOf(user) == pos;
-  })
+
+   console.log(filteredUsers)
+
+
    displayFilteredUsers(filteredUsers)
 }
 
