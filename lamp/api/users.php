@@ -123,7 +123,6 @@ function createUser()
 
 function updateUser()
 {
-    global $request_method;
     $_PATCH = [];
     parse_str(file_get_contents('php://input'), $_PATCH);
     
