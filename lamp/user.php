@@ -31,17 +31,20 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
   if ($user->CVR) {
     $User = new UserEmployee($user->CVR, $user->company_name);
     $maritalStatus = '';
+    $class = ' class="hidden"';
   } else {
     $User = new UserNotEmployee();
     $maritalStatus = $User->getMaritalStatus($user->marital_status_id);
   }
+
   echo '<h2>User  ' . $user->name . ' </h2>';
   echo '<div class="user"><h3>Name</h3><p>' . $user->name . '</p>
   <h3>Date of birth</h3><p>' . $User->formatBirthday($user->date_of_birth) . '</p>
   <h3>Address</h3><p>' . $User->setAddress($address) . '</p>
   <h3>CPR</h3><p>' . $user->CPR . '</p>
   <h3>Gender</h3><p>' . $User->getGenderValue($user->gender_value) . '</p>
-  <h3>Marital status</h3><p>' . $maritalStatus . '</p>
+  <div ' . $class . '>
+  <h3>Marital status</h3><p>' . $maritalStatus . '</p></div>
 
  </div>';
 
@@ -62,7 +65,7 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
     <label for=""> Address </label>
   </div>
 
-  <div class="form-field">
+  <div class="form-field <?php if ($user->company_name) echo 'hidden'; ?>">
     <select name="marital_status_id" id="">
 
       <option value="1" <?php if ($user->marital_status_id == 1) echo 'selected' ?>>Single</option>
@@ -77,7 +80,7 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
     <label for=""> Marital status </label>
   </div>
 
-  <div class="form-field">
+  <div class="form-field <?php if ($user->company_name) echo 'hidden'; ?>">
     <select name="spouse" id="">
       <option value="" disabled selected>Select Spouse</option>
       <?php
