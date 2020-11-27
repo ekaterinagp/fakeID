@@ -38,6 +38,10 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
     $class = ' class="';
   }
 
+  if ($user->marital_status_id == 2 || $user->marital_status_id == 5) {
+    $partner = $getFunction->getSpouseNameByID($id);
+  }
+
   echo '<h2>User  ' . $user->name . ' </h2>';
   echo '<div class="user"><h3>Name</h3><p>' . $user->name . '</p>
   <h3>Date of birth</h3><p>' . $User->formatBirthday($user->date_of_birth) . '</p>
@@ -66,20 +70,6 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
     <label for=""> Address </label>
   </div>
 
-  <div class="form-field <?php if ($user->company_name) echo 'hidden'; ?>">
-    <select name="marital_status_id" id="">
-
-      <option value="1" <?php if ($user->marital_status_id == 1) echo 'selected' ?>>Single</option>
-      <option value="2" <?php if ($user->marital_status_id == 2) echo 'selected' ?>>Married</option>
-      <option value="1" <?php if ($user->marital_status_id == 5) echo 'selected' ?>>Registered Partnership</option>
-      <option value="2" <?php if ($user->marital_status_id == 6) echo 'selected' ?>>Abolition Of Registered Partnership</option>
-      <option value="1" <?php if ($user->marital_status_id == 3) echo 'selected' ?>>Divorced</option>
-      <option value="2" <?php if ($user->marital_status_id == 4) echo 'selected' ?>>Widow</option>
-      <option value="1" <?php if ($user->marital_status_id == 7) echo 'selected' ?>>Deceased</option>
-      <option value="2" <?php if ($user->marital_status_id == 8) echo 'selected' ?>>Unknown</option>
-    </select>
-    <label for=""> Marital status </label>
-  </div>
 
   <div class="form-field <?php if ($user->company_name || $user->marital_status_id == 2 || $user->marital_status_id == 5) echo 'hidden'; ?>">
     <select name="spouse" id="">
@@ -96,16 +86,32 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
     <label for=""> Available spouses</label>
   </div>
 
+
+  <div class="form-field <?php if ($user->company_name) echo 'hidden'; ?>">
+    <select name="marital_status_id" id="">
+
+      <option value="1" <?php if ($user->marital_status_id == 1) echo 'selected' ?>>Single</option>
+      <option value="2" <?php if ($user->marital_status_id == 2) echo 'selected' ?>>Married</option>
+      <option value="1" <?php if ($user->marital_status_id == 5) echo 'selected' ?>>Registered Partnership</option>
+      <option value="2" <?php if ($user->marital_status_id == 6) echo 'selected' ?>>Abolition Of Registered Partnership</option>
+      <option value="1" <?php if ($user->marital_status_id == 3) echo 'selected' ?>>Divorced</option>
+      <option value="2" <?php if ($user->marital_status_id == 4) echo 'selected' ?>>Widow</option>
+      <option value="1" <?php if ($user->marital_status_id == 7) echo 'selected' ?>>Deceased</option>
+      <option value="2" <?php if ($user->marital_status_id == 8) echo 'selected' ?>>Unknown</option>
+    </select>
+    <label for=""> Marital status </label>
+  </div>
+
+
   <div class="form-field <?php if ($user->marital_status_id == 2 || $user->marital_status_id == 5) {
                             echo 'spouseVisible';
                           } else {
                             echo 'hidden';
                           }  ?>">
+    <input type="text" readonly name="spouse" value="<?php echo '' . $partner[0]['name'] . ''; ?>">
 
-    <!-- <p><?php echo '' . $User->getSpouse($user) . ''; ?></p>  -->
-    <label for=""> Partner</label>
+    <label for="">Partner</label>
   </div>
-
   <button onclick="submitUpdateForm(<?php echo '' . $user->id . ''; ?>)">Save</button>
   </form>
   </div>
