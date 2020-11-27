@@ -157,15 +157,15 @@ function updateUser($id)
         ];
     }
 
-    if (isset($_PATCH['marital_status_id'])) {
-        $sql = 'UPDATE user SET marital_status_id=:marital_status_id WHERE id=:id; UPDATE user SET marital_status_id=:marital_status_id WHERE id=:spouse_id;';
+    // if (isset($_PATCH['marital_status_id'])) {
+    //     $sql = 'UPDATE user SET marital_status_id=:marital_status_id WHERE id=:id; UPDATE user SET marital_status_id=:marital_status_id WHERE id=:spouse_id;';
 
-        $data = [
-            ':marital_status_id' => $_PATCH['marital_status_id'],
-            ':id' =>$id,
-            ':spouse_id' => $_PATCH['spouse_id'],
-        ];
-    }
+    //     $data = [
+    //         ':marital_status_id' => $_PATCH['marital_status_id'],
+    //         ':id' =>$id,
+    //         ':spouse_id' => $_PATCH['spouse_id'],
+    //     ];
+    // }
 
     if (isset($_PATCH['address_id'])) {
         $sql = 'UPDATE user SET address_id=:address_id WHERE id=:id';
