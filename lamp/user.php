@@ -35,6 +35,7 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
   } else {
     $User = new UserNotEmployee();
     $maritalStatus = $User->getMaritalStatus($user->marital_status_id);
+    $class = ' class="';
   }
 
   echo '<h2>User  ' . $user->name . ' </h2>';
@@ -95,7 +96,7 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
     <label for=""> Available spouses</label>
   </div>
 
-  <input type="submit" onclick="submitUpdateForm(event)">
+  <button onclick="submitUpdateForm(<?php echo '' . $user->id . ''; ?>)">Save</button>
   </form>
   </div>
 

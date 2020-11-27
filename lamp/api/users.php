@@ -125,16 +125,15 @@ function updateUser()
 {
     $_PATCH = [];
     parse_str(file_get_contents('php://input'), $_PATCH);
-    
+
     global $conn;
     global $sharedFunctions;
-    //write bunch of if else for different scopes
+
     //trigger for if one employee status changes, it also changes for the other?
     //trigger for not be able to add spouse for employee
-    if(empty($_PATCH['id'])){
+    if (empty($_PATCH['id'])) {
         $sharedFunctions->sendErrorMessage('id is required', __LINE__);
         exit;
-        
     }
     if (empty($_PATCH['name'])) {
         $sharedFunctions->sendErrorMessage('name is required', __LINE__);
@@ -184,5 +183,3 @@ function updateUser()
         echo json_encode($response);
     }
 }
-
-
