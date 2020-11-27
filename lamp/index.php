@@ -57,10 +57,10 @@
           <div class="employeeStatusFilters filter">
         <h3>Employee Status</h3>
             <div class="labelRadio">
-              <input type="checkbox" id="employee" value="true" name="employee-status" >
+              <input type="checkbox" id="employee" value="12345678" name="CVR" >
               <label for="employee">Employee</label>
           
-              <input type="checkbox" id="not_employee" value="false" name="employee-status" >
+              <input type="checkbox" id="not_employee" value=null name="CVR" >
               <label for="not_employee">Not Employee</label>
             </div>
           </div>
@@ -68,41 +68,42 @@
           <div class="genderFilters filter">
         <h3>Gender</h3>
             <div class="labelRadio">
-              <input type="checkbox" id="male" value="0001" name="gender">
+              <input type="checkbox" id="male" value="0001" name="gender_value">
               <label for="male">Male</label>
             </div>
             <div class="labelRadio">
-              <input type="checkbox" id="female" value="0002" name="gender" >
+              <input type="checkbox" id="female" value="0002" name="gender_value" >
               <label for="female">Female</label>
             </div>
           </div>
           <div class="maritalStatusFilters filter">
         <h3>Marital Status</h3>
         <div class="labelRadio">
-          <input name="marital-status" type="checkbox" id="single" value="single" >
+          <input name="marital_status_id" type="checkbox" id="single" value="1" >
           <label for="single">Single</label>
         
-          <input name="marital-status" type="checkbox" id="married" value="married" >
+          <input name="marital_status_id" type="checkbox" id="married" value="2" >
           <label for="married">Married</label>
      
-          <input name="marital-status" type="checkbox" id="divorced" value="divorced" >
+          <input name="marital_status_id" type="checkbox" id="divorced" value="3" >
           <label for="divorced">Divorced</label>
       
-          <input name="marital-status" type="checkbox" id="widow" value="widow" >
+          <input name="marital_status_id" type="checkbox" id="widow" value="4" >
           <label for="widow">Widow</label>
     
        
       
-          <input name="marital-status" type="checkbox" id="deceased" value="deceased" >
+          <input name="marital_status_id" type="checkbox" id="deceased" value="7" >
           <label for="deceased">Deceased</label>
      
-          <input name="marital-status" type="checkbox" id="registered_partnership" value="registered_partnership" >
+          <input name="marital_status_id" type="checkbox" id="registered_partnership" value="5" >
           <label for="registered_partnership">Registered Partnership</label>
-          <input name="marital-status" type="checkbox" id="unknown" value="unknown" >
+
+          <input name="marital_status_id" type="checkbox" id="unknown" value="8" >
           <label for="unknown">Unknown</label>
           
      
-          <input name="marital-status" type="checkbox" id="abolition_of_registered_partnership" value="abolition_of_registered_partnership" >
+          <input name="marital_status_id" type="checkbox" id="abolition_of_registered_partnership" value="6" >
           <label for="abolition_of_registered_partnership">Abolition Of Registered Partnership</label>
         </div>
       </div>
@@ -149,8 +150,8 @@
 
 
     </main>
-    <script src="../lamp/js/search.js"></script>
     <script src="../lamp/js/script.js"></script>
+    <script src="../lamp/js/search.js"></script>
   </body>
 
   </html>

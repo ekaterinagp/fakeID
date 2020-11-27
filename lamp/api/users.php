@@ -160,20 +160,28 @@ function returnQueryString($searchString){
     $wordArray = explode(' ', $whereStr);
     // echo json_encode($wordArray);
     foreach($wordArray as $word){
-        echo json_encode($wordArray);
-        
+        // echo json_encode($wordArray);
         if(count(array_keys($wordArray, $word)) > 1){
-            if($word == '=' || $word == 'AND' || $word == 'IS' || $word == 'NULL'|| $word == 'NOT') break;
-            $index = array_search($word, array_values($wordArray));
-            array_splice($wordArray, $index+3, 1, 'OR'); //$wordArray[$index+3];
-            array_splice($wordArray, $index, 0, '(');
-            array_splice($wordArray, $index+8, 0, ')');
+            if($word !== '=' && $word !== 'AND' && $word !== 'IS' && $word !== 'NULL'&& $word !== 'NOT'){
+                $index = array_search($word, array_values($wordArray));
+                if( $index !== 0 && $wordArray[$index-1] !== '('){
+                    if($word == 'CVR'){
+                        array_splice($wordArray, $index+4, 1, 'OR'); //$wordArray[$index+3];
+                        array_splice($wordArray, $index, 0, '(');
+                        array_splice($wordArray, $index+10, 0, ')');
+                    }else{
+                        array_splice($wordArray, $index+3, 1, 'OR'); //$wordArray[$index+3];
+                        array_splice($wordArray, $index, 0, '(');
+                        array_splice($wordArray, $index+8, 0, ')');
+                    }
+                    
+                }
+            }
         }
     }
     $whereStr = implode(' ', $wordArray);
     $query = "SELECT * FROM user WHERE {$whereStr}";
-    // echo $query;
-
+    echo $query;
     return $query;
 }
 

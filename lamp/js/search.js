@@ -1,9 +1,44 @@
 "use strict"
+window.addEventListener('load', init);
+
 const form = document.querySelector('.filtersContainer')
 const usersContainer = document.querySelector('.container');
 
-const displayFilteredUsers = (users) => {
+let users;
 
+const displayFilteredUsers = (users) => {
+   usersContainer.innerHTML = '';
+   users.forEach(user => {
+     let singleUser =  document.createElement('div');
+      singleUser.className = 'singleUser';
+      singleUser.id = user.id;
+      let link = document.createElement('a');
+      link.href = 'user.php?id=' +user.id;
+      let name = document.createElement('p');
+      name.textContent = user.name;
+      let age = document.createElement('p');
+      age.textContent = calculateAge(user.date_of_birth);
+      let gender = document.createElement('p');
+      user.gender_value == '0001' ? gender.textContent = 'Male' : gender.textContent = 'Female';
+      let CVR = document.createElement('p');
+      user.CVR? CVR.textContent = user.CVR : CVR.textContent = ''
+      let maritalStatus = document.createElement('p');
+      maritalStatus.textContent = getMaritalStatus(user.marital_status_id);
+      let button = document.createElement('button');
+      button.className = 'loginBtn';
+      button.textContent = 'Log in';
+
+      link.append(name);
+      singleUser.append(link, age, gender, CVR,  maritalStatus, button)
+      usersContainer.append(singleUser)
+   })
+}
+
+const calculateAge = (birthday) => {
+   return birthday;
+}
+const getMaritalStatus = (statusID) =>{
+   return statusID;
 }
 
 const fetchFilteredUsers = async (event) => {
@@ -15,6 +50,27 @@ const fetchFilteredUsers = async (event) => {
 }
 
 
+const updateSearch = (event) => {
+   let formData = new FormData(form)
+   let data = [...formData]
+   let filteredUsers =[];
+   data.map(param => {
+      if(param[0] === 'CVR' && param[1] == 'null'){
+         let newUsers = users.filter(user => user[param[0]] == null)
+         filteredUsers.push(...newUsers);
+      }else{
+         let newUsers = users.filter(user => user[param[0]] == param[1])
+         filteredUsers.push(...newUsers);
+      }
+   })
+   displayFilteredUsers(filteredUsers)
+
+}
 
 
-form.addEventListener('change', fetchFilteredUsers)
+
+
+async function init() {
+   form.addEventListener('change', updateSearch)
+   users = await getAllUsers();
+ }

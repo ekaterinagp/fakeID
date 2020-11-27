@@ -1,7 +1,8 @@
 "use strict";
 const baseUrl = window.location;
 const pathname = baseUrl.pathname;
-let path;
+let path = configurePath();
+
 
 window.addEventListener("load", () => {
   init();
@@ -45,7 +46,6 @@ function configurePath() {
 }
 
 async function init() {
-  path = configurePath();
-  let users = await getAllUsers();
+  const users = await getAllUsers();
   console.log(users);
 }
