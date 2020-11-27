@@ -4,9 +4,10 @@ async function submitUpdateForm(id) {
   console.log(id);
   event.preventDefault();
   const formData = new FormData(document.querySelector("form"));
+  let querystring = new URLSearchParams(formData).toString()
   const response = await fetch(path + "api/users/" + id, {
-    method: "PUT",
-    body: formData,
+    method: "PATCH",
+    body: querystring,
   });
   console.log(response);
   const data = await response.json();

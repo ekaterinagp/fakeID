@@ -21,7 +21,9 @@ switch ($request_method) {
         createUser();
         break;
     case 'PUT' || 'PATCH':
-        updateUser();
+        $id = intval($_GET["id"]);
+
+        updateUser($id);
         break;
     default:
         // Invalid Request Method
@@ -121,19 +123,16 @@ function createUser()
 
 //###### UPDATE USER  ##########
 
-function updateUser()
+function updateUser($id)
 {
     $_PATCH = [];
     parse_str(file_get_contents('php://input'), $_PATCH);
-
     global $conn;
     global $sharedFunctions;
-
     //trigger for if one employee status changes, it also changes for the other?
     //trigger for not be able to add spouse for employee
-    if(empty($_GET['id'])){
+    if(!$id){
         $sharedFunctions->sendErrorMessage('id is required', __LINE__);
-        exit;
     }
     if (empty($_PATCH['name'])) {
         $sharedFunctions->sendErrorMessage('name is required', __LINE__);
@@ -144,7 +143,7 @@ function updateUser()
         $sql = 'UPDATE user SET spouse_id=:spouse_id WHERE id=:id; UPDATE user SET spouse_id=:id WHERE id=:spouse_id;';
 
         $data = [
-            ':id' => $_PATCH['id'],
+            ':id' =>$id,
             ':spouse_id' => $_PATCH['spouse_id'],
         ];
     }
@@ -154,7 +153,7 @@ function updateUser()
 
         $data = [
             ':name' => $_PATCH['name'],
-            ':id' => $_PATCH['id']
+            ':id' => $id
         ];
     }
 
@@ -163,7 +162,7 @@ function updateUser()
 
         $data = [
             ':marital_status_id' => $_PATCH['marital_status_id'],
-            ':id' => $_PATCH['id'],
+            ':id' =>$id,
             ':spouse_id' => $_PATCH['spouse_id'],
         ];
     }
@@ -173,7 +172,7 @@ function updateUser()
 
         $data = [
             ':address_id' => $_PATCH['address_id'],
-            ':id' => $_PATCH['id']
+            ':id' =>$id
         ];
     }
 
