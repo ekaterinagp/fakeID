@@ -81,7 +81,7 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
     <label for=""> Marital status </label>
   </div>
 
-  <div class="form-field <?php if ($user->company_name) echo 'hidden'; ?>">
+  <div class="form-field <?php if ($user->company_name || $user->marital_status_id == 2 || $user->marital_status_id == 5) echo 'hidden'; ?>">
     <select name="spouse" id="">
       <option value="" disabled selected>Select Spouse</option>
       <?php
@@ -94,6 +94,16 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
 
     </select>
     <label for=""> Available spouses</label>
+  </div>
+
+  <div class="form-field <?php if ($user->marital_status_id == 2 || $user->marital_status_id == 5) {
+                            echo 'spouseVisible';
+                          } else {
+                            echo 'hidden';
+                          }  ?>">
+
+    <!-- <p><?php echo '' . $User->getSpouse($user) . ''; ?></p>  -->
+    <label for=""> Partner</label>
   </div>
 
   <button onclick="submitUpdateForm(<?php echo '' . $user->id . ''; ?>)">Save</button>

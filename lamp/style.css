@@ -108,3 +108,7 @@ a.active{
 .hidden{
   display:none;
 }
+
+.spouseVisible{
+  display:block;
+}
