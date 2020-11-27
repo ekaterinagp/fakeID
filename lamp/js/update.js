@@ -1,9 +1,10 @@
 "use strict";
 
-async function submitUpdateForm(event) {
+async function submitUpdateForm(id) {
+  console.log(id);
   event.preventDefault();
   const formData = new FormData(document.querySelector("form"));
-  const response = await fetch(path + "api/users", {
+  const response = await fetch(path + "api/users/" + id, {
     method: "PUT",
     body: formData,
   });
