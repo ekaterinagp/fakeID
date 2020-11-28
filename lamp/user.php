@@ -92,12 +92,12 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
 
       <option value="1" <?php if ($user->marital_status_id == 1) echo 'selected' ?>>Single</option>
       <option value="2" <?php if ($user->marital_status_id == 2) echo 'selected' ?>>Married</option>
-      <option value="1" <?php if ($user->marital_status_id == 5) echo 'selected' ?>>Registered Partnership</option>
-      <option value="2" <?php if ($user->marital_status_id == 6) echo 'selected' ?>>Abolition Of Registered Partnership</option>
-      <option value="1" <?php if ($user->marital_status_id == 3) echo 'selected' ?>>Divorced</option>
-      <option value="2" <?php if ($user->marital_status_id == 4) echo 'selected' ?>>Widow</option>
-      <option value="1" <?php if ($user->marital_status_id == 7) echo 'selected' ?>>Deceased</option>
-      <option value="2" <?php if ($user->marital_status_id == 8) echo 'selected' ?>>Unknown</option>
+      <option value="5" <?php if ($user->marital_status_id == 5) echo 'selected' ?>>Registered Partnership</option>
+      <option value="6" <?php if ($user->marital_status_id == 6) echo 'selected' ?>>Abolition Of Registered Partnership</option>
+      <option value="3" <?php if ($user->marital_status_id == 3) echo 'selected' ?>>Divorced</option>
+      <option value="4" <?php if ($user->marital_status_id == 4) echo 'selected' ?>>Widow</option>
+      <option value="7" <?php if ($user->marital_status_id == 7) echo 'selected' ?>>Deceased</option>
+      <option value="8" <?php if ($user->marital_status_id == 8) echo 'selected' ?>>Unknown</option>
     </select>
     <label for=""> Marital status </label>
   </div>
