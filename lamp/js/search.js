@@ -75,15 +75,20 @@ const updateSearch = () => {
       let value = formData[property]
       console.log(key, value)
       if(Array.isArray(value)){ //not working
-         value.forEach(val => {
+        let  arrayValConditionArr =[]
+          value.forEach(val => {
             if(key == 'CVR' && val== 'null') val = null;
             if(key == 'age' ){
+               let userAge = calculateAge(user.date_of_birth)
                user.age = userAge
             } 
-            user[key] == val? trueArray.push(true) : trueArray.push(false)  
-            return;          
+            user[key] == val ? arrayValConditionArr.push(true): arrayValConditionArr.push(false)
          })
+         if(arrayValConditionArr.includes(true)){
+            trueArray.push(true)
+         }
       }else{
+         let userAge = calculateAge(user.date_of_birth)
          if(key == 'CVR' && value== 'null') value = null;
          if(key == 'age' ) user.age = userAge
          if(user[key] == value){
@@ -93,10 +98,11 @@ const updateSearch = () => {
          }
       }
    }
-   console.log(trueArray)
+   console.log(trueArray )
+  
    if(!trueArray.includes(false)){
       return user;
-}
+   }
 })
 console.log(filteredUsers)
 displayFilteredUsers(filteredUsers)
