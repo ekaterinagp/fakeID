@@ -3,6 +3,7 @@ window.addEventListener('load', init);
 const filterForm = document.querySelector('.filtersContainer')
 const usersContainer = document.querySelector('.container');
 let showHideFiltersBtn = document.querySelector('.filterBtn')
+let formData;
 
 let users;
 
@@ -41,7 +42,6 @@ const getMaritalStatus = (statusID) =>{
 
 
  const formatFormData = () =>{
-    let formData = new FormData(filterForm);
     var object = {};
     formData.forEach((value, key) => {
         if(!Reflect.has(object, key)){
@@ -56,10 +56,17 @@ const getMaritalStatus = (statusID) =>{
  return object;
  }
 
+ const sortUsers = () => {
+   formData = [...formData.entries()]
+   // formData = formatFormData()
+   // for(let property in formData){
+   //    if(formData.includes('sortAge')) console.log('message')
 
-const updateSearch = () => {
-   let formData = formatFormData()
-   let data = [...new FormData(filterForm)]
+   // }
+ }
+
+ const filterUsers = () => {
+   formData = formatFormData()
    let filteredUsers = users.filter(user => {
       let trueArray = []
       for(let property in formData){
@@ -97,6 +104,17 @@ const updateSearch = () => {
       }
    })
    displayFilteredUsers(filteredUsers)
+ }
+
+const updateSearch = (event) => {
+   formData = new FormData(filterForm);
+   console.log(formData)
+   if(event.target.name == 'sorter'){
+      sortUsers()
+   }else{
+      filterUsers()
+   }
+   
 }
          
 const calculateAge = (dateOFBirth) => {

@@ -113,10 +113,10 @@
           <div class="sorters">
         <h3>Sort By</h3>
               <div class="labelRadio">
-                <input type="checkbox" id="age" value="age" name="sorter" >
-                <label for="age">Age</label>
-                <input type="checkbox" id="name" value="name" name="sorter" >
-                <label for="name">Name</label>
+                <input type="checkbox" id="sortAge" value="sortAge" name="sorter" >
+                <label for="sortAge">Age</label>
+                <input type="checkbox" id="sortName" value="sortName" name="sorter" >
+                <label for="sortName">Name</label>
               </div>
             
       </div>
