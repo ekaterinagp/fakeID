@@ -124,6 +124,10 @@ function createUser()
 
 //###### UPDATE USER  ##########
 
+
+
+
+
 function updateUser($id)
 {
     global $conn;
@@ -137,44 +141,58 @@ function updateUser($id)
     //     $sharedFunctions->sendErrorMessage('name is required', __LINE__);
     // }
 
-
-    if (isset($_POST['spouse_id'])) {
-        $sql = 'UPDATE user SET spouse_id=:spouse_id WHERE id=:id; UPDATE user SET spouse_id=:id WHERE id=:spouse_id;';
-        $statement = $conn->connectToDatabase()->prepare($sql);
-        $data = [
-            ':id' => $id,
-            ':spouse_id' => $_POST['spouse_id'],
-        ];
+    $sqlArr = [];
+    $data = [];
+    foreach($_POST as $key => $value)
+    {
+        $paramName = ':' . $key;
+        $sqlArr[] = $key ." = " . $paramName;
+        $data[$paramName] = $value;
     }
 
-    if (isset($_POST['name'])) {
-        $sql = 'UPDATE user SET name=:name WHERE id=:id';
-        $statement = $conn->connectToDatabase()->prepare($sql);
-        $data = [
-            ':name' => $_POST['name'],
-            ':id' => $id
-        ];
-    }
+    $updateStr = count($sqlArr)>1? implode(', ', $sqlArr) : implode($sqlArr);
+    $query = 'UPDATE user SET ' . $updateStr .  ' WHERE id=:id';
 
-    if (isset($_POST['marital_status_id'])) {
-        $sql = 'UPDATE user SET marital_status_id=:marital_status_id WHERE id=:id;';
+    // echo $query;
+   
+    // if (isset($_POST['spouse_id'])) {
+    //     $sql = 'UPDATE user SET spouse_id=:spouse_id WHERE id=:id; UPDATE user SET spouse_id=:id WHERE id=:spouse_id;';
+    //     $statement = $conn->connectToDatabase()->prepare($sql);
+    //     $data = [
+    //         ':id' => $id,
+    //         ':spouse_id' => $_POST['spouse_id'],
+    //     ];
+    // }
 
-        $data = [
-            ':marital_status_id' => $_POST['marital_status_id'],
-            ':id' => $id,
-        ];
-    }
+    // if (isset($_POST['name'])) {
+    //     $sql = 'UPDATE user SET name=:name WHERE id=:id';
+    //     $statement = $conn->connectToDatabase()->prepare($sql);
+    //     $data = [
+    //         ':name' => $_POST['name'],
+    //         ':id' => $id
+    //     ];
+    // }
 
-    if (isset($_POST['address_id'])) {
-        $sql = 'UPDATE user SET address_id=:address_id WHERE id=:id';
-        $statement = $conn->connectToDatabase()->prepare($sql);
-        $data = [
-            ':address_id' => $_POST['address_id'],
-            ':id' => $id
-        ];
-    }
+    // if (isset($_POST['marital_status_id'])) {
+    //     $sql = 'UPDATE user SET marital_status_id=:marital_status_id WHERE id=:id;';
 
-    $statement = $conn->connectToDatabase()->prepare($sql);
+    //     $data = [
+    //         ':marital_status_id' => $_POST['marital_status_id'],
+    //         ':id' => $id,
+    //     ];
+    // }
+
+    // if (isset($_POST['address_id'])) {
+    //     $sql = 'UPDATE user SET address_id=:address_id WHERE id=:id';
+    //     $statement = $conn->connectToDatabase()->prepare($sql);
+    //     $data = [
+    //         ':address_id' => $_POST['address_id'],
+    //         ':id' => $id
+    //     ];
+    // }
+    $data[':id'] = $id;
+    echo json_encode($data);
+    $statement = $conn->connectToDatabase()->prepare($query);
 
     if ($statement->execute($data)) {
         $response = ['status' => 1, 'message' => 'user updated '];
