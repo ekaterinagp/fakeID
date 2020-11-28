@@ -39,14 +39,6 @@ const getMaritalStatus = (statusID) =>{
    return statusID;
 }
 
-// const fetchFilteredUsers = async (event) => {
-//    let querystring = new FormData(form);
-//    querystring = new URLSearchParams(querystring).toString()
-//    const response = await fetch(path+'api/users?' +  querystring);
-//    const data = await response.json()
-//    displayFilteredUsers(data)
-// }
-
 
  const formatFormData = () =>{
     let formData = new FormData(filterForm);
@@ -69,44 +61,43 @@ const updateSearch = () => {
    let formData = formatFormData()
    let data = [...new FormData(filterForm)]
    let filteredUsers = users.filter(user => {
-   let trueArray = []
-   for(let property in formData){
-      let key = property
-      let value = formData[property]
-      console.log(key, value)
-      if(Array.isArray(value)){ //not working
-        let  arrayValConditionArr =[]
-          value.forEach(val => {
-            if(key == 'CVR' && val== 'null') val = null;
-            if(key == 'age' ){
-               let userAge = calculateAge(user.date_of_birth)
-               user.age = userAge
-            } 
-            user[key] == val ? arrayValConditionArr.push(true): arrayValConditionArr.push(false)
-         })
-         if(arrayValConditionArr.includes(true)){
-            trueArray.push(true)
-         }
-      }else{
-         let userAge = calculateAge(user.date_of_birth)
-         if(key == 'CVR' && value== 'null') value = null;
-         if(key == 'age' ) user.age = userAge
-         if(user[key] == value){
-            trueArray.push(true)
-         }else {
-            trueArray.push(false)
+      let trueArray = []
+      for(let property in formData){
+         let key = property
+         let value = formData[property]
+         // console.log(key, value)
+         if(Array.isArray(value)){ //not working
+         let  arrayValConditionArr =[]
+            value.forEach(val => {
+               if(key == 'CVR' && val== 'null') val = null;
+               if(key == 'age' ){
+                  let userAge = calculateAge(user.date_of_birth)
+                  user.age = userAge
+               } 
+               user[key] == val ? arrayValConditionArr.push(true): arrayValConditionArr.push(false)
+            })
+            if(arrayValConditionArr.includes(true)){
+               trueArray.push(true)
+            }
+         }else{
+            let userAge = calculateAge(user.date_of_birth)
+            if(key == 'CVR' && value== 'null') value = null;
+            if(key == 'age' ) user.age = userAge
+            if(user[key] == value){
+               trueArray.push(true)
+            }else {
+               trueArray.push(false)
+            }
          }
       }
-   }
-   console.log(trueArray )
-  
-   if(!trueArray.includes(false)){
-      return user;
-   }
-})
-console.log(filteredUsers)
-displayFilteredUsers(filteredUsers)
-   }
+      // console.log(trueArray )
+   
+      if(!trueArray.includes(false)){
+         return user;
+      }
+   })
+   displayFilteredUsers(filteredUsers)
+}
          
 const calculateAge = (dateOFBirth) => {
    let formattedDateOfBirth = dateOFBirth.split('')
