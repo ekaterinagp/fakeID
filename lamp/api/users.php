@@ -134,12 +134,15 @@ function updateUser($id)
     global $sharedFunctions;
     //trigger for if one employee status changes, it also changes for the other?
     //trigger for not be able to add spouse for employee
+
     if (!$id) {
         $sharedFunctions->sendErrorMessage('id is required', __LINE__);
     }
-    // if (empty($_POST['name'])) {
-    //     $sharedFunctions->sendErrorMessage('name is required', __LINE__);
-    // }
+
+    //check if marital status is being updated and if should include spouse
+    if(isset($_POST['marital_status_id']) and intval($_POST['marital_status_id']) !== 1 and intval($_POST['marital_status_id']) !== 8 ){
+        $sharedFunctions->sendErrorMessage('for this marital status a spouse is required', __LINE__);
+    }
 
     $sqlArr = [];
     $data = [];
@@ -152,7 +155,7 @@ function updateUser($id)
 
     $updateStr = count($sqlArr)>1? implode(', ', $sqlArr) : implode($sqlArr);
     $query = 'UPDATE user SET ' . $updateStr .  ' WHERE id=:id';
-
+   
     // echo $query;
    
     // if (isset($_POST['spouse_id'])) {
@@ -190,8 +193,8 @@ function updateUser($id)
     //         ':id' => $id
     //     ];
     // }
+    
     $data[':id'] = $id;
-    echo json_encode($data);
     $statement = $conn->connectToDatabase()->prepare($query);
 
     if ($statement->execute($data)) {
