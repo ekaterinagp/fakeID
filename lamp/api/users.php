@@ -133,16 +133,16 @@ function updateUser($id)
     if (!$id) {
         $sharedFunctions->sendErrorMessage('id is required', __LINE__);
     }
-    if (empty($_POST['name'])) {
-        $sharedFunctions->sendErrorMessage('name is required', __LINE__);
-    }
+    // if (empty($_POST['name'])) {
+    //     $sharedFunctions->sendErrorMessage('name is required', __LINE__);
+    // }
 
 
     if (isset($_POST['spouse_id'])) {
         $sql = 'UPDATE user SET spouse_id=:spouse_id WHERE id=:id; UPDATE user SET spouse_id=:id WHERE id=:spouse_id;';
         $statement = $conn->connectToDatabase()->prepare($sql);
         $data = [
-            ':id' =>$id,
+            ':id' => $id,
             ':spouse_id' => $_POST['spouse_id'],
         ];
     }
@@ -156,13 +156,12 @@ function updateUser($id)
         ];
     }
 
-    if (isset($_POST['marital_status_id'])) {
-        $sql = 'UPDATE user SET marital_status_id=:marital_status_id WHERE id=:id; UPDATE user SET marital_status_id=:marital_status_id WHERE id=:spouse_id;';
+    if ($_POST['marital_status_id']) {
+        $sql = 'UPDATE user SET marital_status_id=:marital_status_id WHERE id=:id;';
 
         $data = [
             ':marital_status_id' => $_POST['marital_status_id'],
-            ':id' =>$id,
-            ':spouse_id' => $_POST['spouse_id'],
+            ':id' => $id,
         ];
     }
 
@@ -171,12 +170,12 @@ function updateUser($id)
         $statement = $conn->connectToDatabase()->prepare($sql);
         $data = [
             ':address_id' => $_POST['address_id'],
-            ':id' =>$id
+            ':id' => $id
         ];
     }
 
     $statement = $conn->connectToDatabase()->prepare($sql);
-    
+
     if ($statement->execute($data)) {
         $response = ['status' => 1, 'message' => 'user updated '];
         echo json_encode($response);
