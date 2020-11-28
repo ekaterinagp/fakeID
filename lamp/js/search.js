@@ -4,10 +4,10 @@ const filterForm = document.querySelector('.filtersContainer')
 const usersContainer = document.querySelector('.container');
 let showHideFiltersBtn = document.querySelector('.filterBtn')
 let formData;
-
+let usersInDom;
 let users;
 
-const displayFilteredUsers = (users) => {
+const displayUsers = (users) => {
    usersContainer.innerHTML = '';
    users.forEach(user => {
      let singleUser =  document.createElement('div');
@@ -18,7 +18,13 @@ const displayFilteredUsers = (users) => {
       let name = document.createElement('p');
       name.textContent = user.name;
       let age = document.createElement('p');
-      age.textContent = calculateAge(user.date_of_birth);
+      let userAge = calculateAge(user.date_of_birth)
+      if(userAge >= 18){
+         userAge= 'adult';
+      }else{
+         userAge= 'child'
+      }
+      age.textContent = userAge;
       let gender = document.createElement('p');
       user.gender_value == '0001' ? gender.textContent = 'Male' : gender.textContent = 'Female';
       let CVR = document.createElement('p');
@@ -57,12 +63,26 @@ const getMaritalStatus = (statusID) =>{
  }
 
  const sortUsers = () => {
-   formData = [...formData.entries()]
-   // formData = formatFormData()
-   // for(let property in formData){
-   //    if(formData.includes('sortAge')) console.log('message')
+    let sortedUsers 
+   if(formData.get('sorter') == 'sortAge'){
+      sortedUsers = usersInDom.sort((a,b) => {
+         console.log(a, b)
+         let aUserAge = calculateAge(a.date_of_birth)
+         let bUserAge = calculateAge(b.date_of_birth)
+         return aUserAge - bUserAge;
+      })
+   }
+   if(formData.get('sorter') == 'sortName'){
+      sortedUsers = usersInDom.sort((a,b) => {
+         if(a.name < b.name){
+            return -1
+         }else {
+            return 1
+         }
+      })
+   }
+   displayUsers(sortedUsers)
 
-   // }
  }
 
  const filterUsers = () => {
@@ -79,6 +99,11 @@ const getMaritalStatus = (statusID) =>{
                if(key == 'CVR' && val== 'null') val = null;
                if(key == 'age' ){
                   let userAge = calculateAge(user.date_of_birth)
+                  if(userAge >= 18){
+                     userAge= 'adult';
+                  }else {
+                     userAge= 'child'
+                  }
                   user.age = userAge
                } 
                user[key] == val ? arrayValConditionArr.push(true): arrayValConditionArr.push(false)
@@ -88,6 +113,11 @@ const getMaritalStatus = (statusID) =>{
             }
          }else{
             let userAge = calculateAge(user.date_of_birth)
+            if(userAge >= 18){
+               userAge= 'adult';
+            }else{
+               userAge= 'child'
+            }
             if(key == 'CVR' && value== 'null') value = null;
             if(key == 'age' ) user.age = userAge
             if(user[key] == value){
@@ -103,7 +133,8 @@ const getMaritalStatus = (statusID) =>{
          return user;
       }
    })
-   displayFilteredUsers(filteredUsers)
+   displayUsers(filteredUsers)
+   usersInDom = filteredUsers;
  }
 
 const updateSearch = (event) => {
@@ -132,10 +163,7 @@ const calculateAge = (dateOFBirth) => {
    if (today.getMonth() < month || (today.getMonth() == month && today.getDate() < day)) {
       age--;
    }
-   if(age >= 18){
-      return 'adult';
-   }
-   return 'child'
+  return age;
 }
 
 const showHideFilters = () => {
@@ -154,4 +182,5 @@ async function init() {
    filterForm.addEventListener('change', updateSearch)
    users = await getAllUsers();
    showHideFiltersBtn.addEventListener('click', showHideFilters)
+   usersInDom = users;
  }
