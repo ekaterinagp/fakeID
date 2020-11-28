@@ -1,6 +1,8 @@
 window.addEventListener('load', init);
 
-const filterForm = document.querySelector('.filtersContainer')
+const filterForm = document.querySelector('.filters')
+const sorterForm = document.querySelector('.sorters')
+const filterContainer = document.querySelector('.filtersContainer');
 const usersContainer = document.querySelector('.container');
 let showHideFiltersBtn = document.querySelector('.filterBtn')
 let formData;
@@ -47,7 +49,7 @@ const getMaritalStatus = (statusID) =>{
 }
 
 
- const formatFormData = () =>{
+ const formatFormData = (formData) =>{
     var object = {};
     formData.forEach((value, key) => {
         if(!Reflect.has(object, key)){
@@ -63,17 +65,17 @@ const getMaritalStatus = (statusID) =>{
  }
 
  const sortUsers = () => {
-    let sortedUsers 
+    console.log(usersInDom)
+    let formData = new FormData(sorterForm)
    if(formData.get('sorter') == 'sortAge'){
-      sortedUsers = usersInDom.sort((a,b) => {
-         console.log(a, b)
+      usersInDom = usersInDom.sort((a,b) => {
          let aUserAge = calculateAge(a.date_of_birth)
          let bUserAge = calculateAge(b.date_of_birth)
          return aUserAge - bUserAge;
       })
    }
    if(formData.get('sorter') == 'sortName'){
-      sortedUsers = usersInDom.sort((a,b) => {
+      usersInDom = usersInDom.sort((a,b) => {
          if(a.name < b.name){
             return -1
          }else {
@@ -81,12 +83,14 @@ const getMaritalStatus = (statusID) =>{
          }
       })
    }
-   displayUsers(sortedUsers)
+   displayUsers(usersInDom)
 
  }
 
  const filterUsers = () => {
-   formData = formatFormData()
+   let formData = new FormData(filterForm);
+
+   formData = formatFormData(formData)
    let filteredUsers = users.filter(user => {
       let trueArray = []
       for(let property in formData){
@@ -133,20 +137,15 @@ const getMaritalStatus = (statusID) =>{
          return user;
       }
    })
+   console.log(filteredUsers)
    displayUsers(filteredUsers)
    usersInDom = filteredUsers;
  }
 
-const updateSearch = (event) => {
-   formData = new FormData(filterForm);
-   console.log(formData)
-   if(event.target.name == 'sorter'){
-      sortUsers()
-   }else{
-      filterUsers()
-   }
-   
-}
+const updateSearch = () => {
+   let data = [...formData]
+   if(data.length == 0) displayUsers(users)
+ }
          
 const calculateAge = (dateOFBirth) => {
    let formattedDateOfBirth = dateOFBirth.split('')
@@ -167,20 +166,21 @@ const calculateAge = (dateOFBirth) => {
 }
 
 const showHideFilters = () => {
-   let filterFormHeight = filterForm.clientHeight;
-   if (filterFormHeight > 0){
-      filterForm.style.maxHeight = 0;
+   let filterContainerHeight = filterContainer.clientHeight;
+   if (filterContainerHeight > 0){
+      filterContainer.style.maxHeight = 0;
       showHideFiltersBtn.textContent ='Show Filters'
    } else{
       showHideFiltersBtn.textContent ='Hide Filters'
-      filterForm.style.maxHeight = '100vh';
+      filterContainer.style.maxHeight = '100vh';
    }
 }
 
 
 async function init() {
-   filterForm.addEventListener('change', updateSearch)
-   users = await getAllUsers();
+   filterForm.addEventListener('change', filterUsers)
+   sorterForm.addEventListener('change', sortUsers)
    showHideFiltersBtn.addEventListener('click', showHideFilters)
-   usersInDom = users;
+   users = await getAllUsers();
+   usersInDom = users.slice(0);
  }

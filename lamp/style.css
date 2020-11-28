@@ -95,6 +95,9 @@ option {
 input[type="radio"]:checked+label{
   border:4px solid lightgray;
 }
+input[type="checkbox"]:checked+label{
+  border:4px solid lightgray;
+}
 input, select{
   padding:10px;
   border-radius: 10px;

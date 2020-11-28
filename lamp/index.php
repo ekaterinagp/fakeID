@@ -39,8 +39,8 @@
         <button>Search</button>
       </div>
       <button class="filterBtn">Show filters</button>
-    <form class="filtersContainer hide">
-      <div class="filters">
+    <div class="filtersContainer hide">
+      <form class="filters">
 
       <div class="ageFilters filter">
       <h3>Age</h3>
@@ -108,9 +108,9 @@
         </div>
       </div>
 
-          </div>
+</form>
 
-          <div class="sorters">
+    <form class="sorters">
         <h3>Sort By</h3>
               <div class="labelRadio">
                 <input type="checkbox" id="sortAge" value="sortAge" name="sorter" >
@@ -119,8 +119,8 @@
                 <label for="sortName">Name</label>
               </div>
             
-      </div>
-</form>
+    </form>
+</div>
 
       <div class="container">
         <?php
