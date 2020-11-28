@@ -147,7 +147,7 @@ function updateUser($id)
         ];
     }
 
-    if ($_POST['name']) {
+    if (isset($_POST['name'])) {
         $sql = 'UPDATE user SET name=:name WHERE id=:id';
         $statement = $conn->connectToDatabase()->prepare($sql);
         $data = [
@@ -156,7 +156,7 @@ function updateUser($id)
         ];
     }
 
-    if ($_POST['marital_status_id']) {
+    if (isset($_POST['marital_status_id'])) {
         $sql = 'UPDATE user SET marital_status_id=:marital_status_id WHERE id=:id;';
 
         $data = [
