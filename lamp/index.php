@@ -150,8 +150,8 @@
 
 
     </main>
-    <script src="../lamp/js/script.js"></script>
-    <script src="../lamp/js/search.js"></script>
+    <script  src="../lamp/js/script.js"></script>
+    <script type="module" src="../lamp/js/search.js"></script>
   </body>
 
   </html>

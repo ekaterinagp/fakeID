@@ -61,12 +61,13 @@ const getMaritalStatus = (statusID) =>{
         }
         object[key].push(value);
     });
+    console.log(object)
  return object;
  }
 
- const sortUsers = () => {
+ const sortUsers = (formData, usersInDom) => {
     console.log(usersInDom)
-    let formData = new FormData(sorterForm)
+   //  let formData = new FormData(sorterForm)
    if(formData.get('sorter') == 'sortAge'){
       usersInDom = usersInDom.sort((a,b) => {
          let aUserAge = calculateAge(a.date_of_birth)
@@ -83,8 +84,8 @@ const getMaritalStatus = (statusID) =>{
          }
       })
    }
-   displayUsers(usersInDom)
-
+   // displayUsers(usersInDom)
+   return usersInDom;
  }
 
  const filterUsers = () => {
@@ -184,3 +185,6 @@ async function init() {
    users = await getAllUsers();
    usersInDom = users.slice(0);
  }
+
+
+export {calculateAge, filterUsers, sortUsers, formatFormData};
