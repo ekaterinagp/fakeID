@@ -47,7 +47,7 @@ let usersInDom = [
       it('can calculate age', function () {
         expect(calculateAge('010101')).to.eq(19)
       })
-      it('can return marital status stringe', function () {
+      it('can return marital status string', function () {
         expect(getMaritalStatus('1')).to.eq('Single')
         expect(getMaritalStatus('2')).to.eq('Married')
       })
