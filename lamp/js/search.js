@@ -5,7 +5,6 @@ const sorterForm = document.querySelector('.sorters')
 const filterContainer = document.querySelector('.filtersContainer');
 const usersContainer = document.querySelector('.container');
 let showHideFiltersBtn = document.querySelector('.filterBtn')
-let formData;
 let usersInDom;
 let users;
 
@@ -45,7 +44,27 @@ const displayUsers = (users) => {
 
 
 const getMaritalStatus = (statusID) =>{
-   return statusID;
+   statusID = parseInt(statusID);
+   switch (statusID){
+      case 1:
+         return 'Single';
+      case 2:
+         return 'Married';
+      case 3:
+         return 'Divorced';
+      case 4:
+         return 'Widow';
+      case 5:
+         return 'Registered Partnership';
+      case 6:
+         return 'Abolition of Registered Partnership';
+      case 7:
+         return  'Deceased';
+      case 8:
+         return 'Unknown';
+      default:
+         return ''
+   }
 }
 
 
