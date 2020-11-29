@@ -91,8 +91,6 @@
           <input name="marital_status_id" type="checkbox" id="widow" value="4" >
           <label for="widow">Widow</label>
     
-       
-      
           <input name="marital_status_id" type="checkbox" id="deceased" value="7" >
           <label for="deceased">Deceased</label>
      

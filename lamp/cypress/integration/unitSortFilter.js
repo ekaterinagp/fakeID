@@ -1,5 +1,5 @@
 
-import {calculateAge, formatFormData, filterUsers, sortUsers} from './../../js/search';
+import {calculateAge, formatFormData, filterUsers, sortUsers} from '../../js/search';
 
 describe('Unit Test Application Code', function () {
   let formData = new FormData();
@@ -38,15 +38,7 @@ let usersInDom = [
         name: "name emplpyee"
     },
 ]
-
-
-//   let shouldEqual = {
-//     marital_status: [1, 3],
-//     gender_value: '0001',
-//     CVR: 'null'
-// }
     before(() => {
-      // check if the import worked correctly
       expect(calculateAge, 'calculateAGe').to.be.a('function')
     })
   
@@ -57,6 +49,8 @@ let usersInDom = [
 
       it('can format formdata', function () {
         expect(formatFormData(formData)).to.have.all.keys('marital_status', 'gender_value', 'CVR')
+        expect(formatFormData(formData)).to.have.to.have.property('gender_value', '0001')
+        expect(formatFormData(formData)).to.have.to.have.property('CVR','null')
       })
 
       it('can sort based on age', function () {

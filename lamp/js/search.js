@@ -61,13 +61,11 @@ const getMaritalStatus = (statusID) =>{
         }
         object[key].push(value);
     });
-    console.log(object)
  return object;
  }
 
  const sortUsers = (formData, usersInDom) => {
     console.log(usersInDom)
-   //  let formData = new FormData(sorterForm)
    if(formData.get('sorter') == 'sortAge'){
       usersInDom = usersInDom.sort((a,b) => {
          let aUserAge = calculateAge(a.date_of_birth)
@@ -84,7 +82,6 @@ const getMaritalStatus = (statusID) =>{
          }
       })
    }
-   // displayUsers(usersInDom)
    return usersInDom;
  }
 
@@ -102,6 +99,7 @@ const getMaritalStatus = (statusID) =>{
          let  arrayValConditionArr =[]
             value.forEach(val => {
                if(key == 'CVR' && val== 'null') val = null;
+               if(key == 'marital_status_id') val = parseInt(val);
                if(key == 'age' ){
                   let userAge = calculateAge(user.date_of_birth)
                   if(userAge >= 18){
@@ -111,7 +109,7 @@ const getMaritalStatus = (statusID) =>{
                   }
                   user.age = userAge
                } 
-               user[key] == val ? arrayValConditionArr.push(true): arrayValConditionArr.push(false)
+               user[key] === val ? arrayValConditionArr.push(true): arrayValConditionArr.push(false)
             })
             if(arrayValConditionArr.includes(true)){
                trueArray.push(true)
@@ -123,30 +121,26 @@ const getMaritalStatus = (statusID) =>{
             }else{
                userAge= 'child'
             }
+            if(key == 'marital_status_id') value = parseInt(value);
             if(key == 'CVR' && value== 'null') value = null;
             if(key == 'age' ) user.age = userAge
-            if(user[key] == value){
+            if(user[key] === value){
                trueArray.push(true)
             }else {
                trueArray.push(false)
             }
          }
       }
-      // console.log(trueArray )
    
-      if(!trueArray.includes(false)){
+      if(!trueArray.includes(false) && trueArray.includes(true)){
          return user;
       }
    })
-   console.log(filteredUsers)
    usersInDom = filteredUsers;
    return filteredUsers;
  }
 
-const updateSearch = () => {
-   let data = [...formData]
-   if(data.length == 0) displayUsers(users)
- }
+
          
 const calculateAge = (dateOFBirth) => {
    let formattedDateOfBirth = dateOFBirth.split('')
