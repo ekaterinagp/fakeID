@@ -88,8 +88,8 @@ const getMaritalStatus = (statusID) =>{
    return usersInDom;
  }
 
- const filterUsers = () => {
-   let formData = new FormData(filterForm);
+ const filterUsers = (formData, users) => {
+   // let formData = new FormData(filterForm);
 
    formData = formatFormData(formData)
    let filteredUsers = users.filter(user => {
@@ -139,8 +139,8 @@ const getMaritalStatus = (statusID) =>{
       }
    })
    console.log(filteredUsers)
-   displayUsers(filteredUsers)
    usersInDom = filteredUsers;
+   return filteredUsers;
  }
 
 const updateSearch = () => {
@@ -179,8 +179,16 @@ const showHideFilters = () => {
 
 
 async function init() {
-   filterForm.addEventListener('change', filterUsers)
-   sorterForm.addEventListener('change', sortUsers)
+   filterForm.addEventListener('change', () => {
+      let filterFormData = new FormData(filterForm)
+      let filteredUsers = filterUsers(filterFormData, users)
+      displayUsers(filteredUsers)
+   })
+   sorterForm.addEventListener('change', () => {
+      let sorterFormData = new FormData(sorterForm)
+      let sortedUsers = sortUsers(sorterFormData, usersInDom)
+      displayUsers(sortedUsers)
+   })
    showHideFiltersBtn.addEventListener('click', showHideFilters)
    users = await getAllUsers();
    usersInDom = users.slice(0);

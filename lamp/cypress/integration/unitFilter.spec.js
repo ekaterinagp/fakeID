@@ -40,11 +40,11 @@ let usersInDom = [
 ]
 
 
-  let shouldEqual = {
-    'marital_status': [1, 3],
-    'gender_value': '0001',
-    'CVR': 'null'
-}
+//   let shouldEqual = {
+//     marital_status: [1, 3],
+//     gender_value: '0001',
+//     CVR: 'null'
+// }
     before(() => {
       // check if the import worked correctly
       expect(calculateAge, 'calculateAGe').to.be.a('function')
@@ -54,16 +54,17 @@ let usersInDom = [
       it('can calculate age', function () {
         expect(calculateAge('010101')).to.eq(19)
       })
-    //   it('can sort users based on age', function () {
-    //     expect(formatFormData(formData)).to.eq(shouldEqual)
-    //   })
+
+      it('can format formdata', function () {
+        expect(formatFormData(formData)).to.have.all.keys('marital_status', 'gender_value', 'CVR')
+      })
 
       it('can sort based on age', function () {
         expect(sortUsers(sorterForm, usersInDom)[0].id).to.eq(2)
       })
 
       it('can filter based on varied params', function () {
-        expect(filterUsers(formdata, usersInDom)[0].id).to.eq()
+        expect(filterUsers(formData, usersInDom)[0]).to.have.property('id', 2)
       })
       
     })
