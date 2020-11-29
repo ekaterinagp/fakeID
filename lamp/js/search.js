@@ -208,4 +208,4 @@ async function init() {
  }
 
 
-export {calculateAge, filterUsers, sortUsers, formatFormData};
+export {calculateAge, filterUsers, sortUsers, formatFormData, getMaritalStatus};

@@ -1,5 +1,5 @@
 
-import {calculateAge, formatFormData, filterUsers, sortUsers} from '../../js/search';
+import {calculateAge, formatFormData, filterUsers, sortUsers, getMaritalStatus} from '../../js/search';
 
 describe('Unit Test Application Code', function () {
   let formData = new FormData();
@@ -43,8 +43,13 @@ let usersInDom = [
     })
   
     context('search.js', function () {
+
       it('can calculate age', function () {
         expect(calculateAge('010101')).to.eq(19)
+      })
+      it('can return marital status stringe', function () {
+        expect(getMaritalStatus('1')).to.eq('Single')
+        expect(getMaritalStatus('2')).to.eq('Married')
       })
 
       it('can format formdata', function () {
