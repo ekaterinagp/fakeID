@@ -3,9 +3,15 @@ require_once(__DIR__ . '/../src/entity/sharedFunctions.php');
 require_once(__DIR__ . '/../utilities/connection.php');
 $conn  = new Database();
 $sharedFunctions = new SharedFunctions();
+
 $request_method = $_SERVER["REQUEST_METHOD"];
+
+
 header('Content-Type: application/json');
 
+if (isset($_SERVER['QUERY_STRING']) && $request_method == 'GET') {
+    $queryString =  $_SERVER['QUERY_STRING'];
+}
 
 switch ($request_method) {
     case 'GET':
