@@ -195,3 +195,80 @@ label[for=abolition_of_registered_partnership]{
   border:none;
   display: block;
 }
+
+
+
+
+
+
+.userContainer{
+padding: 0;
+margin:auto;
+max-width: 900px;
+border:1px solid lightgray;
+border-radius: 10px;
+}
+.userContainer h2{
+  padding:1rem
+}
+.user{
+  padding:1rem;
+}
+.editContainer{
+  padding:1rem;
+  display:none;
+}
+.tabs{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.tabs button{
+  width: 100%;
+  margin:0;
+  border-radius: 0 10px 0 0;
+  background: transparent;
+  text-transform: uppercase;
+  border:none;
+  border-bottom: 1px solid lightgray;
+}
+.tabs button:nth-child(1){
+  border-radius: 10px 0 0 0;
+  border-bottom: none;
+  border-right:1px solid lightgray;
+}
+
+
+/*********  NOTIFICATION  **************/
+
+.notification{
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: -10vh;
+  background: white;
+  text-align: center;
+  margin: auto;
+  width: 80%;
+  text-transform: capitalize;
+  animation: show .1s forwards;
+  transition: all .2s;
+  margin:1rem;
+}
+.close{
+  position: absolute;
+  top:1rem;
+  right:1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+.notification.success{
+  background:#b6d1b6;
+}
+.notification.error{
+  background:#fe7c72;
+}
+@keyframes show{
+  to{
+    transform: translateY(10vh);
+  }
+}

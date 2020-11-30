@@ -12,12 +12,15 @@ require_once(__DIR__ . '/../lamp/components/menu.php');
 
 ?>
 
-
+<div class="userContainer">
+  <div class="tabs">
+    <button onclick="changeView('info')">Information</button>
+    <button onclick="changeView('edit')">Edit Information</button>
+  </div>
   <?php
 
 
   $id = $_GET['id'];
-
   $getFunction = new SharedFunctions();
 
   $user =  $getFunction->getUserById($id);
@@ -30,7 +33,7 @@ require_once(__DIR__ . '/../lamp/components/menu.php');
   } else {
     $User = new UserNotEmployee();
     $maritalStatus = $User->getMaritalStatus($user->marital_status_id);
-    $class = ' class="';
+    $class = ' class=""';
   }
 
   if ($user->marital_status_id == 2 || $user->marital_status_id == 5) {
@@ -44,9 +47,11 @@ require_once(__DIR__ . '/../lamp/components/menu.php');
   <h3>CPR</h3><p>' . $user->CPR . '</p>
   <h3>Gender</h3><p>' . $User->getGenderValue($user->gender_value) . '</p>
   <div ' . $class . '>
-  <h3>Marital status</h3><p>' . $maritalStatus . '</p></div>
-
- </div>';
+  <h3>Marital status</h3>
+  <p>'. $User->getMaritalStatus($user->marital_status_id).' </p>
+ </div>
+ </div>
+ ';
 
   echo '<div class="editContainer">
  <form>
@@ -71,7 +76,7 @@ require_once(__DIR__ . '/../lamp/components/menu.php');
       <option value="" disabled selected>Select Spouse</option>
       <?php
       foreach ($getFunction->getAllAvailableSpouses($id) as $spouse) {
-        echo $spouse;
+        echo json_encode($spouse);
         echo '<option value="' . $spouse['id'] . '">' . $spouse['name'] . '</option>';
       } ?>
 
@@ -80,7 +85,6 @@ require_once(__DIR__ . '/../lamp/components/menu.php');
     </select>
     <label for=""> Available spouses</label>
   </div>
-
 
   <div class="form-field <?php if ($user->company_name) echo 'hidden'; ?>">
     <select name="marital_status_id" id="statusSelect">
@@ -118,11 +122,13 @@ require_once(__DIR__ . '/../lamp/components/menu.php');
 
 
 
+
 </body>
 
 
 
 <!-- <script src="/../lamp/js/user-profile.js"></script> -->
+<script src="./js/script.js"></script>
 <script src="./js/user-profile.js"></script>
 <script src="./js/update.js"></script>
 

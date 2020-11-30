@@ -5,9 +5,6 @@ const usersContainer = document.querySelector('.container');
 let path = configurePath();
 
 
-window.addEventListener("load", () => {
-  init();
-});
 
 function getAllUsers() {
   let endpoint = path + "api/users";
@@ -128,11 +125,25 @@ const calculateAge = (dateOFBirth) => {
 }
 
 
+const removeNotification = () => {
+  document.querySelector('.notification').remove()
+}
+const createNotification = (type, text) => {
+  let notificationWrapper = document.createElement('div')
+  notificationWrapper.className = `notification ${type}`
+  let notificationText = document.createElement('h2');
+  notificationText.textContent = text
+  let close = document.createElement('span')
+  close.className='close'
+  close.textContent = 'X';
+  close.addEventListener('click', () => {
+    removeNotification()
+  })
 
+  notificationWrapper.append(notificationText, close);
+  document.querySelector('body').append(notificationWrapper);
 
-
-async function init() {
-  const users = await getAllUsers();
-  displayUsers(users)
-  console.log(users);
+  setTimeout(() => {
+    removeNotification()
+  },2000)
 }
