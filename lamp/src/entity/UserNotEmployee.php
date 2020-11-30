@@ -1,7 +1,8 @@
 <?php
-require_once(__DIR__. './User.php');
+require_once(__DIR__ . './User.php');
 
-class UserNotEmployee extends User{
+class UserNotEmployee extends User
+{
     public $maritalStatus;
     public $spouse;
     public $children;
