@@ -3,30 +3,24 @@ window.addEventListener('load', init);
 const filterForm = document.querySelector('.filters')
 const sorterForm = document.querySelector('.sorters')
 const filterContainer = document.querySelector('.filtersContainer');
+const filterInputs = document.querySelectorAll('input[type=checkbox]');
 let showHideFiltersBtn = document.querySelector('.filterBtn')
 let usersInDom;
 let users;
 
 let filterConditions = {}
-let user = {
-   name : '',
-   maritalStatus : '',
-   gender : '',
-   age: '',
-   employeeStatus: '',
-}
+let sortParams = {}
 
 
- const sortUsers = (formData, usersInDom) => {
-    console.log(usersInDom)
-   if(formData.get('sorter') == 'sortAge'){
+ const sortUsers = () => {
+   if(sortParams.sorter == 'sortAge'){
       usersInDom = usersInDom.sort((a,b) => {
          let aUserAge = calculateAge(a.date_of_birth)
          let bUserAge = calculateAge(b.date_of_birth)
          return aUserAge - bUserAge;
       })
    }
-   if(formData.get('sorter') == 'sortName'){
+   if(sortParams.sorter == 'sortName'){
       usersInDom = usersInDom.sort((a,b) => {
          if(a.name < b.name){
             return -1
@@ -35,46 +29,47 @@ let user = {
          }
       })
    }
-   return usersInDom;
+   displayUsers(usersInDom);
  }
 
- const filterUsers = (formData, users) => {
-   // let formData = new FormData(filterForm);
 
-   // formData = formatFormData(formData)
-   let filteredUsers = users.filter(user => {
-      let trueArray = []
-      for(let property in formData){
+ const filterUsers = () => {
+    let filteredUsers = users.filter(user => {
+       let doesUserMatch = []
+
+       for(let property in filterConditions){
          let key = property
-         let value = formData[property]
-         // console.log(key, value)
-         let userAge = calculateAge(user.date_of_birth)
-         if(userAge >= 18){
-            userAge= 'adult';
-         }else{
-            userAge= 'child'
-         }
-         if(key == 'marital_status_id') value = parseInt(value);
-         if(key == 'CVR' && value== 'null') value = null;
-         if(key == 'age' ) user.age = userAge
-         if(user[key] === value){
-            trueArray.push(true)
-         }else {
-            trueArray.push(false)
-         }
-         
+         let value = filterConditions[property]
+
+         doesUserMatch.push(checkIfUserMatch(key, value, user));
       }
-   
-      if(!trueArray.includes(false) && trueArray.includes(true)){
+      if(!doesUserMatch.includes(false) && doesUserMatch.includes(true)){
          return user;
       }
    })
    usersInDom = filteredUsers;
-   return filteredUsers;
+   displayUsers(filteredUsers);
  }
 
+const checkIfUserMatch = (key, value, user)=> {
+   let userAge = calculateAge(user.date_of_birth)
 
-      
+   if(userAge >= 18){
+      userAge= 'adult';
+   }else{
+      userAge= 'child'
+   }
+   if(key == 'marital_status_id') value = parseInt(value);
+   if(key == 'CVR' && value== 'null') value = null;
+   if(key == 'age' ) user.age = userAge
+
+   if(user[key] === value){
+      return true
+   }else {
+      return false
+   }
+}
+
 
 const showHideFilters = () => {
    let filterContainerHeight = filterContainer.clientHeight;
@@ -87,21 +82,48 @@ const showHideFilters = () => {
    }
 }
 
+const clearAllFilters = () => {
+   displayUsers(users);
+   usersInDom =  users.slice(0);
+   for (let key in filterConditions ){
+      uncheckInputs(key)
+   }
+   filterConditions = {}
+}
+
+
+const uncheckInputs= (inputName, input=null) => {
+   document.querySelectorAll(`input[name=${inputName}`).forEach(inputBtn => {
+      if(inputBtn !== input) inputBtn.checked = false
+   })
+}
+
+const processFilterFormChange = (event) => {
+   event.target.checked ? filterConditions[event.target.name] = event.target.value : delete filterConditions[event.target.name]
+   uncheckInputs(event.target.name, event.target)
+   if(!Object.keys(filterConditions).length){
+      clearAllFilters();
+   }else{
+      filterUsers()
+   }
+}
+
 
 async function init() {
    filterForm.addEventListener('change', (event) => {
-      filterConditions[event.target.name] = event.target.value
-      let filteredUsers = filterUsers()
-      displayUsers(filteredUsers)
+      processFilterFormChange(event)
    })
-   sorterForm.addEventListener('change', () => {
-      let sortedUsers = sortUsers(sorterFormData, usersInDom)
-      displayUsers(sortedUsers)
+   
+   sorterForm.addEventListener('change', (event) => {
+      event.target.checked ? sortParams[event.target.name] = event.target.value : delete sortParams[event.target.name]
+      sortUsers()
    })
 
 
    showHideFiltersBtn.addEventListener('click', showHideFilters)
    users = await getAllUsers();
-   usersInDom = users.slice(0);
+   usersInDom = users.slice(0); //create copy of users to show on when filters are cleared
  }
+
+
 

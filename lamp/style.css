@@ -130,6 +130,17 @@ a.active{
   grid-template-columns: 2fr 1fr;
   margin:1rem;
 }
+.filtersContainer form{
+  width:auto;
+  margin:0;
+  align-content: start;
+}
+.filtersContainer h3{
+  margin-bottom: 0;
+}
+.filtersContainer button {
+  grid-column: 2;
+}
 .maritalStatusFilters .labelRadio ,
 .ageFilters .labelRadio ,
 .employeeStatusFilters .labelRadio ,
@@ -173,6 +184,9 @@ label[for=abolition_of_registered_partnership]{
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+.sorters label {
+  margin:1rem;
+}
 .filterBtn{
   margin: 1rem auto;
   text-transform: uppercase;
