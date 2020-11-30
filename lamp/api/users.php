@@ -6,7 +6,7 @@ $sharedFunctions = new SharedFunctions();
 $request_method = $_SERVER["REQUEST_METHOD"];
 header('Content-Type: application/json');
 
-$data = false;
+
 switch ($request_method) {
     case 'GET':
         // Retrive users
@@ -156,7 +156,14 @@ function updateUser($id)
 
     $user = file_get_contents('php://input');
     // echo $user;
+
+
+    // echo json_decode($user);
     $user = json_decode($user);
+    echo json_encode($user->name);
+    echo gettype($user) . "\n";
+
+
 
 
     if (!$id) {
@@ -172,7 +179,9 @@ function updateUser($id)
 
 
     $sql = 'UPDATE user SET address_id=:address_id, spouse_id=:spouse_id, marital_status_id=:marital_status_id, name=:name WHERE id=:id';
-    $statement = $conn->connectToDatabase()->prepare($sql);
+
+
+
     $data = [
         ':marital_status_id' => $user->marital_status_id,
         ':spouse_id' => $user->spouse_id,
@@ -181,8 +190,10 @@ function updateUser($id)
         ':id' => $user->id,
 
     ];
+    $statement = $conn->connectToDatabase()->prepare($sql);
 
-    if (!empty($user->spouse_id)) {
+
+    if ($user->spouse_id !== null) {
         updateSpouse($user->id, $user->spouse_id, $user->marital_status_id);
     }
 

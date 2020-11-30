@@ -54,7 +54,7 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
  </div>';
 
   echo '<div class="editContainer">
- <form method="PUT">
+ <form>
  <div class="form-field">
  <input type="text" name="name" value="' . $user->name . '">
  <label for=""> Name</label>
@@ -112,7 +112,7 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
 
     <label for="">Partner</label>
   </div>
-  <button onclick="getDataToUpdate(<?php echo '' . $user->id . ''; ?>)">Save</button>
+  <button onclick="getDataToUpdate( <?php echo '' . $user->id . ''; ?>)">Save</button>
   </form>
   </div>
 
@@ -126,7 +126,9 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
 </body>
 
 
-<script src="../js/user-profile.js"></script>
-<script src="../js/update.js"></script>
+
+<!-- <script src="/../lamp/js/user-profile.js"></script> -->
+<script src="./js/user-profile.js"></script>
+<script src="./js/update.js"></script>
 
 </html>
