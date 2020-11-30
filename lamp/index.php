@@ -35,8 +35,8 @@
 
       ?>
       <div class="searchBar">
-        <input type="text" value="Search for user">
-        <button>Search</button>
+        <input class="searchInput" type="text" placeholder="Search for user">
+        <button class="searchBtn">Search</button>
       </div>
       <button class="filterBtn">Show filters</button>
     <div class="filtersContainer hide">

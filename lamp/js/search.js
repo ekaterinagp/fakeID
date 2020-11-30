@@ -4,6 +4,8 @@ const filterForm = document.querySelector('.filters')
 const sorterForm = document.querySelector('.sorters')
 const filterContainer = document.querySelector('.filtersContainer');
 const filterInputs = document.querySelectorAll('input[type=checkbox]');
+const searchInput = document.querySelector('.searchInput');
+const searchBtn = document.querySelector('.searchBtn');
 let showHideFiltersBtn = document.querySelector('.filterBtn')
 let usersInDom;
 let users;
@@ -118,7 +120,11 @@ async function init() {
       event.target.checked ? sortParams[event.target.name] = event.target.value : delete sortParams[event.target.name]
       sortUsers()
    })
-
+console.log(searchBtn)
+   searchBtn.addEventListener('click',() => {
+      let userMatches = users.filter(user => user.name.includes(searchInput.value))
+      displayUsers(userMatches)
+   })
 
    showHideFiltersBtn.addEventListener('click', showHideFilters)
    users = await getAllUsers();
