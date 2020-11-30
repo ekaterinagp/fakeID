@@ -9,7 +9,8 @@ it("loads", () => {
         cy.get(".searchInput").type('lisa');
         cy.get(".searchBtn").click();
 
-        cy.get(".singleUser").contains('Lisa');
+        cy.get(".singleUser").eq(0).contains('Lisa');
+        cy.get(".singleUser").should('have.length', 1)
     });
   });
 
