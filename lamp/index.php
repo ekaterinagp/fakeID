@@ -35,9 +35,14 @@
 
       ?>
       <div class="searchBar">
-        <input type="text" value="Search for user">
-        <button>Search</button>
-      </div>
+        <div>
+          <input class="searchInput" type="text" placeholder="Search for user">
+          <button class="searchBtn" onclick="searhForUsers()">Search</button>
+
+        </div>
+          <button class="clearSearchBtn" onclick="clearSearch()">Clear Search</button>
+        </div>
+
       <button class="filterBtn">Show filters</button>
     <div class="filtersContainer hide">
       <form class="filters">
