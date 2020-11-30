@@ -48,11 +48,13 @@ async function submitUpdateForm(user) {
   const response = await fetch(path + "api/users/" + user.id, {
     method: "POST",
     body: JSON.stringify(user),
-  })
-    .then((response) => response.json())
-    .then((data) => console.log(data));
+  });
 
-  // console.log(response);
-  // const data = await response.json();
-  // console.log(data);
+  console.log(response);
+  const data = await response.json();
+  console.log(data);
+
+  if (data.status == 1) {
+    window.location.href = path + "/";
+  }
 }

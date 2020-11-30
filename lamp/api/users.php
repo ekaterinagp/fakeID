@@ -160,8 +160,8 @@ function updateUser($id)
 
     // echo json_decode($user);
     $user = json_decode($user);
-    echo json_encode($user->name);
-    echo gettype($user) . "\n";
+    // echo json_encode($user->name);
+    // echo gettype($user) . "\n";
 
 
 
@@ -193,7 +193,7 @@ function updateUser($id)
     $statement = $conn->connectToDatabase()->prepare($sql);
 
 
-    if ($user->spouse_id !== null) {
+    if (!empty($user->spouse_id)) {
         updateSpouse($user->id, $user->spouse_id, $user->marital_status_id);
     }
 
