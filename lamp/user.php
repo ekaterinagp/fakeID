@@ -1,28 +1,26 @@
 <?php
+
+use PhpParser\Node\Expr\Cast\Object_;
+
+$pageTitle = 'singleuser';
+
 require_once(__DIR__ . '/../lamp/utilities/connection.php');
 require_once(__DIR__ . '/../lamp/src/entity/UserEmployee.php');
 require_once(__DIR__ . '/../lamp/src/entity/UserNotEmployee.php');
 require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
+require_once(__DIR__ . '/../lamp/components/menu.php');
+
 ?>
 
-
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="style.css">
-  <title>User <?php $_GET['id'] ?></title>
-</head>
-
-<body>
-
+<div class="userContainer">
+  <div class="tabs">
+    <button onclick="changeView('info')">Information</button>
+    <button onclick="changeView('edit')">Edit Information</button>
+  </div>
   <?php
 
 
   $id = $_GET['id'];
-
   $getFunction = new SharedFunctions();
 
   $user =  $getFunction->getUserById($id);
@@ -35,11 +33,11 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
   } else {
     $User = new UserNotEmployee();
     $maritalStatus = $User->getMaritalStatus($user->marital_status_id);
-    $class = ' class="';
+    $class = ' class=""';
   }
 
   if ($user->marital_status_id == 2 || $user->marital_status_id == 5) {
-    $partner = $getFunction->getSpouseNameByID($id);
+   $partner = $getFunction->getSpouseNameByID($id);
   }
 
   echo '<h2>User  ' . $user->name . ' </h2>';
@@ -49,9 +47,11 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
   <h3>CPR</h3><p>' . $user->CPR . '</p>
   <h3>Gender</h3><p>' . $User->getGenderValue($user->gender_value) . '</p>
   <div ' . $class . '>
-  <h3>Marital status</h3><p>' . $maritalStatus . '</p></div>
-
- </div>';
+  <h3>Marital status</h3>
+  <p>'. $User->getMaritalStatus($user->marital_status_id).' </p>
+ </div>
+ </div>
+ ';
 
   echo '<div class="editContainer">
  <form>
@@ -76,7 +76,7 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
       <option value="" disabled selected>Select Spouse</option>
       <?php
       foreach ($getFunction->getAllAvailableSpouses($id) as $spouse) {
-        echo $spouse;
+        echo json_encode($spouse);
         echo '<option value="' . $spouse['id'] . '">' . $spouse['name'] . '</option>';
       } ?>
 
@@ -85,7 +85,6 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
     </select>
     <label for=""> Available spouses</label>
   </div>
-
 
   <div class="form-field <?php if ($user->company_name) echo 'hidden'; ?>">
     <select name="marital_status_id" id="statusSelect">
@@ -123,11 +122,13 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
 
 
 
+
 </body>
 
 
 
 <!-- <script src="/../lamp/js/user-profile.js"></script> -->
+<script src="./js/script.js"></script>
 <script src="./js/user-profile.js"></script>
 <script src="./js/update.js"></script>
 

@@ -52,9 +52,31 @@ async function submitUpdateForm(user) {
 
   console.log(response);
   const data = await response.json();
-  console.log(data);
+  if(response.status){
+    createNotification('success', 'User updated')
+  }else{
+    createNotification('error', response.message)
+  }
 
-  if (data.status == 1) {
-    window.location.href = path + "/";
+  // if (data.status == 1) {
+  //   window.location.href = path + "/";
+  // }
+}
+
+
+const changeView = (view) => {
+  let info = document.querySelector('.userContainer .user')
+  let edit = document.querySelector('.editContainer')
+  let tabs = document.querySelectorAll('.tabs button')
+  if(view == 'info'){
+    edit.style.display = 'none'
+    info.style.display = 'block'
+    tabs[0].style.borderBottom = 'none'
+    tabs[1].style.borderBottom = '1px solid lightgrey'
+  }else{
+    edit.style.display = 'block'
+    info.style.display = 'none'
+    tabs[1].style.borderBottom = 'none'
+    tabs[0].style.borderBottom = '1px solid lightgrey'
   }
 }

@@ -128,6 +128,9 @@ const clearSearch = () => {
 
 
 async function init() {
+   users = await getAllUsers();
+
+   displayUsers(users)
    filterForm.addEventListener('change', (event) => {
       processFilterFormChange(event)
    })
@@ -138,7 +141,6 @@ async function init() {
    })
 
    showHideFiltersBtn.addEventListener('click', showHideFilters)
-   users = await getAllUsers();
    usersInDom = users.slice(0); //create copy of users to show on when filters are cleared
  }
 
