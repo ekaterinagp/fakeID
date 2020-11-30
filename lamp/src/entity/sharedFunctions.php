@@ -9,7 +9,6 @@ class SharedFunctions
     http_response_code(400);
     $response = ['status' => 0, 'message' => $message, 'line' => $line];
     echo json_encode($response);
-    return $response;
     exit;
   }
 
@@ -75,6 +74,43 @@ class SharedFunctions
       $addresses = $statement->fetchAll(PDO::FETCH_ASSOC);
       $conn = null;
       return $addresses[0]['count(*)'];
+    }
+  }
+
+  function getAddressList()
+  {
+    $sql = "SELECT * FROM address";
+    $conn  = new Database();
+    $statement = $conn->connectToDatabase()->prepare($sql);
+    if ($statement->execute()) {
+      $addresses = $statement->fetchAll(PDO::FETCH_ASSOC);
+      $conn = null;
+      return $addresses;
+    }
+  }
+
+  function getAllAvailableSpouses($id)
+  {
+    $sql = " SELECT * FROM `user` WHERE CVR IS NULL AND marital_status_id IN(3,8,4,6,7,1) AND id<> $id ";
+    $conn  = new Database();
+    $statement = $conn->connectToDatabase()->prepare($sql);
+    if ($statement->execute()) {
+      $spouses = $statement->fetchAll(PDO::FETCH_ASSOC);
+      $conn = null;
+      return $spouses;
+    }
+  }
+
+  function getSpouseNameByID($id)
+  {
+    $sql = " SELECT user.name FROM user WHERE spouse_id= $id";
+    $conn  = new Database();
+    $statement = $conn->connectToDatabase()->prepare($sql);
+    if ($statement->execute()) {
+      $spouseName = $statement->fetchAll(PDO::FETCH_ASSOC);
+      $conn = null;
+
+      return $spouseName;
     }
   }
 }

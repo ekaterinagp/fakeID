@@ -128,13 +128,12 @@
 
         foreach ($getFunction->getAllUsers() as $user) {
           $isEmployee;
-          if($user['CVR']){
+          if ($user['CVR']) {
             $User = new UserEmployee($user['CVR'], $user['company_name']);
             $maritalStatus = '';
-          }else{
+          } else {
             $User = new UserNotEmployee();
             $maritalStatus = $User->getMaritalStatus($user['marital_status_id']);
-        
           }
           echo '<div class="singleUser" id="' . $user['id'] . '" ><a href="user.php?id=' . $user['id'] . '"><p class="userName">' . $user['name'] . '</p></a>
             <p>' . $User->calculateAge($user['date_of_birth']) . '</p>

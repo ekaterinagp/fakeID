@@ -8,7 +8,8 @@ require_once(__DIR__ . '/../src/entity/User.php');
 require_once(__DIR__ . '/../src/entity/sharedFunctions.php');
 
 
-class GenericUserTest extends TestCase{
+class GenericUserTest extends TestCase
+{
     public function setUp(): void
     {
         $this->User = new User();
@@ -55,7 +56,7 @@ class GenericUserTest extends TestCase{
             'age is 5' => ['010115', '5']
         ];
     }
-    
+
     /**
      * @dataProvider genderProvider
      */
@@ -78,7 +79,7 @@ class GenericUserTest extends TestCase{
         $User->CPR = $User->birthday . $User->gender;
         $this->assertEquals('0101900001', $User->CPR);
     }
-    
+
     function testIfCompany()
     {
         $User = new User();
