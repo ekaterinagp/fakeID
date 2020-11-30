@@ -117,10 +117,30 @@ a.active{
 /*  FILTERS AND SEARC */
 .searchBar{
   display: grid;
-  grid-template-columns: 1fr .1fr;
+  grid-template-columns: 1fr .25fr;
+}
+.searchBar>div{
+  display: grid;
+  grid-template-columns: 1fr .2fr;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  width: 100%;
+  margin:auto;
+}
+.clearSearchBtn{
+  display: none;
+  margin:auto;  
 }
 .searchBar input{
   width:100%;
+  border:none;
+}
+.searchBtn{
+  margin:none;
+  height:100%;
+  width:100%;
+  border:none;
+  border-radius: 0 10px 10px 0;
 }
 .filtersContainer{
   transition: all .2s;
