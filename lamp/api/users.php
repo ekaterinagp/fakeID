@@ -6,9 +6,10 @@ $sharedFunctions = new SharedFunctions();
 $request_method = $_SERVER["REQUEST_METHOD"];
 header('Content-Type: application/json');
 
+$data = false;
 switch ($request_method) {
     case 'GET':
-        // Retrive Products
+        // Retrive users
         if (!empty($_GET["id"])) {
             $id = intval($_GET["id"]);
             getUsers($id);
@@ -19,6 +20,7 @@ switch ($request_method) {
 
     case 'POST':
         if (!empty($_GET["id"])) {
+
             $id = intval($_GET["id"]);
             updateUser($id);
         } else {
@@ -26,6 +28,8 @@ switch ($request_method) {
             createUser();
         }
         break;
+
+
     default:
         // Invalid Request Method
         // header("HTTP/1.0 405 Method Not Allowed");
@@ -132,70 +136,37 @@ function updateUser($id)
 {
     global $conn;
     global $sharedFunctions;
-    //trigger for if one employee status changes, it also changes for the other?
-    //trigger for not be able to add spouse for employee
+
+    $user = file_get_contents('php://input');
+    echo $user;
+    $user = json_decode($user);
+
+    //trigger for if one employee status changes, it also changes for the other
+
 
     if (!$id) {
         $sharedFunctions->sendErrorMessage('id is required', __LINE__);
     }
 
     //check if marital status is being updated and if should include spouse
-    if(isset($_POST['marital_status_id']) and intval($_POST['marital_status_id']) !== 1 and intval($_POST['marital_status_id']) !== 8 ){
-        $sharedFunctions->sendErrorMessage('for this marital status a spouse is required', __LINE__);
-    }
-
-    $sqlArr = [];
-    $data = [];
-    foreach($_POST as $key => $value)
-    {
-        $paramName = ':' . $key;
-        $sqlArr[] = $key ." = " . $paramName;
-        $data[$paramName] = $value;
-    }
-
-    $updateStr = count($sqlArr)>1? implode(', ', $sqlArr) : implode($sqlArr);
-    $query = 'UPDATE user SET ' . $updateStr .  ' WHERE id=:id';
-   
-    // echo $query;
-   
-    // if (isset($_POST['spouse_id'])) {
-    //     $sql = 'UPDATE user SET spouse_id=:spouse_id WHERE id=:id; UPDATE user SET spouse_id=:id WHERE id=:spouse_id;';
-    //     $statement = $conn->connectToDatabase()->prepare($sql);
-    //     $data = [
-    //         ':id' => $id,
-    //         ':spouse_id' => $_POST['spouse_id'],
-    //     ];
+    // if(isset($_POST['marital_status_id']) and intval($_POST['marital_status_id']) !== 1 and intval($_POST['marital_status_id']) !== 8 ){
+    //     $sharedFunctions->sendErrorMessage('for this marital status a spouse is required', __LINE__);
     // }
 
-    // if (isset($_POST['name'])) {
-    //     $sql = 'UPDATE user SET name=:name WHERE id=:id';
-    //     $statement = $conn->connectToDatabase()->prepare($sql);
-    //     $data = [
-    //         ':name' => $_POST['name'],
-    //         ':id' => $id
-    //     ];
-    // }
 
-    // if (isset($_POST['marital_status_id'])) {
-    //     $sql = 'UPDATE user SET marital_status_id=:marital_status_id WHERE id=:id;';
 
-    //     $data = [
-    //         ':marital_status_id' => $_POST['marital_status_id'],
-    //         ':id' => $id,
-    //     ];
-    // }
 
-    // if (isset($_POST['address_id'])) {
-    //     $sql = 'UPDATE user SET address_id=:address_id WHERE id=:id';
-    //     $statement = $conn->connectToDatabase()->prepare($sql);
-    //     $data = [
-    //         ':address_id' => $_POST['address_id'],
-    //         ':id' => $id
-    //     ];
-    // }
-    
-    $data[':id'] = $id;
-    $statement = $conn->connectToDatabase()->prepare($query);
+    $sql = 'UPDATE user SET address_id=:address_id, spouse_id=:spouse_id, marital_status_id=:marital_status_id, name=:name WHERE id=:id';
+    $statement = $conn->connectToDatabase()->prepare($sql);
+    $data = [
+        ':marital_status_id' => $user->marital_status_id,
+        ':spouse_id' => $user->spouse_id,
+        ':name' => $user->name,
+        ':address_id' => $user->address_id,
+        ':id' => $user->id,
+
+    ];
+
 
     if ($statement->execute($data)) {
         $response = ['status' => 1, 'message' => 'user updated '];

@@ -62,7 +62,7 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
   ?>
 
   <div class="form-field">
-    <select name="address_id" id="" required>
+    <select name="address_id" id="addressSelect" required>
 
       <option value="1" <?php if ($user->address_id == 1) echo 'selected' ?>>Lygten 17</option>
       <option value="2" <?php if ($user->address_id == 2) echo 'selected' ?>>Lygten 37</option>
@@ -72,7 +72,7 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
 
 
   <div class="form-field <?php if ($user->company_name || $user->marital_status_id == 2 || $user->marital_status_id == 5) echo 'hidden'; ?>">
-    <select name="spouse_id" id="">
+    <select name="spouse_id" id="spouseSelect">
       <option value="" disabled selected>Select Spouse</option>
       <?php
       foreach ($getFunction->getAllAvailableSpouses($id) as $spouse) {
@@ -88,7 +88,7 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
 
 
   <div class="form-field <?php if ($user->company_name) echo 'hidden'; ?>">
-    <select name="marital_status_id" id="">
+    <select name="marital_status_id" id="statusSelect">
 
       <option value="1" <?php if ($user->marital_status_id == 1) echo 'selected' ?>>Single</option>
       <option value="2" <?php if ($user->marital_status_id == 2) echo 'selected' ?>>Married</option>
@@ -112,7 +112,7 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
 
     <label for="">Partner</label>
   </div>
-  <button onclick="submitUpdateForm(<?php echo '' . $user->id . ''; ?>)">Save</button>
+  <button onclick="getDataToUpdate(<?php echo '' . $user->id . ''; ?>)">Save</button>
   </form>
   </div>
 
