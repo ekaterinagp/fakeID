@@ -112,7 +112,8 @@ const processFilterFormChange = (event) => {
 }
 
 const searhForUsers = () => {
-   let userMatches = users.filter(user => user.name.includes(searchInput.value))
+   let searchValue = searchInput.value.toLowerCase()
+   let userMatches = users.filter(user => user.name.toLowerCase().includes(searchInput.value))
    displayUsers(userMatches)
    clearSearchBtn.style.display = 'block'
 
