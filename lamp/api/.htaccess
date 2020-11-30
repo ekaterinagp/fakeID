@@ -1,4 +1,4 @@
 RewriteEngine On # Turn on the rewriting engine
-RewriteRule ^users/?$ users.php [NC,L]
-RewriteRule ^users/([0-9]+)/?$ users.php?id=$1 [NC,L]
+RewriteRule ^users/?$ api.php [NC,L]
+RewriteRule ^users/([0-9]+)/?$ api.php?id=$1 [NC,L]
 
