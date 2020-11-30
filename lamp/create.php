@@ -1,30 +1,13 @@
 <?php
+
+$pageTitle = 'create';
+
 require_once(__DIR__ . '/../lamp/utilities/connection.php');
 require_once(__DIR__ . '/../lamp/src/entity/User.php');
 require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
+require_once(__DIR__ . '/../lamp/components/menu.php');
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="style.css">
-
-  <title>
-    FakeID</title>
-</head>
-<header>
-  <h1>FakeID</h1>
-  <div class="menu-right">
-    <a href="index.php">Overview</a>
-    <a class="active" href="create.php">Create</a>
-  </div>
-</header>
-
-
-<body>
   <main>
 
     <h2></h2>
@@ -34,8 +17,7 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
     $getFunction = new SharedFunctions();
 
     ?>
-    <div class="container">
-      <form method="POST">
+      <form method="POST" class="createForm">
         <div class="form-field">
           <input type="text" name="name" placeholder="Name">
           <label for=""> Name</label>
@@ -67,7 +49,6 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
         </div>
         <input type="submit" onclick="submitCreateForm(event)">
       </form>
-    </div>
 
 
   </main>

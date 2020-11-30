@@ -1,22 +1,17 @@
 <?php
+
+use PhpParser\Node\Expr\Cast\Object_;
+
+$pageTitle = 'singleuser';
+
 require_once(__DIR__ . '/../lamp/utilities/connection.php');
 require_once(__DIR__ . '/../lamp/src/entity/UserEmployee.php');
 require_once(__DIR__ . '/../lamp/src/entity/UserNotEmployee.php');
 require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
+require_once(__DIR__ . '/../lamp/components/menu.php');
+
 ?>
 
-
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="style.css">
-  <title>User <?php $_GET['id'] ?></title>
-</head>
-
-<body>
 
   <?php
 
@@ -39,7 +34,7 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
   }
 
   if ($user->marital_status_id == 2 || $user->marital_status_id == 5) {
-    $partner = $getFunction->getSpouseNameByID($id);
+   $partner = $getFunction->getSpouseNameByID($id);
   }
 
   echo '<h2>User  ' . $user->name . ' </h2>';

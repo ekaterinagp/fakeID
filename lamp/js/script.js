@@ -133,5 +133,6 @@ const calculateAge = (dateOFBirth) => {
 
 async function init() {
   const users = await getAllUsers();
+  displayUsers(users)
   console.log(users);
 }
