@@ -1,11 +1,5 @@
 "use strict";
 
-// let formData = new FormData();
-// document.querySelector("form").addEventListener("change", (event) => {
-//   let name = event.target.name;
-//   formData.append(event.target.name, event.target.value);
-// });
-
 let userName = document.querySelector('input[name="name"]').value;
 let userAddressID = show_selected("addressSelect");
 let userSpouseID = show_selected("spouseSelect");
@@ -13,7 +7,6 @@ let userStatus = show_selected("statusSelect");
 console.log(userAddressID, userName, userSpouseID, userStatus);
 
 let user = {
-  //add id from the url
   name: userName,
   address_id: userAddressID,
   marital_status_id: userStatus,
@@ -49,6 +42,7 @@ function getDataToUpdate(id) {
 }
 
 async function submitUpdateForm(user) {
+  event.preventDefault();
   console.log(user);
 
   const response = await fetch(path + "api/users/" + user.id, {
@@ -58,7 +52,4 @@ async function submitUpdateForm(user) {
   console.log(response);
   const data = await response.json();
   console.log(data);
-  // if (data.status == 1) {
-  //   window.location.href = path + "/";
-  // }
 }

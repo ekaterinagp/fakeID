@@ -106,6 +106,8 @@ function createUser()
     $sql = "INSERT INTO user(name, address_id, date_of_birth,company_name, CVR, CPR, gender_value )
          VALUES (:name,:address_id, :date_of_birth, :company_name, :CVR, :CPR, :gender_value )";
 
+
+
     $statement = $conn->connectToDatabase()->prepare($sql);
 
     $data = [
@@ -119,6 +121,8 @@ function createUser()
     ];
 
 
+
+
     if ($statement->execute($data)) {
         $response = ['status' => 1, 'message' => 'user created'];
         echo json_encode($response);
@@ -127,10 +131,23 @@ function createUser()
 
 
 //###### UPDATE USER  ##########
+//add marital status
+function updateSpouse($id, $spouseID, $statusID)
+{
+    global $conn;
 
-
-
-
+    $sql = 'UPDATE user SET spouse_id=:id, marital_status_id=:marital_status_id WHERE id=:spouse_id';
+    $statement = $conn->connectToDatabase()->prepare($sql);
+    $data = [
+        ':spouse_id' => $spouseID,
+        ':id' => $id,
+        ':marital_status_id' => $statusID
+    ];
+    if ($statement->execute($data)) {
+        $response = ['status' => 1, 'message' => 'spouse user updated '];
+        echo json_encode($response);
+    }
+}
 
 function updateUser($id)
 {
@@ -138,10 +155,8 @@ function updateUser($id)
     global $sharedFunctions;
 
     $user = file_get_contents('php://input');
-    echo $user;
+    // echo $user;
     $user = json_decode($user);
-
-    //trigger for if one employee status changes, it also changes for the other
 
 
     if (!$id) {
@@ -167,6 +182,9 @@ function updateUser($id)
 
     ];
 
+    if (!empty($user->spouse_id)) {
+        updateSpouse($user->id, $user->spouse_id, $user->marital_status_id);
+    }
 
     if ($statement->execute($data)) {
         $response = ['status' => 1, 'message' => 'user updated '];

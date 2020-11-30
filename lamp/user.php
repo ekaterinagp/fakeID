@@ -126,7 +126,7 @@ require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
 </body>
 
 
-<script src="../lamp/js/user-profile.js"></script>
-<script src="../lamp/js/update.js"></script>
+<script src="../js/user-profile.js"></script>
+<script src="../js/update.js"></script>
 
 </html>
