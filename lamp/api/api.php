@@ -3,8 +3,15 @@ require_once(__DIR__ . '/../src/entity/sharedFunctions.php');
 require_once(__DIR__ . '/../utilities/connection.php');
 $conn  = new Database();
 $sharedFunctions = new SharedFunctions();
+
 $request_method=$_SERVER["REQUEST_METHOD"];
+
+
 header('Content-Type: application/json');
+
+if (isset($_SERVER['QUERY_STRING']) && $request_method == 'GET') {
+    $queryString =  $_SERVER['QUERY_STRING'];
+}
 
 switch($request_method){
     case 'GET':
@@ -12,6 +19,9 @@ switch($request_method){
         if(!empty($_GET["id"])){
             $id=intval($_GET["id"]);
             getUsers($id);
+        }else if($queryString){
+            $query= returnQueryString($queryString );
+            filterUsers($query);
         }else{
             getUsers();
         }
@@ -59,6 +69,7 @@ function createUser(){
     $CPR = '';
     $CVR = null;
     $companyName = null;
+    $maritalStatus = null;
     
         if (empty($_POST['name'])) {
             $sharedFunctions->sendErrorMessage('name is required', __LINE__);
@@ -90,12 +101,15 @@ function createUser(){
         if ($_POST['isEmployee'] == 'true') {
             $companyName = 'EE A/S';
             $CVR = '12345678';
+        }else{
+            $maritalStatus = 8;
+
         }
         $CPR = $_POST['date_of_birth'] . $_POST['gender_value'];
     
     
-        $sql = "INSERT INTO user(name, address_id, date_of_birth,company_name, CVR, CPR, gender_value )
-         VALUES (:name,:address_id, :date_of_birth, :company_name, :CVR, :CPR, :gender_value )";
+        $sql = "INSERT INTO user(name, address_id, date_of_birth,company_name, CVR, CPR, gender_value, marital_status_id )
+         VALUES (:name,:address_id, :date_of_birth, :company_name, :CVR, :CPR, :gender_value, :marital_status_id )";
     
         $statement = $conn->connectToDatabase()->prepare($sql);
     
@@ -107,6 +121,7 @@ function createUser(){
             ':company_name' => $companyName,
             ':CVR' => $CVR,
             ':CPR' => $CPR,
+            ':marital_status_id' => $maritalStatus,
         ];
     
     
