@@ -131,7 +131,7 @@ const removeNotification = () => {
 const createNotification = (type, text) => {
   let notificationWrapper = document.createElement('div')
   notificationWrapper.className = `notification ${type}`
-  let notificationText = document.createElement('h2');
+  let notificationText = document.createElement('h4');
   notificationText.textContent = text
   let close = document.createElement('span')
   close.className='close'
