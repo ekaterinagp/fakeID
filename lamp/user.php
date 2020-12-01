@@ -1,6 +1,5 @@
 <?php
 
-use PhpParser\Node\Expr\Cast\Object_;
 
 $pageTitle = 'singleuser';
 
