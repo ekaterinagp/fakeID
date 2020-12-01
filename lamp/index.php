@@ -118,8 +118,8 @@
 
 
     </main>
-    <script src="../lamp/js/script.js"></script>
-    <script src="../lamp/js/search.js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/search.js"></script>
   </body>
 
   </html>
