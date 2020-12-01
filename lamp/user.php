@@ -4,11 +4,11 @@ use PhpParser\Node\Expr\Cast\Object_;
 
 $pageTitle = 'singleuser';
 
-require_once(__DIR__ . '/../lamp/utilities/connection.php');
-require_once(__DIR__ . '/../lamp/src/entity/UserEmployee.php');
-require_once(__DIR__ . '/../lamp/src/entity/UserNotEmployee.php');
-require_once(__DIR__ . '/../lamp/src/entity/sharedFunctions.php');
-require_once(__DIR__ . '/../lamp/components/menu.php');
+require_once(__DIR__ .'/utilities/connection.php');
+require_once(__DIR__ . '/src/entity/UserEmployee.php');
+require_once(__DIR__ . '/src/entity/UserNotEmployee.php');
+require_once(__DIR__ . '/src/entity/sharedFunctions.php');
+require_once(__DIR__ . '/components/menu.php');
 
 ?>
 
