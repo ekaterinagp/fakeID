@@ -13,6 +13,7 @@ function getAllUsers() {
       .then((res) => res.json())
       .then((users) => {
         resolve(users);
+        console.log(users)
         displayUsers(users)
       });
   });
@@ -52,8 +53,6 @@ const displayUsers = (users) => {
     let singleUser =  document.createElement('div');
      singleUser.className = 'singleUser';
      singleUser.id = user.id;
-     let link = document.createElement('a');
-     link.href = 'user.php?id=' +user.id;
      let name = document.createElement('p');
      name.textContent = user.name;
      let age = document.createElement('p');
@@ -67,15 +66,16 @@ const displayUsers = (users) => {
      let gender = document.createElement('p');
      user.gender_value == '0001' ? gender.textContent = 'Male' : gender.textContent = 'Female';
      let CVR = document.createElement('p');
-     user.CVR? CVR.textContent = user.CVR : CVR.textContent = ''
+     user.CVR? CVR.textContent = 'Employee' : CVR.textContent = ''
      let maritalStatus = document.createElement('p');
      maritalStatus.textContent = getMaritalStatus(user.marital_status_id);
-     let button = document.createElement('button');
-     button.className = 'loginBtn';
-     button.textContent = 'Log in';
+     let button = document.createElement('a');
+     button.href = 'user.php?id=' +user.id;
 
-     link.append(name);
-     singleUser.append(link, age, gender, CVR,  maritalStatus, button)
+     button.className = 'loginBtn';
+     button.textContent = 'Edit';
+
+     singleUser.append(name, age, gender, CVR,  maritalStatus, button)
      usersContainer.append(singleUser)
   })
 }

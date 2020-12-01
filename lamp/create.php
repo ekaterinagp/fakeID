@@ -17,6 +17,7 @@ require_once(__DIR__ . '/../lamp/components/menu.php');
     $getFunction = new SharedFunctions();
 
     ?>
+    <h2>Create User</h2>
       <form method="POST" class="createForm">
         <div class="form-field">
           <input type="text" name="name" placeholder="Name">

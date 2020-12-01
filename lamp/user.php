@@ -110,7 +110,7 @@ require_once(__DIR__ . '/components/menu.php');
 
     <label for="">Partner</label>
   </div>
-  <button onclick="getDataToUpdate( <?php echo '' . $user->id . ''; ?>)">Save</button>
+  <input type="submit" onclick="getDataToUpdate( <?php echo '' . $user->id . ''; ?>)" value='Save'/>
   </form>
   </div>
 
@@ -126,7 +126,6 @@ require_once(__DIR__ . '/components/menu.php');
 
 
 
-<!-- <script src="/../lamp/js/user-profile.js"></script> -->
 <script src="./js/script.js"></script>
 <script src="./js/user-profile.js"></script>
 <script src="./js/update.js"></script>
