@@ -6,6 +6,7 @@ body{
   font-family: 'Open Sans';
   padding:0;
   margin:0;
+  max-width: 100vw;
 }
 h2{
   text-align: center;
@@ -52,10 +53,6 @@ header {
   color: white;
   text-decoration: none;
   padding: 0 2rem;
-}
-
-.menu-right:last-child {
-  padding-right: 0;
 }
 
 form{
@@ -333,4 +330,33 @@ box-shadow: 4px 6px 15px rgba(0,0,0,.3);
   to{
     transform: translateY(10vh);
   }
+}
+
+
+
+
+/************** INFO ICON IN MENU *************/
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltip svg{
+  fill:white;
+  width:20px;
+}
+.tooltip .tooltiptext {
+  color: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+  visibility: hidden;
+  position: absolute;
+  width: 200px;
+  background-color: #1f7a8c;
+  z-index: 1;
+  top: 19px;
+  right: 91%;
+}
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }
