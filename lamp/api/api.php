@@ -51,10 +51,10 @@ function getUsers($id = 0)
     $users = $users->getAllUsers();
     global $conn;
 
-    $sql = "SELECT * FROM user INNER JOIN address ON address.id = user.address_id";
+    $sql = "SELECT * FROM user";
 
     if ($id != null) {
-        $sql = "SELECT * FROM user INNER JOIN address ON address.id = user.address_id WHERE user.id = $id";
+        $sql = "SELECT * FROM user WHERE user.id = $id";
     }
     $statement = $conn->connectToDatabase()->prepare($sql);
     $statement->execute();

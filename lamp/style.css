@@ -4,21 +4,30 @@
 }
 body{
   font-family: 'Open Sans';
+  padding:0;
+  margin:0;
+  max-width: 100vw;
 }
-
+h2{
+  text-align: center;
+}
 .container {
   display: grid;
   grid-template-rows: 2fr 2fr;
+  margin-bottom: 3rem;
 }
 
 .singleUser {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr;
   grid-gap:.1rem;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid #d8dbe2ba;
 }
 .singleUser p{
   text-transform: capitalize;
+}
+.singleUser a{
+  text-decoration: none;
 }
 
 main{
@@ -26,10 +35,14 @@ main{
 }
 
 header {
-  margin: 0 2rem;
+  padding: 0 2rem;
+  margin-bottom: 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
+  background: #022B3A;
+  color: white;
+  box-shadow: 1px 5px 10px rgba(0,0,0,.3);
 }
 
 .menu-right {
@@ -37,13 +50,9 @@ header {
 }
 
 .menu-right a {
-  color: black;
+  color: white;
   text-decoration: none;
   padding: 0 2rem;
-}
-
-.menu-right:last-child {
-  padding-right: 0;
 }
 
 form{
@@ -69,6 +78,13 @@ form{
   transform: translateY(0);
   visibility: visible;
 }
+input[type=submit]{
+  background:#E15554;
+  box-shadow: 1px 5px 10px rgba(0,0,0,.3);
+  color:white;
+  border:none;
+  margin:1rem;
+}
 select:invalid {
   color: gray;
 }
@@ -85,7 +101,10 @@ option {
 .labelRadio label{
   padding:10px;
   border-radius: 10px;
-  border:1px solid lightgray;
+  border: none;
+  color: white;
+  background:#1F7A8C;
+  box-shadow: 1px 5px 10px rgba(0,0,0,.3);
   cursor: pointer;
   text-align: center;
   margin: 1rem;
@@ -94,19 +113,25 @@ option {
   display: none;
 }
 input:checked+label{
-  border:4px solid lightgray;
+  background:#185d6b;
+  transform: scale(1.05);
 }
 input, select{
   padding:10px;
   border-radius: 10px;
-  border: 1px solid lightgrey;
+  border: 1px solid #d8dbe2ba;
   outline: none;
+  transition: all .2s;
 }
-button{
+button, .loginBtn{
   padding:.5rem 1rem;
   border-radius: 10px;
-  border: 1px solid lightgrey;
-  margin: auto;
+  margin: auto 0;
+  background: #1F7A8C;
+  border: none;
+  color: white;
+  box-shadow: 1px 5px 10px rgba(0,0,0,.3);
+  text-align: center;
 }
 
 a.active{
@@ -122,7 +147,7 @@ a.active{
 .searchBar>div{
   display: grid;
   grid-template-columns: 1fr .2fr;
-  border: 1px solid lightgray;
+  border: 1px solid #d8dbe2ba;
   border-radius: 10px;
   width: 100%;
   margin:auto;
@@ -148,7 +173,7 @@ a.active{
   overflow: hidden;
   width:auto;
   display:grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2fr .6fr;
   margin:1rem;
 }
 .filtersContainer form{
@@ -160,7 +185,8 @@ a.active{
   margin-bottom: 0;
 }
 .filtersContainer button {
-  grid-column: 2;
+  grid-column: 1/-1;
+  margin:1rem auto;
 }
 .maritalStatusFilters .labelRadio ,
 .ageFilters .labelRadio ,
@@ -187,7 +213,9 @@ label[for=abolition_of_registered_partnership]{
   width:auto;
   margin:.1rem 0;
   background:none;
+  color:#022B3A;
   text-align: left;
+  box-shadow: none;
   }
 .maritalStatusFilters .labelRadio label:hover,
 .ageFilters .labelRadio label:hover,
@@ -211,9 +239,11 @@ label[for=abolition_of_registered_partnership]{
 .filterBtn{
   margin: 1rem auto;
   text-transform: uppercase;
-  background:none;
   border:none;
   display: block;
+  background:none;
+  box-shadow: none;
+  color: #E15554;
 }
 
 
@@ -223,16 +253,23 @@ label[for=abolition_of_registered_partnership]{
 
 .userContainer{
 padding: 0;
-margin:auto;
-max-width: 900px;
-border:1px solid lightgray;
+margin:auto auto 3rem;
+max-width: 700px;
+border:1px solid #d8dbe2ba;
 border-radius: 10px;
+box-shadow: 4px 6px 15px rgba(0,0,0,.3);
 }
 .userContainer h2{
   padding:1rem
 }
 .user{
-  padding:1rem;
+  padding:0 1rem 1rem 1rem;
+}
+.user p{
+  margin-top:.1rem;
+}
+.user h3{
+  margin-bottom: .1rem;
 }
 .editContainer{
   padding:1rem;
@@ -244,17 +281,19 @@ border-radius: 10px;
 }
 .tabs button{
   width: 100%;
+  box-shadow: none;
+  color:#E15554;
   margin:0;
   border-radius: 0 10px 0 0;
   background: transparent;
   text-transform: uppercase;
   border:none;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid #d8dbe2ba;
 }
 .tabs button:nth-child(1){
   border-radius: 10px 0 0 0;
   border-bottom: none;
-  border-right:1px solid lightgray;
+  border-right:1px solid #d8dbe2ba;
 }
 
 
@@ -272,7 +311,7 @@ border-radius: 10px;
   text-transform: capitalize;
   animation: show .1s forwards;
   transition: all .2s;
-  margin:1rem;
+  margin:auto;
 }
 .close{
   position: absolute;
@@ -282,13 +321,42 @@ border-radius: 10px;
   cursor: pointer;
 }
 .notification.success{
-  background:#b6d1b6;
+  background:#9ED8DB;
 }
 .notification.error{
-  background:#fe7c72;
+  background:#EBB3A9;
 }
 @keyframes show{
   to{
     transform: translateY(10vh);
   }
+}
+
+
+
+
+/************** INFO ICON IN MENU *************/
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+.tooltip svg{
+  fill:white;
+  width:20px;
+}
+.tooltip .tooltiptext {
+  color: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+  visibility: hidden;
+  position: absolute;
+  width: 200px;
+  background-color: #1f7a8c;
+  z-index: 1;
+  top: 19px;
+  right: 91%;
+}
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }
