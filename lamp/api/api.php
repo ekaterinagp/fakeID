@@ -78,45 +78,45 @@ function createUser()
 
     if (empty($_POST['name'])) {
         $errorMessage = $sharedFunctions->sendErrorMessage('name is required', __LINE__);
-        echo $errorMessage;
+        echo json_encode($errorMessage);
         exit;
     }
 
     if (empty($_POST['name'])) {
         $errorMessage = $sharedFunctions->sendErrorMessage('name is required', __LINE__);
-        echo $errorMessage;
+        echo json_encode($errorMessage);
         exit;
     }
 
     if (empty($_POST['address_id'])) {
         $errorMessage = $sharedFunctions->sendErrorMessage('address is required', __LINE__);
-        echo $errorMessage;
+        echo json_encode($errorMessage);
         exit;
     }
     if (empty($_POST['date_of_birth'])) {
         $errorMessage = $sharedFunctions->sendErrorMessage('date of birth is required', __LINE__);
-        echo $errorMessage;
+        echo json_encode($errorMessage);
         exit;
     }
 
     if (strlen($_POST['date_of_birth']) > 6) {
         $errorMessage = $sharedFunctions->sendErrorMessage('date of birth should be DDMMYY', __LINE__);
-        echo $errorMessage;
+        echo json_encode($errorMessage);
         exit;
     }
     if (strlen($_POST['date_of_birth']) < 6) {
         $errorMessage = $sharedFunctions->sendErrorMessage('date of birth should be DDMMYY', __LINE__);
-        echo $errorMessage;
+        echo json_encode($errorMessage);
         exit;
     }
     if (empty($_POST['isEmployee'])) {
         $errorMessage = $sharedFunctions->sendErrorMessage('Employee status is required', __LINE__);
-        echo $errorMessage;
+        echo json_encode($errorMessage);
         exit;
     }
     if (empty($_POST['gender_value'])) {
         $errorMessage = $sharedFunctions->sendErrorMessage('Gender is required', __LINE__);
-        echo $errorMessage;
+        echo json_encode($errorMessage);
         exit;
     }
     if ($_POST['isEmployee'] == 'true') {
