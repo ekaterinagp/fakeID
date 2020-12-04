@@ -75,32 +75,49 @@ function createUser()
     $CVR = null;
     $companyName = null;
 
+
     if (empty($_POST['name'])) {
-        $sharedFunctions->sendErrorMessage('name is required', __LINE__);
+        $errorMessage = $sharedFunctions->sendErrorMessage('name is required', __LINE__);
+        echo $errorMessage;
+        exit;
     }
 
     if (empty($_POST['name'])) {
-        $sharedFunctions->sendErrorMessage('name is required', __LINE__);
+        $errorMessage = $sharedFunctions->sendErrorMessage('name is required', __LINE__);
+        echo $errorMessage;
+        exit;
     }
 
     if (empty($_POST['address_id'])) {
-        $sharedFunctions->sendErrorMessage('address is required', __LINE__);
+        $errorMessage = $sharedFunctions->sendErrorMessage('address is required', __LINE__);
+        echo $errorMessage;
+        exit;
     }
     if (empty($_POST['date_of_birth'])) {
-        $sharedFunctions->sendErrorMessage('date of birth is required', __LINE__);
+        $errorMessage = $sharedFunctions->sendErrorMessage('date of birth is required', __LINE__);
+        echo $errorMessage;
+        exit;
     }
 
     if (strlen($_POST['date_of_birth']) > 6) {
-        $sharedFunctions->sendErrorMessage('date of birth should be DDMMYY', __LINE__);
+        $errorMessage = $sharedFunctions->sendErrorMessage('date of birth should be DDMMYY', __LINE__);
+        echo $errorMessage;
+        exit;
     }
     if (strlen($_POST['date_of_birth']) < 6) {
-        $sharedFunctions->sendErrorMessage('date of birth should be DDMMYY', __LINE__);
+        $errorMessage = $sharedFunctions->sendErrorMessage('date of birth should be DDMMYY', __LINE__);
+        echo $errorMessage;
+        exit;
     }
     if (empty($_POST['isEmployee'])) {
-        $sharedFunctions->sendErrorMessage('Employee status is required', __LINE__);
+        $errorMessage = $sharedFunctions->sendErrorMessage('Employee status is required', __LINE__);
+        echo $errorMessage;
+        exit;
     }
     if (empty($_POST['gender_value'])) {
-        $sharedFunctions->sendErrorMessage('Gender is required', __LINE__);
+        $errorMessage = $sharedFunctions->sendErrorMessage('Gender is required', __LINE__);
+        echo $errorMessage;
+        exit;
     }
     if ($_POST['isEmployee'] == 'true') {
         $companyName = 'EE A/S';
