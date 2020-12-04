@@ -27,7 +27,7 @@ class sharedFunctionsTest extends TestCase
     {
         $response = $this->SharedFunctions->sendErrorMessage('test message', __LINE__);
         $exptectdRespone = '{"status":0,"message":"test message","line":' . (__LINE__ - 1) . '}';
-        $this->assertArrayHasKey('status', $response);
+
         $this->assertEquals($exptectdRespone, json_encode($response));
     }
 
@@ -36,6 +36,12 @@ class sharedFunctionsTest extends TestCase
     {
         $addressesNumber = $this->SharedFunctions->countAllAddresses();
         $this->assertEquals(2, $addressesNumber);
+    }
+
+    public function testAllAvailableAddress()
+    {
+        $addresses = $this->SharedFunctions->getAllAvailableAddress();
+        $this->assertIsArray($addresses);
     }
 
 
@@ -103,22 +109,23 @@ class sharedFunctionsTest extends TestCase
     public function testGetAllPossibleSpousesAsArray()
     {
         $this->SharedFunctions = new SharedFunctions();
-        $spousesList = $this->SharedFunctions->getAllAvailableSpouses(2);
+        $spousesList = $this->SharedFunctions->getAllAvailableSpouses(14);
         $this->assertIsArray($spousesList);
     }
 
     /**
-     * @dataProvider spousesAttributeProvier
+     * @dataProvider spousesAttributeProvider
      */
     public function testPossibleSpousesHaveAttributes($attribute, $expected)
     {
         $this->assertArrayHasKey($attribute, $expected);
     }
 
-    public function spousesAttributeProvier()
+    public function spousesAttributeProvider()
     {
         $this->SharedFunctions = new SharedFunctions();
-        $spousesList = $this->SharedFunctions->getAllAvailableSpouses(2);
+        $spousesList = $this->SharedFunctions->getAllAvailableSpouses(14);
+        echo $spousesList;
         return [
             'spouse has key id' => ['id', $spousesList[0]],
             'spouse has key name' => ['name', $spousesList[0]],

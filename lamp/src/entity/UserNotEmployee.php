@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__. '/User.php');
+require_once(__DIR__ . '/User.php');
 
 class UserNotEmployee extends User
 {
@@ -45,21 +45,21 @@ class UserNotEmployee extends User
         return "undefined";
     }
 
-    function setSpouse()
-    {
-    }
-    function getSpouse()
-    {
-    }
-    function setChild()
-    {
-    }
-    function getChildren()
-    {
-    }
-    function setMaritalStatus()
-    {
-    }
+    // function setSpouse()
+    // {
+    // }
+    // function getSpouse()
+    // {
+    // }
+    // function setChild()
+    // {
+    // }
+    // function getChildren()
+    // {
+    // }
+    // function setMaritalStatus()
+    // {
+    // }
     // Single=1, Married=2,Divorced=3,Widow=4, RegisteredPartnership=5, AbolitionOfRegisteredPartnership=6, Deceased=7,Unknown=8
 
 }

@@ -8,8 +8,7 @@ class SharedFunctions
   {
     http_response_code(400);
     $response = ['status' => 0, 'message' => $message, 'line' => $line];
-    echo json_encode($response);
-    exit;
+    return $response;
   }
 
   function getAllUsers()
@@ -22,8 +21,9 @@ class SharedFunctions
       $conn = null;
       return $users;
     }
+    //@codeCoverageIgnoreStart
   }
-
+  //@codeCoverageIgnoreEnd
 
   function getUserByID($id)
   {
@@ -36,8 +36,9 @@ class SharedFunctions
       $object = (object) $user;
       return json_decode(json_encode($object));
     }
+    //@codeCoverageIgnoreStart
   }
-
+  //@codeCoverageIgnoreEnd
 
   function getAllAvailableAddress()
   {
@@ -49,7 +50,9 @@ class SharedFunctions
       $addresses = $statement->fetchAll(PDO::FETCH_ASSOC);
       return $addresses;
     }
+    //@codeCoverageIgnoreStart
   }
+  //@codeCoverageIgnoreEnd
 
   function getAddressByID($id)
   {
@@ -62,7 +65,9 @@ class SharedFunctions
       $object = (object) $address;
       return json_decode(json_encode($object));
     }
+    //@codeCoverageIgnoreStart
   }
+  //@codeCoverageIgnoreEnd
 
 
   function countAllAddresses()
@@ -75,7 +80,9 @@ class SharedFunctions
       $conn = null;
       return $addresses[0]['count(*)'];
     }
+    //@codeCoverageIgnoreStart
   }
+  //@codeCoverageIgnoreEnd
 
   function getAddressList()
   {
@@ -87,11 +94,13 @@ class SharedFunctions
       $conn = null;
       return $addresses;
     }
+    //@codeCoverageIgnoreStart
   }
+  //@codeCoverageIgnoreEnd
 
   function getAllAvailableSpouses($id)
   {
-    $sql = " SELECT * FROM `user` WHERE CVR IS NULL AND marital_status_id IN(3,8,4,6,7,1) AND id<> $id ";
+    $sql = " SELECT * FROM `user` WHERE CVR IS NULL AND marital_status_id IN(0,3,8,4,6,7,1) AND id<> $id ";
     $conn  = new Database();
     $statement = $conn->connectToDatabase()->prepare($sql);
     if ($statement->execute()) {
@@ -99,7 +108,9 @@ class SharedFunctions
       $conn = null;
       return $spouses;
     }
+    //@codeCoverageIgnoreStart
   }
+  //@codeCoverageIgnoreEnd
 
   function getSpouseNameByID($id)
   {
@@ -112,5 +123,7 @@ class SharedFunctions
 
       return $spouseName;
     }
+    //@codeCoverageIgnoreStart
   }
+  //@codeCoverageIgnoreEnd
 }

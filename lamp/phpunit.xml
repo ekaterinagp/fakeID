@@ -4,10 +4,8 @@
          bootstrap="vendor/autoload.php"
          cacheResultFile=".phpunit.cache/test-results"
        
-      
-    
-          colors="true">
-        
+         colors="true"
+         >
     <testsuites>
         <testsuite name="default">
             <directory suffix="Test.php">tests</directory>

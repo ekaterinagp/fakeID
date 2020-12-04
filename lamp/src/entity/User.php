@@ -11,14 +11,14 @@ class User
     public $gender;
     public $CPR;
 
-    
+
     public function formatBirthday($birthday)
     {
 
         return (implode('-', str_split($birthday, 2)));
     }
 
-    
+
     public function calculateAge($birthday)
     {
 
@@ -49,25 +49,17 @@ class User
         return $age;
     }
 
-    public function getName()
-    {
-    }
 
-    public function setName()
-    {
-    }
 
 
     function setAddress($addressObject)
     {
         return "$addressObject->street_name, $addressObject->street_building_name $addressObject->district $addressObject->post_code";
     }
-    function getAddress()
-    {
-    }
-    
+
+
     //add for all statuses
-  
+
     function getGenderValue($gender_id)
     {
         if ($gender_id === '0002') {
