@@ -19,15 +19,16 @@ class User {
       }
       
       calculateAge(dateOfBirth){
-        let month = new Date(dateOfBirth).getMonth()
-        let day = new Date(dateOfBirth).getDate()
-        let year = dateOfBirth.split('-')[2]
+        let dateOfBirthArray = dateOfBirth.split('')
+        let day  = dateOfBirthArray[0].toString()+  dateOfBirthArray[1].toString()
+        let month = dateOfBirthArray[2].toString()+dateOfBirthArray[3].toString()
+        let year = dateOfBirthArray[4].toString()+ dateOfBirthArray[5].toString()
         if(parseInt(year)> 20){
             year = `19${year}`
          }else{
             year = `20${year}`
         }
-        
+
         const today = new Date()
         let age = today.getFullYear() - year;
         if (today.getMonth() < month || (today.getMonth() == month && today.getDate() < day)) {

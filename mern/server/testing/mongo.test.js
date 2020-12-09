@@ -73,7 +73,7 @@ describe('User methods', () => {
 async function createSampleUsers() {
   const user1 = await dbHelper.createDoc(user.collectionName, {
     name: "First user",
-    dateOfBirth: "01-01-01",
+    dateOfBirth: "010101",
     address: 'Lygten 1',
     companyNamy: 329.99,
     CPR: '0101010001',
@@ -82,7 +82,7 @@ async function createSampleUsers() {
   });
   const user2 = await dbHelper.createDoc(user.collectionName, {
     name: "Second user",
-    dateOfBirth: "02-02-80",
+    dateOfBirth: "020280",
     CVR: "12345678",
     address: 'Lygten 3',
     companyNamy: 'EG',
@@ -91,7 +91,7 @@ async function createSampleUsers() {
   });
   const user3 = await dbHelper.createDoc(user.collectionName, {
     name: "Third user",
-    dateOfBirth: "10-12-45",
+    dateOfBirth: "101245",
     address: 'Lygten',
     CPR:'1012450002' ,
     maritalStatus : 'married',
