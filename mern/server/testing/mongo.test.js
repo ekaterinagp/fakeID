@@ -52,6 +52,10 @@ describe('User methods', () => {
   })
   
   
+  test('age correct format', async () => {
+    let users = await createSampleUsers()
+      expect(user.formatDateOfBirth(users.user1.dateOfBirth)).toEqual('01-01-01');
+  })
   test('test calculate age', async () => {
     let users = await createSampleUsers()
       expect(user.calculateAge(users.user1.dateOfBirth)).toEqual(19);
