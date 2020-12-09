@@ -77,7 +77,7 @@ async function createSampleUsers() {
     address: 'Lygten 1',
     companyNamy: 329.99,
     CPR: '0101010001',
-    maritalStatus: 8,
+    maritalStatus: 'unknown',
     genderIdentification:'0001'
   });
   const user2 = await dbHelper.createDoc(user.collectionName, {
@@ -94,7 +94,7 @@ async function createSampleUsers() {
     dateOfBirth: "10-12-45",
     address: 'Lygten',
     CPR:'1012450002' ,
-    maritalStatus : 2,
+    maritalStatus : 'married',
     spouse : {_id :123456, name:'some guy'},
     genderIdentification:'0002'
   });
