@@ -18,7 +18,6 @@ router.get('/users/:id', async (req, res) => {
     let user = new User(db)
     let { id } = req.params
     try{
-        
         const singleUser = await user.findById(id)
         if(!singleUser){
             return res.status(400).send({error: 'wrong ID'})
