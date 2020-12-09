@@ -50,6 +50,7 @@ class User {
               return 'female'
           }
       }
+
 }
 
 module.exports = User

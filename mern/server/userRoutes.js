@@ -43,8 +43,7 @@ router.put('/users/:id', async (req, res) => {
         }
         delete spouse.spouse
 
-        //TODO how to make sure user doesn't have multiple spouses?c
-        if(maritalStatus == 2 || maritalStatus == 5){
+        if(maritalStatus == 'married' || maritalStatus == 'registeredPartnership'){
             if(user.spouse.length >0) return res.send({message: 'user already has a spouse'})
             bulkUpdates.push({
                 'updateOne': {
@@ -57,6 +56,7 @@ router.put('/users/:id', async (req, res) => {
                     'update': {'$push':{'spouse': user}, $set : {'maritalStatus': maritalStatus}}
                 }
             })
+
         }else{
             console.log(user._id, spouseId)
             bulkUpdates.push({
@@ -71,9 +71,7 @@ router.put('/users/:id', async (req, res) => {
                     'update': {'$pull':{'spouse': {'_id': user._id}}, $set : {'maritalStatus': maritalStatus}}
                 }
             })
-        }
-       
-        
+        }      
     }
 
     if(childId){
@@ -97,8 +95,7 @@ router.put('/users/:id', async (req, res) => {
                 'update': {'$push':{'parents': user}}
             }
         })
-    }
- 
+    } 
 
     bulkUpdates.push({
             'updateOne':{
@@ -106,16 +103,13 @@ router.put('/users/:id', async (req, res) => {
                 'update': {$set :{ name: name, address: address, maritalStatus: maritalStatus }}
             } 
         })
-    try{
-       const response = await userCollection.bulkWrite(bulkUpdates, {"ordered": true})//, (err, result) => {
-            // if(err){console.log(err); return res.status(500).send({error:err});}
-            return res.status(200).send({response})
-        // })
-    }catch(err){
-        if(err){console.log(err); return res.status(500).send({error: 'something went wrong'}); }
-    }
-    
 
+    try{
+       const response = await userCollection.bulkWrite(bulkUpdates, {"ordered": true})
+       return res.status(200).send({response})
+    }catch(err){
+        if(err){console.log(err); return res.status(500).send({error: err}); }
+    }
 })
 
 module.exports = router;
