@@ -22,7 +22,6 @@ router.put('/users/:id', async (req, res) => {
         return res.status(400).send({error: 'id missing'})
     }
     let { name, address, maritalStatus ,spouseId, childId } = req.body;
-    console.log(name, user._id)
     if(  !name && !address && !maritalStatus && !spouseId && !childId){
         return res.status(400).send({error:'missing fields'})
     }
@@ -35,25 +34,69 @@ router.put('/users/:id', async (req, res) => {
     if(maritalStatus === undefined){
         maritalStatus = user.maritalStatus
     }
+
+
     if(spouseId){
         let spouse = await userEntity.findById(spouseId)
+        if(!spouse){
+            return res.status(400).send({error: 'User does not exist'})
+        }
         delete spouse.spouse
-        bulkUpdates.push({
-            'updateOne': {
-                'filter':{'_id': ObjectID(user._id)},
-                'update': {'$push':{'spouse': spouse}}
-            }
-        })
-        bulkUpdates.push({
-            'updateOne': {
-                'filter':{'_id': ObjectID(spouse._id)},
-                'update': {'$push':{'spouse': user}, $set : {'maritalStatus': maritalStatus}}
-            }
-        })
+
+        //TODO how to make sure user doesn't have multiple spouses?c
+        if(maritalStatus == 2 || maritalStatus == 5){
+            if(user.spouse.length >0) return res.send({message: 'user already has a spouse'})
+            bulkUpdates.push({
+                'updateOne': {
+                    'filter':{'_id': ObjectID(user._id)},
+                    'update': {'$push':{'spouse': spouse}}
+                }
+                })
+            bulkUpdates.push({'updateOne': {
+                    'filter':{'_id': ObjectID(spouse._id)},
+                    'update': {'$push':{'spouse': user}, $set : {'maritalStatus': maritalStatus}}
+                }
+            })
+        }else{
+            console.log(user._id, spouseId)
+            bulkUpdates.push({
+                'updateOne': {
+                    'filter':{'_id': ObjectID(user._id)},
+                    'update': {'$pull':{'spouse': {'_id': ObjectID(spouseId)}}}
+                }
+            })
+            bulkUpdates.push({
+                    'updateOne': {
+                    'filter':{'_id': ObjectID(spouse._id)},
+                    'update': {'$pull':{'spouse': {'_id': user._id}}, $set : {'maritalStatus': maritalStatus}}
+                }
+            })
+        }
+       
+        
     }
 
     if(childId){
-        return res.send({message: 'add child'})
+        let child = await userEntity.findById(childId)
+        if(!child){
+            return res.status(400).send({error: 'User does not exist'})
+        }
+        if(userEntity.calculateAge(child.dateOfBirth)>=18){
+            return res.status(400).send({error: 'To add a child it must be under 18'})
+        }
+        delete child.parents
+        bulkUpdates.push({
+            'updateOne': {
+                'filter':{'_id': ObjectID(user._id)},
+                'update': {'$push':{'children': child}}
+            }
+        })
+        bulkUpdates.push({
+            'updateOne': {
+                'filter':{'_id': ObjectID(child._id)},
+                'update': {'$push':{'parents': user}}
+            }
+        })
     }
  
 
