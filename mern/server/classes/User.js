@@ -18,11 +18,14 @@ class User {
         return this.collection.findOne({ _id: userId });
       }
       
-      calculateAge(dateOfBirth){
-        let dateOfBirthArray = dateOfBirth.split('')
-        let day  = dateOfBirthArray[0].toString()+  dateOfBirthArray[1].toString()
-        let month = dateOfBirthArray[2].toString()+dateOfBirthArray[3].toString()
-        let year = dateOfBirthArray[4].toString()+ dateOfBirthArray[5].toString()
+     formatDateOfBirth(dateOfBirth){
+        return dateOfBirth.replace(/^(\d{2})(\d{2})/, '$1-$2-');
+      }
+      calculateAge(dateString){
+        let dateOfBirth = this.formatDateOfBirth(dateString)
+        let day  = new Date(dateOfBirth).getDate()
+        let month = new Date(dateOfBirth).getMonth()
+        let year = dateOfBirth.split('-')[2]
         if(parseInt(year)> 20){
             year = `19${year}`
          }else{
