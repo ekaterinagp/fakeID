@@ -12,6 +12,12 @@ body{
   display:none;
 }
 
+a{
+  text-decoration: none;
+  color: inherit;
+ 
+}
+
 .spouseVisible{
   display:block;
 }
