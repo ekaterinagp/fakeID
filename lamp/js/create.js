@@ -6,8 +6,8 @@ async function submitCreateForm(event) {
     .querySelector("form")
     .querySelector('input[name="date_of_birth"]').value;
   let newDate = new Date(date);
-  console.log(date);
-  console.log(newDate);
+  // console.log(date);
+  // console.log(newDate);
   var dd = String(newDate.getDate()).padStart(2, "0");
   var mm = String(newDate.getMonth() + 1).padStart(2, "0");
   var yy = newDate.getFullYear().toString().substr(2, 2);
@@ -17,17 +17,14 @@ async function submitCreateForm(event) {
 
   const formData = new FormData(document.querySelector("form"));
 
-  for (var pair of formData.entries()) {
-    if (pair[0] == "date_of_birth") {
-      pair[1] = newDate;
-    }
-  }
+  formData.set('date_of_birth', newDate)
 
   let response = await fetch(path + "api/users", {
     method: "POST",
     body: formData,
   });
   console.log(response);
+
   response = await response.json();
   if (response.status) {
     createNotification("success", "User created");
