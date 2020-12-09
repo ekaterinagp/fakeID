@@ -125,7 +125,7 @@ class sharedFunctionsTest extends TestCase
     {
         $this->SharedFunctions = new SharedFunctions();
         $spousesList = $this->SharedFunctions->getAllAvailableSpouses(14);
-        echo $spousesList;
+
         return [
             'spouse has key id' => ['id', $spousesList[0]],
             'spouse has key name' => ['name', $spousesList[0]],
@@ -138,7 +138,7 @@ class sharedFunctionsTest extends TestCase
     public function testNoEmployeesInSpouseList()
     {
         $this->SharedFunctions = new SharedFunctions();
-        $spousesList = $this->SharedFunctions->getAllAvailableSpouses(2);
+        $spousesList = $this->SharedFunctions->getAllAvailableSpouses(14);
         $this->assertNull($spousesList[0]['company_name']);
     }
 
@@ -147,5 +147,78 @@ class sharedFunctionsTest extends TestCase
         $this->SharedFunctions = new SharedFunctions();
         $spousesList = $this->SharedFunctions->getAllAvailableSpouses(2);
         $this->assertNotContains(2,  $spousesList);
+    }
+
+    public function testGetChildrenByID()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $childrenList = $this->SharedFunctions->getChildrenByID(10);
+        $this->assertIsArray($childrenList);
+    }
+
+    /**
+     * @dataProvider childrenAttributeProvider
+     */
+    public function testChildrenListHaveAttributes($attribute, $expected)
+    {
+        $this->assertArrayHasKey($attribute, $expected);
+    }
+
+    public function childrenAttributeProvider()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $childrenList = $this->SharedFunctions->getChildrenByID(10);
+
+        return [
+            'child has key id' => ['id', $childrenList[0]],
+            'child has key name' => ['name', $childrenList[0]],
+            'child has key date_of_birth' => ['date_of_birth', $childrenList[0]],
+            'child has key address_id' =>  ['address_id', $childrenList[0]],
+            'child has key CPR' =>  ['CPR', $childrenList[0]],
+        ];
+    }
+
+    public function testNoChildren()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $childrenList = $this->SharedFunctions->getChildrenByID(5);
+        $this->assertEquals(null, $childrenList);
+    }
+
+    public function testGetParentByID()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $parentList = $this->SharedFunctions->getParentByID(13);
+        $this->assertIsArray($parentList);
+    }
+
+
+    /**
+     * @dataProvider parentAttributeProvider
+     */
+    public function testParentsListHaveAttributes($attribute, $expected)
+    {
+        $this->assertArrayHasKey($attribute, $expected);
+    }
+
+    public function parentAttributeProvider()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $parentList = $this->SharedFunctions->getParentByID(1);
+
+        return [
+            'parent has key id' => ['id', $parentList[0]],
+            'parent has key name' => ['name', $parentList[0]],
+            'parent has key date_of_birth' => ['date_of_birth', $parentList[0]],
+            'parent has key address_id' =>  ['address_id', $parentList[0]],
+            'parent has key CPR' =>  ['CPR', $parentList[0]],
+        ];
+    }
+
+    public function testNoParent()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $parentList = $this->SharedFunctions->getParentByID(11);
+        $this->assertEquals(null, $parentList);
     }
 }
