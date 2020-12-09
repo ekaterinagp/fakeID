@@ -4,7 +4,7 @@
   "description": "MERN",
   "main": "server.js",
   "scripts": {
-    "test": "jest --coverage"
+    "test": "jest"
   },
   "dependencies": {
     "@shelf/jest-mongodb": "^1.2.3",
