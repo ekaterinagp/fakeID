@@ -47,15 +47,28 @@ require_once(__DIR__ . '/components/menu.php');
 
 
   if ($user->marital_status_id == 2 || $user->marital_status_id == 5) {
+
     $partnerName = $getFunction->getSpouseByID($id)[0]['name'];
     $partnerId = $getFunction->getSpouseByID($id)[0]['id'];
+    $classStatus = ' ';
+  } else {
+    $classStatus = ' class="hidden"';
+    $partnerName = null;
+    $partnerId = null;
   }
 
   $children = $getFunction->getChildrenByID($id);
   if ($children == NULL) {
     $classChildren = ' class="hidden"';
   } else {
-    $classChildren = ' class=""';
+    $classChildren = ' ';
+  }
+
+  $parents = $getFunction->getParentByID($id);
+  if ($parents == NULL) {
+    $classParents = ' class="hidden"';
+  } else {
+    $classParents = ' ';
   }
 
 
@@ -73,18 +86,26 @@ require_once(__DIR__ . '/components/menu.php');
   <div ' . $class . '>
   <h3>Marital status</h3>
   <p> ' . $maritalStatus . '</p>
+  <div ' . $classStatus . '>
   <h3>Partner</h3>
-  <a href ="user.php?id=' . $partnerId . '"><p>' . $partnerName . ' </p></a>
+  <a href ="user.php?id=' . $partnerId . '"><p>' . $partnerName . ' </p></a></div>
  </div>
  <div ' . $classChildren . '>
  <h3>Children </h3>';
 
   foreach ($children as $child) {
 
-    echo '<a href="user.php?id=' . $child['id'] . '"><p>' . $child['name'] . ' </p> </a>';
+    echo '<a href="user.php?id=' . $child['child_id'] . '"><p>' . $child['name'] . ' </p> </a>';
   }
 
   echo '</div>
+  <div ' . $classParents . '>
+  <h3>Parents</h3>';
+  foreach ($parents as $parent) {
+
+    echo '<a href="user.php?id=' . $parent['parent_id'] . '"><p>' . $parent['name'] . ' </p> </a>';
+  }
+  echo ' </div>
  </div>
  ';
 
