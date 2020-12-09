@@ -1,3 +1,5 @@
+const { ObjectId } = require('mongodb')
+
 class User {
 
     constructor(db) {
@@ -15,7 +17,7 @@ class User {
       }
 
       findById(userId) {
-        return this.collection.findOne({ _id: userId });
+        return this.collection.findOne({ _id: new ObjectId(userId) });
       }
       
      formatDateOfBirth(dateOfBirth){
