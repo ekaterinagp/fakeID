@@ -12,6 +12,7 @@ class User
     public $CPR;
 
 
+
     public function formatBirthday($birthday)
     {
 
