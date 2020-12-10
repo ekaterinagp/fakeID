@@ -76,7 +76,7 @@ describe('User methods', () => {
 describe('edit user', () => {
 
   test('update user returns the correct bulkwrite', async () => {
-    let {user1, user2, user3} = await createSampleUsers()
+    let {user1} = await createSampleUsers()
     let info = {'name': 'LaLa'}
     let result =  [{
             'updateOne':{
@@ -89,7 +89,7 @@ describe('edit user', () => {
 
 
   test('update spouse return the correct bulkwrite', async () => {
-    let {user1, user2, user3} = await createSampleUsers()
+    let {user1, user2} = await createSampleUsers()
     let string = [
       {
         'updateOne': {
@@ -117,6 +117,39 @@ describe('edit user', () => {
 
 
 
+describe('create user', () => {
+
+  test(' createUser should return status 200, response: user created and userId', async () => {
+    let info = { 
+      'name': 'new user',
+      'address': 'Lygten 500',
+      'dateOfBirth': '040506',
+      'genderIdentification': '0001',
+    }
+    let result = await user.createUser(info)
+    console.log(result)
+    expect(result.status).toBe(200)
+    expect(result.response).toBe('user created')
+
+    let createdUser = await user.findById(result.userId)
+    expect(createdUser.name).toBe('new user')
+  })
+
+
+  test('createUser with missing information returns error', async () => {
+    let info = {
+      'address': 'Lygten 500',
+    }
+    let result = await user.createUser(info)
+    expect(result.status).toBe(400)
+    expect(result.response).toBe('missing fields')
+  })
+})
+
+
+
+
+
 
 
 async function createSampleUsers() {
@@ -124,7 +157,6 @@ async function createSampleUsers() {
     name: "First user",
     dateOfBirth: "010101",
     address: 'Lygten 1',
-    companyNamy: 329.99,
     CPR: '0101010001',
     maritalStatus: 'unknown',
     genderIdentification:'0001'

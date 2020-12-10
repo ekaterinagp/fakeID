@@ -23,7 +23,6 @@ router.get('/users/:id', async (req, res) => {
         const singleUser = await user.findById(id)
         if(!singleUser){
             return res.status(400).send({error: 'wrong ID'})
-    
         }
         return res.status(200).send({singleUser})
     }catch(err){
@@ -31,6 +30,13 @@ router.get('/users/:id', async (req, res) => {
     }
 })
 
+
+
+router.post('/users', async (req, res) => {
+    let userEntity = new User(db)
+    let {response, status} = await userEntity.createUser(req.body)
+    return res.status(status).send(response)
+})
 
 router.put('/users/:id', async (req, res) => {
     const { id } = req.params;
