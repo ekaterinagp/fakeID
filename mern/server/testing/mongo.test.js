@@ -70,6 +70,53 @@ describe('User methods', () => {
   })
 
 
+})
+
+
+describe('edit user', () => {
+
+  test('update user returns the correct bulkwrite', async () => {
+    let {user1} = await createSampleUsers()
+    let info = {'name': 'LaLa'}
+    let result =  [{
+            'updateOne':{
+              'filter': {'_id': user1._id},
+              'update': {$set :{ name: 'LaLa', address: 'Lygten 1', maritalStatus: 'unknown' }}
+          } 
+      }]
+    expect(user.updateUser(user1, info)).toEqual(result)
+  })
+
+
+  test('update spouse return the correct bulkwrite', async () => {
+    let {user1, user2} = await createSampleUsers()
+    let string = [
+      {
+        'updateOne': {
+        'filter':{'_id': user1._id},
+        'update': {'$push':{'spouse': user2}}    }}
+    ]
+    expect(user.updateSpouse(user1, 'married', user2)).toEqual(expect.arrayContaining(string))
+  })
+
+
+  test('upadte child should return the correct bulkwrite', async () => {
+    let {user1, user4} = await createSampleUsers()
+    let string = [
+      {
+        'updateOne': {
+        'filter':{'_id': user1._id},
+        'update': {'$push':{'children': user4}}    }}
+    ]
+    expect(user.updateChild(user1, user4)).toEqual(expect.arrayContaining(string))
+
+  })
+
+
+})
+
+
+
 describe('create user', () => {
 
   test(' createUser should return status 200, response: user created and userId', async () => {
@@ -99,50 +146,7 @@ describe('create user', () => {
   })
 })
 
-})
 
-
-describe('edit user', () => {
-
-  test('update user returns the correct bulkwrite', async () => {
-    let {user1, user2, user3} = await createSampleUsers()
-    let info = {'name': 'LaLa'}
-    let result =  [{
-            'updateOne':{
-              'filter': {'_id': user1._id},
-              'update': {$set :{ name: 'LaLa', address: 'Lygten 1', maritalStatus: 'unknown' }}
-          } 
-      }]
-    expect(user.updateUser(user1, info)).toEqual(result)
-  })
-
-
-  test('update spouse return the correct bulkwrite', async () => {
-    let {user1, user2, user3} = await createSampleUsers()
-    let string = [
-      {
-        'updateOne': {
-        'filter':{'_id': user1._id},
-        'update': {'$push':{'spouse': user2}}    }}
-    ]
-    expect(user.updateSpouse(user1, 'married', user2)).toEqual(expect.arrayContaining(string))
-  })
-
-
-  test('upadte child should return the correct bulkwrite', async () => {
-    let {user1, user4} = await createSampleUsers()
-    let string = [
-      {
-        'updateOne': {
-        'filter':{'_id': user1._id},
-        'update': {'$push':{'children': user4}}    }}
-    ]
-    expect(user.updateChild(user1, user4)).toEqual(expect.arrayContaining(string))
-
-  })
-
-
-})
 
 
 
