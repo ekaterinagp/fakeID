@@ -162,4 +162,85 @@ class SharedFunctions
     //@codeCoverageIgnoreStart
   }
   //@codeCoverageIgnoreEnd
+
+  function getUserAge($id, $array)
+  {
+    foreach ($array as $item) {
+      if ($item['id'] == $id) {
+        $itemToCompare = $item;
+        $userAge = (int)(substr($itemToCompare['date_of_birth'], -2));
+        // echo json_encode($userAge);
+
+        if ($userAge < 20) {
+          $year = "20" . $userAge;
+          $age = (int)date("Y") - (int)$year;
+        } else {
+          $year = "19" . $userAge;
+          $age = (int)date("Y") - (int)$year;
+        }
+
+        return $age;
+      }
+    }
+  }
+
+
+
+  function getAllAvailableChildren($id)
+  {
+    $sql = " SELECT * FROM user LEFT JOIN family_relation ON  user.id=family_relation.child_id GROUP BY user.id HAVING COUNT(user.id) < 2";
+    $conn  = new Database();
+    $statement = $conn->connectToDatabase()->prepare($sql);
+
+
+    if ($statement->execute()) {
+      $children = $statement->fetchAll(PDO::FETCH_ASSOC);
+      $conn = null;
+      $functions = new SharedFunctions();
+      $newFunction = new SharedFunctions();
+      $ageToCompare = $newFunction->getUserAge($id, $children);
+      $spouse = $functions->getSpouseByID($id)[0];
+
+      $tempArray = [];
+      $newArray = [];
+      foreach ($children as $child) {
+
+        if ($child['id'] !== $id && $child['CVR'] == null && $child['id'] !== $spouse['id'] && $child['parent_id'] !== $id) {
+          // echo json_encode($age);
+          $userAge = (int)(substr($child['date_of_birth'], -2));
+
+          // echo json_encode($userAge);
+
+          if ($userAge < 20) {
+            $year = "20" . $userAge;
+            $child['age'] = (int)date("Y") - (int)$year;
+          } else {
+            $year = "19" . $userAge;
+            $child['age'] = (int)date("Y") - (int)$year;
+          }
+
+
+          // echo json_encode($child);
+          array_push($tempArray, $child);
+        }
+      }
+      // echo json_encode($tempArray);
+      foreach ($tempArray as $user) {
+        if ($ageToCompare - $user['age'] > 18) {
+          array_push($newArray, $user);
+        }
+      }
+
+      // echo $ageToCompare;
+      // echo json_encode($newArray);
+
+
+      return $newArray;
+    }
+
+
+
+    //@codeCoverageIgnoreStart
+  }
+  //@codeCoverageIgnoreEnd
 }

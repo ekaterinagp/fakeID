@@ -221,4 +221,11 @@ class sharedFunctionsTest extends TestCase
         $parentList = $this->SharedFunctions->getParentByID(11);
         $this->assertEquals(null, $parentList);
     }
+
+    public function testGetAllPossibleChildrenAsArray()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $childrenList = $this->SharedFunctions->getAllAvailableChildren(2);
+        $this->assertIsArray($childrenList);
+    }
 }
