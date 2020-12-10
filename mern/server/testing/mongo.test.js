@@ -71,20 +71,30 @@ describe('User methods', () => {
 
 describe('create user', () => {
 
-  test('test if createUser returns correct response', async () => {
+  test(' createUser should return status 200, response: user created and userId', async () => {
     let info = { 
       'name': 'new user',
       'address': 'Lygten 500',
       'dateOfBirth': '040506',
       'genderIdentification': '0001',
-      'maritalStatus': 'unknown'
     }
     let result = await user.createUser(info)
+    console.log(result)
     expect(result.status).toBe(200)
     expect(result.response).toBe('user created')
 
     let createdUser = await user.findById(result.userId)
     expect(createdUser.name).toBe('new user')
+  })
+
+
+  test('createUser with missing information returns error', async () => {
+    let info = {
+      'address': 'Lygten 500',
+    }
+    let result = await user.createUser(info)
+    expect(result.status).toBe(400)
+    expect(result.response).toBe('missing fields')
   })
 })
 
