@@ -112,16 +112,52 @@ class SharedFunctions
   }
   //@codeCoverageIgnoreEnd
 
-  function getSpouseNameByID($id)
+  function getSpouseByID($id)
   {
-    $sql = " SELECT user.name FROM user WHERE spouse_id= $id";
+    $sql = " SELECT * FROM user WHERE spouse_id= $id";
     $conn  = new Database();
     $statement = $conn->connectToDatabase()->prepare($sql);
     if ($statement->execute()) {
-      $spouseName = $statement->fetchAll(PDO::FETCH_ASSOC);
+      $spouse = $statement->fetchAll(PDO::FETCH_ASSOC);
       $conn = null;
 
-      return $spouseName;
+      return $spouse;
+    }
+    //@codeCoverageIgnoreStart
+  }
+  //@codeCoverageIgnoreEnd
+
+  function getChildrenByID($id)
+  {
+    $sql = "SELECT * FROM user INNER JOIN user_family_relation ON user.id=user_family_relation.user_id INNER JOIN family_relation ON child_id=user.id WHERE family_relation.parent_id=$id GROUP BY user.id";
+    $conn  = new Database();
+    $statement = $conn->connectToDatabase()->prepare($sql);
+    if ($statement->execute()) {
+      $children = $statement->fetchAll(PDO::FETCH_ASSOC);
+      $conn = null;
+      if ($children) {
+        return $children;
+      } else {
+        return NULL;
+      }
+    }
+    //@codeCoverageIgnoreStart
+  }
+  //@codeCoverageIgnoreEnd
+
+  function getParentByID($id)
+  {
+    $sql = "SELECT * FROM user INNER JOIN user_family_relation ON user.id=user_family_relation.user_id INNER JOIN family_relation ON parent_id=user.id WHERE family_relation.child_id=$id GROUP BY user.id";
+    $conn  = new Database();
+    $statement = $conn->connectToDatabase()->prepare($sql);
+    if ($statement->execute()) {
+      $parents = $statement->fetchAll(PDO::FETCH_ASSOC);
+      $conn = null;
+      if ($parents) {
+        return $parents;
+      } else {
+        return NULL;
+      }
     }
     //@codeCoverageIgnoreStart
   }

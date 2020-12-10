@@ -1,4 +1,5 @@
-const {  ObjectID } = require('mongodb')
+
+const { ObjectID } = require('mongodb');
 
 class User {
 
