@@ -170,20 +170,22 @@ class SharedFunctions
         $itemToCompare = $item;
         $userAge = (int)(substr($itemToCompare['date_of_birth'], -2));
         // echo json_encode($userAge);
+        $year = "20" . $userAge;
+        $age = (int)date("Y") - (int)$year;
 
-        if ($userAge < 20) {
-          $year = "20" . $userAge;
-          $age = (int)date("Y") - (int)$year;
-        } else {
+        if ($userAge > 20) {
           $year = "19" . $userAge;
           $age = (int)date("Y") - (int)$year;
         }
 
+
+
         return $age;
       }
     }
+    //@codeCoverageIgnoreStart
   }
-
+  //@codeCoverageIgnoreEnd
 
 
   function getAllAvailableChildren($id)
@@ -206,21 +208,17 @@ class SharedFunctions
       foreach ($children as $child) {
 
         if ($child['id'] !== $id && $child['CVR'] == null && $child['id'] !== $spouse['id'] && $child['parent_id'] !== $id) {
-          // echo json_encode($age);
           $userAge = (int)(substr($child['date_of_birth'], -2));
 
-          // echo json_encode($userAge);
+          $year = "20" . $userAge;
+          $child['age'] = (int)date("Y") - (int)$year;
 
-          if ($userAge < 20) {
-            $year = "20" . $userAge;
-            $child['age'] = (int)date("Y") - (int)$year;
-          } else {
+
+          if ($userAge > 20) {
             $year = "19" . $userAge;
             $child['age'] = (int)date("Y") - (int)$year;
           }
 
-
-          // echo json_encode($child);
           array_push($tempArray, $child);
         }
       }
@@ -230,10 +228,6 @@ class SharedFunctions
           array_push($newArray, $user);
         }
       }
-
-      // echo $ageToCompare;
-      // echo json_encode($newArray);
-
 
       return $newArray;
     }

@@ -159,6 +159,9 @@ function createUser()
 function updateSpouse($id, $spouseID, $statusID)
 {
     global $conn;
+    // if ($spouseID == "update") {
+    //     $id = null;
+    // }
 
     $sql = 'UPDATE user SET spouse_id=:id, marital_status_id=:marital_status_id WHERE id=:spouse_id';
     $statement = $conn->connectToDatabase()->prepare($sql);
@@ -169,7 +172,30 @@ function updateSpouse($id, $spouseID, $statusID)
     ];
     if ($statement->execute($data)) {
         $response = ['status' => 1, 'message' => 'spouse user updated '];
-        echo json_encode($response);
+        // echo json_encode($response);
+    }
+}
+
+function changeSpousestatus($id, $status)
+{
+    $users = new SharedFunctions();
+    $users = $users->getAllUsers();
+    global $conn;
+
+    foreach ($users as $user) {
+        if ($user['spouse_id'] == $id) {
+            $sql = 'UPDATE user SET spouse_id=NULL, marital_status_id=:marital_status_id WHERE spouse_id=:id';
+            $statement = $conn->connectToDatabase()->prepare($sql);
+            $data = [
+
+                ':id' => $id,
+                ':marital_status_id' => $status
+            ];
+            if ($statement->execute($data)) {
+                $response = ['status' => 1, 'message' => 'spouse user updated '];
+                // echo json_encode($response);
+            }
+        }
     }
 }
 
@@ -216,10 +242,16 @@ function updateUser($id)
     ];
     $statement = $conn->connectToDatabase()->prepare($sql);
 
-
-    if (!empty($user->spouse_id)) {
-        updateSpouse($user->id, $user->spouse_id, $user->marital_status_id);
+    if ($user->spouse_id == "update") {
+        changeSpousestatus($user->id, $user->marital_status_id);
     }
+
+    updateSpouse($user->id, $user->spouse_id, $user->marital_status_id);
+
+
+
+
+
 
     if ($statement->execute($data)) {
         $response = ['status' => 1, 'message' => 'user updated '];

@@ -222,10 +222,41 @@ class sharedFunctionsTest extends TestCase
         $this->assertEquals(null, $parentList);
     }
 
+    public function testGetUserAge()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $array = array();
+        $array[0] = array(
+            "id" => 6,
+            "date_of_birth" => "260383"
+        );
+        $array[1] = array(
+            "id" => 7,
+            "date_of_birth" => "260385"
+        );
+
+        $age = $this->SharedFunctions->getUserAge(6, $array);
+        $this->assertEquals(37, $age);
+    }
+
     public function testGetAllPossibleChildrenAsArray()
     {
         $this->SharedFunctions = new SharedFunctions();
         $childrenList = $this->SharedFunctions->getAllAvailableChildren(2);
         $this->assertIsArray($childrenList);
+    }
+
+    public function testNoEmployeesOnChildrenList()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $childrenList = $this->SharedFunctions->getAllAvailableChildren(6);
+        $this->assertNull($childrenList[0]['CVR']);
+    }
+
+    public function testNoUserIdOnChildrenList()
+    {
+        $this->SharedFunctions = new SharedFunctions();
+        $childrenList = $this->SharedFunctions->getAllAvailableChildren(6);
+        $this->assertNotContains(6, $childrenList);
     }
 }

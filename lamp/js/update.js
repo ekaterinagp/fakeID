@@ -28,6 +28,11 @@ function getDataToUpdate(id) {
   let addressIDToUpdate = show_selected("addressSelect");
   let spouseToUpdate = show_selected("spouseSelect");
   let statusToUpdate = show_selected("statusSelect");
+  if (statusToUpdate == 3 || 4 || 6 || 7) {
+    spouseToUpdate = "update";
+  }
+
+  console.log(spouseToUpdate);
 
   let userToUpdate = {
     id: id,
@@ -52,10 +57,10 @@ async function submitUpdateForm(user) {
 
   console.log(response);
   const data = await response.json();
-  if(response.status){
-    createNotification('success', 'User updated')
-  }else{
-    createNotification('error', response.message)
+  if (response.status) {
+    createNotification("success", "User updated");
+  } else {
+    createNotification("error", response.message);
   }
 
   // if (data.status == 1) {
@@ -63,20 +68,19 @@ async function submitUpdateForm(user) {
   // }
 }
 
-
 const changeView = (view) => {
-  let info = document.querySelector('.userContainer .user')
-  let edit = document.querySelector('.editContainer')
-  let tabs = document.querySelectorAll('.tabs button')
-  if(view == 'info'){
-    edit.style.display = 'none'
-    info.style.display = 'block'
-    tabs[0].style.borderBottom = 'none'
-    tabs[1].style.borderBottom = '1px solid lightgrey'
-  }else{
-    edit.style.display = 'block'
-    info.style.display = 'none'
-    tabs[1].style.borderBottom = 'none'
-    tabs[0].style.borderBottom = '1px solid lightgrey'
+  let info = document.querySelector(".userContainer .user");
+  let edit = document.querySelector(".editContainer");
+  let tabs = document.querySelectorAll(".tabs button");
+  if (view == "info") {
+    edit.style.display = "none";
+    info.style.display = "block";
+    tabs[0].style.borderBottom = "none";
+    tabs[1].style.borderBottom = "1px solid lightgrey";
+  } else {
+    edit.style.display = "block";
+    info.style.display = "none";
+    tabs[1].style.borderBottom = "none";
+    tabs[0].style.borderBottom = "1px solid lightgrey";
   }
-}
+};
