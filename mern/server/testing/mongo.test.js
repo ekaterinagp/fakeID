@@ -69,6 +69,25 @@ describe('User methods', () => {
   })
 
 
+describe('create user', () => {
+
+  test('test if createUser returns correct response', async () => {
+    let info = { 
+      'name': 'new user',
+      'address': 'Lygten 500',
+      'dateOfBirth': '040506',
+      'genderIdentification': '0001',
+      'maritalStatus': 'unknown'
+    }
+    let result = await user.createUser(info)
+    expect(result.status).toBe(200)
+    expect(result.response).toBe('user created')
+
+    let createdUser = await user.findById(result.userId)
+    expect(createdUser.name).toBe('new user')
+  })
+})
+
 })
 
 
@@ -79,7 +98,6 @@ async function createSampleUsers() {
     name: "First user",
     dateOfBirth: "010101",
     address: 'Lygten 1',
-    companyNamy: 329.99,
     CPR: '0101010001',
     maritalStatus: 'unknown',
     genderIdentification:'0001'

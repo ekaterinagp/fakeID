@@ -51,6 +51,26 @@ class User {
               return 'female'
           }
       }
+
+
+      async createUser(info){
+          let { name, address, maritalStatus, gender, dateOfBirth, CVR, companyName } = info
+          if(!name && !address && !maritalStatus && !gender && !dateOfBirth && !CVR && !companyName){
+              return { status:400, response: 'missing fields' }
+            }
+            if(gender === '0001' || gender === '0002'){
+                return { status:400, response: 'gender not available' }
+          }
+        try{
+            const result = await this.collection.insertOne({...info})
+                return {status: 200, response: 'user created', userId: result.insertedId}
+            
+        }catch(err){
+            if(err){ return {status:400, response: err};}
+
+        }
+        
+      }
 }
 
 module.exports = User

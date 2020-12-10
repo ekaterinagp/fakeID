@@ -29,5 +29,14 @@ router.get('/users/:id', async (req, res) => {
     }
 })
 
+
+
+router.post('/users', async (req, res) => {
+    let userEntity = new User(db)
+    let {response, status} = await userEntity.userCreateUser(req.body)
+    return res.status(status).send(response)
+})
+
+
 module.exports = router;
 
