@@ -1,4 +1,4 @@
-const { ObjectId } = require('mongodb')
+const {  ObjectID } = require('mongodb')
 
 class User {
 
@@ -17,7 +17,7 @@ class User {
       }
 
       findById(userId) {
-        return this.collection.findOne({ _id: new ObjectId(userId) });
+        return this.collection.findOne({ _id: new ObjectID(userId) });
       }
       
      formatDateOfBirth(dateOfBirth){
@@ -49,6 +49,82 @@ class User {
           }else{
               return 'female'
           }
+      }
+
+
+
+
+
+
+      updateUser(user, info){
+        let { name, address, maritalStatus } = info;
+        if(!name === undefined){
+            name = user.name
+        }
+        if(address === undefined){
+            address = user.address
+        }
+        if(maritalStatus === undefined){
+            maritalStatus = user.maritalStatus
+        }
+        let bulkUpdates = [{
+            'updateOne':{
+                'filter': {'_id': ObjectID(user._id)},
+                'update': {$set :{ name: name, address: address, maritalStatus: maritalStatus }}
+            } 
+        }]
+        return bulkUpdates;
+      }
+
+      updateSpouse(user, maritalStatus, spouse){
+       let bulkUpdates = []
+        if(maritalStatus == 'married' || maritalStatus == 'registeredPartnership'){
+            bulkUpdates.push({
+                'updateOne': {
+                    'filter':{'_id': ObjectID(user._id)},
+                    'update': {'$push':{'spouse': spouse}}
+                }
+                })
+            bulkUpdates.push({'updateOne': {
+                    'filter':{'_id': ObjectID(spouse._id)},
+                    'update': {'$push':{'spouse': user}, $set : {'maritalStatus': maritalStatus}}
+                }
+            })
+
+        }else{
+            bulkUpdates.push({
+                'updateOne': {
+                    'filter':{'_id': ObjectID(user._id)},
+                    'update': {'$pull':{'spouse': {'_id': ObjectID(spouse._id)}}}
+                }
+            })
+            bulkUpdates.push({
+                    'updateOne': {
+                    'filter':{'_id': ObjectID(spouse._id)},
+                    'update': {'$pull':{'spouse': {'_id': user._id}}, $set : {'maritalStatus': maritalStatus}}
+                }
+            })
+        }      
+        return bulkUpdates
+      }
+
+
+
+      updateChild(user, child){
+        let bulkUpdates = []
+        bulkUpdates.push({
+            'updateOne': {
+                'filter':{'_id': ObjectID(user._id)},
+                'update': {'$push':{'children': child}}
+            }
+        })
+        bulkUpdates.push({
+            'updateOne': {
+                'filter':{'_id': ObjectID(child._id)},
+                'update': {'$push':{'parents': user}}
+            }
+        })
+        return bulkUpdates
       }
 
 }
