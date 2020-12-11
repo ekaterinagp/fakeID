@@ -104,7 +104,7 @@ class User {
 
       updateSpouse(user, maritalStatus, spouse){
        let bulkUpdates = []
-        if(maritalStatus == 'married' || maritalStatus == 'registeredPartnership'){
+        if(maritalStatus == '2' || maritalStatus == '5'){
             bulkUpdates.push({
                 'updateOne': {
                     'filter':{'_id': ObjectID(user._id)},
