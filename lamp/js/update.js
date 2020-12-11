@@ -1,17 +1,12 @@
-"use strict";
+window.addEventListener("loaded", init);
 
-let userName = document.querySelector('input[name="name"]').value;
-let userAddressID = show_selected("addressSelect");
-let userSpouseID = show_selected("spouseSelect");
-let userStatus = show_selected("statusSelect");
-console.log(userAddressID, userName, userSpouseID, userStatus);
-
-let user = {
-  name: userName,
-  address_id: userAddressID,
-  marital_status_id: userStatus,
-  spouse_id: userSpouseID,
-};
+const userId = new URLSearchParams(window.location.search).get("id");
+console.log(userId);
+let userToUpdate;
+async function init() {
+  userToUpdate = await getUserById(userId);
+  console.log("here to look", userToUpdate);
+}
 
 function show_selected(type) {
   let selector = document.getElementById(type);
@@ -26,19 +21,42 @@ function show_selected(type) {
 function getDataToUpdate(id) {
   let nameToUpdate = document.querySelector('input[name="name"]').value;
   let addressIDToUpdate = show_selected("addressSelect");
-  let spouseToUpdate = show_selected("spouseSelect");
+  let spouseToUpdate;
+  if (
+    userToUpdate[0].marital_status_id == 3 ||
+    userToUpdate[0].marital_status_id == 4 ||
+    userToUpdate[0].marital_status_id == 6 ||
+    userToUpdate[0].marital_status_id == 7 ||
+    userToUpdate[0].marital_status_id == 8 ||
+    userToUpdate[0].marital_status_id == 1
+  ) {
+    console.log(" no spouse");
+    spouseToUpdate = show_selected("spouseSelect");
+  } else {
+    console.log("spouse");
+    spouseToUpdate = userToUpdate[0].spouse_id;
+  }
+  let changeStatus;
   let statusToUpdate = show_selected("statusSelect");
+  let childToUpdate = show_selected("childSelect");
+  if (statusToUpdate == 3 || 4 || 6 || 7 || 1 || 8) {
+    changeStatus = "updatestatusForSpouse";
+  }
 
-  let userToUpdate = {
+  console.log(spouseToUpdate);
+
+  let userToSend = {
     id: id,
     name: nameToUpdate,
     address_id: addressIDToUpdate,
     spouse_id: spouseToUpdate,
     marital_status_id: statusToUpdate,
+    child_id: childToUpdate,
+    change_status: changeStatus,
   };
 
-  console.log(userToUpdate);
-  submitUpdateForm(userToUpdate);
+  console.log(userToSend);
+  submitUpdateForm(userToSend);
 }
 
 async function submitUpdateForm(user) {
@@ -52,31 +70,38 @@ async function submitUpdateForm(user) {
 
   console.log(response);
   const data = await response.json();
-  if(response.status){
-    createNotification('success', 'User updated')
-  }else{
-    createNotification('error', response.message)
+  if (response.status) {
+    createNotification("success", "User updated");
+  } else {
+    createNotification("error", response.message);
   }
-
-  // if (data.status == 1) {
-  //   window.location.href = path + "/";
-  // }
 }
 
-
-const changeView = (view) => {
-  let info = document.querySelector('.userContainer .user')
-  let edit = document.querySelector('.editContainer')
-  let tabs = document.querySelectorAll('.tabs button')
-  if(view == 'info'){
-    edit.style.display = 'none'
-    info.style.display = 'block'
-    tabs[0].style.borderBottom = 'none'
-    tabs[1].style.borderBottom = '1px solid lightgrey'
-  }else{
-    edit.style.display = 'block'
-    info.style.display = 'none'
-    tabs[1].style.borderBottom = 'none'
-    tabs[0].style.borderBottom = '1px solid lightgrey'
+function changeView(view) {
+  let info = document.querySelector(".userContainer .user");
+  let edit = document.querySelector(".editContainer");
+  let tabs = document.querySelectorAll(".tabs button");
+  if (view == "info") {
+    edit.style.display = "none";
+    info.style.display = "block";
+    tabs[0].style.borderBottom = "none";
+    tabs[1].style.borderBottom = "1px solid lightgrey";
+  } else {
+    edit.style.display = "block";
+    info.style.display = "none";
+    tabs[1].style.borderBottom = "none";
+    tabs[0].style.borderBottom = "1px solid lightgrey";
   }
+}
+
+function getUserById(id) {
+  const endpoint = path + `api/users/` + id;
+  return new Promise((resolve, reject) => {
+    fetch(endpoint)
+      .then((res) => res.json())
+      .then((user) => {
+        console.log(user);
+        resolve(user);
+      });
+  });
 }
