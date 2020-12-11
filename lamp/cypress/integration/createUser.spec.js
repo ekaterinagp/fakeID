@@ -7,10 +7,10 @@ it('finds the content "type"', () => {
 describe("Create an employee user", () => {
   let user = {
     name: "Martina RoRoRo",
-    dateOfBirth: "021025",
+    dateOfBirth: "021065",
     address_id: 1,
     genderValue: "0002",
-    isEmployee: false,
+    isEmployee: true,
     // profileAddressId: 2,
     // description: `Martin Rhode description`
   };
