@@ -5,9 +5,9 @@ import {
     Route,
     NavLink,
   } from "react-router-dom";
-  import Overview from '../../pages/Overview'
-  import CreateUser from '../../pages/CreateUser'
-  import SingleUser from '../../pages/SingleUser'
+  import Overview from '../pages/Overview'
+  import CreateUser from '../pages/CreateUser'
+  import SingleUser from '../pages/SingleUser'
   import './header.css'
 
 
