@@ -18,7 +18,7 @@ class User {
       }
 
       findById(userId) {
-        return this.collection.findOne({ _id:  new ObjectID(userId) });
+        return this.collection.findOne({ _id: new ObjectID(userId) });
       }
       
      formatDateOfBirth(dateOfBirth){
@@ -51,6 +51,108 @@ class User {
               return 'female'
           }
       }
+
+
+      async createUser(info){
+          let { name, address,  genderIdentification, dateOfBirth, isEmployee} = info
+          if(!name && !address && !genderIdentification && !dateOfBirth && !isEmployee){
+              return { status:400, response: 'missing fields' }
+            }
+            if(!name || !address || !dateOfBirth || !genderIdentification){
+                return { status:400, response: 'missing fields' }
+            }
+            if(genderIdentification !== '0001' && genderIdentification !== '0002'){
+                return { status:400, response: 'gender not available' }
+            }
+            if(isEmployee){
+                info.CVR = '12345678'
+                info.companyName = 'EE A/S';
+                delete info.isEmployee;
+            }
+            try{
+                const result = await this.collection.insertOne({...info})
+                return {status: 200, response: 'user created', userId: result.insertedId}
+                
+            }catch(err){
+                if(err)return {status:400, response: err};
+            }
+        
+      }
+
+
+
+
+      updateUser(user, info){
+        let { name, address, maritalStatus } = info;
+        if(!name === undefined){
+            name = user.name
+        }
+        if(address === undefined){
+            address = user.address
+        }
+        if(maritalStatus === undefined){
+            maritalStatus = user.maritalStatus
+        }
+        let bulkUpdates = [{
+            'updateOne':{
+                'filter': {'_id': ObjectID(user._id)},
+                'update': {$set :{ name: name, address: address, maritalStatus: maritalStatus }}
+            } 
+        }]
+        return bulkUpdates;
+      }
+
+      updateSpouse(user, maritalStatus, spouse){
+       let bulkUpdates = []
+        if(maritalStatus == 'married' || maritalStatus == 'registeredPartnership'){
+            bulkUpdates.push({
+                'updateOne': {
+                    'filter':{'_id': ObjectID(user._id)},
+                    'update': {'$push':{'spouse': spouse}}
+                }
+                })
+            bulkUpdates.push({'updateOne': {
+                    'filter':{'_id': ObjectID(spouse._id)},
+                    'update': {'$push':{'spouse': user}, $set : {'maritalStatus': maritalStatus}}
+                }
+            })
+
+        }else{
+            bulkUpdates.push({
+                'updateOne': {
+                    'filter':{'_id': ObjectID(user._id)},
+                    'update': {'$pull':{'spouse': {'_id': ObjectID(spouse._id)}}}
+                }
+            })
+            bulkUpdates.push({
+                    'updateOne': {
+                    'filter':{'_id': ObjectID(spouse._id)},
+                    'update': {'$pull':{'spouse': {'_id': user._id}}, $set : {'maritalStatus': maritalStatus}}
+                }
+            })
+        }      
+        return bulkUpdates
+      }
+
+
+
+      updateChild(user, child){
+        let bulkUpdates = []
+        bulkUpdates.push({
+            'updateOne': {
+                'filter':{'_id': ObjectID(user._id)},
+                'update': {'$push':{'children': child}}
+            }
+        })
+        bulkUpdates.push({
+            'updateOne': {
+                'filter':{'_id': ObjectID(child._id)},
+                'update': {'$push':{'parents': user}}
+            }
+        })
+        return bulkUpdates
+      }
+
 }
 
 module.exports = User

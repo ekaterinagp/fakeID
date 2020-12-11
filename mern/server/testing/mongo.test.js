@@ -1,5 +1,6 @@
 const TestDbHelper = require("./helper");
 const User = require("./../classes/User");
+const request = require('supertest')
 
 const dbHelper = new TestDbHelper();
 
@@ -72,6 +73,83 @@ describe('User methods', () => {
 })
 
 
+describe('edit user', () => {
+
+  test('update user returns the correct bulkwrite', async () => {
+    let {user1} = await createSampleUsers()
+    let info = {'name': 'LaLa'}
+    let result =  [{
+            'updateOne':{
+              'filter': {'_id': user1._id},
+              'update': {$set :{ name: 'LaLa', address: 'Lygten 1', maritalStatus: 'unknown' }}
+          } 
+      }]
+    expect(user.updateUser(user1, info)).toEqual(result)
+  })
+
+
+  test('update spouse return the correct bulkwrite', async () => {
+    let {user1, user2} = await createSampleUsers()
+    let string = [
+      {
+        'updateOne': {
+        'filter':{'_id': user1._id},
+        'update': {'$push':{'spouse': user2}}    }}
+    ]
+    expect(user.updateSpouse(user1, 'married', user2)).toEqual(expect.arrayContaining(string))
+  })
+
+
+  test('upadte child should return the correct bulkwrite', async () => {
+    let {user1, user4} = await createSampleUsers()
+    let string = [
+      {
+        'updateOne': {
+        'filter':{'_id': user1._id},
+        'update': {'$push':{'children': user4}}    }}
+    ]
+    expect(user.updateChild(user1, user4)).toEqual(expect.arrayContaining(string))
+
+  })
+
+
+})
+
+
+
+describe('create user', () => {
+
+  test(' createUser should return status 200, response: user created and userId', async () => {
+    let info = { 
+      'name': 'new user',
+      'address': 'Lygten 500',
+      'dateOfBirth': '040506',
+      'genderIdentification': '0001',
+    }
+    let result = await user.createUser(info)
+    console.log(result)
+    expect(result.status).toBe(200)
+    expect(result.response).toBe('user created')
+
+    let createdUser = await user.findById(result.userId)
+    expect(createdUser.name).toBe('new user')
+  })
+
+
+  test('createUser with missing information returns error', async () => {
+    let info = {
+      'address': 'Lygten 500',
+    }
+    let result = await user.createUser(info)
+    expect(result.status).toBe(400)
+    expect(result.response).toBe('missing fields')
+  })
+})
+
+
+
+
+
 
 
 async function createSampleUsers() {
@@ -79,7 +157,6 @@ async function createSampleUsers() {
     name: "First user",
     dateOfBirth: "010101",
     address: 'Lygten 1',
-    companyNamy: 329.99,
     CPR: '0101010001',
     maritalStatus: 'unknown',
     genderIdentification:'0001'
@@ -102,6 +179,14 @@ async function createSampleUsers() {
     spouse : {_id :123456, name:'some guy'},
     genderIdentification:'0002'
   });
+  const user4 = await dbHelper.createDoc(user.collectionName, {
+    name: "Fourth user",
+    dateOfBirth: "101215",
+    address: 'Lygten',
+    CPR:'1012150002' ,
+    maritalStatus : 'unknown',
+    genderIdentification:'0002'
+  });
 
-  return { user1, user2, user3 };
+  return { user1, user2, user3, user4 };
 }

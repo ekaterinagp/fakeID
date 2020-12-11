@@ -1,2 +1,7 @@
 node_modules
 .phpunit.cache
+
+cypress/fixtures
+cypress/plugins
+cypress/support/
+cypress/integration/examples
