@@ -85,7 +85,7 @@ require_once(__DIR__ . '/components/menu.php');
   <h3>Gender</h3><p>' . $User->getGenderValue($user->gender_value) . '</p>
   <div ' . $class . '>
   <h3>Marital status</h3>
-  <p> ' . $maritalStatus . '</p>
+  <p id="statusCheck"> ' . $maritalStatus . '</p>
   <div ' . $classStatus . '>
   <h3>Partner</h3>
   <a href ="user.php?id=' . $partnerId . '"><p>' . $partnerName . ' </p></a></div>
@@ -145,6 +145,25 @@ require_once(__DIR__ . '/components/menu.php');
     </select>
     <label for=""> Available spouses</label>
   </div>
+  <div class=" <?php if ($companyName) {
+                  echo 'hidden';
+                } else {
+                  echo 'form-field';
+                }  ?>">
+    <select name="child_id" id="childSelect">
+      <option value="" disabled selected>Select Child</option>
+      <?php
+      foreach ($getFunction->getAllAvailableChildren($id) as $child) {
+        echo json_encode($child);
+        echo '<option value="' . $child['id'] . '">' . $child['name'] . '</option>';
+      } ?>
+
+
+
+    </select>
+    <label for=""> Available children</label>
+  </div>
+
 
   <div class=" <?php if ($companyName) {
                   echo 'hidden';
@@ -171,7 +190,7 @@ require_once(__DIR__ . '/components/menu.php');
                 } else {
                   echo 'hidden';
                 }  ?>">
-    <input type="text" readonly name="spouse" value="<?php echo '' . $partnerName . ''; ?>">
+    <input type="text" id="<?php echo '' . $partnerId . ''; ?>" readonly name="spouse" class="spouseToSelect" value="<?php echo '' . $partnerName . ''; ?>">
 
     <label for="">Partner</label>
   </div>

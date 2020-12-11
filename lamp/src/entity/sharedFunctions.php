@@ -129,7 +129,7 @@ class SharedFunctions
 
   function getChildrenByID($id)
   {
-    $sql = "SELECT * FROM user INNER JOIN user_family_relation ON user.id=user_family_relation.user_id INNER JOIN family_relation ON child_id=user.id WHERE family_relation.parent_id=$id GROUP BY user.id";
+    $sql = "SELECT * FROM user INNER JOIN family_relation ON child_id=user.id WHERE family_relation.parent_id=$id GROUP BY user.id";
     $conn  = new Database();
     $statement = $conn->connectToDatabase()->prepare($sql);
     if ($statement->execute()) {
@@ -147,7 +147,7 @@ class SharedFunctions
 
   function getParentByID($id)
   {
-    $sql = "SELECT * FROM user INNER JOIN user_family_relation ON user.id=user_family_relation.user_id INNER JOIN family_relation ON parent_id=user.id WHERE family_relation.child_id=$id GROUP BY user.id";
+    $sql = "SELECT * FROM user INNER JOIN family_relation ON parent_id=user.id WHERE family_relation.child_id=$id GROUP BY user.id";
     $conn  = new Database();
     $statement = $conn->connectToDatabase()->prepare($sql);
     if ($statement->execute()) {
