@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import './overview.css'
-import User from './../components/User'
 
 export default function Overview(){
     const [ loading, setLoading ] = useState(true)
@@ -26,7 +26,7 @@ export default function Overview(){
     if(loading){
         return <div className="loader">LOADING</div>
     }
-    
+    console.log(users)
     return(
         <div>
             <h2>Overview</h2>
@@ -34,8 +34,11 @@ export default function Overview(){
                 {users.map(user => {
                   return (
                       <div key={user._id} className="singleUser">
-                          <User {...user}/>                          
-                          <button>Edit</button> 
+                          <h3>{user.name}</h3>
+                            <p>{user.age < 18 ? 'Child': 'Adult'}</p> 
+                            <p>{user.CVR? 'Employee' : ''}</p>
+                            <p>{user.maritalStatus}</p>
+                            <NavLink className="button" to={"/user/"+user._id}>Edit</NavLink>
                       </div>
                   )
                 })}

@@ -13,8 +13,15 @@ class User {
        * Find a specific product document by ID
        * @param {ObjectID} userId
        */
-      getAll(){
-          return this.collection.find().toArray();
+      async getAll(){
+        let users =  await this.collection.find().toArray();
+        users = users.map(user => {
+            user.age = this.calculateAge(user.dateOfBirth)
+            user.gender = this.getGenderValue(user.genderIdentification)
+            user.maritalStatus? user.maritalStatus= this.getMaritalStatus(user.maritalStatus) : null
+            return user
+        })
+        return users;
       }
 
       findById(userId) {
@@ -51,7 +58,18 @@ class User {
               return 'female'
           }
       }
-
+       getMaritalStatus  (maritalStatus) {
+        maritalStatus = parseInt(maritalStatus)
+        if(maritalStatus === 1) return 'Single'
+        if(maritalStatus === 2) return 'Married'
+        if(maritalStatus === 3) return 'Divorced'
+        if(maritalStatus === 4) return 'Widow'
+        if(maritalStatus === 5) return 'Registered Partnership'
+        if(maritalStatus === 6) return 'Abolition of Registered Partnership'
+        if(maritalStatus === 7) return 'Deceased'
+        if(maritalStatus === 8) return 'Unknown'
+        
+      }
 
       async createUser(info){
           let { name, address,  genderIdentification, dateOfBirth, isEmployee} = info
