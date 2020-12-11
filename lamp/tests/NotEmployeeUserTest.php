@@ -69,12 +69,4 @@ class NotEmployeeTest extends TestCase
         $test =  $this->SharedFunctions->getSpouseByID(6);
         $this->assertNotEmpty($test);
     }
-
-    // public function testGetSpouseEqual()
-    // {
-    //     $test =  $this->SharedFunctions->getSpouseByID(6);
-    //     $this->assertEquals("Marina Ronni", $test[0]["name"]);
-    // }
-
-
 }

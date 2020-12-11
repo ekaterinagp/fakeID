@@ -17,7 +17,7 @@ async function submitCreateForm(event) {
 
   const formData = new FormData(document.querySelector("form"));
 
-  formData.set('date_of_birth', newDate)
+  formData.set("date_of_birth", newDate);
 
   let response = await fetch(path + "api/users", {
     method: "POST",
@@ -35,14 +35,3 @@ async function submitCreateForm(event) {
     createNotification("error", response.message);
   }
 }
-
-// function changeformat() {
-//   document.querySelector('input[name="date_of_birth"]').value.replace(/-/g, "");
-//   console.log(document.querySelector('input[name="date_of_birth"]').value);
-// }
-
-// document
-//   .querySelector('input[name="date_of_birth"]')
-//   .addEventListener("mouseOut", () => {
-//     changeformat();
-//   });
