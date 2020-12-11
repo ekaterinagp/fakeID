@@ -6,9 +6,15 @@ const {  ObjectID } = require('mongodb')
 
 
 router.get('/users', async (req, res) => {
-    let user = new User(db)
+    let userEntity = new User(db)
     try{
-        const users = await user.getAll()
+        const users = await userEntity.getAll()
+        users = users.map(user => {
+            user.age = this.calculateAge(user.dateOfBirth)
+            user.gender = this.getGenderValue(user.genderIdentification)
+            user.maritalStatusId? user.maritalStatus= this.getMaritalStatus(user.maritalStatusId) : null
+            return user
+        })
         return res.status(200).send(users)
 
     }catch(error){
@@ -24,6 +30,9 @@ router.get('/users/:id', async (req, res) => {
         if(!singleUser){
             return res.status(400).send({error: 'wrong ID'})
         }
+        singleUser.age = this.calculateAge(singleUser.dateOfBirth)
+        singleUser.gender = this.getGenderValue(singleUser.genderIdentification)
+        singleUser.maritalStatus? singleUser.maritalStatus= this.getMaritalStatus(singleUser.maritalStatus) : null
         return res.status(200).send({singleUser})
     }catch(err){
         if(err){console.log(error); return res.status(500).send({error}); }

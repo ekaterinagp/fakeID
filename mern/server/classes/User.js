@@ -15,21 +15,12 @@ class User {
        */
       async getAll(){
         let users =  await this.collection.find().toArray();
-        users = users.map(user => {
-            user.age = this.calculateAge(user.dateOfBirth)
-            user.gender = this.getGenderValue(user.genderIdentification)
-            user.maritalStatus? user.maritalStatus= this.getMaritalStatus(user.maritalStatus) : null
-            return user
-        })
-        return users;
+            return users;
       }
 
-      async findById(userId) {
-       let user = await  this.collection.findOne({ _id: new ObjectID(userId) });
-       user.age = this.calculateAge(user.dateOfBirth)
-       user.gender = this.getGenderValue(user.genderIdentification)
-       user.maritalStatus? user.maritalStatus= this.getMaritalStatus(user.maritalStatus) : null
-       return user
+       findById(userId) {
+       return this.collection.findOne({ _id: new ObjectID(userId) });
+      
       }
       
      formatDateOfBirth(dateOfBirth){
@@ -62,16 +53,16 @@ class User {
               return 'female'
           }
       }
-       getMaritalStatus  (maritalStatus) {
-        maritalStatus = parseInt(maritalStatus)
-        if(maritalStatus === 1) return 'Single'
-        if(maritalStatus === 2) return 'Married'
-        if(maritalStatus === 3) return 'Divorced'
-        if(maritalStatus === 4) return 'Widow'
-        if(maritalStatus === 5) return 'Registered Partnership'
-        if(maritalStatus === 6) return 'Abolition of Registered Partnership'
-        if(maritalStatus === 7) return 'Deceased'
-        if(maritalStatus === 8) return 'Unknown'
+       getMaritalStatus  (maritalStatusId) {
+        maritalStatusId = parseInt(maritalStatusId)
+        if(maritalStatusId === 1) return 'Single'
+        if(maritalStatusId === 2) return 'Married'
+        if(maritalStatusId === 3) return 'Divorced'
+        if(maritalStatusId === 4) return 'Widow'
+        if(maritalStatusId === 5) return 'Registered Partnership'
+        if(maritalStatusId === 6) return 'Abolition of Registered Partnership'
+        if(maritalStatusId === 7) return 'Deceased'
+        if(maritalStatusId === 8) return 'Unknown'
         
       }
 
@@ -105,28 +96,28 @@ class User {
 
 
       updateUser(user, info){
-        let { name, address, maritalStatus } = info;
+        let { name, address, maritalStatusId } = info;
         if(!name === undefined){
             name = user.name
         }
         if(address === undefined){
             address = user.address
         }
-        if(maritalStatus === undefined){
-            maritalStatus = user.maritalStatus
+        if(maritalStatusId === undefined){
+            maritalStatusId = user.maritalStatusId
         }
         let bulkUpdates = [{
             'updateOne':{
                 'filter': {'_id': ObjectID(user._id)},
-                'update': {$set :{ name: name, address: address, maritalStatus: maritalStatus }}
+                'update': {$set :{ name: name, address: address, maritalStatusId: maritalStatusId }}
             } 
         }]
         return bulkUpdates;
       }
 
-      updateSpouse(user, maritalStatus, spouse){
+      updateSpouse(user, maritalStatusId, spouse){
        let bulkUpdates = []
-        if(maritalStatus == '2' || maritalStatus == '5'){
+        if(maritalStatusId == '2' || maritalStatusId == '5'){
             bulkUpdates.push({
                 'updateOne': {
                     'filter':{'_id': ObjectID(user._id)},
@@ -135,7 +126,7 @@ class User {
                 })
             bulkUpdates.push({'updateOne': {
                     'filter':{'_id': ObjectID(spouse._id)},
-                    'update': {'$push':{'spouse': user}, $set : {'maritalStatus': maritalStatus}}
+                    'update': {'$push':{'spouse': user}, $set : {'maritalStatusId': maritalStatusId}}
                 }
             })
 
@@ -149,7 +140,7 @@ class User {
             bulkUpdates.push({
                     'updateOne': {
                     'filter':{'_id': ObjectID(spouse._id)},
-                    'update': {'$pull':{'spouse': {'_id': user._id}}, $set : {'maritalStatus': maritalStatus}}
+                    'update': {'$pull':{'spouse': {'_id': user._id}}, $set : {'maritalStatusId': maritalStatusId}}
                 }
             })
         }      
