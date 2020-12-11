@@ -6,6 +6,6 @@ it("loads", () => {
 
 describe("get the fourth element in the list and click on it", () => {
   it("get #4 in the list", () => {
-    cy.get(".singleUser").eq(3).find(".userName").click();
+    cy.get(".singleUser").eq(3).siblings().contains("Edit").click();
   });
 });

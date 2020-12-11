@@ -41,6 +41,7 @@ function getDataToUpdate(id) {
   let childToUpdate = show_selected("childSelect");
   if (statusToUpdate == 3 || 4 || 6 || 7 || 1 || 8) {
     changeStatus = "updatestatusForSpouse";
+    spouseToUpdate = null;
   }
 
   console.log(spouseToUpdate);
@@ -63,10 +64,10 @@ async function submitUpdateForm(user) {
   event.preventDefault();
   console.log(user);
 
-  // const response = await fetch(path + "api/users/" + user.id, {
-  //   method: "POST",
-  //   body: JSON.stringify(user),
-  // });
+  const response = await fetch(path + "api/users/" + user.id, {
+    method: "POST",
+    body: JSON.stringify(user),
+  });
 
   console.log(response);
   const data = await response.json();
