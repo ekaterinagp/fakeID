@@ -24,8 +24,12 @@ class User {
         return users;
       }
 
-      findById(userId) {
-        return this.collection.findOne({ _id: new ObjectID(userId) });
+      async findById(userId) {
+       let user = await  this.collection.findOne({ _id: new ObjectID(userId) });
+       user.age = this.calculateAge(user.dateOfBirth)
+       user.gender = this.getGenderValue(user.genderIdentification)
+       user.maritalStatus? user.maritalStatus= this.getMaritalStatus(user.maritalStatus) : null
+       return user
       }
       
      formatDateOfBirth(dateOfBirth){
