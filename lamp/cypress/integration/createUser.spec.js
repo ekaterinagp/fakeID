@@ -7,7 +7,7 @@ it('finds the content "type"', () => {
 describe("Create an employee user", () => {
   let user = {
     name: "Martina RoRoRo",
-    dateOfBirth: "021065",
+    dateOfBirth: "1976-10-13",
     address_id: 1,
     genderValue: "0002",
     isEmployee: true,

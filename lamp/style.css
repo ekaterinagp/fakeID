@@ -32,8 +32,8 @@ h2{
 
 .singleUser {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr;
-  grid-gap:.1rem;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: .5rem;
   border-bottom: 1px solid #d8dbe2ba;
 }
 .singleUser p{
@@ -136,7 +136,7 @@ input, select{
   outline: none;
   transition: all .2s;
 }
-button, .loginBtn{
+button, .loginBtn, .editBtn{
   padding:.5rem 1rem;
   border-radius: 10px;
   margin: auto 0;

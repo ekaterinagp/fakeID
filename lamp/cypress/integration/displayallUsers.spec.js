@@ -4,14 +4,8 @@ it("loads", () => {
   cy.contains("FakeID");
 });
 
-describe("find element which contains Lars and click login", () => {
+describe("find element which contains Lars and click Edit", () => {
   it("get the one which contains Lars", () => {
-    cy.contains("p", "Lars").siblings().contains("Log in").click();
-  });
-});
-
-describe("count elelemts singleUser", () => {
-  it("get all elements with a class singleUser", () => {
-    cy.get(".container").find(".singleUser").should("have.length", 7);
+    cy.contains("p", "Lars").siblings().contains("Edit").click();
   });
 });
