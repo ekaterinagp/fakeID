@@ -18,9 +18,7 @@ describe("Create an employee user", () => {
   it("type in new employee details", () => {
     cy.get('input[name="name"]').type(user.name);
     cy.get('input[name="date_of_birth"]').type(user.dateOfBirth);
-    cy.get('select[name="address_id"]').select(
-      user.address_id == 2 ? "Lygten 37" : "Lygten 17"
-    );
+    cy.get('select[name="address_id"]').select("Lygten 17");
     // cy.get('input[name="gender_value"]').check(user.genderValue);
 
     cy.get("label").contains("Female").click();
