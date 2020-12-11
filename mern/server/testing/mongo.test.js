@@ -1,6 +1,5 @@
 const TestDbHelper = require("./helper");
 const User = require("./../classes/User");
-const request = require('supertest')
 
 const dbHelper = new TestDbHelper();
 
@@ -69,6 +68,13 @@ describe('User methods', () => {
     expect(user.getGenderValue(user3.genderIdentification)).toEqual('female')
   })
 
+  test('test if correct marital status is returned', async () => {
+    let {user1, user2, user3} = await createSampleUsers()
+    expect(user.getMaritalStatus(user1.maritalStatusId)).toEqual('Unknown')
+    expect(user.getMaritalStatus(user3.maritalStatusId)).toEqual('Married')
+    expect(user.getMaritalStatus(user2.maritalStatusId)).toEqual(undefined)
+  })
+
 
 })
 
@@ -81,7 +87,7 @@ describe('edit user', () => {
     let result =  [{
             'updateOne':{
               'filter': {'_id': user1._id},
-              'update': {$set :{ name: 'LaLa', address: 'Lygten 1', maritalStatus: 'unknown' }}
+              'update': {$set :{ name: 'LaLa', address: 'Lygten 1', maritalStatusId: '8' }}
           } 
       }]
     expect(user.updateUser(user1, info)).toEqual(result)
@@ -96,7 +102,7 @@ describe('edit user', () => {
         'filter':{'_id': user1._id},
         'update': {'$push':{'spouse': user2}}    }}
     ]
-    expect(user.updateSpouse(user1, 'married', user2)).toEqual(expect.arrayContaining(string))
+    expect(user.updateSpouse(user1, '2', user2)).toEqual(expect.arrayContaining(string))
   })
 
 
@@ -158,7 +164,7 @@ async function createSampleUsers() {
     dateOfBirth: "010101",
     address: 'Lygten 1',
     CPR: '0101010001',
-    maritalStatus: 'unknown',
+    maritalStatusId: '8',
     genderIdentification:'0001'
   });
   const user2 = await dbHelper.createDoc(user.collectionName, {
@@ -174,8 +180,8 @@ async function createSampleUsers() {
     name: "Third user",
     dateOfBirth: "101245",
     address: 'Lygten',
+    maritalStatusId : '2',
     CPR:'1012450002' ,
-    maritalStatus : 'married',
     spouse : {_id :123456, name:'some guy'},
     genderIdentification:'0002'
   });
@@ -184,7 +190,7 @@ async function createSampleUsers() {
     dateOfBirth: "101215",
     address: 'Lygten',
     CPR:'1012150002' ,
-    maritalStatus : 'unknown',
+    maritalStatusId : '8',
     genderIdentification:'0002'
   });
 

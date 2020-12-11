@@ -8,6 +8,7 @@ import {
   import Overview from '../pages/Overview'
   import CreateUser from '../pages/CreateUser'
   import SingleUser from '../pages/SingleUser'
+  import InfoIcon from '../components/InfoIcon'
   import './header.css'
 
 
@@ -28,6 +29,9 @@ export default function Header(){
                         <NavLink to="/create" activeClassName="active">
                             Create
                         </NavLink>
+                    </li>
+                    <li>
+                        <InfoIcon/>
                     </li>
                 </ul>
             </nav>
