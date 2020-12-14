@@ -6,75 +6,75 @@ function cov_1x0lviwd3z() {
   var coverageData = {
     path: "C:\\xampp\\htdocs\\fakeID\\lamp\\cypress\\plugins\\index.js",
     statementMap: {
-      0: {
+      "0": {
         start: {
           line: 19,
-          column: 0,
+          column: 0
         },
         end: {
           line: 27,
-          column: 2,
-        },
+          column: 2
+        }
       },
-      1: {
+      "1": {
         start: {
           line: 20,
-          column: 2,
+          column: 2
         },
         end: {
           line: 20,
-          column: 53,
-        },
+          column: 53
+        }
       },
-      2: {
+      "2": {
         start: {
           line: 26,
-          column: 2,
+          column: 2
         },
         end: {
           line: 26,
-          column: 16,
-        },
-      },
+          column: 16
+        }
+      }
     },
     fnMap: {
-      0: {
+      "0": {
         name: "(anonymous_0)",
         decl: {
           start: {
             line: 19,
-            column: 17,
+            column: 17
           },
           end: {
             line: 19,
-            column: 18,
-          },
+            column: 18
+          }
         },
         loc: {
           start: {
             line: 19,
-            column: 33,
+            column: 33
           },
           end: {
             line: 27,
-            column: 1,
-          },
+            column: 1
+          }
         },
-        line: 19,
-      },
+        line: 19
+      }
     },
     branchMap: {},
     s: {
-      0: 0,
-      1: 0,
-      2: 0,
+      "0": 0,
+      "1": 0,
+      "2": 0
     },
     f: {
-      0: 0,
+      "0": 0
     },
     b: {},
     _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    hash: "54660770c998d6bfa4523f641d16d5ba6cf74a67",
+    hash: "54660770c998d6bfa4523f641d16d5ba6cf74a67"
   };
   var coverage = global[gcv] || (global[gcv] = {});
 
@@ -112,7 +112,6 @@ cov_1x0lviwd3z().s[0]++;
  * @type {Cypress.PluginConfig}
  */
 module.exports = (on, config) => {
-  require("@cypress/code-coverage/task")(on, config);
   cov_1x0lviwd3z().f[0]++;
   cov_1x0lviwd3z().s[1]++;
 
@@ -121,6 +120,7 @@ module.exports = (on, config) => {
   // `config` is the resolved Cypress config
   // It's IMPORTANT to return the config object
   // with any changed environment variables
+
 
   cov_1x0lviwd3z().s[2]++;
   return config;

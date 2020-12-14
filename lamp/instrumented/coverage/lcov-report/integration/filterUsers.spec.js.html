@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for integration/createUser.spec.js</title>
+    <title>Code coverage report for integration/filterUsers.spec.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">integration</a> createUser.spec.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">integration</a> filterUsers.spec.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/15</span>
+                <span class='fraction'>29/29</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/15</span>
+                <span class='fraction'>29/29</span>
             </div>
         
             
@@ -93,76 +93,130 @@
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">it('finds the content "type"', () =&gt; {
-  cy.visit("localhost:80/fakeid/lamp/create.php");
-&nbsp;
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">it("loads", () =&gt; {
+  const baseUrl = "http://localhost:80/fakeid/lamp";
+  cy.visit(baseUrl);
   cy.contains("FakeID");
 });
 &nbsp;
-describe("Create an employee user", () =&gt; {
-  let user = {
-    name: "Lea RoboCop",
-    dateOfBirth: "1988-10-13",
-    address_id: 1,
-    genderValue: "0002",
-    isEmployee: false,
-    // profileAddressId: 2,
-    // description: `Martin Rhode description`
-  };
+/**
+ * test show hide click
+ * test results for all params are correct
+ */
 &nbsp;
-  it("type in new employee details", () =&gt; {
-    cy.get('input[name="name"]').type(user.name);
-    cy.get('input[name="date_of_birth"]').type(user.dateOfBirth);
-    cy.get('select[name="address_id"]').select("Lygten 17");
-    // cy.get('input[name="gender_value"]').check(user.genderValue);
+describe("click on show filters and show all filters", () =&gt; {
+  it("show filters", () =&gt; {
+    cy.get(".filterBtn").click();
 &nbsp;
-    cy.get("label").contains("Female").click();
-&nbsp;
-    cy.get("label").contains("Not Employee").click();
-&nbsp;
-    // cy.get('input[name="isEmployee"]').check(user.isEmployee);
-    cy.get('input[type="submit"]').click();
+    cy.get(".filtersContainer").should("be.visible");
   });
+});
 &nbsp;
-  it("makes sure new user is created", () =&gt; {
-    cy.visit("localhost:80/fakeid/lamp/");
-    cy.contains(user.name);
+describe("click on show filters and filter based on gender", () =&gt; {
+  it("show male users", () =&gt; {
+    cy.get("label[for=male]").click();
+&nbsp;
+    cy.get(".singleUser").contains("Male");
+    cy.get(".singleUser").should("not.have", "Female");
+  });
+});
+&nbsp;
+describe("click on show filters and filter based on employment", () =&gt; {
+  it("show no employees", () =&gt; {
+    cy.get("label[for=employee]").click();
+    cy.get(".singleUser").should("not.have", "12345678");
+  });
+});
+&nbsp;
+describe("click employee and child filters and show no user", () =&gt; {
+  it("show no users", () =&gt; {
+    cy.get("label[for=child]").click();
+&nbsp;
+    cy.get(".singleUser").should("not.exist");
+  });
+});
+&nbsp;
+describe("click both gender filters and show all users", () =&gt; {
+  it("show all users", () =&gt; {
+    cy.get("label[for=employee]").click();
+    cy.get("label[for=child]").click();
+    cy.get("label[for=female]").click();
+&nbsp;
+    cy.get(".singleUser").contains("Female");
+    cy.get("label[for=female]").click();
+    cy.get(".singleUser").contains("Male");
   });
 });
 &nbsp;</pre></td></tr></table></pre>

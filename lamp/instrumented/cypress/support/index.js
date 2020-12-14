@@ -1,5 +1,3 @@
-import "@cypress/code-coverage/support";
-
 function cov_tinfckmng() {
   var path = "C:\\xampp\\htdocs\\fakeID\\lamp\\cypress\\support\\index.js";
   var hash = "a6455152d5f9ec3c6a5998ee1d7309f4e7ca994f";
@@ -14,7 +12,7 @@ function cov_tinfckmng() {
     f: {},
     b: {},
     _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    hash: "a6455152d5f9ec3c6a5998ee1d7309f4e7ca994f",
+    hash: "a6455152d5f9ec3c6a5998ee1d7309f4e7ca994f"
   };
   var coverage = global[gcv] || (global[gcv] = {});
 

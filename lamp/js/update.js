@@ -41,6 +41,7 @@ function getDataToUpdate(id) {
   let childToUpdate = show_selected("childSelect");
   if (statusToUpdate == 3 || 4 || 6 || 7 || 1 || 8) {
     changeStatus = "updatestatusForSpouse";
+    spouseToUpdate = null;
   }
 
   console.log(spouseToUpdate);

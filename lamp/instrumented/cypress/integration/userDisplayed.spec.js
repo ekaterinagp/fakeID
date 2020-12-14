@@ -1,10 +1,10 @@
-function cov_1rdp4uwch8() {
-  var path = "C:\\xampp\\htdocs\\fakeID\\lamp\\cypress\\integration\\displayallUsers.spec.js";
-  var hash = "561981e69ebbcf5b2311624246872ea71f0f93a4";
+function cov_1a7rzzw7lk() {
+  var path = "C:\\xampp\\htdocs\\fakeID\\lamp\\cypress\\integration\\userDisplayed.spec.js";
+  var hash = "7655fa5392f3fc9de08e0565ff6cae350bba474a";
   var global = new Function("return this")();
   var gcv = "__coverage__";
   var coverageData = {
-    path: "C:\\xampp\\htdocs\\fakeID\\lamp\\cypress\\integration\\displayallUsers.spec.js",
+    path: "C:\\xampp\\htdocs\\fakeID\\lamp\\cypress\\integration\\userDisplayed.spec.js",
     statementMap: {
       "0": {
         start: {
@@ -73,7 +73,7 @@ function cov_1rdp4uwch8() {
         },
         end: {
           line: 9,
-          column: 65
+          column: 68
         }
       }
     },
@@ -107,17 +107,17 @@ function cov_1rdp4uwch8() {
         decl: {
           start: {
             line: 7,
-            column: 60
+            column: 63
           },
           end: {
             line: 7,
-            column: 61
+            column: 64
           }
         },
         loc: {
           start: {
             line: 7,
-            column: 66
+            column: 69
           },
           end: {
             line: 11,
@@ -131,17 +131,17 @@ function cov_1rdp4uwch8() {
         decl: {
           start: {
             line: 8,
-            column: 40
+            column: 27
           },
           end: {
             line: 8,
-            column: 41
+            column: 28
           }
         },
         loc: {
           start: {
             line: 8,
-            column: 46
+            column: 33
           },
           end: {
             line: 10,
@@ -168,7 +168,7 @@ function cov_1rdp4uwch8() {
     },
     b: {},
     _coverageSchema: "1a1c01bbd47fc00a2c39e90264f33305004495a9",
-    hash: "561981e69ebbcf5b2311624246872ea71f0f93a4"
+    hash: "7655fa5392f3fc9de08e0565ff6cae350bba474a"
   };
   var coverage = global[gcv] || (global[gcv] = {});
 
@@ -179,31 +179,31 @@ function cov_1rdp4uwch8() {
   var actualCoverage = coverage[path];
   {
     // @ts-ignore
-    cov_1rdp4uwch8 = function () {
+    cov_1a7rzzw7lk = function () {
       return actualCoverage;
     };
   }
   return actualCoverage;
 }
 
-cov_1rdp4uwch8();
-cov_1rdp4uwch8().s[0]++;
+cov_1a7rzzw7lk();
+cov_1a7rzzw7lk().s[0]++;
 it("loads", () => {
-  cov_1rdp4uwch8().f[0]++;
-  const baseUrl = (cov_1rdp4uwch8().s[1]++, "http://localhost:80/fakeid/lamp");
-  cov_1rdp4uwch8().s[2]++;
+  cov_1a7rzzw7lk().f[0]++;
+  const baseUrl = (cov_1a7rzzw7lk().s[1]++, "http://localhost:80/fakeid/lamp");
+  cov_1a7rzzw7lk().s[2]++;
   cy.visit(baseUrl);
-  cov_1rdp4uwch8().s[3]++;
+  cov_1a7rzzw7lk().s[3]++;
   cy.contains("FakeID");
 });
-cov_1rdp4uwch8().s[4]++;
-describe("find element which contains Lars and click Edit", () => {
-  cov_1rdp4uwch8().f[1]++;
-  cov_1rdp4uwch8().s[5]++;
-  it("get the one which contains Lars", () => {
-    cov_1rdp4uwch8().f[2]++;
-    cov_1rdp4uwch8().s[6]++;
-    cy.contains("p", "Lars").siblings().contains("Edit").click();
+cov_1a7rzzw7lk().s[4]++;
+describe("get the fourth element in the list and click on it", () => {
+  cov_1a7rzzw7lk().f[1]++;
+  cov_1a7rzzw7lk().s[5]++;
+  it("get #4 in the list", () => {
+    cov_1a7rzzw7lk().f[2]++;
+    cov_1a7rzzw7lk().s[6]++;
+    cy.get(".singleUser").eq(3).siblings().contains("Edit").click();
   });
 });
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRpc3BsYXlhbGxVc2Vycy5zcGVjLmpzIl0sIm5hbWVzIjpbIml0IiwiYmFzZVVybCIsImN5IiwidmlzaXQiLCJjb250YWlucyIsImRlc2NyaWJlIiwic2libGluZ3MiLCJjbGljayJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBZVk7Ozs7Ozs7Ozs7QUFmWkEsRUFBRSxDQUFDLE9BQUQsRUFBVSxNQUFNO0FBQUE7QUFDaEIsUUFBTUMsT0FBTyw2QkFBRyxpQ0FBSCxDQUFiO0FBRGdCO0FBRWhCQyxFQUFBQSxFQUFFLENBQUNDLEtBQUgsQ0FBU0YsT0FBVDtBQUZnQjtBQUdoQkMsRUFBQUEsRUFBRSxDQUFDRSxRQUFILENBQVksUUFBWjtBQUNELENBSkMsQ0FBRjs7QUFNQUMsUUFBUSxDQUFDLGlEQUFELEVBQW9ELE1BQU07QUFBQTtBQUFBO0FBQ2hFTCxFQUFBQSxFQUFFLENBQUMsaUNBQUQsRUFBb0MsTUFBTTtBQUFBO0FBQUE7QUFDMUNFLElBQUFBLEVBQUUsQ0FBQ0UsUUFBSCxDQUFZLEdBQVosRUFBaUIsTUFBakIsRUFBeUJFLFFBQXpCLEdBQW9DRixRQUFwQyxDQUE2QyxNQUE3QyxFQUFxREcsS0FBckQ7QUFDRCxHQUZDLENBQUY7QUFHRCxDQUpPLENBQVIiLCJzb3VyY2VzQ29udGVudCI6WyJpdChcImxvYWRzXCIsICgpID0+IHtcclxuICBjb25zdCBiYXNlVXJsID0gXCJodHRwOi8vbG9jYWxob3N0OjgwL2Zha2VpZC9sYW1wXCI7XHJcbiAgY3kudmlzaXQoYmFzZVVybCk7XHJcbiAgY3kuY29udGFpbnMoXCJGYWtlSURcIik7XHJcbn0pO1xyXG5cclxuZGVzY3JpYmUoXCJmaW5kIGVsZW1lbnQgd2hpY2ggY29udGFpbnMgTGFycyBhbmQgY2xpY2sgRWRpdFwiLCAoKSA9PiB7XHJcbiAgaXQoXCJnZXQgdGhlIG9uZSB3aGljaCBjb250YWlucyBMYXJzXCIsICgpID0+IHtcclxuICAgIGN5LmNvbnRhaW5zKFwicFwiLCBcIkxhcnNcIikuc2libGluZ3MoKS5jb250YWlucyhcIkVkaXRcIikuY2xpY2soKTtcclxuICB9KTtcclxufSk7XHJcbiJdfQ==
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVzZXJEaXNwbGF5ZWQuc3BlYy5qcyJdLCJuYW1lcyI6WyJpdCIsImJhc2VVcmwiLCJjeSIsInZpc2l0IiwiY29udGFpbnMiLCJkZXNjcmliZSIsImdldCIsImVxIiwic2libGluZ3MiLCJjbGljayJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBZVk7Ozs7Ozs7Ozs7QUFmWkEsRUFBRSxDQUFDLE9BQUQsRUFBVSxNQUFNO0FBQUE7QUFDaEIsUUFBTUMsT0FBTyw2QkFBRyxpQ0FBSCxDQUFiO0FBRGdCO0FBRWhCQyxFQUFBQSxFQUFFLENBQUNDLEtBQUgsQ0FBU0YsT0FBVDtBQUZnQjtBQUdoQkMsRUFBQUEsRUFBRSxDQUFDRSxRQUFILENBQVksUUFBWjtBQUNELENBSkMsQ0FBRjs7QUFNQUMsUUFBUSxDQUFDLG9EQUFELEVBQXVELE1BQU07QUFBQTtBQUFBO0FBQ25FTCxFQUFBQSxFQUFFLENBQUMsb0JBQUQsRUFBdUIsTUFBTTtBQUFBO0FBQUE7QUFDN0JFLElBQUFBLEVBQUUsQ0FBQ0ksR0FBSCxDQUFPLGFBQVAsRUFBc0JDLEVBQXRCLENBQXlCLENBQXpCLEVBQTRCQyxRQUE1QixHQUF1Q0osUUFBdkMsQ0FBZ0QsTUFBaEQsRUFBd0RLLEtBQXhEO0FBQ0QsR0FGQyxDQUFGO0FBR0QsQ0FKTyxDQUFSIiwic291cmNlc0NvbnRlbnQiOlsiaXQoXCJsb2Fkc1wiLCAoKSA9PiB7XHJcbiAgY29uc3QgYmFzZVVybCA9IFwiaHR0cDovL2xvY2FsaG9zdDo4MC9mYWtlaWQvbGFtcFwiO1xyXG4gIGN5LnZpc2l0KGJhc2VVcmwpO1xyXG4gIGN5LmNvbnRhaW5zKFwiRmFrZUlEXCIpO1xyXG59KTtcclxuXHJcbmRlc2NyaWJlKFwiZ2V0IHRoZSBmb3VydGggZWxlbWVudCBpbiB0aGUgbGlzdCBhbmQgY2xpY2sgb24gaXRcIiwgKCkgPT4ge1xyXG4gIGl0KFwiZ2V0ICM0IGluIHRoZSBsaXN0XCIsICgpID0+IHtcclxuICAgIGN5LmdldChcIi5zaW5nbGVVc2VyXCIpLmVxKDMpLnNpYmxpbmdzKCkuY29udGFpbnMoXCJFZGl0XCIpLmNsaWNrKCk7XHJcbiAgfSk7XHJcbn0pO1xyXG4iXX0=
