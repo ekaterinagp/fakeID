@@ -80,22 +80,28 @@ class User {
       async createUser(info){
           let { name, address,  genderIdentification, dateOfBirth, isEmployee} = info
           if(!name && !address && !genderIdentification && !dateOfBirth && !isEmployee){
-              return { status:400, response: 'missing fields' }
+              return { status:400, response:{error:  'missing fields' } }
             }
             if(!name || !address || !dateOfBirth || !genderIdentification){
-                return { status:400, response: 'missing fields' }
+                return { status:400, response: {error: 'missing fields' }}
             }
             if(genderIdentification !== '0001' && genderIdentification !== '0002'){
-                return { status:400, response: 'gender not available' }
+                return { status:400, response:{error: 'gender not available'} }
             }
-            if(isEmployee){
+            info.CPR = dateOfBirth+genderIdentification
+            
+            if(isEmployee === 'true'){
+                let age = this.calculateAge(dateOfBirth)
+                if(age < 18){
+                    return { status:400, response:{error: 'User is to young to be an employee'} }
+                }
                 info.CVR = '12345678'
                 info.companyName = 'EE A/S';
-                delete info.isEmployee;
             }
+            delete info.isEmployee;
             try{
                 const result = await this.collection.insertOne({...info})
-                return {status: 200, response: 'user created', userId: result.insertedId}
+                return {status: 200, response: {message: 'user created' , userId: result.insertedId}}
                 
             }catch(err){
                 if(err)return {status:400, response: err};

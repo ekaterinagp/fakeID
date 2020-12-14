@@ -9,24 +9,12 @@ form{
     grid-template-columns: 1fr;
     margin: .5rem;
   }
-  .formField label{
-    visibility: hidden;
-    transform: translateY(-35px);
-    transition: all .1s;
-    padding-left: 8px;
-  }
-  .formField input:not(:placeholder-shown) + label,
-  .formField select:not(:invalid) + label
-  {
-    transform: translateY(0);
-    visibility: visible;
-  }
   input[type=submit]{
     background:#E15554;
     box-shadow: 1px 5px 10px rgba(0,0,0,.3);
     color:white;
     border:none;
-    margin:1rem;
+    margin:1rem 10px;
   }
   select:invalid {
     color: gray;
@@ -55,13 +43,13 @@ form{
     background:rebeccapurple;
     cursor: pointer;
     text-align: center;
-    margin: 1rem;
+    margin: 0.5rem 10px 0;
   }
   .labelRadio input{
     display: none;
   }
   input:checked+label{
-    background:#185d6b;
+    background:#2c1543;
     transform: scale(1.05);
   }
   input, select{
