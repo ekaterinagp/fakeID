@@ -185,6 +185,18 @@ class User {
         return bulkUpdates
       }
 
+
+     async getSpouses(id){
+        let users =  await this.collection.find({CVR : null, _id: { $ne: ObjectID(id)}, maritalStatusId: {$in: ['3','8','4','6','7','1']}}).toArray();
+        users = users.filter(user => {
+            let userAge = this.calculateAge(user.dateOfBirth)
+            if(userAge >= 18){
+                return user;
+            }
+        })
+        return users
+      }
+
 }
 
 module.exports = User

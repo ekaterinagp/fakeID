@@ -38,6 +38,11 @@ router.post('/users', async (req, res) => {
     return res.status(status).send(response)
 })
 
+router.get('/users/spouses', async (req, res) => {
+    let userEntity = new User(db)
+    let { response, status } = await userEntity.getSpouses();
+    return res.status(status).send(response)
+})
 router.put('/users/:id', async (req, res) => {
     const { id } = req.params;
     if(!id) {

@@ -152,6 +152,31 @@ describe('create user', () => {
 })
 
 
+describe('get available spouses',  () => {
+  
+  test('should return array of available spouse objects', async () => {
+    let { user1, user4 } = await createSampleUsers()
+
+    let result = await user.getSpouses(user4._id)
+    
+    expect(result[0]).toMatchObject(user1)
+
+    expect(result.length).toBe(1)
+  })
+
+  test('should return empty array ', async () => {
+    let { user1 } = await createSampleUsers()
+
+    let result = await user.getSpouses(user1._id)
+    
+    expect(result).toStrictEqual([])
+
+    expect(result.length).toBe(0)
+  })
+})
+
+
+
 
 
 
