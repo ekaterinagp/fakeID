@@ -133,11 +133,10 @@ describe('create user', () => {
       'genderIdentification': '0001',
     }
     let result = await user.createUser(info)
-    console.log(result)
     expect(result.status).toBe(200)
-    expect(result.response).toBe('user created')
+    expect(result.response.message).toBe('user created')
 
-    let createdUser = await user.findById(result.userId)
+    let createdUser = await user.findById(result.response.userId)
     expect(createdUser.name).toBe('new user')
   })
 
@@ -148,7 +147,7 @@ describe('create user', () => {
     }
     let result = await user.createUser(info)
     expect(result.status).toBe(400)
-    expect(result.response).toBe('missing fields')
+    expect(result.response.error).toBe('missing fields')
   })
 })
 
