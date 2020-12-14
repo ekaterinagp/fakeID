@@ -17,6 +17,7 @@ class User {
         let users =  await this.collection.find().toArray();
         users = users.map(user => {
             user.age = this.calculateAge(user.dateOfBirth)
+            user.formattedDate = this.formatDateOfBirth(user.dateOfBirth)
             user.gender = this.getGenderValue(user.genderIdentification)
             user.maritalStatus? user.maritalStatus= this.getMaritalStatus(user.maritalStatus) : null
             return user
@@ -27,6 +28,7 @@ class User {
       async findById(userId) {
        let user = await this.collection.findOne({ _id: new ObjectID(userId) });
        if(user){
+           user.formattedDate = this.formatDateOfBirth(user.dateOfBirth)
            user.age = this.calculateAge(user.dateOfBirth)
            user.gender = this.getGenderValue(user.genderIdentification)
            user.maritalStatus? user.maritalStatus= this.getMaritalStatus(user.maritalStatus) : null
