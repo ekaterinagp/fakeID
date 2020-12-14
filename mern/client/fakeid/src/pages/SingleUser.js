@@ -66,7 +66,7 @@ export default function SingleUser (props) {
                 {user.spouse?
                 <>
                 <h4>Spouse</h4>
-                <p key={user.spouse[0]._id}>{user.spouse[0].name}</p>
+                <p >{user.spouse[0].name}</p>
                 </>
                : null }
 
