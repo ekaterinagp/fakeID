@@ -1,0 +1,61 @@
+form{
+    width: 400px;
+    margin:auto;
+    display:grid;
+    grid-template-columns: 1fr;
+  }
+  .formField{
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: .5rem;
+  }
+  input[type=submit]{
+    background:#E15554;
+    box-shadow: 1px 5px 10px rgba(0,0,0,.3);
+    color:white;
+    border:none;
+    margin:1rem 10px;
+  }
+  select:invalid {
+    color: gray;
+  }
+  option[value=""][disabled] {
+    display: none;
+  }
+  option {
+    color: black;
+  }
+  .labelRadio{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin:0.5rem 0;
+  }
+  .labelRadio p{
+      grid-column: 1/-1;
+      margin: 0;
+      padding-left:10px;
+  }
+  .labelRadio label{
+    padding:10px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background:rebeccapurple;
+    cursor: pointer;
+    text-align: center;
+    margin: 0.5rem 10px 0;
+  }
+  .labelRadio input{
+    display: none;
+  }
+  input:checked+label{
+    background:#2c1543;
+    transform: scale(1.05);
+  }
+  input, select{
+    padding:10px;
+    border-radius: 10px;
+    border: 1px solid #d8dbe2ba;
+    outline: none;
+    transition: all .2s;
+  }

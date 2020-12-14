@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import './overview.css'
+import './../css/overview.css'
 
 export default function Overview(){
     const [ loading, setLoading ] = useState(true)

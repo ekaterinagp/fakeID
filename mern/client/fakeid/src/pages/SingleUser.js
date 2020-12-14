@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams  } from "react-router-dom";
+import { useParams  } from "react-router-dom";
 
 
 export default function SingleUser (props) {
     const [ user, setUser ] = useState()
+    const [ loading, setLoading ] = useState(true)
     const { id } = useParams()
 
     useEffect(() => {
@@ -15,6 +16,7 @@ export default function SingleUser (props) {
             console.log( singleUser )
             if(isFetching){
                 setUser(singleUser)
+                setLoading(false)
             }
             
         }
@@ -22,7 +24,7 @@ export default function SingleUser (props) {
         return () => isFetching=false
     },[id])
 
-    if(!user){
+    if(loading || !user){
         return <div className="loader">LOADING</div>
     }
 
@@ -34,6 +36,9 @@ export default function SingleUser (props) {
 
                 <h4>Date of birth</h4>
                 <p>{user.formattedDate}</p>
+
+                <h4>CPR</h4>
+                <p>{user.CPR}</p>
 
                 <h4>Gender</h4>
                 <p>{user.gender}</p>
@@ -48,12 +53,12 @@ export default function SingleUser (props) {
                 <h4>Address</h4>
                 <p>{user.address}</p>
 
-                {user.age< 18 ? 
+                {user.age < 18 ? 
                     user.parents.map(parent => {
                         return (
                         <> 
                         <h4>Parents</h4>
-                        <p>{parent.name}</p>
+                        <p key={parent._id + parent.name}>{parent.name}</p>
                         </>
                         )
                     })
@@ -61,7 +66,7 @@ export default function SingleUser (props) {
                 {user.spouse?
                 <>
                 <h4>Spouse</h4>
-                <p>{user.spouse[0].name}</p>
+                <p >{user.spouse[0].name}</p>
                 </>
                : null }
 
@@ -73,6 +78,16 @@ export default function SingleUser (props) {
                     })}
                 </>
                : null }
+
+                {user.CVR ?
+                <>
+                <h4>CVR</h4>
+                <p>{user.CVR}</p>
+                <h4>Company</h4>
+                <p>{user.companyName}</p>
+                </>
+               : null }
+
 
             </div>
 
