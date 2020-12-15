@@ -13,15 +13,16 @@ export default function EditUser (props) {
     })
     
     const [ availableSpouses, setSpouses ] = useState()
-    const [ availableChildren, setChild ] = useState()
+    const [ availableChildren, setChildren ] = useState()
+    
     useEffect(() => {
         if (user){
-            console.log(user)
             setValues({
                 name: user.name,
                 address: user.address,
                 maritalStatusId: user.maritalStatusId,
-                spouseId: user.hasOwnProperty('spouse') && user.spouse.length ? user.spouse[0]._id: ''
+                spouseId: user.hasOwnProperty('spouse') && user.spouse.length ? user.spouse[0]._id: '',
+                childId: null,
             })
         }
         if(user && user.age >= 18 && !user.CVR) {
@@ -35,7 +36,9 @@ export default function EditUser (props) {
     const handleChange = (event) => {
         setValues(values => ({ ...values, [event.target.name]: event.target.value }));       
     }
+
     console.log(values)
+
     const submitChange = async (event) => {
         event.preventDefault()
         try{
@@ -47,6 +50,7 @@ export default function EditUser (props) {
                 }
             })
             const data = await response.json()
+            console.log(data)
             if(!data.error){
                 props.updateUser(values)
                 if (values.hasOwnProperty('spouseId')){
@@ -62,7 +66,6 @@ export default function EditUser (props) {
         try{
             const response = await fetch(`http://localhost:9090/users/${user._id}/spouses`)
             const spouses = await response.json()
-            // console.log(spouses)
             setSpouses(spouses)
         }catch(err){
             if(err){console.log(err); return; }
@@ -70,16 +73,13 @@ export default function EditUser (props) {
     }
 
     const fetchChildren = async () => {
-        console.log('fetch children')
-        // try{
-        //     const response = await fetch(`http://localhost:9090/users/${user._id}/children`)
-        //     console.log(response)
-        //     // const children = await response.json()
-        //     // // console.log(children)
-        //     // setChildren(children)
-        // }catch(err){
-        //     if(err){console.log(err); return; }
-        // }
+        try{
+            const response = await fetch(`http://localhost:9090/users/${user._id}/children`)
+            const children = await response.json()
+            setChildren(children)
+        }catch(err){
+            if(err){console.log(err); return; }
+        }
     }
  return (
     <form>
@@ -115,7 +115,7 @@ export default function EditUser (props) {
             </div>
 
             <div className="formField">
-            {!user.hasOwnProperty('spouse') || !user.spouse[0]?
+            {!user.hasOwnProperty('spouse') || !user.spouse.length?
                  <>
                 <label htmlFor="name">Change spouse</label>  
                 <select name="spouseId" id="spouseSelect"  onChange={handleChange}  >
@@ -135,7 +135,7 @@ export default function EditUser (props) {
 
             <div className="formField">
                 <label htmlFor="name">Add child</label>  
-                <select name="child_id" id="childSelect"  onChange={handleChange}>
+                <select name="childId" id="childSelect"  onChange={handleChange}>
                     <option value="" disabled selected>Select Child</option>
                     {availableChildren ? availableChildren.map( child => {
                         return <option key={child._id} value={child._id}>{child.name}</option>

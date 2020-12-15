@@ -13,38 +13,49 @@ export default function SingleUser (props) {
 
     useEffect(() => {
         let isFetching = true
-
-        const fetchUser = async () => {
-            const response = await fetch(`http://localhost:9090/users/${id}`)
-            const { singleUser } = await response.json()
-            console.log( singleUser )
-            if(isFetching){
-                setUser(singleUser)
+        const initialFetch = async () => {
+            const fetchedUser = await fetchUser(id)
+            if (isFetching){
+                setUser(fetchedUser)
                 setLoading(false)
             }
-            
         }
-        fetchUser()
+        initialFetch()
         return () => isFetching=false
     },[id])
 
-    const onUpdate = (values) => {
+    const fetchUser = async (userID) => {
+        const response = await fetch(`http://localhost:9090/users/${userID}`)
+        const { singleUser } = await response.json()
+        console.log( singleUser )
+        return singleUser
+       
+    }
+    const onUpdate = async (values) => {
         console.log(values)
-       setUser(userData => ({...userData, 
-           name: values.name,
-           address: values.address,
-           maritalStatusId: values.maritalStatusId
-       }))
-       if(values.hasOwnProperty('spouseId') && !user.hasOwnProperty('spouse') && !user.spouse.length){
+       user.maritalStatusId = values.maritalStatusId
+       user.name = values.name
+       user.address = values.address
+       console.log(user)
+       setUser(user)
+       if(values.spouseId  && (!user.hasOwnProperty('spouse') || !user.spouse.length)){
            console.log('add spouse to info')
+           let spouse = await fetchUser(values.spouseId)
+           user.spouse.push(spouse)
+           setUser(user)
        }
        if(values.maritalStatusId !== '2' && values.maritalStatusId !== '5'){
-           console.log('remove spouse')
+           delete user.spouse
+           let userWithoutSpouse = user
+           setUser(userWithoutSpouse)
        }
-       if(values.hasOwnProperty('childId')){
-           console.log('add child')
+       if(values.childId){
+        let child = await fetchUser(values.childId)
+        user.hasOwnProperty('children')? user.children.push(child) : user.children = [child]
+        setUser(user)
        }
     }
+    
     if(loading || !user){
         return <div className="loader">LOADING</div>
     }

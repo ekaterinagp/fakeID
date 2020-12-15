@@ -34,10 +34,10 @@
     background: transparent;
     text-transform: uppercase;
     border:none;
-    }
-    .tabs .active{
-      border:none;
-      background: #dcdcdc;
+    background: #dcdcdc;
+  }
+  .tabs .active{
+      background: transparent;
     }
   .tabs button:nth-child(1  ){
     border-radius: 10px 0 0 0;

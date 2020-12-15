@@ -138,7 +138,6 @@ class User {
       updateSpouse(user, maritalStatusId, spouse){
        let bulkUpdates = []
         if(parseInt(maritalStatusId) == 2 || parseInt(maritalStatusId) == 5){
-            console.log('together')
             bulkUpdates.push({
                 'updateOne': {
                     'filter':{'_id': ObjectID(user._id)},
@@ -152,7 +151,6 @@ class User {
             })
 
         }else{
-            console.log('not togehter')
             bulkUpdates.push({
                 'updateOne': {
                     'filter':{'_id': ObjectID(user._id)},
@@ -206,7 +204,7 @@ class User {
           let users = await this.collection.find({ 
               CVR: null,
               maritalStatusId: { $in :  [8, null] }, 
-             'parents._id':{$ne: id} } )
+             'parents._id':{$ne: ObjectID(id)} } )
               .toArray()
 
           let children = users.filter(user => {

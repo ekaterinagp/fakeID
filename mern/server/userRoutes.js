@@ -75,7 +75,7 @@ router.put('/users/:id', async (req, res) => {
             return res.status(400).send({error: 'User does not exist'})
         }
         if(maritalStatusId == '2' || maritalStatusId == '5'){
-            if(user.spouse && user.spouse.length >0) return res.send({message: 'user already has a spouse'})
+            if(user.spouse && user.spouse.length >0 && user.spouse[0]._id == ObjectID(spouseId)) return res.send({message: 'user already has a spouse'})
         }
         delete spouse.spouse
 
