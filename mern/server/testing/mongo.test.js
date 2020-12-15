@@ -87,7 +87,7 @@ describe('edit user', () => {
     let result =  [{
             'updateOne':{
               'filter': {'_id': user1._id},
-              'update': {$set :{ name: 'LaLa', address: 'Lygten 1', maritalStatusId: '8' }}
+              'update': {$set :{ name: 'LaLa', address: 'Lygten 1', maritalStatusId: 8 }}
           } 
       }]
     expect(user.updateUser(user1, info)).toEqual(result)
@@ -157,7 +157,7 @@ describe('get available spouses',  () => {
   test('should return array of available spouse objects', async () => {
     let { user1, user4 } = await createSampleUsers()
 
-    let result = await user.getSpouses(user4._id)
+    let result = await user.getAvailableSpouses(user4._id)
     
     expect(result[0]).toMatchObject(user1)
 
@@ -167,7 +167,7 @@ describe('get available spouses',  () => {
   test('should return empty array ', async () => {
     let { user1 } = await createSampleUsers()
 
-    let result = await user.getSpouses(user1._id)
+    let result = await user.getAvailableSpouses(user1._id)
     
     expect(result).toStrictEqual([])
 
@@ -175,7 +175,20 @@ describe('get available spouses',  () => {
   })
 })
 
+describe('get available children',  () => {
+  
+  test('should return array of available children', async () => {
+    let { user1, user4 } = await createSampleUsers()
+    
+    let result = await user.getAvailableChildren(user1._id)
 
+    expect(result.length).toBe(1)
+
+    expect(result[0]).toStrictEqual(user4)
+  })
+
+ 
+})
 
 
 
@@ -188,7 +201,7 @@ async function createSampleUsers() {
     dateOfBirth: "010101",
     address: 'Lygten 1',
     CPR: '0101010001',
-    maritalStatusId: '8',
+    maritalStatusId: 8,
     genderIdentification:'0001'
   });
   const user2 = await dbHelper.createDoc(user.collectionName, {
@@ -204,7 +217,7 @@ async function createSampleUsers() {
     name: "Third user",
     dateOfBirth: "101245",
     address: 'Lygten',
-    maritalStatusId : '2',
+    maritalStatusId : 2,
     CPR:'1012450002' ,
     spouse : {_id :123456, name:'some guy'},
     genderIdentification:'0002'
@@ -214,7 +227,7 @@ async function createSampleUsers() {
     dateOfBirth: "101215",
     address: 'Lygten',
     CPR:'1012150002' ,
-    maritalStatusId : '8',
+    maritalStatusId : 8,
     genderIdentification:'0002'
   });
 

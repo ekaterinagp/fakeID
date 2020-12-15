@@ -1,0 +1,43 @@
+.singleUserPage{
+    padding: 0;
+    margin:auto auto 3rem;
+    max-width: 700px;
+    border:1px solid #d8dbe2ba;
+    border-radius: 10px;
+    box-shadow: 4px 6px 15px rgba(0,0,0,.3);
+}
+.singleUserPage h1{
+    padding:1rem
+  }
+  .userInfo{
+    padding:0 1rem 1rem 1rem;
+  }
+  .userInfo p{
+    margin-top:.1rem;
+  }
+  .userInfo h4{
+    margin-bottom: .1rem;
+  }
+.tabs{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .tabs button{
+    width: 100%;
+    box-shadow: none;
+    color:#E15554;
+    margin:0;
+    border-radius: 0 10px 0 0;
+    background: transparent;
+    text-transform: uppercase;
+    border:none;
+    border-bottom: 1px solid #d8dbe2ba;
+    }
+    .tabs .active{
+        border:none;
+    }
+  .tabs button:nth-child(1  ){
+    border-radius: 10px 0 0 0;
+    border-right:1px solid #d8dbe2ba;
+  }
+

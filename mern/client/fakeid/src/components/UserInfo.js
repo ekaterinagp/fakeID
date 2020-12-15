@@ -2,8 +2,8 @@ import React from 'react';
 
 
 
-
 export default function UserInfo (user) {
+    console.log()
 
     return(
         <>
@@ -17,7 +17,7 @@ export default function UserInfo (user) {
                 <h4>Gender</h4>
                 <p>{user.gender}</p>
 
-                {user.maritalStatus ? 
+                {user.maritalStatusId ? 
                      <>
                     <h4>Marital status</h4>
                     <p>{user.maritalStatus}</p>
@@ -37,14 +37,14 @@ export default function UserInfo (user) {
                         )
                     })
                 :null}   
-                {user.spouse?
+                { user.hasOwnProperty('spouse') && user.spouse.length ?
                 <>
                 <h4>Spouse</h4>
                 <p >{user.spouse[0].name}</p>
                 </>
                : null }
 
-                {user.children?
+                {user.hasOwnProperty('children') && user.children.length?
                 <>
                 <h4>Children</h4>
                    { user.children.map(child => {
