@@ -10,8 +10,8 @@ form{
     margin: .5rem;
   }
   input[type=submit]{
-    background:#E15554;
-    box-shadow: 1px 5px 10px rgba(0,0,0,.3);
+    background:#FF8C42;
+    /* box-shadow: 1px 5px 10px rgba(0,0,0,.3); */
     color:white;
     border:none;
     margin:1rem 10px;
@@ -38,9 +38,6 @@ form{
   .labelRadio label{
     padding:10px;
     border-radius: 10px;
-    border: none;
-    color: white;
-    background:rebeccapurple;
     cursor: pointer;
     text-align: center;
     margin: 0.5rem 10px 0;
@@ -55,7 +52,7 @@ form{
   input, select{
     padding:10px;
     border-radius: 10px;
-    border: 1px solid #d8dbe2ba;
+    border: none;
     outline: none;
     transition: all .2s;
   }

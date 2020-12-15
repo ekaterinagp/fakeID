@@ -18,10 +18,12 @@ export default function Header(){
     return(
         <Router>
             <nav className="menu">
-                <h1>FakeID</h1>
+                <NavLink exact to="/"  className="logo">
+                    FakeID
+                </NavLink>
                 <ul>
                     <li>
-                        <NavLink to="/" activeClassName="active">
+                        <NavLink exact to="/" activeClassName="active">
                             Overview
                         </NavLink>
                     </li>

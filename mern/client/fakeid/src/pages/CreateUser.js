@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './../css/form.css'
+import './../css/createUser.css'
 
 
 export default function Overview(){
@@ -49,8 +50,8 @@ export default function Overview(){
     return(
         <div>
 
-        <h2>Create User</h2>
         <form>
+        <h2>Create User</h2>
             <div className="formField">
                 <label htmlFor="name">Name</label>  
                 <input name="name" type="text" placeholder="Name" onChange={handleChange}/>

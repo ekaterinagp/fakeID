@@ -50,22 +50,24 @@ export default function SingleUser (props) {
     }
 
     return (
-        <div className="singleUserPage">
-            <div className="tabs">
-                <button className={showInfo? 'active' : ''} onClick={()=>setShowInfo(true)}>Information</button>
-                <button className={!showInfo? 'active' : ''}  onClick={()=>setShowInfo(false)}>Edit Information</button>
-            </div>
-        <h1>{user.name}</h1>
+        <div>
+            <div className="singleUserPage">
+                <div className="tabs">
+                    <button className={showInfo? 'active' : ''} onClick={()=>setShowInfo(true)}>Information</button>
+                    <button className={!showInfo? 'active' : ''}  onClick={()=>setShowInfo(false)}>Edit Information</button>
+                </div>
+            <h1>{user.name}</h1>
 
-        {showInfo ? 
-              <div className="userInfo">
-                <UserInfo {...user} />
-            </div>
-        :
+            {showInfo ? 
+                <div className="userInfo">
+                    <UserInfo {...user} />
+                </div>
+            :
             <div className="userForm">
-               <EditUser user={user} updateUser={onUpdate} />
+                <EditUser user={user} updateUser={onUpdate} />
+                </div>
+            }
             </div>
-        }
         </div>
     )
 
