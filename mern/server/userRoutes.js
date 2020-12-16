@@ -51,7 +51,6 @@ router.get('/users/:id', async (req, res) => {
 })
 
 
-
 router.post('/users', async (req, res) => {
     let userEntity = new User(db)
     let {response, status} = await userEntity.createUser(req.body)

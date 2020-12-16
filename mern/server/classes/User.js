@@ -216,7 +216,7 @@ class User {
   }
 
   async getAvailableSpouses(id){
-    let users =  await this.collection.find({CVR : null, _id: { $ne: ObjectID(id) }, maritalStatusId: { $nin: [2, 5] } }).toArray();
+    let users =  await this.collection.find({CVR : null, _id: { $ne: ObjectID(id) }, maritalStatusId: { $nin: [2, 5, 7] }, spouse:null }).toArray();
     users = users.filter(user => {
         let userAge = this.calculateAge(user.dateOfBirth)
         if(userAge >= 18){
@@ -230,8 +230,9 @@ class User {
 
       let users = await this.collection.find({ 
           CVR: null,
-          maritalStatusId: { $in :  [8, null] }, 
-         'parents._id':{$ne: ObjectID(id)} } )
+          maritalStatusId: { $in :  [8,, '8', null] }, 
+          $or: [{ 'parents._id':{ $ne: ObjectID(id) } }, {'parents': null} ],
+          })
           .toArray()
 
       let children = users.filter(user => {

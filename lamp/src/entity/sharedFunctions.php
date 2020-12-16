@@ -100,7 +100,7 @@ class SharedFunctions
 
   function getAllAvailableSpouses($id)
   {
-    $sql = " SELECT * FROM `user` WHERE CVR IS NULL AND marital_status_id IN(3,8,4,6,7,1) AND id<> $id ";
+    $sql = " SELECT * FROM `user` WHERE CVR IS NULL AND marital_status_id IN(3,8,4,6,1) AND id<> $id ";
     $conn  = new Database();
     $statement = $conn->connectToDatabase()->prepare($sql);
     if ($statement->execute()) {
