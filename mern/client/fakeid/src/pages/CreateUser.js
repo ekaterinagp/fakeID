@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './../css/form.css'
+import './../css/createUser.css'
 
 
 export default function Overview(){
@@ -49,8 +50,8 @@ export default function Overview(){
     return(
         <div>
 
-        <h2>Create User</h2>
         <form>
+        <h2>Create User</h2>
             <div className="formField">
                 <label htmlFor="name">Name</label>  
                 <input name="name" type="text" placeholder="Name" onChange={handleChange}/>
@@ -66,8 +67,8 @@ export default function Overview(){
     
             <div className="formField">
                 <label htmlFor=""> Address </label>
-                <select name="address" id="addressSelect" placeholder="Select Address" onChange={handleChange}>
-                    <option value="" disabled selected>Select Address</option>
+                <select name="address" id="addressSelect" placeholder="Select Address" onChange={handleChange} defaultValue="Select Address">
+                    <option value="Select Address" disabled >Select Address</option>
                     <option value="Lygten 17, 2400 Norrebro">Lygten 17</option>
                     <option value="Lygten 37, 2400 Norrebro">Lygten 37</option>
                 </select>

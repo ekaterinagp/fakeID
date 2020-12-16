@@ -4,7 +4,7 @@ it("loads", () => {
     cy.contains("FakeID");
 });
 
-describe("Overview page contains users", () => {
+describe("Create form creates users", () => {
 
     let user = {
         name: "Lea RoboCop",

@@ -1,0 +1,8 @@
+form{
+    max-width: 700px;
+    width: 100%;
+    background:#f5f5f5;
+    border-radius: 10px;
+    display: grid;
+    padding:2rem 5rem;
+}

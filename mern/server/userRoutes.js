@@ -16,6 +16,26 @@ router.get('/users', async (req, res) => {
     }
 })
 
+router.get('/users/:id/spouses', async (req, res) => {
+    let userEntity = new User(db)
+    let { id } = req.params
+    let spouses = await userEntity.getAvailableSpouses(id)
+    if(!spouses.length){
+        return res.status(400).send({error: 'No spouses available'})
+    }
+    return res.status(200).send(spouses)
+})
+
+router.get('/users/:id/children', async (req, res) => {
+    let userEntity = new User(db)
+    let { id } = req.params
+    let children = await userEntity.getAvailableChildren(id)
+    if(!children.length){
+        return res.status(400).send({error: 'No children available'})
+    }
+    return res.status(200).send(children)
+})
+
 router.get('/users/:id', async (req, res) => {
     let user = new User(db)
     let { id } = req.params
@@ -29,7 +49,6 @@ router.get('/users/:id', async (req, res) => {
         if(err){console.log(error); return res.status(500).send({error}); }
     }
 })
-
 
 
 router.post('/users', async (req, res) => {
@@ -47,22 +66,19 @@ router.put('/users/:id', async (req, res) => {
     user = await userEntity.findById(id);
     let bulkUpdates = [];
 
-    let { name, address, maritalStatus ,spouseId, childId } = req.body;
-    if(  !name && !address && !maritalStatus && !spouseId && !childId){
-        return res.status(400).send({error:'missing fields'})
-    }
+    let { name, address, maritalStatusId ,spouseId, childId } = req.body;
  
-    if(spouseId){
+    if(spouseId ){
         let spouse = await userEntity.findById(spouseId)
         if(!spouse){
             return res.status(400).send({error: 'User does not exist'})
         }
-        if(maritalStatus == 2 || maritalStatus == 5){
-            if(user.spouse && user.spouse.length >0) return res.send({message: 'user already has a spouse'})
+        if(maritalStatusId == '2' || maritalStatusId == '5'){
+            if(user.spouse && user.spouse.length >0 && user.spouse[0]._id == ObjectID(spouseId)) return res.send({message: 'user already has a spouse'})
         }
         delete spouse.spouse
 
-       bulkUpdates.push(...userEntity.updateSpouse(user, maritalStatus, spouse))
+       bulkUpdates.push(...userEntity.updateSpouse(user, maritalStatusId, spouse))
     }
 
     if(childId){

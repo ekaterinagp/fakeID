@@ -1,5 +1,12 @@
+*{
+  box-sizing: border-box;
+}
+
 h2{
   text-align: center;
+}
+h1,h2,h3{
+  font-style: italic;
 }
 
 .loader{
@@ -16,14 +23,23 @@ h2{
   justify-content: center;
 }
 
+a.active{
+  font-weight: bold;
+}
 
-button, .button{
+button, .button, .labelRadio label{
   border-radius: 10px;
-  border:1px solid lightgrey;
-  padding:10px;
-  color:black;
+  padding:.5rem 2rem;
+  color:white;
   text-decoration: none;
-  background:lightgrey;
+  background:#5D576B;
   text-align: center;
   margin:auto;
 }
+
+
+button:focus{
+  outline: none;
+}
+
+

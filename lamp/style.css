@@ -373,3 +373,11 @@ box-shadow: 4px 6px 15px rgba(0,0,0,.3);
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
+
+
+
+
+button:focus{
+  outline: none;
+}

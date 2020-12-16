@@ -1,0 +1,44 @@
+.singleUserPage{
+    padding: 0;
+    margin:auto auto 3rem;
+    max-width: 700px;
+    width: 100%;
+    background:#f5f5f5;
+    border-radius: 10px;
+}
+.singleUserPage h1{
+    padding:1rem 2rem
+  }
+  .userInfo{
+    padding:0 1rem 1rem 1rem;
+  }
+  .userInfo p{
+    margin-top:.1rem;
+    padding-left:1rem;
+  }
+  .userInfo h4{
+    padding-left:1rem;
+    margin-bottom: .1rem;
+  }
+.tabs{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .tabs button{
+    width: 100%;
+    box-shadow: none;
+    margin:0;
+    color:black;
+    border-radius: 0 10px 0 0;
+    background: transparent;
+    text-transform: uppercase;
+    border:none;
+    background: #dcdcdc;
+  }
+  .tabs .active{
+      background: transparent;
+    }
+  .tabs button:nth-child(1  ){
+    border-radius: 10px 0 0 0;
+    border-right:1px solid #d8dbe2ba;
+  }
