@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams  } from "react-router-dom";
 import EditUser from '../components/EditUser';
 import UserInfo from '../components/UserInfo';
+import Notification from '../components/Notification';
 import './../css/singleUser.css'
 
 
@@ -9,7 +10,10 @@ export default function SingleUser (props) {
     const [ user, setUser ] = useState()
     const [ loading, setLoading ] = useState(true)
     const [ showInfo, setShowInfo ] = useState(true)
+    const [ notification, setNotification ] = useState()
+
     const { id } = useParams()
+
 
     useEffect(() => {
         let isFetching = true
@@ -74,9 +78,17 @@ export default function SingleUser (props) {
     if(loading || !user){
         return <div className="loader">LOADING</div>
     }
-
+    const handleNotification = (values) => {
+        setNotification(values)
+        setTimeout(() => {
+            setNotification(null)
+        },5000)
+    }
     return (
         <div>
+            {notification?
+            <Notification {...notification} />
+            :null}
             <div className="singleUserPage">
                 <div className="tabs">
                     <button className={showInfo? 'active' : ''} onClick={()=>setShowInfo(true)}>Information</button>
@@ -90,7 +102,7 @@ export default function SingleUser (props) {
                 </div>
             :
             <div className="userForm">
-                <EditUser user={user} updateUser={onUpdate} />
+                <EditUser user={user} updateUser={onUpdate} onNotification={handleNotification}/>
                 </div>
             }
             </div>
