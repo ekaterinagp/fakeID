@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import './../css/overview.css'
 
+import { API_URL } from './../config'
+
 export default function Overview(){
     const [ loading, setLoading ] = useState(true)
     const [ users, setUsers ] = useState()
-
+ 
 
     useEffect(() => {
         let isFetching = true
         const fetchUsers = async () => {
-            const response = await fetch('http://localhost:9090/users')
+            const response = await fetch(`${API_URL}/users`)
             const data = await response.json()
             if(isFetching){
                 setUsers(data)

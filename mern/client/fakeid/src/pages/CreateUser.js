@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import './../css/form.css'
 import './../css/createUser.css'
 
+import { API_URL } from './../config'
+
 
 export default function Overview(){
     const [ values, setValues ] = useState()
@@ -10,7 +12,7 @@ export default function Overview(){
         event.preventDefault()
         console.log(values)
         try{
-            const response = await fetch('http://localhost:9090/users', {
+            const response = await fetch(`${API_URL}/users`, {
                 method: 'POST',
                 body: JSON.stringify(values),
                 headers:{

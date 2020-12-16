@@ -1,5 +1,7 @@
 import React , { useEffect, useState } from 'react';
 
+import { API_URL } from './../config'
+
 
 export default function EditUser (props) {
     let { user } = props
@@ -42,7 +44,7 @@ export default function EditUser (props) {
     const submitChange = async (event) => {
         event.preventDefault()
         try{
-            const response = await fetch(`http://localhost:9090/users/${user._id}`, {
+            const response = await fetch(`${API_URL}/users/${user._id}`, {
                 method: 'PUT',
                 body: JSON.stringify(values),
                 headers:{
@@ -64,7 +66,7 @@ export default function EditUser (props) {
 
     const fetchSpouses = async () => {
         try{
-            const response = await fetch(`http://localhost:9090/users/${user._id}/spouses`)
+            const response = await fetch(`${API_URL}/users/${user._id}/spouses`)
             const spouses = await response.json()
             if(response.status === 200){
                 setSpouses(spouses)
@@ -76,7 +78,7 @@ export default function EditUser (props) {
 
     const fetchChildren = async () => {
         try{
-            const response = await fetch(`http://localhost:9090/users/${user._id}/children`)
+            const response = await fetch(`${API_URL}/users/${user._id}/children`)
             const children = await response.json()
             setChildren(children)
         }catch(err){

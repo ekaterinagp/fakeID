@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useParams  } from "react-router-dom";
 import EditUser from '../components/EditUser';
 import UserInfo from '../components/UserInfo';
+
+import { API_URL } from './../config'
+
 import './../css/singleUser.css'
 
 
@@ -25,7 +28,7 @@ export default function SingleUser (props) {
     },[id])
 
     const fetchUser = async (userID) => {
-        const response = await fetch(`http://localhost:9090/users/${userID}`)
+        const response = await fetch(`${API_URL}/users/${userID}`)
         const { singleUser } = await response.json()
         console.log( singleUser )
         return singleUser
