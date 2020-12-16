@@ -5,14 +5,13 @@ import Notification from './../components/Notification';
 import './../css/form.css'
 import './../css/createUser.css'
 
-const url = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_API_URL : process.env.API_URL
-
-
 
 export default function Overview(){
     const myForm = useRef(null)
     const [ values, setValues ] = useState()
     const [ notification, setNotification ] = useState()
+    
+    const url = process.env.REACT_APP_API_URL
 
     const submitUser = async (event) => {
         event.preventDefault()

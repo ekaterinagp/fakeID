@@ -3,7 +3,6 @@ import React from 'react';
 
 
 export default function UserInfo (user) {
-    console.log()
 
     return(
         <>

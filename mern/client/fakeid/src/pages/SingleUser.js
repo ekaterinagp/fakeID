@@ -14,7 +14,7 @@ export default function SingleUser (props) {
     const [ notification, setNotification ] = useState()
 
     const { id } = useParams()
-    const url = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_API_URL : process.env.API_URL
+    const url = process.env.REACT_APP_API_URL
 
     useEffect(() => {
         let isFetching = true

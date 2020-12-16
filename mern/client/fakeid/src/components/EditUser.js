@@ -16,7 +16,7 @@ export default function EditUser (props) {
     const [ availableSpouses, setSpouses ] = useState()
     const [ availableChildren, setChildren ] = useState()
 
-    const url = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_API_URL : process.env.API_URL
+    const url = process.env.REACT_APP_API_URL
 
     useEffect(() => {
         if (user){
