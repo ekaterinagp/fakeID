@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import './../css/overview.css'
 
-import { API_URL } from './../config'
 
 export default function Overview(){
     const [ loading, setLoading ] = useState(true)
     const [ users, setUsers ] = useState()
  
+    const url = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_API_URL : process.env.API_URL
 
     useEffect(() => {
         let isFetching = true
         const fetchUsers = async () => {
-            const response = await fetch(`${API_URL}/users`)
+            const response = await fetch(`${url}/users`)
             const data = await response.json()
             if(isFetching){
                 setUsers(data)
@@ -24,6 +24,8 @@ export default function Overview(){
         fetchUsers()
         return () => isFetching =false
     }, [])
+    
+    console.log(process.env)
 
     if(loading){
         return <div className="loader">LOADING</div>

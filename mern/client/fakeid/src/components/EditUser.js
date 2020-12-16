@@ -1,6 +1,5 @@
 import React , { useEffect, useState } from 'react';
 
-import { API_URL } from './../config'
 
 
 export default function EditUser (props) {
@@ -16,7 +15,9 @@ export default function EditUser (props) {
     
     const [ availableSpouses, setSpouses ] = useState()
     const [ availableChildren, setChildren ] = useState()
-    
+
+    const url = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_API_URL : process.env.API_URL
+
     useEffect(() => {
         if (user){
             setValues({
@@ -44,7 +45,7 @@ export default function EditUser (props) {
     const submitChange = async (event) => {
         event.preventDefault()
         try{
-            const response = await fetch(`${API_URL}/users/${user._id}`, {
+            const response = await fetch(`${url}/users/${user._id}`, {
                 method: 'PUT',
                 body: JSON.stringify(values),
                 headers:{
@@ -77,7 +78,7 @@ export default function EditUser (props) {
 
     const fetchSpouses = async () => {
         try{
-            const response = await fetch(`${API_URL}/users/${user._id}/spouses`)
+            const response = await fetch(`${url}/users/${user._id}/spouses`)
             const spouses = await response.json()
             if(response.status === 200){
                 setSpouses(spouses)
@@ -89,7 +90,7 @@ export default function EditUser (props) {
 
     const fetchChildren = async () => {
         try{
-            const response = await fetch(`${API_URL}/users/${user._id}/children`)
+            const response = await fetch(`${url}/users/${user._id}/children`)
             const children = await response.json()
             setChildren(children)
         }catch(err){

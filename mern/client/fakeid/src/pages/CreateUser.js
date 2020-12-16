@@ -5,7 +5,7 @@ import Notification from './../components/Notification';
 import './../css/form.css'
 import './../css/createUser.css'
 
-import { API_URL } from './../config'
+const url = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_API_URL : process.env.API_URL
 
 
 
@@ -17,7 +17,7 @@ export default function Overview(){
     const submitUser = async (event) => {
         event.preventDefault()
         try{
-            const response = await fetch(`${API_URL}/users`, {
+            const response = await fetch(`${url}/users`, {
                 method: 'POST',
                 body: JSON.stringify(values),
                 headers:{
