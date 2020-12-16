@@ -3,7 +3,8 @@ it("loads", () => {
     cy.visit(baseUrl);
     cy.contains("FakeID");
 });
-describe("edit form edits users add child", () => {
+
+describe("edit form edits employee", () => {
     let address = 'Lygten 17'
       it("Edit employee user", () => {
         cy.get('.singleUser a.button').eq(3).click()
