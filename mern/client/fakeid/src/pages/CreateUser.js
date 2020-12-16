@@ -1,14 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
+
+import Notification from './../components/Notification';
+
 import './../css/form.css'
 import './../css/createUser.css'
 
 
+
 export default function Overview(){
+    const myForm = useRef(null)
     const [ values, setValues ] = useState()
+    const [ notification, setNotification ] = useState()
 
     const submitUser = async (event) => {
         event.preventDefault()
-        console.log(values)
         try{
             const response = await fetch('http://localhost:9090/users', {
                 method: 'POST',
@@ -18,18 +23,29 @@ export default function Overview(){
                 }
             })
             const data = await response.json()
-            console.log(data)
             if(data.error){
-               //set error
+               setNotification({
+                   message: data.error,
+                   type:'error'
+               })
             }else{
-                //set success
+                setNotification({
+                    message: 'User Created',
+                    type:'success'
+                })
+                myForm.current.reset();
             }
         }catch(err){
-            if(err){console.log(err); return; }
-            //set error
+            setNotification({
+                message: 'Something went wrong, please try again',
+                type:'error'
+            })
         }
+        setTimeout(() => {
+            setNotification(null)
+        }, 5000)
     }
-
+    
     const handleChange = (event) => {
         event.persist();
         if(event.target.name === 'dateOfBirth'){
@@ -42,15 +58,17 @@ export default function Overview(){
             newDate.toString();
             setValues(values => ({ ...values, 'dateOfBirth':  newDate })); 
             return      
-        }//else{
-            setValues(values => ({ ...values, [event.target.name]: event.target.value }));       
-        // }
+        }
+        setValues(values => ({ ...values, [event.target.name]: event.target.value }));       
     }
 
     return(
         <div>
-
-        <form>
+            {notification?
+            <Notification {...notification} />
+            :null}
+            
+        <form ref={myForm}>
         <h2>Create User</h2>
             <div className="formField">
                 <label htmlFor="name">Name</label>  

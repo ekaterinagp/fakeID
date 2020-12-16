@@ -89,6 +89,7 @@ export default function SingleUser (props) {
             {notification?
             <Notification {...notification} />
             :null}
+            
             <div className="singleUserPage">
                 <div className="tabs">
                     <button className={showInfo? 'active' : ''} onClick={()=>setShowInfo(true)}>Information</button>
