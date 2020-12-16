@@ -31,9 +31,24 @@ export default function SingleUser (props) {
         return singleUser
        
     }
+
+    const getMaritalStatus = (maritalStatusId) => {
+        maritalStatusId = parseInt(maritalStatusId);
+        if (!maritalStatusId) return null;
+        if (maritalStatusId === 1) return "Single";
+        if (maritalStatusId === 2) return "Married";
+        if (maritalStatusId === 3) return "Divorced";
+        if (maritalStatusId === 4) return "Widow";
+        if (maritalStatusId === 5) return "Registered Partnership";
+        if (maritalStatusId === 6) return "Abolition of Registered Partnership";
+        if (maritalStatusId === 7) return "Deceased";
+        return "Unknown";
+    }
+
     const onUpdate = async (values) => {
-        console.log(values)
+        console.log(values.address)
        user.maritalStatusId = values.maritalStatusId
+       user.maritalStatus = getMaritalStatus(values.maritalStatusId)
        user.name = values.name
        user.address = values.address
        console.log(user)
@@ -41,7 +56,7 @@ export default function SingleUser (props) {
        if(values.spouseId  && (!user.hasOwnProperty('spouse') || !user.spouse.length)){
            console.log('add spouse to info')
            let spouse = await fetchUser(values.spouseId)
-           user.spouse.push(spouse)
+           user.hasOwnProperty('spouse')? user.spouse.push(spouse) : user.spouse = [spouse]
            setUser(user)
        }
        if(values.maritalStatusId !== '2' && values.maritalStatusId !== '5'){
