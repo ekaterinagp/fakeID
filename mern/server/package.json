@@ -19,12 +19,15 @@
   "author": "Dream Team",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^26.0.16",
+    "@types/jest": "^26.0.19",
     "jest": "^26.6.3",
     "mongodb-memory-server": "^6.9.2"
   },
   "jest": {
     "collectCoverage": true,
-     "coverageReporters": ["json", "html"]
+    "coverageReporters": [
+      "json",
+      "html"
+    ]
   }
 }
