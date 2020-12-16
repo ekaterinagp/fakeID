@@ -19,13 +19,11 @@ export default function Overview(){
                 setLoading(false)
             }
             
-            console.log(users)
         }
         fetchUsers()
         return () => isFetching =false
     }, [])
     
-    console.log(process.env)
 
     if(loading){
         return <div className="loader">LOADING</div>

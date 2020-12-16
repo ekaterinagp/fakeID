@@ -40,8 +40,6 @@ export default function EditUser (props) {
         setValues(values => ({ ...values, [event.target.name]: event.target.value }));       
     }
 
-    console.log(values)
-
     const submitChange = async (event) => {
         event.preventDefault()
         try{
