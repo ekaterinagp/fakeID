@@ -28,14 +28,14 @@ export default function UserInfo (user) {
                 <p>{user.address}</p>
 
                 {user.age < 18 ? 
-                    user.parents.map(parent => {
+                    <> 
+                    <h4>Parents</h4>
+                    {user.parents.map(parent => {
                         return (
-                        <> 
-                        <h4>Parents</h4>
                         <p key={parent._id + parent.name}>{parent.name}</p>
-                        </>
                         )
-                    })
+                    })}
+                    </>
                 :null}   
                 { user.hasOwnProperty('spouse') && user.spouse.length ?
                 <>
