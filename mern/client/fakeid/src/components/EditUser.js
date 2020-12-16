@@ -55,12 +55,23 @@ export default function EditUser (props) {
             console.log(data)
             if(!data.error){
                 props.updateUser(values)
-                if (values.hasOwnProperty('spouseId')){
-                }
+                props.onNotification({
+                    message: 'User updated',
+                    type: 'success'
+                })
+                
+            }else{
+                props.onNotification({
+                    message: data.error,
+                    type: 'error'
+                })
             }
 
         }catch(err){
-            if(err){console.log(err); return; }
+            props.onNotification({
+                message: 'Something went wrong, please try again',
+                type: 'error'
+            }); 
         }
     }
 
@@ -87,6 +98,9 @@ export default function EditUser (props) {
     }
  return (
     <form>
+        
+     
+
         <div className="formField">
             <label htmlFor="name">Name</label>  
             <input name="name" type="text" placeholder="Name" onChange={handleChange} value={values.name}/>

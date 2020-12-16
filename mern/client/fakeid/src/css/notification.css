@@ -1,0 +1,31 @@
+.notification{
+    position: fixed;
+    top:-10vh;
+    left:0;
+    right:0;
+    width:80%;
+    margin:auto;
+    border-radius: 0 0 10px 10px;
+    animation: show 5s forwards;
+    color:white;
+    height:10vh;
+    text-align: center;
+}
+.notification.error{
+    background:red;
+}
+.notification.success{
+    background:green;
+}
+@keyframes show{
+    5%{
+        top:0;
+    }
+    98%{
+        top:0;
+    }
+    99%{
+        top:-10vh;
+    }
+}
+
