@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+
+import Sorters from '../components/Sorters'
+import Filters from '../components/Filters'
+
 import './../css/overview.css'
 
 
 export default function Overview(){
     const [ loading, setLoading ] = useState(true)
     const [ users, setUsers ] = useState()
+    const [ displayedUsers, setDisplayUsers ] = useState()
+    const [ btnText, setBtnText ] = useState('Show filters')
  
     const url = process.env.REACT_APP_API_URL
 
@@ -16,6 +22,7 @@ export default function Overview(){
             const data = await response.json()
             if(isFetching){
                 setUsers(data)
+                setDisplayUsers(data)
                 setLoading(false)
             }
             
@@ -29,11 +36,44 @@ export default function Overview(){
         return <div className="loader">LOADING</div>
     }
     console.log(users)
+
+    const handleFilter = (values) => {
+        console.log(values)
+    }
+    const handleSort = (values) => {
+        console.log(values)
+        let usersInDom;
+
+        if(values.hasOwnProperty('ageSort')){
+            usersInDom = [...displayedUsers].sort((a,b) => {
+               return a.age - b.age;
+            })
+         }
+         if(values.hasOwnProperty('nameSort')){
+            usersInDom = [...displayedUsers].sort((a,b) => {
+               if(a.name < b.name){
+                  return -1
+               }else {
+                  return 1
+               }
+            })
+        }
+        console.log(usersInDom)
+        setDisplayUsers(usersInDom)
+    }
+    
+    console.log(displayedUsers)
     return(
         <div>
             <h2>Overview</h2>
+
+            <button className="filterBtn">{ btnText }</button>
+            <div className="filtersAndSortContainer">
+                <Filters onFilter={handleFilter}/>
+                <Sorters onSort={handleSort}/>
+            </div>
             <div className="usersContainer">
-                {users.map(user => {
+                {displayedUsers.map(user => {
                   return (
                       <div key={user._id} className="singleUser">
                           <h3>{user.name}</h3>
