@@ -244,7 +244,6 @@ class User {
     return children
   }
 
-
 }
 
 module.exports = User;
