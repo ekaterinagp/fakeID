@@ -46,23 +46,26 @@ export default function Overview(){
         console.log(values)
     }
     const handleSearch = (searchString) => {
+        if(!searchString){
+            setDisplayUsers(users)
+            return
+        }
         searchString = searchString.toLowerCase()
-        let result = [...displayedUsers].filter(user => user.name.toLowerCase().includes(searchString))
-        // if(!result.length){
-        //     result =  'No users found'
-        // }
+        let result = [...users].filter(user => user.name.toLowerCase().includes(searchString))
         setDisplayUsers(result)
     }
     const handleSort = (values) => {
         console.log(values)
         let usersInDom;
-
-        if(values.hasOwnProperty('ageSort')){
+        // if(values)
+        if(values.ageSort){
+            console.log('sort age')
             usersInDom = [...displayedUsers].sort((a,b) => {
-               return a.age - b.age;
+                return a.age - b.age;
             })
-         }
-         if(values.hasOwnProperty('nameSort')){
+        }
+        if(values.nameSort){
+             console.log('sort name')
             usersInDom = [...displayedUsers].sort((a,b) => {
                if(a.name < b.name){
                   return -1
@@ -71,7 +74,10 @@ export default function Overview(){
                }
             })
         }
-        console.log(usersInDom)
+        if( !values.ageSort && !values.nameSort){
+            console.log(users)
+            usersInDom = users;
+         }
         setDisplayUsers(usersInDom)
     }
 

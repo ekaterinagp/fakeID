@@ -1,9 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function Sorters(props){
+    const [ values, setValues ] = useState({
+        ageSort: false,
+        nameSort:false
+    })
     
+    useEffect(() => {
+        props.onSort(values)
+
+    },[values])
+
+
     const handleSort = (event) => {
-        props.onSort(({[event.target.name]: event.target.value }))
+        setValues(values => ({...values, [event.target.name]: event.target.checked}))
     }
 
     return(
