@@ -179,7 +179,7 @@ class User {
         updateOne: {
           filter: { _id: ObjectID(spouse._id) },
           update: {
-            $push: { spouse: user },
+            $push: { spouse: {user} },
             $set: { maritalStatusId: maritalStatusId },
           },
         },
@@ -236,6 +236,7 @@ class User {
             return user;
         }
     })
+    console.log(users)
     return users
   }
 
