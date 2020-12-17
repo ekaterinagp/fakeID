@@ -5,12 +5,6 @@ import SearchBar from "../components/SearchBar";
 
 import "./../css/overview.css";
 
-export function testMaleEmployee(users) {
-  let filteredUsers = getMales(users);
-  filteredUsers = getEmployees(filteredUsers);
-  return filteredUsers[0];
-}
-
 export function getFemales(users) {
   let females = users.filter((user) => user.gender === "female");
   return females;
@@ -51,6 +45,12 @@ export function getMarried(users) {
   return notEmployees;
 }
 
+export function testMaleEmployee(users) {
+  let filteredUsers = getMales(users);
+  filteredUsers = getEmployees(filteredUsers);
+  return filteredUsers[0];
+}
+
 export default function Overview() {
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState();
@@ -61,9 +61,25 @@ export default function Overview() {
     btnText: "Show filters",
   });
 
+  const filters = {
+    female: false,
+    male: false,
+    child: false,
+    adult: false,
+    employee: false,
+    notEmployee: false,
+    married: false,
+    unknown: false,
+    single: false,
+    divorced: false,
+    decseaced: false,
+    partnership: false,
+    abolishPartnership: false,
+  };
+
   const url = process.env.REACT_APP_API_URL;
-  console.log(url);
-  console.log(process.env);
+  // console.log(url);
+  // console.log(process.env);
   useEffect(() => {
     let isFetching = true;
     const fetchUsers = async () => {
@@ -95,17 +111,17 @@ export default function Overview() {
     setDisplayUsers(result);
   };
   const handleSort = (values) => {
-    console.log(values);
+    // console.log(values);
     let usersInDom;
     // if(values)
     if (values.ageSort) {
-      console.log("sort age");
+      // console.log("sort age");
       usersInDom = [...displayedUsers].sort((a, b) => {
         return a.age - b.age;
       });
     }
     if (values.nameSort) {
-      console.log("sort name");
+      // console.log("sort name");
       usersInDom = [...displayedUsers].sort((a, b) => {
         if (a.name < b.name) {
           return -1;
@@ -121,7 +137,7 @@ export default function Overview() {
   };
 
   const handleClick = () => {
-    console.log("click");
+    // console.log("click");
     if (!isShown.isShown) {
       setIsShown({
         isShown: true,
@@ -137,6 +153,42 @@ export default function Overview() {
     }
   };
 
+  const handleFilter = (type) => {
+    console.log("click");
+    console.log(type);
+    if (type === "ageAll") {
+      filters.child = false;
+      filters.adult = false;
+    }
+    if (type === "ageChild") {
+      filters.child = true;
+      filters.adult = false;
+    }
+
+    if (type === "ageAdult") {
+      filters.child = false;
+      filters.adult = true;
+    }
+    console.log(filters);
+    applyFilters();
+  };
+
+  const applyFilters = () => {
+    console.log("apply filters");
+    console.log(filters);
+    setDisplayUsers(users);
+    if (filters.adult == true) {
+      let filteredUsers = getAdults(users);
+      console.log(filteredUsers);
+      setDisplayUsers(filteredUsers);
+    }
+    if (filters.child == true) {
+      let filteredUsers = getChildren(users);
+      console.log(filteredUsers);
+      setDisplayUsers(filteredUsers);
+    }
+  };
+
   return (
     <div>
       <h2>Overview</h2>
@@ -149,6 +201,43 @@ export default function Overview() {
 
         <div className="filtersAndSortContainer" style={isShown.style}>
           <Sorters onSort={handleSort} />
+        </div>
+        <div className="filtersContainer">
+          <form>
+            <div className="radio">
+              <label>
+                <input
+                  type="radio"
+                  value="all"
+                  name="ageFilter"
+                  onClick={() => handleFilter("ageAll")}
+                />
+                All
+              </label>
+            </div>
+            <div className="radio">
+              <label>
+                <input
+                  type="radio"
+                  name="ageFilter"
+                  value="children"
+                  onClick={() => handleFilter("ageChild")}
+                />
+                Children
+              </label>
+            </div>
+            <div className="radio">
+              <label>
+                <input
+                  type="radio"
+                  value="adults"
+                  name="ageFilter"
+                  onClick={() => handleFilter("ageAdult")}
+                />
+                Adults
+              </label>
+            </div>
+          </form>
         </div>
       </div>
       <div className="usersContainer">
