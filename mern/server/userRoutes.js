@@ -21,7 +21,7 @@ router.get('/users/:id/spouses', async (req, res) => {
     let { id } = req.params
     let spouses = await userEntity.getAvailableSpouses(id)
     if(!spouses.length){
-        return res.status(400).send({error: 'No spouses available'})
+        return res.status(200).send({error: 'No spouses available'})
     }
     return res.status(200).send(spouses)
 })
@@ -31,7 +31,7 @@ router.get('/users/:id/children', async (req, res) => {
     let { id } = req.params
     let children = await userEntity.getAvailableChildren(id)
     if(!children.length){
-        return res.status(400).send({error: 'No children available'})
+        return res.status(200).send({error: 'No children available'})
     }
     return res.status(200).send(children)
 })
@@ -96,6 +96,7 @@ router.put('/users/:id', async (req, res) => {
     bulkUpdates.push(...userEntity.updateUser(user, req.body))
     try{
        const response = await userCollection.bulkWrite(bulkUpdates, {"ordered": true})
+       console.log(response)
        return res.status(200).send({response})
     }catch(err){
         if(err){console.log(err); return res.status(500).send({error: err}); }

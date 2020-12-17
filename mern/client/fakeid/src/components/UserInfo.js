@@ -22,7 +22,23 @@ export default function UserInfo(user) {
       <h4>Address</h4>
       <p>{user.address}</p>
 
-      {user.parents ? (
+      <h4>CPR</h4>
+      <p>{user.CPR}</p>
+
+      <h4>Gender</h4>
+      <p>{user.gender}</p>
+
+      {user.maritalStatusId ? (
+        <>
+          <h4>Marital status</h4>
+          <p>{user.maritalStatus}</p>
+        </>
+      ) : null}
+
+      <h4>Address</h4>
+      <p>{user.address}</p>
+
+      {user.age < 18 ? (
         <>
           <h4>Parents</h4>
           {user.parents.map((parent) => {
@@ -30,10 +46,19 @@ export default function UserInfo(user) {
           })}
         </>
       ) : null}
-      {user.hasOwnProperty("spouse") && user.spouse.length ? (
+      {user.spouse ? (
         <>
           <h4>Spouse</h4>
-          <p>{user.spouse[0].name}</p>
+          <p>{user.spouse.name}</p>
+        </>
+      ) : null}
+
+      {user.children.length ? (
+        <>
+          <h4>Children</h4>
+          {user.children.map((child) => {
+            return <p key={child._id}> {child.name}</p>;
+          })}
         </>
       ) : null}
 
