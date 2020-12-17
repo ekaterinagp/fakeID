@@ -1,65 +1,59 @@
-import React from 'react';
+import React from "react";
 
+export default function UserInfo(user) {
+  return (
+    <>
+      <h4>Date of birth</h4>
+      <p>{user.formattedDate}</p>
 
+      <h4>CPR</h4>
+      <p>{user.CPR}</p>
 
-export default function UserInfo (user) {
+      <h4>Gender</h4>
+      <p>{user.gender}</p>
 
-    return(
+      {user.maritalStatusId ? (
         <>
+          <h4>Marital status</h4>
+          <p>{user.maritalStatus}</p>
+        </>
+      ) : null}
 
-                <h4>Date of birth</h4>
-                <p>{user.formattedDate}</p>
+      <h4>Address</h4>
+      <p>{user.address}</p>
 
-                <h4>CPR</h4>
-                <p>{user.CPR}</p>
+      {user.parents ? (
+        <>
+          <h4>Parents</h4>
+          {user.parents.map((parent) => {
+            return <p key={parent._id + parent.name}>{parent.name}</p>;
+          })}
+        </>
+      ) : null}
+      {user.hasOwnProperty("spouse") && user.spouse.length ? (
+        <>
+          <h4>Spouse</h4>
+          <p>{user.spouse[0].name}</p>
+        </>
+      ) : null}
 
-                <h4>Gender</h4>
-                <p>{user.gender}</p>
+      {user.hasOwnProperty("children") && user.children.length ? (
+        <>
+          <h4>Children</h4>
+          {user.children.map((child) => {
+            return <p key={child._id}> {child.name}</p>;
+          })}
+        </>
+      ) : null}
 
-                {user.maritalStatusId ? 
-                     <>
-                    <h4>Marital status</h4>
-                    <p>{user.maritalStatus}</p>
-                    </>
-                :null}
-
-                <h4>Address</h4>
-                <p>{user.address}</p>
-
-                {user.age < 18 ? 
-                    <> 
-                    <h4>Parents</h4>
-                    {user.parents.map(parent => {
-                        return (
-                        <p key={parent._id + parent.name}>{parent.name}</p>
-                        )
-                    })}
-                    </>
-                :null}   
-                { user.hasOwnProperty('spouse') && user.spouse.length ?
-                <>
-                <h4>Spouse</h4>
-                <p >{user.spouse[0].name}</p>
-                </>
-               : null }
-
-                {user.hasOwnProperty('children') && user.children.length?
-                <>
-                <h4>Children</h4>
-                   { user.children.map(child => {
-                        return <p key={child._id}> {child.name}</p>
-                    })}
-                </>
-               : null }
-
-                {user.CVR ?
-                <>
-                <h4>CVR</h4>
-                <p>{user.CVR}</p>
-                <h4>Company</h4>
-                <p>{user.companyName}</p>
-                </>
-               : null }
-               </>
-    )
+      {user.CVR ? (
+        <>
+          <h4>CVR</h4>
+          <p>{user.CVR}</p>
+          <h4>Company</h4>
+          <p>{user.companyName}</p>
+        </>
+      ) : null}
+    </>
+  );
 }
