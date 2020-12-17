@@ -57,7 +57,7 @@ describe("Employee filter", function () {
 describe("Not employee filter", function () {
   it("should return only Not employee", function () {
     const notEmployee = getNotEmployees(users);
-    expect(notEmployee[0].CVR).toBe(null);
+    expect(notEmployee[0]).not.toHaveProperty("CVR");
   });
 });
 

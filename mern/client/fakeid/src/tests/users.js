@@ -20,7 +20,6 @@ export const users = [
   {
     name: "Anna Anderson",
     CPR: "0707870002",
-    CVR: null,
     address: "Lygten 37, 2400 Norrebro",
     age: 33,
     children: [],
@@ -36,7 +35,6 @@ export const users = [
   },
   {
     CPR: "2101620001",
-    CVR: null,
     address: "Lygten 37, 2400 Norrebro",
     age: 58,
     children: [],
