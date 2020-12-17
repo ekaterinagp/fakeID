@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import Sorters from '../components/Sorters'
-import Filters from '../components/Filters'
 import SearchBar from '../components/SearchBar'
 
 import './../css/overview.css'
@@ -42,9 +41,7 @@ export default function Overview(){
     }
     console.log(users)
 
-    const handleFilter = (values) => {
-        console.log(values)
-    }
+  
     const handleSearch = (searchString) => {
         if(!searchString){
             setDisplayUsers(users)
@@ -75,7 +72,6 @@ export default function Overview(){
             })
         }
         if( !values.ageSort && !values.nameSort){
-            console.log(users)
             usersInDom = users;
          }
         setDisplayUsers(usersInDom)
@@ -108,7 +104,6 @@ export default function Overview(){
                 <button className="filterBtn" onClick={handleClick}>{ isShown.btnText }</button>
 
                 <div className="filtersAndSortContainer" style={isShown.style}>
-                    <Filters onFilter={handleFilter}/>
                     <Sorters onSort={handleSort}/>
                 </div>
             </div>
