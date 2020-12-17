@@ -6,19 +6,6 @@ export default function UserInfo(user) {
       <h4>Date of birth</h4>
       <p>{user.formattedDate}</p>
 
-      <h4>CPR</h4>
-      <p>{user.CPR}</p>
-
-      <h4>Gender</h4>
-      <p>{user.gender}</p>
-
-      {user.maritalStatusId ? (
-        <>
-          <h4>Marital status</h4>
-          <p>{user.maritalStatus}</p>
-        </>
-      ) : null}
-
       <h4>Address</h4>
       <p>{user.address}</p>
 
@@ -34,9 +21,6 @@ export default function UserInfo(user) {
           <p>{user.maritalStatus}</p>
         </>
       ) : null}
-
-      <h4>Address</h4>
-      <p>{user.address}</p>
 
       {user.age < 18 ? (
         <>
