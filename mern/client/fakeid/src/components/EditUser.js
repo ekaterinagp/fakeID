@@ -24,7 +24,7 @@ export default function EditUser (props) {
                 name: user.name,
                 address: user.address,
                 maritalStatusId: user.maritalStatusId,
-                spouseId: user.hasOwnProperty('spouse') && user.spouse.length ? user.spouse[0]._id: '',
+                spouseId: user.spouse ? user.spouse._id: '',
                 childId: null,
             })
         }
@@ -132,7 +132,7 @@ export default function EditUser (props) {
             </div>
 
             <div className="formField">
-            {!user.hasOwnProperty('spouse') || !user.spouse.length?
+            {!user.spouse?
                  <>
                 <label htmlFor="name">Select spouse</label>  
                 <select name="spouseId" id="spouseSelect"  onChange={handleChange}  defaultValue="Select Spouse" >
@@ -147,7 +147,7 @@ export default function EditUser (props) {
             : 
                 <>
                 <label htmlFor="name">Spouse</label>  
-                <input type="text" readOnly value={user.spouse[0].name}/>
+                <input type="text" readOnly value={user.spouse.name}/>
                 </>
             }
             </div>

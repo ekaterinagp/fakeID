@@ -36,14 +36,14 @@ export default function UserInfo (user) {
                     })}
                     </>
                 :null}   
-                { user.hasOwnProperty('spouse') && user.spouse.length ?
+                { user.spouse ?
                 <>
                 <h4>Spouse</h4>
-                <p >{user.spouse[0].name}</p>
+                <p >{user.spouse.name}</p>
                 </>
                : null }
 
-                {user.hasOwnProperty('children') && user.children.length?
+                {user.children.length?
                 <>
                 <h4>Children</h4>
                    { user.children.map(child => {
