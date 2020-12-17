@@ -23,7 +23,7 @@ class User {
       user.maritalStatus = this.getMaritalStatus(user.maritalStatusId);
       if(!user.CVR) user.CVR = null
       if(user.age < 18 && !user.parents) user.parents = []
-      if(!user.CVR && user.age > 18 ){
+      if(!user.CVR && user.age >= 18 ){
         user.spouse = !user.spouse ? user.spouse = [] : user.spouse = user.spouse
         user.children = !user.children ? user.children = [] : user.children = user.children
       }
