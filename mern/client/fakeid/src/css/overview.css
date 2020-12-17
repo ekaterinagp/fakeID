@@ -9,14 +9,17 @@
 }
 
 
+.topContainer{
+    padding:2rem;
+    margin:1rem 2rem;
+}
 .filtersAndSortContainer{
     transition: all .2s;
-    /* max-height: 0;
-    overflow: hidden; */
+    /* max-height: 0;*/
+    overflow: hidden; 
     width:auto;
     display:grid;
     grid-template-columns: 2fr .6fr;
-    margin:1rem 5rem;
     width:auto;
     align-content: start;
 }
@@ -34,4 +37,5 @@
     background:none;
     box-shadow: none;
     color: black;
+    grid-column: 1/-1;
   }

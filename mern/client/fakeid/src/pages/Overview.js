@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 import Sorters from '../components/Sorters'
 import Filters from '../components/Filters'
+import SearchBar from '../components/SearchBar'
 
 import './../css/overview.css'
 
@@ -11,7 +12,11 @@ export default function Overview(){
     const [ loading, setLoading ] = useState(true)
     const [ users, setUsers ] = useState()
     const [ displayedUsers, setDisplayUsers ] = useState()
-    const [ btnText, setBtnText ] = useState('Show filters')
+    const [ isShown , setIsShown ] = useState({
+        isShown :false,
+        style : {maxHeight: 0},
+        btnText: 'Show filters'
+    })
  
     const url = process.env.REACT_APP_API_URL
 
@@ -40,6 +45,14 @@ export default function Overview(){
     const handleFilter = (values) => {
         console.log(values)
     }
+    const handleSearch = (searchString) => {
+        searchString = searchString.toLowerCase()
+        let result = [...displayedUsers].filter(user => user.name.toLowerCase().includes(searchString))
+        // if(!result.length){
+        //     result =  'No users found'
+        // }
+        setDisplayUsers(result)
+    }
     const handleSort = (values) => {
         console.log(values)
         let usersInDom;
@@ -61,17 +74,39 @@ export default function Overview(){
         console.log(usersInDom)
         setDisplayUsers(usersInDom)
     }
+
+    const handleClick = () => {
+        console.log('click')
+        if(!isShown.isShown){
+            setIsShown({
+                isShown: true,
+                style: {maxHeight: '100vh'},
+                btnText: 'Hide Filters'
+            })
+        }else{
+            setIsShown({
+            isShown: false,
+            style: {maxHeight: '0'},
+            btnText: 'Show Filters'
+            })
+        }
+    }
     
-    console.log(displayedUsers)
     return(
         <div>
             <h2>Overview</h2>
 
-            <button className="filterBtn">{ btnText }</button>
-            <div className="filtersAndSortContainer">
-                <Filters onFilter={handleFilter}/>
-                <Sorters onSort={handleSort}/>
+            <div className="topContainer">
+                <SearchBar onSearch={handleSearch}/>
+                
+                <button className="filterBtn" onClick={handleClick}>{ isShown.btnText }</button>
+
+                <div className="filtersAndSortContainer" style={isShown.style}>
+                    <Filters onFilter={handleFilter}/>
+                    <Sorters onSort={handleSort}/>
+                </div>
             </div>
+
             <div className="usersContainer">
                 {displayedUsers.map(user => {
                   return (
