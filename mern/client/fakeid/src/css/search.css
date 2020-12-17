@@ -1,0 +1,17 @@
+.searchBar{
+    grid-column: 1/-1;
+    width:80%;
+    display: grid;
+    margin:auto;
+    grid-template-columns: 3fr .5fr;
+}
+
+.searchBar input{
+    width: 100%;
+    border-radius: 10px 0 0 10px;
+    border:1px solid #f2f2f2;
+}
+.searchBar button{
+    border-radius: 0 10px 10px 0;
+    margin:0;
+}

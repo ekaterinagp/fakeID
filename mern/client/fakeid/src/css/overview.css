@@ -7,3 +7,35 @@
     grid-template-columns: 1fr .5fr .5fr .5fr .5fr;
     border-bottom: 1px solid lightgrey;
 }
+
+
+.topContainer{
+    padding:2rem;
+    margin:1rem 2rem;
+}
+.filtersAndSortContainer{
+    transition: all .2s;
+    /* max-height: 0;*/
+    overflow: hidden; 
+    width:auto;
+    display:grid;
+    grid-template-columns: 2fr .6fr;
+    width:auto;
+    align-content: start;
+}
+
+.sorters.labelRadio{
+    grid-template-columns: 1fr;    
+}
+
+
+.filterBtn{
+    margin: 1rem auto;
+    text-transform: uppercase;
+    border:none;
+    display: block;
+    background:none;
+    box-shadow: none;
+    color: black;
+    grid-column: 1/-1;
+  }

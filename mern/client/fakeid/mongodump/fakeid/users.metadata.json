@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"fakeid.users"}],"uuid":"9d620730f3164e468c19efbec3a1e1c1"}
