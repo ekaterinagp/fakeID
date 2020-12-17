@@ -96,6 +96,7 @@ router.put('/users/:id', async (req, res) => {
     bulkUpdates.push(...userEntity.updateUser(user, req.body))
     try{
        const response = await userCollection.bulkWrite(bulkUpdates, {"ordered": true})
+       console.log(response)
        return res.status(200).send({response})
     }catch(err){
         if(err){console.log(err); return res.status(500).send({error: err}); }

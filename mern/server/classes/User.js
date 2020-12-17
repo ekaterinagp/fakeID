@@ -24,7 +24,7 @@ class User {
       if(!user.CVR) user.CVR = null
       if(user.age < 18 && !user.parents) user.parents = []
       if(!user.CVR && user.age >= 18 ){
-        user.spouse = !user.spouse ? user.spouse = [] : user.spouse = user.spouse
+        user.spouse = !user.spouse ? user.spouse = null : user.spouse = user.spouse
         user.children = !user.children ? user.children = [] : user.children = user.children
       }
       
@@ -172,31 +172,29 @@ class User {
       bulkUpdates.push({
         updateOne: {
           filter: { _id: ObjectID(user._id) },
-          update: { $push: { spouse: spouse } },
+          update: { $set:  {spouse: {'_id': spouse._id, 'name': spouse.name} }},
         },
       });
       bulkUpdates.push({
         updateOne: {
           filter: { _id: ObjectID(spouse._id) },
-          update: {
-            $push: { spouse: {user} },
-            $set: { maritalStatusId: maritalStatusId },
+          update: { $set:  {spouse: {'_id': user._id, 'name': user.name}, maritalStatusId: maritalStatusId  },
           },
         },
       });
+      
     } else {
       bulkUpdates.push({
         updateOne: {
           filter: { _id: ObjectID(user._id) },
-          update: { $pull: { spouse: { _id: ObjectID(spouse._id) } } },
+          update: { $set: { spouse: null } },
         },
       });
       bulkUpdates.push({
         updateOne: {
           filter: { _id: ObjectID(spouse._id) },
           update: {
-            $pull: { spouse: { _id: user._id } },
-            $set: { maritalStatusId: maritalStatusId },
+            $set: { spouse: null, maritalStatusId: maritalStatusId },
           },
         },
       });
@@ -236,7 +234,6 @@ class User {
             return user;
         }
     })
-    console.log(users)
     return users
   }
 

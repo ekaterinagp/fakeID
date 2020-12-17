@@ -58,10 +58,9 @@ export default function SingleUser (props) {
        user.address = values.address
        console.log(user)
        setUser(user)
-       if(values.spouseId  && (!user.hasOwnProperty('spouse') || !user.spouse.length)){
-           console.log('add spouse to info')
+       if(values.spouseId  && !user.spouse){
            let spouse = await fetchUser(values.spouseId)
-           user.hasOwnProperty('spouse')? user.spouse.push(spouse) : user.spouse = [spouse]
+           user.spouse = {name: spouse.name, _id: spouse._id}
            setUser(user)
        }
        if(values.maritalStatusId !== '2' && values.maritalStatusId !== '5'){
