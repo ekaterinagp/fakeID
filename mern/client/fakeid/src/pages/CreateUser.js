@@ -3,7 +3,6 @@ import React, { useState, useRef } from 'react'
 import Notification from './../components/Notification';
 
 import './../css/form.css'
-import './../css/createUser.css'
 
 
 export default function Overview(){
