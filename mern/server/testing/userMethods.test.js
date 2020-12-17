@@ -87,17 +87,18 @@ describe("User methods", () => {
   describe('user methods getAvailableSpouses',  () => {
   
     test('should return array of available spouse objects', async () => {
-      let { user4, user5, user6, user7, user9, user10, user11 } = await dbHelper.createSampleUsers()
+      let { user1, user4, user5, user6, user7, user9, user10, user11 } = await dbHelper.createSampleUsers()
   
       let result = await user.getAvailableSpouses(user4._id)
+      expect(result.length).toBe(5)  
       
-      expect(result[0]).toStrictEqual(user5)
-      expect(result[1]).toStrictEqual(user6)
-      expect(result[2]).toStrictEqual(user7)
-      expect(result[3]).toStrictEqual(user9)
-      expect(result.some(user => user.name === "Fourth user")).toBe(false)
+      expect(result[0]).toStrictEqual(user1)
+      expect(result[1]).toStrictEqual(user5)
+      expect(result[2]).toStrictEqual(user6)
+      expect(result[3]).toStrictEqual(user7)
+      expect(result[4]).toStrictEqual(user9)
+      expect(result.some(user => user.name === user4.name)).toBe(false)
   
-      expect(result.length).toBe(4)  
     })
   
     test('should return array without user5 ', async () => {
@@ -106,7 +107,7 @@ describe("User methods", () => {
       let result = await user.getAvailableSpouses(user5._id)
       
       expect(result.some(user => user.name === "Fifth user")).toBe(false)
-      expect(result.length).toBe(3)
+      expect(result.length).toBe(4)
     })
   })
   
