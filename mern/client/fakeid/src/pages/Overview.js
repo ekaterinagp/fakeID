@@ -2,6 +2,52 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./../css/overview.css";
 
+export function testMaleEmployee(users) {
+  let filteredUsers = getMales(users);
+  filteredUsers = getEmployees(filteredUsers);
+  return filteredUsers[0];
+}
+
+export function getFemales(users) {
+  let females = users.filter((user) => user.gender == "female");
+  return females;
+}
+
+export function getMales(users) {
+  let males = users.filter((user) => user.gender == "male");
+  return males;
+}
+
+export function getChildren(users) {
+  let children = users.filter((user) => user.age < 18);
+  return children;
+}
+
+export function getAdults(users) {
+  let adults = users.filter((user) => user.age >= 18);
+  return adults;
+}
+
+export function getEmployees(users) {
+  let employees = users.filter((user) => user.CVR == "12345678");
+  return employees;
+}
+
+export function getNotEmployees(users) {
+  let notEmployees = users.filter((user) => !user.CVR);
+  return notEmployees;
+}
+
+export function getUnkown(users) {
+  let employees = users.filter((user) => user.maritalStatus == "Unknown");
+  return employees;
+}
+
+export function getMarried(users) {
+  let notEmployees = users.filter((user) => user.maritalStatus == "Married");
+  return notEmployees;
+}
+
 export default function Overview() {
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState();

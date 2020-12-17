@@ -25,7 +25,7 @@ export default function UserInfo(user) {
           })}
         </>
       ) : null}
-      {Object.keys(user.spouse).length ? (
+      {user.spouse ? (
         <>
           <h4>Spouse</h4>
           <p>{user.spouse.name}</p>
