@@ -114,10 +114,10 @@ export default function Filters(props) {
               type="radio"
               name="ageFilter"
               value="children"
-              id="childrenfilter"
+              id="children"
               onClick={() =>handleFilter("ageChild")}
             />
-          <label htmlFor="childrenfilter">Children</label>
+          <label htmlFor="children">Children</label>
         </div>
 
         <div className="labelRadio">
