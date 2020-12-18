@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Sorters from "../components/Sorters";
 import SearchBar from "../components/SearchBar";
+import Filters from "../components/Filters";
 
 import "./../css/overview.css";
 
@@ -61,21 +62,37 @@ export default function Overview() {
     btnText: "Show filters",
   });
 
-  const filters = {
-    female: false,
-    male: false,
-    child: false,
-    adult: false,
-    employee: false,
-    notEmployee: false,
-    married: false,
-    unknown: false,
-    single: false,
-    divorced: false,
-    decseaced: false,
-    partnership: false,
-    abolishPartnership: false,
-  };
+  // const [filters, setFilters] = useState({
+  //   female: false,
+  //   male: false,
+  //   child: false,
+  //   adult: false,
+  //   employee: false,
+  //   notEmployee: false,
+  //   married: false,
+  //   unknown: false,
+  //   single: false,
+  //   divorced: false,
+  //   decseaced: false,
+  //   partnership: false,
+  //   abolishPartnership: false,
+  // });
+
+  // const filters = {
+  //   female: false,
+  //   male: false,
+  //   child: false,
+  //   adult: false,
+  //   employee: false,
+  //   notEmployee: false,
+  //   married: false,
+  //   unknown: false,
+  //   single: false,
+  //   divorced: false,
+  //   decseaced: false,
+  //   partnership: false,
+  //   abolishPartnership: false,
+  // };
 
   const url = process.env.REACT_APP_API_URL;
   // console.log(url);
@@ -98,7 +115,7 @@ export default function Overview() {
   if (loading) {
     return <div className="loader">LOADING</div>;
   }
-  console.log(users);
+  // console.log(users);
   const handleSearch = (searchString) => {
     if (!searchString) {
       setDisplayUsers(users);
@@ -153,40 +170,52 @@ export default function Overview() {
     }
   };
 
-  const handleFilter = (type) => {
-    console.log("click");
-    console.log(type);
-    if (type === "ageAll") {
-      filters.child = false;
-      filters.adult = false;
-    }
-    if (type === "ageChild") {
-      filters.child = true;
-      filters.adult = false;
-    }
-
-    if (type === "ageAdult") {
-      filters.child = false;
-      filters.adult = true;
-    }
-    console.log(filters);
-    applyFilters();
-  };
-
-  const applyFilters = () => {
+  const applyFilters = (filters) => {
     console.log("apply filters");
-    console.log(filters);
+
     setDisplayUsers(users);
-    if (filters.adult == true) {
-      let filteredUsers = getAdults(users);
-      console.log(filteredUsers);
+
+    let filteredUsers;
+
+    console.log(filters);
+
+    if (filters.adult) {
+      console.log("adult filter is on!");
+      filteredUsers = getAdults(displayedUsers);
+      setDisplayUsers(filteredUsers);
+      console.log(displayedUsers, "adult");
+    }
+    if (filters.child) {
+      filteredUsers = getChildren(displayedUsers);
       setDisplayUsers(filteredUsers);
     }
-    if (filters.child == true) {
-      let filteredUsers = getChildren(users);
-      console.log(filteredUsers);
+
+    if (filters.employee) {
+      console.log("employee filter is on!");
+      filteredUsers = getEmployees(displayedUsers);
+      console.log(filters);
       setDisplayUsers(filteredUsers);
     }
+
+    if (filters.notEmployee) {
+      filteredUsers = getNotEmployees(displayedUsers);
+      console.log(filters);
+      setDisplayUsers(filteredUsers);
+    }
+
+    if (filters.male) {
+      filteredUsers = getMales(displayedUsers);
+      console.log(filters);
+      setDisplayUsers(filteredUsers);
+    }
+
+    if (filters.female) {
+      filteredUsers = getFemales(displayedUsers);
+      console.log(filters);
+      setDisplayUsers(filteredUsers);
+      console.log(displayedUsers, "female");
+    }
+    console.log("look!", filters);
   };
 
   return (
@@ -201,43 +230,7 @@ export default function Overview() {
 
         <div className="filtersAndSortContainer" style={isShown.style}>
           <Sorters onSort={handleSort} />
-        </div>
-        <div className="filtersContainer">
-          <form>
-            <div className="radio">
-              <label>
-                <input
-                  type="radio"
-                  value="all"
-                  name="ageFilter"
-                  onClick={() => handleFilter("ageAll")}
-                />
-                All
-              </label>
-            </div>
-            <div className="radio">
-              <label>
-                <input
-                  type="radio"
-                  name="ageFilter"
-                  value="children"
-                  onClick={() => handleFilter("ageChild")}
-                />
-                Children
-              </label>
-            </div>
-            <div className="radio">
-              <label>
-                <input
-                  type="radio"
-                  value="adults"
-                  name="ageFilter"
-                  onClick={() => handleFilter("ageAdult")}
-                />
-                Adults
-              </label>
-            </div>
-          </form>
+          <Filters onChange={applyFilters} />
         </div>
       </div>
       <div className="usersContainer">
