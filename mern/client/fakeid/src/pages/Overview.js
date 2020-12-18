@@ -79,7 +79,7 @@ export default function Overview() {
     };
     fetchUsers();
     return () => (isFetching = false);
-  }, []);
+  }, [url]);
 
   if (loading) {
     return <div className="loader">LOADING</div>;
@@ -142,7 +142,6 @@ export default function Overview() {
   const applyFilters = (filters) => {
     console.log("apply filters");
     let filteredUsers = users;
-    console.log(filteredUsers)
     setDisplayUsers(users);
 
     if (filters.adult) {

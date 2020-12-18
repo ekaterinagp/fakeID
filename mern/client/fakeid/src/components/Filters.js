@@ -16,11 +16,11 @@ export default function Filters(props) {
 
   useEffect(() => {
     props.onChange(filters);
-    console.log(filters, "filters from useEffect");
+    // console.log(filters, "filters from useEffect");
   }, [filters]);
 
   const handleFilter = (type) => {
-    console.log(type);
+    // console.log(type);
     if (type === "ageChild") {
       setFilters((filters) => ({
         ...filters,
@@ -115,7 +115,7 @@ export default function Filters(props) {
               name="ageFilter"
               value="children"
               id="childrenfilter"
-              onClick={() =>{ console.log('children'); handleFilter("ageChild")}}
+              onClick={() =>handleFilter("ageChild")}
             />
           <label htmlFor="childrenfilter">Children</label>
         </div>
