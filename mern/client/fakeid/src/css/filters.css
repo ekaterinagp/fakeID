@@ -1,9 +1,8 @@
-.filterContainer{
+.filtersContainer{
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
   }
 
-.maritalStatusFilters .labelRadio label,
 .ageFilters .labelRadio label,
 .employeeStatusFilters .labelRadio label,
 .genderFilters .labelRadio label{
@@ -24,7 +23,7 @@
 .sorters .labelRadio{
   grid-template-columns: 1fr;
 }
-.maritalStatusFilters {
+/* .maritalStatusFilters {
   grid-column: 1/-1;
 }
 .maritalStatusFilters .labelRadio{
@@ -33,7 +32,7 @@
 }
 label[for=abolition_of_registered_partnership]{
   grid-column: 2/-1;
-}
+} */
 
 .filtersContainer h3{
     margin-bottom: 0;
@@ -43,10 +42,10 @@ label[for=abolition_of_registered_partnership]{
 .ageFilters .labelRadio label:hover,
 .employeeStatusFilters .labelRadio label:hover,
 .genderFilters .labelRadio label:hover,
-.ageFilters input[type="checkbox"]:checked+label,
-.maritalStatusFilters input[type="checkbox"]:checked+label,
-.employeeStatusFilters input[type="checkbox"]:checked+label,
-.genderFilters input[type="checkbox"]:checked+label{
+.ageFilters input[type="radio"]:checked+label,
+.maritalStatusFilters input[type="radio"]:checked+label,
+.employeeStatusFilters input[type="radio"]:checked+label,
+.genderFilters input[type="radio"]:checked+label{
   font-weight: bold;
 
 }

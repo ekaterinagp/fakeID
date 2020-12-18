@@ -8,7 +8,6 @@ export default function Sorters(props){
     
     useEffect(() => {
         props.onSort(values)
-
     },[values])
 
 

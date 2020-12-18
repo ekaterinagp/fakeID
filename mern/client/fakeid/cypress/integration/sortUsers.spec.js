@@ -14,7 +14,7 @@ it("loads", () => {
         cy.get('.labelRadio label').eq(1).should('have.text', ' Name ');
   
       });
-      it("filter by age and name", () => {
+      it("sort by age and name", () => {
   
         cy.get('.labelRadio label').eq(0).click();
         
