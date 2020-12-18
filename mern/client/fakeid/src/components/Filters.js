@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import './../css/filters.css'
+
 export default function Filters(props) {
   const [filters, setFilters] = useState({
     female: false,
@@ -39,7 +41,6 @@ export default function Filters(props) {
       setFilters((filters) => ({
         ...filters,
         employee: true,
-        child: false,
         notEmployee: false,
       }));
     }
@@ -94,118 +95,124 @@ export default function Filters(props) {
 
   return (
     <div className="filtersContainer">
-      <form>
-        <div className="radio">
-          <label>
-            <input
-              type="radio"
-              value="allAdultChildren"
-              name="ageFilter"
-              onClick={() => handleFilter("ageAll")}
-            />
-            All
-          </label>
-        </div>
-        <div className="radio">
-          <label>
+        <div className="ageFilters">
+          <h4>Age</h4>
+
+          <div className="labelRadio">
+              <input
+                type="radio"
+                value="ageAll"
+                name="ageFilter"
+                id="ageAll"
+                onClick={() => handleFilter("ageAll")}
+              />
+            <label htmlFor="ageAll">All</label>
+          </div>
+
+        <div className="labelRadio">
             <input
               type="radio"
               name="ageFilter"
               value="children"
-              onClick={() => handleFilter("ageChild")}
+              id="childrenfilter"
+              onClick={() =>{ console.log('children'); handleFilter("ageChild")}}
             />
-            Children
-          </label>
+          <label htmlFor="childrenfilter">Children</label>
         </div>
-        <div className="radio">
-          <label>
+
+        <div className="labelRadio">
             <input
               type="radio"
               value="adults"
               name="ageFilter"
+              id="adults"
               onClick={() => handleFilter("ageAdult")}
             />
-            Adults
-          </label>
+          <label htmlFor="adults">Adults</label>
+
         </div>
-      </form>
-      <form>
-        <div className="radio">
-          <label>
+       </div>
+
+     <div className="employeeStatusFilters">
+       <h4>Employee status</h4>
+
+        <div className="labelRadio">
             <input
               type="radio"
               value="employeeAll"
+              id="employeeAll"
               name="employeeFilter"
               onClick={() => handleFilter("employeeAll")}
             />
-            All
-          </label>
+          <label htmlFor="employeeAll">All</label>
         </div>
-        <div className="radio">
-          <label>
+
+        <div className="labelRadio">
             <input
               type="radio"
               name="employeeFilter"
               value="employee"
+              id="employee"
               onClick={() => {
-                console.log(filters);
                 handleFilter("employee");
               }}
             />
-            Employees
-          </label>
+          <label htmlFor="employee">Employees</label>
         </div>
-        <div className="radio">
-          <label>
+
+        <div className="labelRadio">
             <input
               type="radio"
               value="notEmployee"
               name="employeeFilter"
+              id="notEmployee"
               onClick={() => handleFilter("notEmployee")}
             />
-            Not Employees
-          </label>
+          <label htmlFor="notEmployee">Not Employee</label>
         </div>
-      </form>
 
-      <form>
-        <div className="radio">
-          <label>
+    </div>
+
+    <div className="genderFilters">
+      <h4>Gender</h4>
+
+        <div className="labelRadio">
             <input
               type="radio"
               value="genderAll"
+              id="genderAll"
               name="genderFilter"
               onClick={() => handleFilter("genderAll")}
             />
-            All
-          </label>
+          <label htmlFor="genderAll">All</label>
         </div>
-        <div className="radio">
-          <label>
+
+        <div className="labelRadio">
             <input
               type="radio"
               name="genderFilter"
               value="Female"
+              id="female"
               onClick={() => {
-                console.log(filters);
                 handleFilter("Female");
               }}
             />
-            Female
-          </label>
+          <label htmlFor="female">Female</label>
         </div>
-        <div className="radio">
-          <label>
+
+        <div className="labelRadio">
             <input
               type="radio"
               value="Male"
               name="genderFilter"
+              id="male"
               onClick={() => handleFilter("Male")}
             />
-            Male
-          </label>
+          <label htmlFor="male">Male</label>
         </div>
-      </form>
+
+    </div>
+
     </div>
   );
 }

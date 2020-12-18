@@ -7,42 +7,42 @@ import Filters from "../components/Filters";
 import "./../css/overview.css";
 
 export function getFemales(users) {
-  let females = users.filter((user) => user.gender === "female");
+  let females = [...users].filter((user) => user.gender === "female");
   return females;
 }
 
 export function getMales(users) {
-  let males = users.filter((user) => user.gender === "male");
+  let males = [...users].filter((user) => user.gender === "male");
   return males;
 }
 
 export function getChildren(users) {
-  let children = users.filter((user) => user.age < 18);
+  let children = [...users].filter((user) => user.age < 18);
   return children;
 }
 
 export function getAdults(users) {
-  let adults = users.filter((user) => user.age >= 18);
+  let adults = [...users].filter((user) => user.age >= 18);
   return adults;
 }
 
 export function getEmployees(users) {
-  let employees = users.filter((user) => user.CVR === "12345678");
+  let employees = [...users].filter((user) => user.CVR === "12345678");
   return employees;
 }
 
 export function getNotEmployees(users) {
-  let notEmployees = users.filter((user) => !user.CVR);
+  let notEmployees = [...users].filter((user) => !user.CVR);
   return notEmployees;
 }
 
 export function getUnkown(users) {
-  let employees = users.filter((user) => user.maritalStatus === "Unknown");
+  let employees = [...users].filter((user) => user.maritalStatus === "Unknown");
   return employees;
 }
 
 export function getMarried(users) {
-  let notEmployees = users.filter((user) => user.maritalStatus === "Married");
+  let notEmployees = [...users].filter((user) => user.maritalStatus === "Married");
   return notEmployees;
 }
 
@@ -62,41 +62,10 @@ export default function Overview() {
     btnText: "Show filters",
   });
 
-  // const [filters, setFilters] = useState({
-  //   female: false,
-  //   male: false,
-  //   child: false,
-  //   adult: false,
-  //   employee: false,
-  //   notEmployee: false,
-  //   married: false,
-  //   unknown: false,
-  //   single: false,
-  //   divorced: false,
-  //   decseaced: false,
-  //   partnership: false,
-  //   abolishPartnership: false,
-  // });
-
-  // const filters = {
-  //   female: false,
-  //   male: false,
-  //   child: false,
-  //   adult: false,
-  //   employee: false,
-  //   notEmployee: false,
-  //   married: false,
-  //   unknown: false,
-  //   single: false,
-  //   divorced: false,
-  //   decseaced: false,
-  //   partnership: false,
-  //   abolishPartnership: false,
-  // };
 
   const url = process.env.REACT_APP_API_URL;
   // console.log(url);
-  // console.log(process.env);
+
   useEffect(() => {
     let isFetching = true;
     const fetchUsers = async () => {
@@ -172,50 +141,36 @@ export default function Overview() {
 
   const applyFilters = (filters) => {
     console.log("apply filters");
-
+    let filteredUsers = users;
+    console.log(filteredUsers)
     setDisplayUsers(users);
 
-    let filteredUsers;
-
-    console.log(filters);
-
     if (filters.adult) {
-      console.log("adult filter is on!");
-      filteredUsers = getAdults(displayedUsers);
-      setDisplayUsers(filteredUsers);
-      console.log(displayedUsers, "adult");
+      filteredUsers = getAdults(filteredUsers);
     }
     if (filters.child) {
-      filteredUsers = getChildren(displayedUsers);
-      setDisplayUsers(filteredUsers);
+      filteredUsers = getChildren(filteredUsers);
     }
 
     if (filters.employee) {
-      console.log("employee filter is on!");
-      filteredUsers = getEmployees(displayedUsers);
-      console.log(filters);
-      setDisplayUsers(filteredUsers);
+      filteredUsers = getEmployees(filteredUsers);
     }
 
     if (filters.notEmployee) {
-      filteredUsers = getNotEmployees(displayedUsers);
-      console.log(filters);
-      setDisplayUsers(filteredUsers);
+      filteredUsers = getNotEmployees(filteredUsers);
     }
 
     if (filters.male) {
-      filteredUsers = getMales(displayedUsers);
-      console.log(filters);
-      setDisplayUsers(filteredUsers);
+      filteredUsers = getMales(filteredUsers);
     }
 
     if (filters.female) {
-      filteredUsers = getFemales(displayedUsers);
-      console.log(filters);
-      setDisplayUsers(filteredUsers);
-      console.log(displayedUsers, "female");
+      filteredUsers = getFemales(filteredUsers);
     }
+
+    console.log(filteredUsers);
     console.log("look!", filters);
+    setDisplayUsers(filteredUsers);
   };
 
   return (
@@ -229,8 +184,8 @@ export default function Overview() {
         </button>
 
         <div className="filtersAndSortContainer" style={isShown.style}>
-          <Sorters onSort={handleSort} />
           <Filters onChange={applyFilters} />
+          <Sorters onSort={handleSort} />
         </div>
       </div>
       <div className="usersContainer">
