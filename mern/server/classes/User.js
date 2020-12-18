@@ -213,6 +213,7 @@ class User {
         },
       });
     }
+
     return bulkUpdates;
   }
 
