@@ -12,10 +12,14 @@ export default function Filters(props) {
     notEmployee: false,
     married: false,
     unknown: false,
+    ageSort: false,
+    nameSort: false
   });
+  
 
   useEffect(() => {
     props.onChange(filters);
+    // props.onSort(sorters)
     // console.log(filters, "filters from useEffect");
   }, [filters]);
 
@@ -93,7 +97,12 @@ export default function Filters(props) {
     }
   };
 
+  const handleSort = (event) => {
+    setFilters(values => ({...values, [event.target.name]: event.target.checked}))
+}
   return (
+    
+    <>
     <div className="filtersContainer">
         <div className="ageFilters">
           <h4>Age</h4>
@@ -214,5 +223,18 @@ export default function Filters(props) {
     </div>
 
     </div>
+
+     <div>
+      <div className="labelRadio sorters">
+        <h4>Sort</h4>
+          <input type="checkbox" id="ageSort" name="ageSort" value='ageSort' onChange={handleSort} />
+          <label htmlFor="ageSort"> Age </label>
+          <input id="nameSort" type="checkbox" name="nameSort" value='nameSort' onChange={handleSort} />
+          <label htmlFor="nameSort"> Name </label>
+      </div>
+    </div> 
+    
+  </>
+
   );
 }
