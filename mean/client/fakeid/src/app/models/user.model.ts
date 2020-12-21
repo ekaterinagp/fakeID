@@ -11,8 +11,7 @@ export class User {
         public CVR: string,
         public companyName: string,
         public spouse: object,
-        public child: object,
-        public parents: object
-
+        public children: Array<object>,
+        public parents: Array<object>
     ) {}
 }
