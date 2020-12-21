@@ -1,2 +1,5 @@
 [1214/114328.695:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [1216/124159.562:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1218/145204.009:ERROR:directory_reader_win.cc(43)] FindFirstFile: Den angivne sti blev ikke fundet. (0x3)
+[1221/085422.743:ERROR:directory_reader_win.cc(43)] FindFirstFile: Den angivne sti blev ikke fundet. (0x3)
+[1221/093907.599:ERROR:directory_reader_win.cc(43)] FindFirstFile: Den angivne sti blev ikke fundet. (0x3)

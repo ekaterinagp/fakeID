@@ -34,6 +34,7 @@ export default function EditUser(props) {
           const spouses = await response.json();
           if (response.status === 200) {
             setSpouses(spouses);
+            console.log(spouses);
           }
         } catch (err) {
           if (err) {
@@ -125,25 +126,8 @@ export default function EditUser(props) {
               : "Lygten 37, 2400 Norrebro"
           }
         >
-          {/* <option value="Select Address" disabled>
-            Select Address
-          </option> */}
-          <option
-            // selected={
-            //   values.address === "Lygten 17, 2400 Norrebro" ? true : false
-            // }
-            value="Lygten 17, 2400 Norrebro"
-          >
-            Lygten 17
-          </option>
-          <option
-            // selected={
-            //   values.address === "Lygten 37, 2400 Norrebro" ? true : false
-            // }
-            value="Lygten 37, 2400 Norrebro"
-          >
-            Lygten 37
-          </option>
+          <option value="Lygten 17, 2400 Norrebro">Lygten 17</option>
+          <option value="Lygten 37, 2400 Norrebro">Lygten 37</option>
         </select>
       </div>
 
@@ -157,70 +141,19 @@ export default function EditUser(props) {
               onChange={handleChange}
               value={values.maritalStatusId}
             >
-              {/* <option value="Marital Status" disabled>
-                Marital Status
-              </option> */}
-              <option
-                // selected={values.maritalStatusId === "1" ? true : false}
-                value="1"
-              >
-                {" "}
-                Single
-              </option>
-              <option
-                // selected={values.maritalStatusId === "2" ? true : false}
-                value="2"
-              >
-                {" "}
-                Married
-              </option>
-              <option
-                // selected={values.maritalStatusId === "3" ? true : false}
-                value="3"
-              >
-                {" "}
-                Divorced
-              </option>
-              <option
-                // selected={values.maritalStatusId === "4" ? true : false}
-                value="4"
-              >
-                {" "}
-                Widow
-              </option>
-              <option
-                // selected={values.maritalStatusId === "5" ? true : false}
-                value="5"
-              >
-                {" "}
-                Registered Partnership
-              </option>
-              <option
-                // selected={values.maritalStatusId === "6" ? true : false}
-                value="6"
-              >
-                {" "}
-                Abolition of Registered Partnership
-              </option>
-              <option
-                // selected={values.maritalStatusId === "7" ? true : false}
-                value="7"
-              >
-                {" "}
-                Deceased
-              </option>
-              <option
-                // selected={values.maritalStatusId === "8" ? true : false}
-                value="8"
-              >
-                {" "}
-                Unknown
-              </option>
+              <option value="1"> Single</option>
+              <option value="2"> Married</option>
+              <option value="3"> Divorced</option>
+              <option value="4"> Widow</option>
+              <option value="5"> Registered Partnership</option>
+              <option value="6"> Abolition of Registered Partnership</option>
+              <option value="7"> Deceased</option>
+              <option value="8"> Unknown</option>
             </select>
           </div>
 
           <div className="formField">
-            {!user.spouse ? (
+            {Object.keys(user.spouse).length === 0 ? (
               <>
                 <label htmlFor="name">Select spouse</label>
                 <select
@@ -241,9 +174,7 @@ export default function EditUser(props) {
                       );
                     })
                   ) : (
-                    <option disabled selected>
-                      No available spouses
-                    </option>
+                    <option disabled>No available spouses</option>
                   )}
                 </select>
               </>
