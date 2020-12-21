@@ -12,6 +12,7 @@ export class User {
         public companyName: string,
         public spouse: object,
         public child: object,
-        public parents: object,
+        public parents: object
+
     ) {}
 }

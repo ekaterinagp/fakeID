@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { User } from '../../models/user.model';
-import { OverviewService } from '../../services/overview.service';
+import { User } from '../models/user.model';
+import { OverviewService } from '../services/overview.service';
 
 @Component({
   selector: 'app-overview',
