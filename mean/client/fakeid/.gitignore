@@ -44,3 +44,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+
+cypress/fixtures
+cypress/plugins
+cypress/support/
+cypress/integration/examples
