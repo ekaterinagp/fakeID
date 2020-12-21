@@ -153,7 +153,7 @@ export default function EditUser(props) {
           </div>
 
           <div className="formField">
-            {Object.keys(user.spouse).length === 0 ? (
+            {!user.spouse ? (
               <>
                 <label htmlFor="name">Select spouse</label>
                 <select

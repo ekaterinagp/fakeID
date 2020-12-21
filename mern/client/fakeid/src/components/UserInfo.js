@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function UserInfo(user) {
+  console.log(user.gender);
   return (
     <>
       <h4>Date of birth</h4>
@@ -25,7 +26,8 @@ export default function UserInfo(user) {
           })}
         </>
       ) : null}
-      {Object.keys(user.spouse).length !== 0 ? (
+
+      {user.spouse && user.spouse !== null ? (
         <>
           <h4>Spouse</h4>
           <p>{user.spouse.name}</p>
