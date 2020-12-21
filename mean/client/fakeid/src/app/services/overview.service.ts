@@ -23,7 +23,9 @@ export class OverviewService {
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User> {
-    return this.http.get<User>(this.allUsersUrl)
+    return this.http.get<User>(this.allUsersUrl).pipe(
+      tap((res) => console.log(res)),
+      catchError(this.handleError<User>("getUsers")))
   }
 
 
