@@ -13,7 +13,5 @@ export class User {
         public spouse: object,
         public child: object,
         public parents: object,
-        
-
     ) {}
 }
