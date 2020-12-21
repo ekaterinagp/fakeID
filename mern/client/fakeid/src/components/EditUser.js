@@ -1,5 +1,19 @@
 import React, { useEffect, useState } from "react";
 
+export const fetchChildren = async (url, user) => {
+  return new Promise((resolve, reject) => {
+    fetch(`${url}/users/${user._id}/children`)
+      .then((res) => res.json())
+      .then((children) => {
+        console.log(children);
+        resolve(children);
+      });
+  });
+  // const response = await fetch(`${url}/users/${user._id}/children`);
+  // return response;
+  // const children = await response.json();
+};
+
 export default function EditUser(props) {
   let { user } = props;
 
@@ -28,6 +42,7 @@ export default function EditUser(props) {
     }
     if (user && user.age >= 18 && !user.CVR) {
       const url = process.env.REACT_APP_API_URL;
+
       const fetchSpouses = async () => {
         try {
           const response = await fetch(`${url}/users/${user._id}/spouses`);
@@ -37,27 +52,29 @@ export default function EditUser(props) {
             console.log(spouses);
           }
         } catch (err) {
-          if (err) {
-            console.log(err);
-            return;
-          }
+          console.log(err);
         }
+      };
+      const getChildren = async (url, user) => {
+        const children = await fetchChildren(url, user);
+
+        setChildren(children);
+        console.log(children);
       };
 
-      const fetchChildren = async () => {
-        try {
-          const response = await fetch(`${url}/users/${user._id}/children`);
-          const children = await response.json();
-          setChildren(children);
-        } catch (err) {
-          if (err) {
-            console.log(err);
-            return;
-          }
-        }
-      };
+      getChildren(url, user);
+
+      // const fetchChildren = async () => {
+      //   try {
+      //     const response = await fetch(`${url}/users/${user._id}/children`);
+      //     const children = await response.json();
+      //     setChildren(children);
+      //   } catch (err) {
+      //     console.log(err);
+      //   }
+      // };
       fetchSpouses();
-      fetchChildren();
+      // fetchChildren();
     }
   }, [user]);
 

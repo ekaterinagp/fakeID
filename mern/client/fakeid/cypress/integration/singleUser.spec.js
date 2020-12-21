@@ -1,11 +1,13 @@
-it("loads", () => {
-  const baseUrl = "http://localhost:3000";
-  cy.visit(baseUrl);
-  cy.contains("FakeID");
-});
+// it("loads", () => {
+//   const baseUrl = "http://localhost:3000";
+//   cy.visit(baseUrl);
+//   cy.contains("FakeID");
+// });
 
 describe("click on single user and go to their page", () => {
   it("go to single user page", () => {
+    const baseUrl = "http://localhost:3000";
+    cy.visit(baseUrl);
     cy.contains("Baby User").siblings().contains("Edit").click();
   });
 });
@@ -48,6 +50,6 @@ describe("go back to the list and select employee to make sure there is a CVR", 
   });
 
   it("check if there is a CVR", () => {
-    cy.get("h4").contains("Children");
+    cy.get("h4").contains("CVR");
   });
 });

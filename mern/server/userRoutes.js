@@ -28,12 +28,27 @@ router.get("/users/:id/spouses", async (req, res) => {
 
 router.get("/users/:id/children", async (req, res) => {
   let userEntity = new User(db);
+
   let { id } = req.params;
-  let children = await userEntity.getAvailableChildren(id);
-  if (!children.length) {
-    return res.status(200).send({ error: "No children available" });
+  try {
+    let users = await userEntity.getAll();
+    let user = users.find((user) => user._id == id);
+
+    if (!user) {
+      return res.status(403).send({ error: "User with this id doesn't exist" });
+    }
+
+    let children = await userEntity.getAvailableChildren(user.id);
+    if (!children.length) {
+      return res.status(204).send({ error: "No children available" });
+    }
+    return res.status(200).send(children);
+  } catch (error) {
+    if (error) {
+      console.log(error);
+      return res.status(500).send({ error: error });
+    }
   }
-  return res.status(200).send(children);
 });
 
 router.get("/users/:id", async (req, res) => {
@@ -69,6 +84,10 @@ router.put("/users/:id", async (req, res) => {
   let bulkUpdates = [];
 
   let { name, address, maritalStatusId, spouseId, childId } = req.body;
+
+  if (!name || address) {
+    return res.status(403).send({ error: "name and address are required" });
+  }
 
   if (spouseId) {
     let spouse = await userEntity.findById(spouseId);

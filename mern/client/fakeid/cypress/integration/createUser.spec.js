@@ -1,18 +1,20 @@
-it("loads", () => {
-  const baseUrl = "http://localhost:3000";
-  cy.visit(baseUrl);
-  cy.contains("FakeID");
-});
+// it("loads", () => {
+//   const baseUrl = "http://localhost:3000";
+//   cy.visit(baseUrl);
+//   cy.contains("FakeID");
+// });
 
 describe("Create form creates users", () => {
   let user = {
-    name: "Lea RoboCop",
-    dateOfBirth: "1988-10-13",
+    name: "Linda Linderson",
+    dateOfBirth: "1982-11-26",
     address_id: 1,
     genderValue: "0002",
   };
 
   it("Create New user", () => {
+    const baseUrl = "http://localhost:3000";
+    cy.visit(baseUrl);
     cy.get(".menu a").eq(2).click();
 
     cy.get('input[name="name"]').type(user.name);

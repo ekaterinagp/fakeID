@@ -1,15 +1,17 @@
-it("loads", () => {
-  const baseUrl = "http://localhost:3000";
-  cy.visit(baseUrl);
-  cy.contains("FakeID");
-});
+// it("loads", () => {
+//   const baseUrl = "http://localhost:3000";
+//   cy.visit(baseUrl);
+//   cy.contains("FakeID");
+// });
 
 describe("edit form edits users add child", () => {
   let user = {
-    child: "Baby Maria",
+    child: "Baby User",
   };
   it("Edit Pernille Petersen user", () => {
-    cy.contains("Pernille Petersen").siblings().contains("Edit").click();
+    const baseUrl = "http://localhost:3000";
+    cy.visit(baseUrl);
+    cy.contains("Peter Petersen").siblings().contains("Edit").click();
 
     cy.get(".tabs button").eq(1).click();
 
@@ -25,7 +27,7 @@ describe("edit form edits users add child", () => {
 
   it("check child information is changed", () => {
     cy.contains("FakeID").click();
-    cy.contains("Baby Maria").siblings().contains("Edit").click();
-    cy.get(".userInfo p").eq(5).contains("Pernille");
+    cy.contains("Baby User").siblings().contains("Edit").click();
+    cy.get(".userInfo p").eq(5).contains("Peter Petersen");
   });
 });
