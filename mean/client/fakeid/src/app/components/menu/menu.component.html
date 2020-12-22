@@ -1,1 +1,18 @@
-<p>menu works!</p>
+<nav class="menu">
+    <a routerLink="/"><h1 class="logo">FakeID</h1></a>
+    <div class="linkContainer">
+        <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Overview</a
+      >
+  
+      <a
+      routerLink="/create"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Create</a
+    >
+    </div>
+</nav>
