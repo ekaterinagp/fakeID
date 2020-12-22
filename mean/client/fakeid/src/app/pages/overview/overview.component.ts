@@ -21,6 +21,10 @@ export class OverviewComponent implements OnInit {
     this.usersSub = this.overviewService.getUsers()
     .subscribe((data: any) => {
       this.users = data 
+      this.users.forEach(user => {
+        user.isChild = user.age < 18 ? 'Child' : 'Adult'
+        user.isEmployee = user.CVR  ? true : false
+      })
       console.log(data)
     }) 
   }

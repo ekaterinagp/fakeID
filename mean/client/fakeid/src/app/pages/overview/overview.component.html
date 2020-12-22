@@ -1,11 +1,10 @@
 <div class="usersContainer" *ngFor='let user of users'>
     <div class="singleUser" >
         <h3>{{user.name}}</h3>
-        <p *ngIf="user.age < 18">Child</p>
-        <p *ngIf="user.age >= 18">Adult</p>
+        <p>{{user.isChild}}</p>
         <p>{{user.gender}}</p>
-        <p *ngIf='user.CVR'>Employee</p>
-        <p *ngIf='!user.CVR'></p>
+        <p *ngIf='user.isEmployee'>Employee</p>
+        <p *ngIf='!user.isEmployee'></p>
         <p>{{user.maritalStatus}}</p>
         
         <a mat-raised-button color="primary">Edit</a>
