@@ -55,15 +55,15 @@ export default function EditUser(props) {
   const url = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
-    if (user) {
-      setValues({
-        name: user.name,
-        address: user.address,
-        maritalStatusId: user.maritalStatusId,
-        spouseId: user.spouse ? user.spouse._id : "",
-        childId: null,
-      });
-    }
+    // if (user) {
+    setValues({
+      name: user.name,
+      address: user.address,
+      maritalStatusId: user.maritalStatusId,
+      spouseId: user.spouse ? user.spouse._id : "",
+      childId: null,
+    });
+    // }
     if (user && user.age >= 18 && !user.CVR) {
       const url = process.env.REACT_APP_API_URL;
 
