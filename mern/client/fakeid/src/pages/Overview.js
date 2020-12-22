@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import Sorters from "../components/Sorters";
 import SearchBar from "../components/SearchBar";
 import Filters from "../components/Filters";
 
@@ -82,7 +81,7 @@ export default function Overview() {
   if (loading) {
     return <div className="loader">LOADING</div>;
   }
-  // console.log(users);
+ 
   const handleSearch = (searchString) => {
     if (!searchString) {
       setDisplayUsers(users);
@@ -94,19 +93,20 @@ export default function Overview() {
     );
     setDisplayUsers(result);
   };
-  const handleSort = (values) => {
+
+  const handleSort = (values, filteredUsers) => {
     // console.log(values);
-    let usersInDom;
+    let usersInDom = filteredUsers;
     // if(values)
     if (values.ageSort) {
       // console.log("sort age");
-      usersInDom = [...displayedUsers].sort((a, b) => {
+      usersInDom = [...filteredUsers].sort((a, b) => {
         return a.age - b.age;
       });
     }
     if (values.nameSort) {
       // console.log("sort name");
-      usersInDom = [...displayedUsers].sort((a, b) => {
+      usersInDom = [...filteredUsers].sort((a, b) => {
         if (a.name < b.name) {
           return -1;
         } else {
@@ -114,10 +114,9 @@ export default function Overview() {
         }
       });
     }
-    if (!values.ageSort && !values.nameSort) {
-      usersInDom = users;
+    if (values.ageSort || values.nameSort) {
+      setDisplayUsers(usersInDom);
     }
-    setDisplayUsers(usersInDom);
   };
 
   const handleClick = () => {
@@ -138,7 +137,7 @@ export default function Overview() {
   };
 
   const applyFilters = (filters) => {
-    console.log("apply filters");
+    console.log("apply filters", filters);
     let filteredUsers = users;
     setDisplayUsers(users);
 
@@ -167,7 +166,12 @@ export default function Overview() {
 
     console.log(filteredUsers);
     console.log("look!", filters);
-    setDisplayUsers(filteredUsers);
+
+    if(filters.ageSort || filters.nameSort){
+      handleSort(filters, filteredUsers)
+    }else{
+      setDisplayUsers(filteredUsers);
+    }
   };
 
   return (
@@ -182,9 +186,10 @@ export default function Overview() {
 
         <div className="filtersAndSortContainer" style={isShown.style}>
           <Filters onChange={applyFilters} />
-          <Sorters onSort={handleSort} />
         </div>
+
       </div>
+      
       <div className="usersContainer">
         {displayedUsers.map((user) => {
           return (
