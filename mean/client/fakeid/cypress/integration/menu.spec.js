@@ -7,15 +7,22 @@ it("loads", () => {
     it("go to create page", () => {
       cy.get(".menu a").eq(2).click();
   
-      cy.get("h2").should("have.text", "Create User");
+      cy.get("p").should("have.text", "create-user works!");
     });
   });
   
   describe("click on overview and go to overview page from create page", () => {
-    it("go to overcyew page", () => {
+    it("go to overview page", () => {
       cy.get(".menu a").eq(0).click();
   
-      cy.get("h2").should("have.text", "Overview");
+      cy.get("h1").eq(1).should("have.text", "Overview");
+    });
+  });
+  describe("click on overview and go to overview page from create page", () => {
+    it("go to overview page", () => {
+      cy.get(".menu a").eq(1).click();
+  
+      cy.get(".menu a").eq(1).should("have.class", "active");
     });
   });
   
