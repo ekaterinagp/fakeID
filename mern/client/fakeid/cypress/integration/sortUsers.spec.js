@@ -21,6 +21,17 @@ describe("open sorters", () => {
     cy.get("label").contains("Name").click();
     cy.get(".singleUser h3").eq(0).should("have.text", "Anna Anderson");
   });
+
+  it("sort by name", () => {
+    cy.get("label").contains("Name").click();
+    cy.get(".singleUser h3").eq(0).should("have.text", "Anna Anderson");
+  });
+
+  it("sort by age ", () => {
+    cy.get("label").contains("Age").click();
+
+    cy.get(".singleUser h3").eq(0).should("have.text", "Baby Maria");
+  });
 });
 
 describe("filters are not shown", () => {
