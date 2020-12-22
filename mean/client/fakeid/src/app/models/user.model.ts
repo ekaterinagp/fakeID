@@ -40,8 +40,15 @@ export class User {
         age: number;
       }
     ],
-    public parents: Array<object>,
-    public isChild: string,
+    public parents: [
+      {
+        _id: string;
+        name: string | undefined;
+        gender: string;
+        age: number;
+      }
+    ],
+    public isChild: boolean,
     public isEmployee: boolean
   ) {}
 }

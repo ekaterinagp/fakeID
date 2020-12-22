@@ -17,6 +17,8 @@ import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   imports: [
@@ -30,6 +32,8 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatInputModule,
     BrowserAnimationsModule,
+    MatSelectModule,
+    MatRadioModule,
   ],
   declarations: [
     AppComponent,

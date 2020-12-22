@@ -93,7 +93,7 @@ input.mat-input-element {
 
 .tableTop {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 
   & span {
     padding: 1.5em;
@@ -103,7 +103,7 @@ input.mat-input-element {
 
 .shortTableGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   border: 1px solid #dee2e6;
 
   & span {
