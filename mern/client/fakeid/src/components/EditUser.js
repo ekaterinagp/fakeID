@@ -1,5 +1,43 @@
 import React, { useEffect, useState } from "react";
 
+export const fetchChildren = async (url, user) => {
+  return new Promise((resolve, reject) => {
+    fetch(`${url}/users/${user._id}/children`)
+      .then((res) => res.json())
+      .then((children) => {
+        console.log(children);
+        resolve(children);
+      });
+  });
+};
+
+export const fetchSpouses = async (url, user) => {
+  return new Promise((resolve, reject) => {
+    fetch(`${url}/users/${user._id}/spouses`)
+      .then((res) => res.json())
+      .then((spouses) => {
+        console.log(spouses);
+        resolve(spouses);
+      });
+  });
+};
+
+export const postChanges = async (url, user, values) => {
+  return new Promise((resolve, reject) => {
+    fetch(`${url}/users/${user._id}`, {
+      method: "PUT",
+      body: JSON.stringify(values),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        resolve(data);
+      });
+  });
+};
+
 export default function EditUser(props) {
   let { user } = props;
 
@@ -17,46 +55,33 @@ export default function EditUser(props) {
   const url = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
-    if (user) {
-      setValues({
-        name: user.name,
-        address: user.address,
-        maritalStatusId: user.maritalStatusId,
-        spouseId: user.spouse ? user.spouse._id : "",
-        childId: null,
-      });
-    }
+    // if (user) {
+    setValues({
+      name: user.name,
+      address: user.address,
+      maritalStatusId: user.maritalStatusId,
+      spouseId: user.spouse ? user.spouse._id : "",
+      childId: null,
+    });
+    // }
     if (user && user.age >= 18 && !user.CVR) {
       const url = process.env.REACT_APP_API_URL;
-      const fetchSpouses = async () => {
-        try {
-          const response = await fetch(`${url}/users/${user._id}/spouses`);
-          const spouses = await response.json();
-          if (response.status === 200) {
-            setSpouses(spouses);
-          }
-        } catch (err) {
-          if (err) {
-            console.log(err);
-            return;
-          }
-        }
+
+      const getChildren = async (url, user) => {
+        const children = await fetchChildren(url, user);
+
+        setChildren(children);
+        console.log(children);
       };
 
-      const fetchChildren = async () => {
-        try {
-          const response = await fetch(`${url}/users/${user._id}/children`);
-          const children = await response.json();
-          setChildren(children);
-        } catch (err) {
-          if (err) {
-            console.log(err);
-            return;
-          }
-        }
+      const getSpouses = async (url, user) => {
+        const spouses = await fetchSpouses(url, user);
+        setSpouses(spouses);
+        console.log(spouses);
       };
-      fetchSpouses();
-      fetchChildren();
+
+      getChildren(url, user);
+      getSpouses(url, user);
     }
   }, [user]);
 
@@ -69,29 +94,16 @@ export default function EditUser(props) {
 
   const submitChange = async (event) => {
     event.preventDefault();
-    try {
-      const response = await fetch(`${url}/users/${user._id}`, {
-        method: "PUT",
-        body: JSON.stringify(values),
-        headers: {
-          "Content-Type": "application/json",
-        },
+    console.log(values);
+    const data = await postChanges(url, user, values);
+    console.log(data);
+    if (!data.error) {
+      props.updateUser(values);
+      props.onNotification({
+        message: "User updated",
+        type: "success",
       });
-      const data = await response.json();
-      console.log(data);
-      if (!data.error) {
-        props.updateUser(values);
-        props.onNotification({
-          message: "User updated",
-          type: "success",
-        });
-      } else {
-        props.onNotification({
-          message: data.error,
-          type: "error",
-        });
-      }
-    } catch (err) {
+    } else {
       props.onNotification({
         message: "Something went wrong, please try again",
         type: "error",
@@ -125,25 +137,8 @@ export default function EditUser(props) {
               : "Lygten 37, 2400 Norrebro"
           }
         >
-          {/* <option value="Select Address" disabled>
-            Select Address
-          </option> */}
-          <option
-            // selected={
-            //   values.address === "Lygten 17, 2400 Norrebro" ? true : false
-            // }
-            value="Lygten 17, 2400 Norrebro"
-          >
-            Lygten 17
-          </option>
-          <option
-            // selected={
-            //   values.address === "Lygten 37, 2400 Norrebro" ? true : false
-            // }
-            value="Lygten 37, 2400 Norrebro"
-          >
-            Lygten 37
-          </option>
+          <option value="Lygten 17, 2400 Norrebro">Lygten 17</option>
+          <option value="Lygten 37, 2400 Norrebro">Lygten 37</option>
         </select>
       </div>
 
@@ -157,65 +152,14 @@ export default function EditUser(props) {
               onChange={handleChange}
               value={values.maritalStatusId}
             >
-              {/* <option value="Marital Status" disabled>
-                Marital Status
-              </option> */}
-              <option
-                // selected={values.maritalStatusId === "1" ? true : false}
-                value="1"
-              >
-                {" "}
-                Single
-              </option>
-              <option
-                // selected={values.maritalStatusId === "2" ? true : false}
-                value="2"
-              >
-                {" "}
-                Married
-              </option>
-              <option
-                // selected={values.maritalStatusId === "3" ? true : false}
-                value="3"
-              >
-                {" "}
-                Divorced
-              </option>
-              <option
-                // selected={values.maritalStatusId === "4" ? true : false}
-                value="4"
-              >
-                {" "}
-                Widow
-              </option>
-              <option
-                // selected={values.maritalStatusId === "5" ? true : false}
-                value="5"
-              >
-                {" "}
-                Registered Partnership
-              </option>
-              <option
-                // selected={values.maritalStatusId === "6" ? true : false}
-                value="6"
-              >
-                {" "}
-                Abolition of Registered Partnership
-              </option>
-              <option
-                // selected={values.maritalStatusId === "7" ? true : false}
-                value="7"
-              >
-                {" "}
-                Deceased
-              </option>
-              <option
-                // selected={values.maritalStatusId === "8" ? true : false}
-                value="8"
-              >
-                {" "}
-                Unknown
-              </option>
+              <option value="1"> Single</option>
+              <option value="2"> Married</option>
+              <option value="3"> Divorced</option>
+              <option value="4"> Widow</option>
+              <option value="5"> Registered Partnership</option>
+              <option value="6"> Abolition of Registered Partnership</option>
+              <option value="7"> Deceased</option>
+              <option value="8"> Unknown</option>
             </select>
           </div>
 
@@ -241,9 +185,7 @@ export default function EditUser(props) {
                       );
                     })
                   ) : (
-                    <option disabled selected>
-                      No available spouses
-                    </option>
+                    <option disabled>No available spouses</option>
                   )}
                 </select>
               </>

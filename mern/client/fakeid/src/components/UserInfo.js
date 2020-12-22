@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function UserInfo(user) {
+  console.log(user.gender);
   return (
     <>
       <h4>Date of birth</h4>
@@ -14,10 +15,15 @@ export default function UserInfo(user) {
 
       <h4>Gender</h4>
       <p>{user.gender}</p>
-      <h4>Marital status</h4>
-      <p>{user.maritalStatus}</p>
+      {!user.CVR ? (
+        <>
+          {" "}
+          <h4>Marital status</h4>
+          <p>{user.maritalStatus}</p>{" "}
+        </>
+      ) : null}
 
-      {user.parents && user.parents.length ? (
+      {!user.CVR && user.parents && user.parents.length ? (
         <>
           <h4>Parents</h4>
           {user.parents.map((parent) => {
@@ -25,14 +31,15 @@ export default function UserInfo(user) {
           })}
         </>
       ) : null}
-      {user.spouse ? (
+
+      {!user.CVR && user.spouse && user.spouse !== null ? (
         <>
           <h4>Spouse</h4>
           <p>{user.spouse.name}</p>
         </>
       ) : null}
 
-      {user.children.length ? (
+      {!user.CVR && user.children.length ? (
         <>
           <h4>Children</h4>
           {user.children.map((child, i) => {
