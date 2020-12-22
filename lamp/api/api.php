@@ -218,19 +218,13 @@ function updateUser($id)
     global $sharedFunctions;
 
     $user = file_get_contents('php://input');
-
     $user = json_decode($user);
-
 
     if (!$id) {
         $sharedFunctions->sendErrorMessage('id is required', __LINE__);
     }
 
-
-
     $sql = 'UPDATE user SET address_id=:address_id, spouse_id=:spouse_id, marital_status_id=:marital_status_id, name=:name WHERE id=:id';
-
-
 
     $data = [
         ':marital_status_id' => $user->marital_status_id,
