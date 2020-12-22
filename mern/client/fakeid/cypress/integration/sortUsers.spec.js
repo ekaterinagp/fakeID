@@ -23,14 +23,35 @@ describe("open sorters", () => {
   });
 
   it("sort by name", () => {
+    const baseUrl = "http://localhost:3000";
+    cy.visit(baseUrl);
+    cy.get(".filterBtn").click();
     cy.get("label").contains("Name").click();
     cy.get(".singleUser h3").eq(0).should("have.text", "Anna Anderson");
+    cy.get("label").contains("Name").click();
   });
 
   it("sort by age ", () => {
     cy.get("label").contains("Age").click();
 
     cy.get(".singleUser h3").eq(0).should("have.text", "Baby Maria");
+  });
+
+  it("click both and then unclick age ", () => {
+    cy.get(".filterBtn").click();
+    cy.get("label").contains("Age").click();
+    cy.get("label").contains("Name").click();
+    cy.get("label").contains("Age").click();
+    cy.get(".singleUser h3").eq(0).should("have.text", "Anna Anderson");
+  });
+
+  it("click both and then unclick both ", () => {
+    cy.get(".filterBtn").click();
+    cy.get("label").contains("Age").click();
+    cy.get("label").contains("Name").click();
+    cy.get("label").contains("Age").click();
+    cy.get("label").contains("Name").click();
+    cy.get(".singleUser h3").eq(0).should("have.text", "Anna Anderson");
   });
 });
 

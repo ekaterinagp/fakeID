@@ -81,7 +81,7 @@ export default function Overview() {
   if (loading) {
     return <div className="loader">LOADING</div>;
   }
- 
+
   const handleSearch = (searchString) => {
     if (!searchString) {
       setDisplayUsers(users);
@@ -114,9 +114,8 @@ export default function Overview() {
         }
       });
     }
-    if (values.ageSort || values.nameSort) {
-      setDisplayUsers(usersInDom);
-    }
+
+    setDisplayUsers(usersInDom);
   };
 
   const handleClick = () => {
@@ -167,9 +166,9 @@ export default function Overview() {
     console.log(filteredUsers);
     console.log("look!", filters);
 
-    if(filters.ageSort || filters.nameSort){
-      handleSort(filters, filteredUsers)
-    }else{
+    if (filters.ageSort || filters.nameSort) {
+      handleSort(filters, filteredUsers);
+    } else {
       setDisplayUsers(filteredUsers);
     }
   };
@@ -187,9 +186,8 @@ export default function Overview() {
         <div className="filtersAndSortContainer" style={isShown.style}>
           <Filters onChange={applyFilters} />
         </div>
-
       </div>
-      
+
       <div className="usersContainer">
         {displayedUsers.map((user) => {
           return (
