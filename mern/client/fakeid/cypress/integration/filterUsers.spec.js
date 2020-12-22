@@ -37,4 +37,18 @@ describe("open filters", () => {
     cy.contains("Baby User");
     cy.contains("Baby Maria");
   });
+
+  it("filter all adults ", () => {
+    cy.get('label[for="adults"]').click();
+    cy.get('label[for="employeeAll"]').click();
+
+    cy.contains("Anna Anderson");
+    cy.contains("Peter Peterson");
+  });
+
+  it("filter all female ", () => {
+    cy.get('label[for="female"]').click();
+
+    cy.contains("Anna Anderson");
+  });
 });

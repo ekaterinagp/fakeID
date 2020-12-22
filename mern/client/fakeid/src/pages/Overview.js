@@ -36,21 +36,21 @@ export function getNotEmployees(users) {
   return notEmployees;
 }
 
-export function getUnkown(users) {
-  let employees = [...users].filter((user) => user.maritalStatus === "Unknown");
-  return employees;
-}
+// export function getUnkown(users) {
+//   let employees = [...users].filter((user) => user.maritalStatus === "Unknown");
+//   return employees;
+// }
 
-export function getMarried(users) {
-  let notEmployees = [...users].filter((user) => user.maritalStatus === "Married");
-  return notEmployees;
-}
+// export function getMarried(users) {
+//   let notEmployees = [...users].filter((user) => user.maritalStatus === "Married");
+//   return notEmployees;
+// }
 
-export function testMaleEmployee(users) {
-  let filteredUsers = getMales(users);
-  filteredUsers = getEmployees(filteredUsers);
-  return filteredUsers[0];
-}
+// export function testMaleEmployee(users) {
+//   let filteredUsers = getMales(users);
+//   filteredUsers = getEmployees(filteredUsers);
+//   return filteredUsers[0];
+// }
 
 export default function Overview() {
   const [loading, setLoading] = useState(true);
@@ -61,7 +61,6 @@ export default function Overview() {
     style: { maxHeight: 0 },
     btnText: "Show filters",
   });
-
 
   const url = process.env.REACT_APP_API_URL;
   // console.log(url);

@@ -9,9 +9,33 @@ export const fetchChildren = async (url, user) => {
         resolve(children);
       });
   });
-  // const response = await fetch(`${url}/users/${user._id}/children`);
-  // return response;
-  // const children = await response.json();
+};
+
+export const fetchSpouses = async (url, user) => {
+  return new Promise((resolve, reject) => {
+    fetch(`${url}/users/${user._id}/spouses`)
+      .then((res) => res.json())
+      .then((spouses) => {
+        console.log(spouses);
+        resolve(spouses);
+      });
+  });
+};
+
+export const postChanges = async (url, user, values) => {
+  return new Promise((resolve, reject) => {
+    fetch(`${url}/users/${user._id}`, {
+      method: "PUT",
+      body: JSON.stringify(values),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        resolve(data);
+      });
+  });
 };
 
 export default function EditUser(props) {
@@ -43,18 +67,6 @@ export default function EditUser(props) {
     if (user && user.age >= 18 && !user.CVR) {
       const url = process.env.REACT_APP_API_URL;
 
-      const fetchSpouses = async () => {
-        try {
-          const response = await fetch(`${url}/users/${user._id}/spouses`);
-          const spouses = await response.json();
-          if (response.status === 200) {
-            setSpouses(spouses);
-            console.log(spouses);
-          }
-        } catch (err) {
-          console.log(err);
-        }
-      };
       const getChildren = async (url, user) => {
         const children = await fetchChildren(url, user);
 
@@ -62,19 +74,14 @@ export default function EditUser(props) {
         console.log(children);
       };
 
-      getChildren(url, user);
+      const getSpouses = async (url, user) => {
+        const spouses = await fetchSpouses(url, user);
+        setSpouses(spouses);
+        console.log(spouses);
+      };
 
-      // const fetchChildren = async () => {
-      //   try {
-      //     const response = await fetch(`${url}/users/${user._id}/children`);
-      //     const children = await response.json();
-      //     setChildren(children);
-      //   } catch (err) {
-      //     console.log(err);
-      //   }
-      // };
-      fetchSpouses();
-      // fetchChildren();
+      getChildren(url, user);
+      getSpouses(url, user);
     }
   }, [user]);
 
@@ -87,29 +94,16 @@ export default function EditUser(props) {
 
   const submitChange = async (event) => {
     event.preventDefault();
-    try {
-      const response = await fetch(`${url}/users/${user._id}`, {
-        method: "PUT",
-        body: JSON.stringify(values),
-        headers: {
-          "Content-Type": "application/json",
-        },
+    console.log(values);
+    const data = await postChanges(url, user, values);
+    console.log(data);
+    if (!data.error) {
+      props.updateUser(values);
+      props.onNotification({
+        message: "User updated",
+        type: "success",
       });
-      const data = await response.json();
-      console.log(data);
-      if (!data.error) {
-        props.updateUser(values);
-        props.onNotification({
-          message: "User updated",
-          type: "success",
-        });
-      } else {
-        props.onNotification({
-          message: data.error,
-          type: "error",
-        });
-      }
-    } catch (err) {
+    } else {
       props.onNotification({
         message: "Something went wrong, please try again",
         type: "error",

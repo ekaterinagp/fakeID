@@ -85,8 +85,12 @@ router.put("/users/:id", async (req, res) => {
 
   let { name, address, maritalStatusId, spouseId, childId } = req.body;
 
-  if (!name || address) {
-    return res.status(403).send({ error: "name and address are required" });
+  if (!name) {
+    return res.status(403).send({ error: "name is required" });
+  }
+
+  if (!address) {
+    return res.status(403).send({ error: "address is required" });
   }
 
   if (spouseId) {

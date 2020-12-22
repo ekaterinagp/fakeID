@@ -11,7 +11,6 @@
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.2",
     "@testing-library/user-event": "^12.2.2",
-    "cypress": "^6.1.0",
     "istanbul-lib-coverage": "^3.0.0",
     "nyc": "^15.1.0",
     "react": "^17.0.1",
@@ -46,6 +45,7 @@
     ]
   },
   "devDependencies": {
-    "@cypress/instrument-cra": "^1.4.0"
+    "@cypress/instrument-cra": "^1.4.0",
+    "cypress": "^6.2.0"
   }
 }
