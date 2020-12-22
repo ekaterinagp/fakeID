@@ -1,19 +1,47 @@
-export class User {
+// export interface User {
+//   _id: string;
+//   name: string;
+//   dateOfBirth: string;
+//   age: number;
+//   address: string;
+//   gender: string;
+//   maritalStatus: string;
+//   CVR: string;
+//   companyName: string;
+//   spouse: object;
+//   children: Array<object>;
+//   parents: Array<object>;
+//   isChild: string;
+//   isEmployee: boolean;
+//   [x: string]: any;
+// }
 
-      constructor(
-        public _id: string,
-        public name: string,
-        public dateOfBirth: string,
-        public age: number,
-        public address: string,
-        public gender: string,
-        public maritalStatus: string,
-        public CVR: string,
-        public companyName: string,
-        public spouse: object,
-        public children: Array<object>,
-        public parents: Array<object>,
-        public isChild: string,
-        public isEmployee: boolean,
-    ) {}
+export class User {
+  [x: string]: any;
+  constructor(
+    public _id: string,
+    public name: string,
+    public dateOfBirth: string,
+    public age: number,
+    public address: string,
+    public gender: string,
+    public maritalStatus: string,
+    public CVR: string,
+    public companyName: string,
+    public spouse: {
+      _id: string;
+      name: string | undefined;
+    },
+    public children: [
+      {
+        _id: string;
+        name: string | undefined;
+        gender: string;
+        age: number;
+      }
+    ],
+    public parents: Array<object>,
+    public isChild: string,
+    public isEmployee: boolean
+  ) {}
 }

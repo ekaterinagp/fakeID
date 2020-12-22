@@ -1,0 +1,181 @@
+<div>
+  <h1> {{user?.name}} </h1>
+  <h3>{{user?.CVR!==null? null : "Employee profile"}}</h3>
+  <h4 (click)="goBack()">Go back</h4>
+</div>
+
+<!-- <div class="editContainer" *ngIf="!showEditContent">
+  <form
+    *ngIf="user; else loading"
+    [formGroup]="editForm"
+    class="edit"
+    (ngSubmit)="onSubmit()"
+  >
+    <mat-form-field class="formItem">
+      <strong class="titleStrong"> Name</strong>
+      <input
+        matInput
+        id="name"
+        class="form-control"
+        formControlName="name"
+      />
+    </mat-form-field>
+    <mat-form-field class="formItem">
+      <strong class="titleStrong"> Date of birth </strong>
+      <input matInput [readonly]="true" [value]="user?.formattedDate" />
+    </mat-form-field>
+    <div *ngIf=" user?.CVR==null">
+    <div *ngIf="!user.spouse.length">
+      <mat-form-field class="formItem" appearance="fill">
+        <strong> Spouse </strong>
+        <div>
+          <mat-select
+            matNativeControl
+            formControlName="spouse"
+            class="form-control"
+          >
+            <mat-option
+              *ngFor="let spouse of spouses"
+              id="spouse.id"
+              [value]="spouse.id"
+            >
+              {{ spouse.commonName }}
+            </mat-option>
+          </mat-select>
+        </div>
+      </mat-form-field>
+    </div> -->
+    <!-- <mat-radio-group
+      matNativeControl
+      aria-label="Status"
+      formControlName="maritialStatus"
+    >
+      <mat-radio-button [value]="Married">Married</mat-radio-button>
+      <mat-radio-button [value]="Single"
+        >Single</mat-radio-button
+      >
+      <mat-radio-button [value]="Divorced">Divorced</mat-radio-button>
+      <mat-radio-button [value]="Widow"
+        >Widow</mat-radio-button
+      >
+      <mat-radio-button [value]="Registered Partnership">Registered Partnership</mat-radio-button>
+      <mat-radio-button [value]="Abolition of Registered Partnership"
+        >Abolition of Registered Partnership</mat-radio-button
+      >
+      <mat-radio-button [value]="Deceased"
+        >Deceased</mat-radio-button
+      >
+      <mat-radio-button [value]="Unknown"
+        >Unknown</mat-radio-button
+      >
+    </mat-radio-group>
+
+    <div *ngIf="user.spouse._id">
+      <mat-form-field class="formItem">
+        <mat-label>Spouse</mat-label>
+        <input matInput [readonly]="true" [value]="user.spouse.name" />
+      </mat-form-field>
+    </div>
+  </div> -->
+    <!-- <mat-form-field class="formItem" appearance="fill">
+      <strong> Address </strong>
+      <div>
+        <mat-select
+          matNativeControl
+          formControlName="address"
+          class="form-control"
+        >
+          <mat-option
+            *ngFor="let address of addresses"
+            [value]="address.districtName"
+          >
+            {{ address.postCodeIdentifier }} {{ address.districtName }}
+            {{ address.streetName }}</mat-option
+          >
+        </mat-select>
+      </div>
+    </mat-form-field> -->
+  
+ 
+
+    <!-- <div class="btncontainer">
+      <button class="btn-secondary" type="submit">Save</button>
+      <button class="btn-secondary" type="button" (click)="ShowHideEdit()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>  -->
+
+
+<form class="viewContainer" >
+  <mat-form-field class="formItem" appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput [value]="user?.name" [readonly]="true" />
+  </mat-form-field>
+
+
+   <mat-form-field class="formItem">
+    <mat-label>Date of birth</mat-label>
+    <input matInput [readonly]="true" [value]="user?.formattedDate" />
+  </mat-form-field>
+  <mat-form-field class="formItem" *ngIf="user?.organizationName==null">
+    <mat-label>Spouse</mat-label>
+    <a routerLink="/edit/{{ user?.spouse?._id }}"> <input
+      matInput
+      [readonly]="true"
+      [value]="user?.spouse !==null ? user?.spouse?.name : 'No spouse'"
+    /></a> 
+  </mat-form-field> 
+  <mat-form-field class="formItem">
+    <mat-label>Address</mat-label>
+    <input matInput [readonly]="true" [value]="user?.address" />
+  </mat-form-field>
+
+  <!-- <div class="profiles" *ngIf="user?.parentList.length && user?.organizationName==null" >
+    <h3>Parents</h3>
+    <div class="tableTop">
+      <span>NAME</span> <span>GENDER</span><span>AGE</span>
+      <span>STATUS</span>
+    </div>
+
+    <div *ngFor="let parent of user?.parentList" class="shortTableGrid">
+      <span>
+        <a routerLink="/edit/{{ parent.serialNumber }}">
+          {{ parent.name }}
+        </a>
+      </span>
+      <span>{{ parent.gender }}</span>
+      <span>{{ parent.age }}</span>
+      <span>{{ status[parent.maritialStatus] }}</span>
+    </div>
+  </div> -->
+  <div class="profiles" *ngIf="user?.children?.length && !user?.CVR" >
+    <h3>Children</h3>
+    <div class="tableTop">
+      <span>NAME</span> <span>GENDER</span><span>AGE</span>
+      <span>OTHER PARENT</span>
+    </div>
+
+    <div *ngFor="let child of user?.children" class="shortTableGrid">
+      <span>
+        <a routerLink="/edit/{{ child._id }}">
+          {{ child.name }}
+        </a>
+      </span>
+      <span>{{ child.gender }}</span>
+      <span>{{ child.age }}</span>
+      <!-- <span>
+        <a routerLink="/edit/{{ child.otherParent[0]?.serialNumber }}">{{
+          child.otherParent[0]?.name
+        }}</a></span
+      > -->
+    </div>
+  </div> 
+
+  <div class="btncontainer">
+    <button class="btn-secondary" disabeled (click)="ShowHideEdit()">
+      EDIT
+    </button>
+  </div>
+</form>

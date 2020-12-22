@@ -1,4 +1,4 @@
-<h1>Overview</h1>
+
 <div class="usersContainer" *ngFor='let user of users'>
     <div class="singleUser" >
         <h3>{{user.name}}</h3>
@@ -8,7 +8,7 @@
         <p *ngIf='!user.isEmployee'></p>
         <p>{{user.maritalStatus}}</p>
         
-        <a mat-raised-button color="primary">Edit</a>
+        <a mat-raised-button color="primary" routerLink="/edit/{{ user._id}}">Edit</a>
         <a mat-raised-button color="primary">Login</a>
     </div>
 
