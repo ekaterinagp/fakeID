@@ -131,7 +131,7 @@ class User {
     if (isEmployee == "false") {
       info.maritalStatusId = 8;
       info.parents = [];
-      info.spouse = {};
+      info.spouse = null;
       info.children = [];
     }
 
@@ -213,6 +213,7 @@ class User {
         },
       });
     }
+
     return bulkUpdates;
   }
 

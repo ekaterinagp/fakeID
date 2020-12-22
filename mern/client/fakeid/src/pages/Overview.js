@@ -35,21 +35,21 @@ export function getNotEmployees(users) {
   return notEmployees;
 }
 
-export function getUnkown(users) {
-  let employees = [...users].filter((user) => user.maritalStatus === "Unknown");
-  return employees;
-}
+// export function getUnkown(users) {
+//   let employees = [...users].filter((user) => user.maritalStatus === "Unknown");
+//   return employees;
+// }
 
-export function getMarried(users) {
-  let notEmployees = [...users].filter((user) => user.maritalStatus === "Married");
-  return notEmployees;
-}
+// export function getMarried(users) {
+//   let notEmployees = [...users].filter((user) => user.maritalStatus === "Married");
+//   return notEmployees;
+// }
 
-export function testMaleEmployee(users) {
-  let filteredUsers = getMales(users);
-  filteredUsers = getEmployees(filteredUsers);
-  return filteredUsers[0];
-}
+// export function testMaleEmployee(users) {
+//   let filteredUsers = getMales(users);
+//   filteredUsers = getEmployees(filteredUsers);
+//   return filteredUsers[0];
+// }
 
 export default function Overview() {
   const [loading, setLoading] = useState(true);
@@ -61,7 +61,6 @@ export default function Overview() {
     btnText: "Show filters",
   });
 
-
   const url = process.env.REACT_APP_API_URL;
   // console.log(url);
 
@@ -70,11 +69,10 @@ export default function Overview() {
     const fetchUsers = async () => {
       const response = await fetch(`${url}/users`);
       const data = await response.json();
-      if (isFetching) {
-        setUsers(data);
-        setDisplayUsers(data);
-        setLoading(false);
-      }
+
+      setUsers(data);
+      setDisplayUsers(data);
+      setLoading(false);
     };
     fetchUsers();
     return () => (isFetching = false);
@@ -83,7 +81,7 @@ export default function Overview() {
   if (loading) {
     return <div className="loader">LOADING</div>;
   }
- 
+
   const handleSearch = (searchString) => {
     if (!searchString) {
       setDisplayUsers(users);
@@ -116,9 +114,8 @@ export default function Overview() {
         }
       });
     }
-    if (values.ageSort || values.nameSort) {
-      setDisplayUsers(usersInDom);
-    }
+
+    setDisplayUsers(usersInDom);
   };
 
   const handleClick = () => {
@@ -169,9 +166,9 @@ export default function Overview() {
     console.log(filteredUsers);
     console.log("look!", filters);
 
-    if(filters.ageSort || filters.nameSort){
-      handleSort(filters, filteredUsers)
-    }else{
+    if (filters.ageSort || filters.nameSort) {
+      handleSort(filters, filteredUsers);
+    } else {
       setDisplayUsers(filteredUsers);
     }
   };
@@ -189,9 +186,8 @@ export default function Overview() {
         <div className="filtersAndSortContainer" style={isShown.style}>
           <Filters onChange={applyFilters} />
         </div>
-
       </div>
-      
+
       <div className="usersContainer">
         {displayedUsers.map((user) => {
           return (
@@ -203,6 +199,7 @@ export default function Overview() {
               <NavLink className="button" to={"/user/" + user._id}>
                 Edit
               </NavLink>
+              <button>Login</button>
             </div>
           );
         })}
