@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OverviewComponent } from './pages/overview/overview.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { CreateUserComponent } from './pages/create-user/create-user.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { MenuComponent } from './components/menu/menu.component';
   declarations: [
     AppComponent,
     OverviewComponent,
-    MenuComponent
+    MenuComponent,
+    CreateUserComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
