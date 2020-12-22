@@ -4,7 +4,7 @@ const app = express();
 
 const cors = require('cors')
 
-const allowedOrigins = ['http://localhost:4200','https://fakeid-mern.herokuapp.com'];
+const allowedOrigins = ['http://localhost:4200','https://fakeid-mean.herokuapp.com'];
 
 // app.use(cors())
 app.use(cors({ 
