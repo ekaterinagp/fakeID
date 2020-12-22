@@ -11,7 +11,6 @@ import { User } from './../models/user.model'
   providedIn: 'root'
 })
 
-
 export class OverviewService {
 
   private allUsersUrl =`${environment.apiUrl}/users`
@@ -22,12 +21,11 @@ export class OverviewService {
   
   constructor(private http: HttpClient) { }
 
-  getUsers(): Observable<User> {
-    return this.http.get<User>(this.allUsersUrl).pipe(
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.allUsersUrl).pipe(
       tap((res) => console.log(res)),
-      catchError(this.handleError<User>("getUsers")))
+      catchError(this.handleError<User[]>("getUsers")))
   }
-
 
   /**
    * Handle Http operation that failed.

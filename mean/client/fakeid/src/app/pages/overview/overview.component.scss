@@ -1,12 +1,18 @@
 
 .usersContainer{
-    margin: 2rem 5rem;
+    margin: 1rem 5rem;
     .singleUser{
         display: grid;
         grid-template-columns: 1fr .5fr .5fr .5fr .5fr .5fr .5fr;
         border-bottom: 1px solid lightgrey;
+        align-items: center;
+        padding:.5rem;
         p, h3{
             text-transform: capitalize;
+            margin-bottom: 0;
+        }
+        a{
+            margin: auto .5rem;
         }
     }
 }

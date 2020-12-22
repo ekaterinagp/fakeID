@@ -1,0 +1,19 @@
+.menu{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    align-items: center;
+    padding:1rem 2rem;
+    background:#3b7ab6;
+    .linkContainer{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        text-align: right;
+    }
+    a{
+        text-decoration: none;
+        color:white;
+    }
+    .active{
+        text-decoration: underline;
+    }
+}

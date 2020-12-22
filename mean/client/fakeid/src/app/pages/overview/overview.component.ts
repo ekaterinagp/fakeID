@@ -19,7 +19,14 @@ export class OverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.usersSub = this.overviewService.getUsers()
-    .subscribe((users: any) => {this.users = users }) 
+    .subscribe((data: any) => {
+      this.users = data 
+      this.users.forEach(user => {
+        user.isChild = user.age < 18 ? 'Child' : 'Adult'
+        user.isEmployee = user.CVR  ? true : false
+      })
+      console.log(data)
+    }) 
   }
 
   ngOnDestroy(): void {
