@@ -70,11 +70,10 @@ export default function Overview() {
     const fetchUsers = async () => {
       const response = await fetch(`${url}/users`);
       const data = await response.json();
-      if (isFetching) {
-        setUsers(data);
-        setDisplayUsers(data);
-        setLoading(false);
-      }
+
+      setUsers(data);
+      setDisplayUsers(data);
+      setLoading(false);
     };
     fetchUsers();
     return () => (isFetching = false);

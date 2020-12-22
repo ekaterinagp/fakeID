@@ -22,3 +22,13 @@ describe("open sorters", () => {
     cy.get(".singleUser h3").eq(0).should("have.text", "Anna Anderson");
   });
 });
+
+describe("filters are not shown", () => {
+  it("click show filters and then to hide filters", () => {
+    const baseUrl = "http://localhost:3000";
+    cy.visit(baseUrl);
+    cy.get(".filterBtn").click();
+    cy.get(".filterBtn").click();
+    cy.get(".filterBtn").should("have.text", "Show Filters");
+  });
+});

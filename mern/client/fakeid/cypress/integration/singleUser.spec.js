@@ -53,3 +53,76 @@ describe("go back to the list and select employee to make sure there is a CVR", 
     cy.get("h4").contains("CVR");
   });
 });
+
+describe("go back to the list and select employee to make sure there is a CVR", () => {
+  it("go to  the index and then to single user employee page", () => {
+    cy.contains("FakeID").click();
+    cy.contains("Employee Employee").siblings().contains("Edit").click();
+  });
+
+  it("check if there is a CVR", () => {
+    cy.get("h4").contains("CVR");
+  });
+});
+
+describe("go to single user and select marital status Single", () => {
+  it("go to  the index and then to single user  page to select status single", () => {
+    cy.contains("FakeID").click();
+    cy.contains("Petr Petrov").siblings().contains("Edit").click();
+    cy.get(".tabs button").eq(1).click();
+    cy.get('select[name="maritalStatusId"]').select("Single");
+    cy.get('input[type="submit"]').click();
+  });
+});
+
+describe("go to single user and select marital status Divorced", () => {
+  it("go to  the index and then to single user  page to select status Divorced", () => {
+    cy.contains("FakeID").click();
+    cy.contains("Petr Petrov").siblings().contains("Edit").click();
+    cy.get(".tabs button").eq(1).click();
+    cy.get('select[name="maritalStatusId"]').select("Divorced");
+    cy.get('input[type="submit"]').click();
+  });
+});
+
+describe("go to single user and select marital status Widow", () => {
+  it("go to  the index and then to single user  page to select status Widow", () => {
+    cy.contains("FakeID").click();
+    cy.contains("Petr Petrov").siblings().contains("Edit").click();
+    cy.get(".tabs button").eq(1).click();
+    cy.get('select[name="maritalStatusId"]').select("Widow");
+    cy.get('input[type="submit"]').click();
+  });
+});
+
+describe("go to single user and select marital status Abolition of Registered Partnership", () => {
+  it("go to  the index and then to single user  page to select status Abolition of Registered Partnership", () => {
+    cy.contains("FakeID").click();
+    cy.contains("Petr Petrov").siblings().contains("Edit").click();
+    cy.get(".tabs button").eq(1).click();
+    cy.get('select[name="maritalStatusId"]').select(
+      "Abolition of Registered Partnership"
+    );
+    cy.get('input[type="submit"]').click();
+  });
+});
+
+describe("go to single user and select marital status Deceased", () => {
+  it("go to  the index and then to single user  page to select status Deceased", () => {
+    cy.contains("FakeID").click();
+    cy.contains("Petr Petrov").siblings().contains("Edit").click();
+    cy.get(".tabs button").eq(1).click();
+    cy.get('select[name="maritalStatusId"]').select("Deceased");
+    cy.get('input[type="submit"]').click();
+  });
+});
+
+describe("go to single user and select marital no status", () => {
+  it("go to  the index and then to single user  page to select no status ", () => {
+    cy.contains("FakeID").click();
+    cy.contains("Petr Petrov").siblings().contains("Edit").click();
+    cy.get(".tabs button").eq(1).click();
+    cy.get('select[name="maritalStatusId"]').select("Unknown");
+    cy.get('input[type="submit"]').click();
+  });
+});
