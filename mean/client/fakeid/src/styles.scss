@@ -2,3 +2,19 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+*{
+box-sizing: border-box;
+}
+
+
+button{
+    border-radius: 10px;
+    border:none;
+    outline:none;
+    margin:auto;
+    background:rgb(59, 122, 182);
+    color:white;
+    padding:1rem 2rem;
+}

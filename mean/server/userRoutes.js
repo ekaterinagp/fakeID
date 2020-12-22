@@ -6,7 +6,6 @@ const {  ObjectID } = require('mongodb')
 
 
 router.get('/users', async (req, res) => {
-    console.log('all users')
     let user = new User(db)
     try{
         const users = await user.getAll()
