@@ -4,7 +4,7 @@
 
 .singleUser{
     display: grid;
-    grid-template-columns: 1fr .5fr .5fr .5fr .5fr;
+    grid-template-columns: 1fr .5fr .5fr .5fr .5fr .5fr;
     border-bottom: 1px solid lightgrey;
 }
 
