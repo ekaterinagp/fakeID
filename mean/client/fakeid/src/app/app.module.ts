@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,6 +19,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import {
+  NotificationComponent,
+  NotificationContainerComponent,
+} from './components/notification/notification.component';
 
 @NgModule({
   imports: [
@@ -34,6 +38,7 @@ import { MatRadioModule } from '@angular/material/radio';
     BrowserAnimationsModule,
     MatSelectModule,
     MatRadioModule,
+    MatDialogModule,
   ],
   declarations: [
     AppComponent,
@@ -41,8 +46,13 @@ import { MatRadioModule } from '@angular/material/radio';
     MenuComponent,
     CreateUserComponent,
     EditUserComponent,
+    NotificationComponent,
+    NotificationContainerComponent,
   ],
-  providers: [],
+  providers: [
+    { provide: MatDialogRef, useValue: {} },
+    NotificationContainerComponent,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

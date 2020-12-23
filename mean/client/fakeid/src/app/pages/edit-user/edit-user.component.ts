@@ -12,6 +12,12 @@ import {
 import { User } from '../../models/user.model';
 import { EditUserService } from '../../services/edit-user.service';
 import { first } from 'rxjs/operators';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
+import { NotificationContainerComponent } from '../../components/notification/notification.component';
 
 @Component({
   selector: 'app-edit-user',
@@ -25,6 +31,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
   spouses: User[] = [];
   children: User[] = [];
   subs = new Subscription();
+  data = 'User updated';
   maritalStatuses = [
     { statusId: 2, status: 'Married' },
     { statusId: 8, status: 'Unknown' },
@@ -42,7 +49,8 @@ export class EditUserComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private editUserService: EditUserService,
-    private location: Location
+    private location: Location,
+    private notificationContainerComponent: NotificationContainerComponent
   ) {
     this.editForm = this.fb.group({
       name: ['', Validators.required],
@@ -152,5 +160,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
         childId: this.editForm.value.childId,
       } as User)
       .subscribe((_) => console.log('updated'));
+
+    this.notificationContainerComponent.openDialog();
   }
 }
