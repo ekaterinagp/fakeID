@@ -1,1 +1,102 @@
-<p>create-user works!</p>
+<div class="pageTitle">
+  <h1>Create user</h1>
+  <h4 (click)="goBack()">Go back</h4>
+</div>
+<div class="createContainer">
+  <form [formGroup]="createForm" class="createForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="">
+      <mat-label for="name">Name</mat-label>
+      <input matInput
+             placeholder="Ex. Donald Duck"
+             id="name"
+             class="form-control"
+
+             formControlName="name" />
+      <div class="alert alert-danger"
+           *ngIf="
+          createForm.controls.name.invalid &&
+          !createForm.controls.name.pristine
+        ">
+        Name is required
+      </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label for="birth">Date of birth</mat-label>
+      <input matInput
+             [matDatepicker]="picker"
+             id="dateOfBirth"
+           
+           
+             class="form-control"
+             formControlName="dateOfBirth" /> 
+      <mat-datepicker-toggle matSuffix
+                             [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <div class="alert alert-danger"
+           *ngIf="
+          createForm.controls.dateOfBirth.invalid &&
+          !createForm.controls.dateOfBirth.pristine
+        ">
+        Birth date is required
+      </div>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Gender</mat-label>
+      <mat-select class="form-control" formControlName="gender" id="gender">
+        <mat-option *ngFor="let gender of genders" [value]="gender">
+          {{ gender }}
+        </mat-option>
+      </mat-select>
+      <div class="alert alert-danger"
+           *ngIf="
+          createForm.controls.gender.invalid &&
+          !createForm.controls.gender.pristine
+        ">
+        Gender is required
+      </div>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Address</mat-label>
+      <mat-select class="form-control address" formControlName="address">
+        <mat-option *ngFor="let address of addresses"
+                    [value]="address">
+          {{ address }}  
+        </mat-option>
+      </mat-select>
+      <div class="alert alert-danger"
+           *ngIf="
+          createForm.controls.address.invalid &&
+          !createForm.controls.address.pristine
+        ">
+        Address is required
+      </div>
+    </mat-form-field>
+
+    <mat-radio-group
+          matNativeControl
+          aria-label="Professional Status"
+          formControlName="isEmployee"
+        >
+          <mat-radio-button [value]="true">Employee</mat-radio-button>
+          <mat-radio-button [value]="false"
+            >Not Employee</mat-radio-button
+          >
+          <div class="alert alert-danger"
+           *ngIf="
+          createForm.controls.isEmployee.invalid &&
+          !createForm.controls.isEmployee.pristine
+        ">
+        Professional status is required
+      </div>
+        </mat-radio-group>
+ 
+    <div class="btncontainer">
+      <button class="btn-secondary"
+              type="submit"
+              [disabled]="!createForm.valid">
+        Save
+      </button>
+    </div>
+  </form>
+</div>

@@ -128,12 +128,12 @@ class User {
       info.companyName = "EE A/S";
     }
     delete info.isEmployee;
-    if (isEmployee == "false") {
-      info.maritalStatusId = 8;
-      info.parents = [];
-      info.spouse = {};
-      info.children = [];
-    }
+
+    info.maritalStatusId = 8;
+    info.maritalStatus = "Unknown";
+    info.parents = [];
+    info.spouse = null;
+    info.children = [];
 
     try {
       const result = await this.collection.insertOne({ ...info });
