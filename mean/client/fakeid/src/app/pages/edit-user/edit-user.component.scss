@@ -1,0 +1,118 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.container {
+  margin: 0 15%;
+  background-color: white;
+  height: 100%;
+}
+
+.pageHeader {
+  margin-bottom: 40px;
+  background-color: #6f6f6f;
+  color: white;
+  position: relative;
+  // display: flex;
+  // flex-direction: column;
+  justify-content: center;
+  // padding-left: 1rem;
+  & p {
+    margin-bottom: 0;
+  }
+}
+
+input.mat-input-element {
+  height: 30px;
+}
+
+.pageTitle {
+  margin: 0 7%;
+  padding: 2em 0;
+
+  & h1 {
+    margin-bottom: 0;
+  }
+
+  & h4 {
+    margin-top: 0;
+    padding-top: 5px;
+  }
+}
+
+/*.mat-form-field-wrapper{
+    outline:none !important
+}*/
+
+.formItem {
+  display: grid;
+}
+
+.viewContainer .btncontainer button {
+  background-color: dimgrey;
+  color: white;
+}
+
+.bgImage {
+  height: 100%;
+}
+
+.editContainer {
+  & input {
+    padding: 10px 0;
+    padding: 0.75em 0.75em 0 0.75em;
+  }
+
+  & .titleStrong {
+    padding: 0.75em 0.75em 0 0.75em;
+  }
+
+  & mat-select {
+    margin: 10px 0;
+  }
+
+  & .btncontainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    & button {
+      width: auto;
+      justify-self: end;
+    }
+
+    & button:nth-child(1) {
+      background-color: dimgrey;
+      color: white;
+      justify-self: start;
+    }
+  }
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+.tableTop {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  & span {
+    padding: 1.5em;
+    border-right: 1px solid #dee2e6;
+  }
+}
+
+.shortTableGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 1px solid #dee2e6;
+
+  & span {
+    border-right: 1px solid #dee2e6;
+    padding: 1.5em;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
