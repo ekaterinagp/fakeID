@@ -90,16 +90,16 @@ router.put("/users/:id", async (req, res) => {
     if (!spouse) {
       return res.status(400).send({ error: "User does not exist" });
     }
-    if (maritalStatusId == "2" || maritalStatusId == "5") {
+        if (maritalStatusId == "2" || maritalStatusId == "5") {
       if (
         user.spouse &&
-        user.spouse.length > 0 &&
-        user.spouse[0]._id == ObjectID(spouseId)
+        user.spouse._id == spouseId
       )
         return res.send({ message: "user already has a spouse" });
+      }
+    if(userEntity.calculateAge(spouse.dateOfBirth) < 18){
+      return res.send({ message: "Children cannot be spouses" });
     }
-    delete spouse.spouse;
-
     bulkUpdates.push(...userEntity.updateSpouse(user, maritalStatusId, spouse));
   }
 
@@ -108,12 +108,18 @@ router.put("/users/:id", async (req, res) => {
     if (!child) {
       return res.status(400).send({ error: "User does not exist" });
     }
+  
+   if(child.parents.length >= 2){
+      return res.status(400).send({ error: "Child has two parents" });
+    }
+    if(child.parents.some(parent => id == parent._id)){
+      return res.status(400).send({ error: "Already this users child" });
+    }
     if (userEntity.calculateAge(child.dateOfBirth) >= 18) {
       return res
         .status(400)
         .send({ error: "To add a child it must be under 18" });
     }
-    delete child.parents;
     bulkUpdates.push(...userEntity.updateChild(user, child));
   }
 

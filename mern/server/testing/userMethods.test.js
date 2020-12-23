@@ -102,13 +102,12 @@ describe("user methods getAvailableSpouses", () => {
     } = await dbHelper.createSampleUsers();
 
     let result = await user.getAvailableSpouses(user4._id);
-    expect(result.length).toBe(5);
-
-    expect(result[0]).toStrictEqual(user1);
-    expect(result[1]).toStrictEqual(user5);
-    expect(result[2]).toStrictEqual(user6);
-    expect(result[3]).toStrictEqual(user7);
-    expect(result[4]).toStrictEqual(user9);
+    expect(result.length).toBe(4);
+    console.log(result)
+    expect(result[0]).toStrictEqual(user5);
+    expect(result[1]).toStrictEqual(user6);
+    expect(result[2]).toStrictEqual(user7);
+    expect(result[3]).toStrictEqual(user9);
     expect(result.some((user) => user.name === user4.name)).toBe(false);
   });
 
@@ -118,7 +117,7 @@ describe("user methods getAvailableSpouses", () => {
     let result = await user.getAvailableSpouses(user5._id);
 
     expect(result.some((user) => user.name === "Fifth user")).toBe(false);
-    expect(result.length).toBe(4);
+    expect(result.length).toBe(3);
   });
 });
 

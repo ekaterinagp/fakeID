@@ -128,12 +128,12 @@ class User {
       info.companyName = "EE A/S";
     }
     delete info.isEmployee;
-    if (isEmployee == "false") {
-      info.maritalStatusId = 8;
-      info.parents = [];
-      info.spouse = {};
-      info.children = [];
-    }
+
+    info.maritalStatusId = 8;
+    info.maritalStatus = "Unknown";
+    info.parents = [];
+    info.spouse = null;
+    info.children = [];
 
     try {
       const result = await this.collection.insertOne({ ...info });
@@ -179,7 +179,7 @@ class User {
 
   updateSpouse(user, maritalStatusId, spouse) {
     let bulkUpdates = [];
-    if (maritalStatusId == "2" || maritalStatusId == "5") {
+    if (maritalStatusId == "2" || maritalStatusId == "5" || user.maritalStatusId == '2' || user.maritalStatusId == '5') {
       bulkUpdates.push({
         updateOne: {
           filter: { _id: ObjectID(user._id) },

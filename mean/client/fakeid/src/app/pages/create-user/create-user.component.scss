@@ -1,0 +1,22 @@
+.createContainer {
+  margin: 0 7%;
+  padding-bottom: 5%;
+  height: 100vh;
+}
+
+.createForm {
+  display: grid;
+  grid-template-rows: repeat(2fr);
+}
+
+.btncontainer {
+  display: grid;
+}
+
+.btncontainer .btn-secondary {
+  justify-self: end;
+}
+
+.alert {
+  color: red;
+}
