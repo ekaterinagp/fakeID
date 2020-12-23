@@ -1,5 +1,19 @@
 
-<app-filters (sortByEvent)="handleSort($event)" (searchUsers)="handleSearch($event)"></app-filters>
+<div class="form-group searchBar">
+    <mat-form-field class="example-full-width">
+    <mat-label>Search by name</mat-label>
+    <input
+        matInput
+        placeholder="Search by name"
+        class="form-control"
+        id="search-text"
+        aria-describedby="search-text"
+        [formControl]="searchText"
+        autofocus
+    />
+    </mat-form-field>
+</div>
+<app-filters (sortByEvent)="handleSort($event)" ></app-filters>
 
 <div class="usersContainer" *ngFor='let user of users'>
     <div class="singleUser" >

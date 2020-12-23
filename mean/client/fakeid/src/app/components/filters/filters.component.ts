@@ -14,10 +14,7 @@ export class FiltersComponent implements OnInit {
   @Output() searchEvent = new EventEmitter<string>()
 
   
-  // users: User[] = [];
-  // sortedUsers: User[] = []
   panelOpenState = false;
-  searchText = new FormControl("");
   age = new FormControl("");
   gender = new FormControl("");
 
@@ -29,9 +26,7 @@ export class FiltersComponent implements OnInit {
   sortUsers(sortBy: string) {
       this.sortByEvent.emit(sortBy)
   }
-
-  searchUsers(searchString: string){
-    this.searchEvent.emit(searchString)
-  }
+  
+ 
 
 }

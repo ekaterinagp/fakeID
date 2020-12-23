@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { debounceTime } from "rxjs/operators";
 import { Subscription } from 'rxjs';
 
 import { User } from '../../models/user.model';
@@ -14,6 +16,8 @@ export class OverviewComponent implements OnInit {
   users: User[] = [];
   sortedUsers: User[] = []
   usersSub: Subscription = new Subscription();
+  searchSub = new Subscription;
+  searchText = new FormControl("");
 
   sorters = {
     sortByName: false,
@@ -32,13 +36,32 @@ export class OverviewComponent implements OnInit {
       this.sortedUsers = this.users;
       console.log(data);
     });
+
+    this.searchSub = this.searchText.valueChanges
+    .pipe(debounceTime(300))
+    .subscribe((res: string) => {
+      console.log(res)
+      this.users.filter((user) =>
+          user.name.toLowerCase().includes(res.toLowerCase())
+      );
+      console.log(this.sortedUsers)
+
+      // if (this.filtered) {
+        // } else {
+          //   this.sortedUsers = this.users.filter((user) =>
+          //     user.commonName.toLowerCase().includes(res.toLowerCase())
+      //   );
+      //   console.log(this.sortedUsers);
+      // }
+    });
   }
 
   ngOnDestroy(): void {
     this.usersSub.unsubscribe();
+    this.searchSub.unsubscribe
   }
 
-  changeArrows(sortBy: string):void {
+  changeSorters(sortBy: string):void {
     if(sortBy === 'sortByAge'){
       this.sorters.sortByAge = !this.sorters.sortByAge
       this.sorters.sortByName = false
@@ -50,7 +73,7 @@ export class OverviewComponent implements OnInit {
   }
 
   handleSort(sortBy:string) :void{
-    this.changeArrows(sortBy);
+    this.changeSorters(sortBy);
     if(this.sorters.sortByAge){
       this.sortUsersByAge()
     }
@@ -79,7 +102,4 @@ export class OverviewComponent implements OnInit {
     })
   }
 
-  handleSearch(searchString: string){
-    console.log('string')
-  }
 }
