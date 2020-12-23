@@ -87,7 +87,7 @@ class User {
   getMaritalStatus(maritalStatusId) {
     maritalStatusId = parseInt(maritalStatusId);
     if (!maritalStatusId) return null;
-    if (maritalStatusId == "1") return "Single";
+    if (maritalStatusId == 1) return "Single";
     if (maritalStatusId == 2) return "Married";
     if (maritalStatusId == 3) return "Divorced";
     if (maritalStatusId == 4) return "Widow";

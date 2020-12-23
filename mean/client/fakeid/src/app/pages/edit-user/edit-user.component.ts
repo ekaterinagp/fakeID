@@ -26,7 +26,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
   children: User[] = [];
   subs = new Subscription();
   maritalStatuses = [
-    { statusId: 5, status: 'Married' },
+    { statusId: 2, status: 'Married' },
     { statusId: 8, status: 'Unknown' },
     { statusId: 1, status: 'Single' },
     { statusId: 3, status: 'Divorced' },
