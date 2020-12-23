@@ -55,3 +55,12 @@ export class User {
     public isEmployee: boolean
   ) {}
 }
+
+export interface DialogDataUser {
+  text: DialogTextUser;
+}
+
+export enum DialogTextUser {
+  update = 'User updated',
+  create = 'User created',
+}

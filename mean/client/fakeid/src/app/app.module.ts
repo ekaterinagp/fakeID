@@ -19,10 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
-import {
-  NotificationComponent,
-  NotificationContainerComponent,
-} from './components/notification/notification.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
   imports: [
@@ -47,11 +44,6 @@ import {
     CreateUserComponent,
     EditUserComponent,
     NotificationComponent,
-    NotificationContainerComponent,
-  ],
-  providers: [
-    { provide: MatDialogRef, useValue: {} },
-    NotificationContainerComponent,
   ],
   bootstrap: [AppComponent],
 })
