@@ -24,6 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIcon, MatIconModule } from "@angular/material/icon";
 import {
   MatMomentDateModule,
   MomentDateAdapter,
@@ -31,6 +32,7 @@ import {
 import { MatNativeDateModule } from '@angular/material/core';
 
 import * as moment from 'moment';
+import { FiltersComponent } from './components/filters/filters.component';
 
 moment.updateLocale('da', {
   longDateFormat: {
@@ -71,6 +73,7 @@ const CUSTOM_DATE_FORMAT = {
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatIconModule
   ],
   declarations: [
     AppComponent,
@@ -78,6 +81,7 @@ const CUSTOM_DATE_FORMAT = {
     MenuComponent,
     CreateUserComponent,
     EditUserComponent,
+    FiltersComponent,
   ],
   providers: [
     DatePipe,

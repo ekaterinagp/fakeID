@@ -45,7 +45,10 @@ input.mat-input-element {
 .formItem {
   display: grid;
 }
-
+.viewContainer, .editContainer{
+  margin:0 auto;
+  max-width: 500px;
+}
 .viewContainer .btncontainer button {
   background-color: dimgrey;
   color: white;

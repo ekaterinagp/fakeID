@@ -1,0 +1,49 @@
+<div class="topContainer">
+
+    <div class="form-group searchBar">
+        <mat-form-field class="example-full-width">
+        <mat-label>Search by name</mat-label>
+        <input
+            matInput
+            placeholder="Search by name"
+            class="form-control"
+            id="search-text"
+            aria-describedby="search-text"
+            [formControl]="searchText"
+            autofocus
+        />
+        </mat-form-field>
+    </div>
+
+    <div class="filtersAndSorters">
+
+        <div class="filters">
+            <h3>Filters go here</h3>
+        </div>
+        
+        <div class="sorters">
+            <h3>Sort By</h3>
+            <div class="sorterTitle">
+                <span (click)="sortUsers('sortByName')">Name </span>
+            <!-- <div class="material-icons" *ngIf="sortArrows.sortByName == true">
+                arrow_upward
+            </div>
+            <div class="material-icons" *ngIf="sortArrows.sortByName == false">
+                arrow_downward
+            </div> -->
+            </div>
+        
+        
+            <div class="sorterTitle">
+                <span (click)="sortUsers('sortByIsAge')">Age </span>
+            <!-- <div class="material-icons" *ngIf="sortArrows.sortByAge == true">
+                arrow_upward
+            </div>
+            <div class="material-icons" *ngIf="sortArrows.sortByAge == false">
+                arrow_downward
+            </div> -->
+            </div>
+        </div>
+
+    </div>
+</div>

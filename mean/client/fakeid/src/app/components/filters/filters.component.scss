@@ -1,0 +1,17 @@
+.topContainer{
+    margin:2rem 5rem;
+    .searchBar, .mat-form-field{
+        width: 80%;
+        margin:auto;
+    }
+    .searchBar{
+        margin-bottom: 1rem;
+    }
+    .filtersAndSorters{
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+    }
+    .sorterTitle{
+        cursor: pointer;
+    }
+}
