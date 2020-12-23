@@ -179,7 +179,7 @@ class User {
 
   updateSpouse(user, maritalStatusId, spouse) {
     let bulkUpdates = [];
-    if (maritalStatusId == "2" || maritalStatusId == "5") {
+    if (maritalStatusId == "2" || maritalStatusId == "5" || user.maritalStatusId == '2' || user.maritalStatusId == '5') {
       bulkUpdates.push({
         updateOne: {
           filter: { _id: ObjectID(user._id) },
@@ -221,13 +221,13 @@ class User {
     bulkUpdates.push({
       updateOne: {
         filter: { _id: ObjectID(user._id) },
-        update: { $push: { children: child } },
+        update: { $push: { children: {_id: child._id, name: child.name} } },
       },
     });
     bulkUpdates.push({
       updateOne: {
         filter: { _id: ObjectID(child._id) },
-        update: { $push: { parents: user } },
+        update: { $push: { parents: {_id: user._id, name:user.name} } },
       },
     });
     return bulkUpdates;
