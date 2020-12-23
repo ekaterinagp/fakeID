@@ -32,7 +32,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>78/78</span>
+                <span class='fraction'>80/80</span>
             </div>
         
             
@@ -330,7 +330,9 @@
 <a name='L271'></a><a href='#L271'>271</a>
 <a name='L272'></a><a href='#L272'>272</a>
 <a name='L273'></a><a href='#L273'>273</a>
-<a name='L274'></a><a href='#L274'>274</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
+<a name='L274'></a><a href='#L274'>274</a>
+<a name='L275'></a><a href='#L275'>275</a>
+<a name='L276'></a><a href='#L276'>276</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -388,25 +390,25 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">43x</span>
-<span class="cline-any cline-yes">43x</span>
-<span class="cline-any cline-yes">43x</span>
-<span class="cline-any cline-yes">43x</span>
+<span class="cline-any cline-yes">41x</span>
+<span class="cline-any cline-yes">41x</span>
+<span class="cline-any cline-yes">41x</span>
+<span class="cline-any cline-yes">41x</span>
 <span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">43x</span>
-<span class="cline-any cline-yes">43x</span>
-<span class="cline-any cline-yes">43x</span>
+<span class="cline-any cline-yes">41x</span>
+<span class="cline-any cline-yes">41x</span>
+<span class="cline-any cline-yes">41x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">43x</span>
+<span class="cline-any cline-yes">41x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -545,7 +547,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -574,10 +575,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
@@ -692,7 +696,7 @@ class User {
   getMaritalStatus(maritalStatusId) {
     maritalStatusId = parseInt(maritalStatusId);
     if (!maritalStatusId) return null;
-    if (maritalStatusId == "1") return "Single";
+    if (maritalStatusId == 1) return "Single";
     if (maritalStatusId == 2) return "Married";
     if (maritalStatusId == 3) return "Divorced";
     if (maritalStatusId == 4) return "Widow";
@@ -784,7 +788,7 @@ class User {
 &nbsp;
   updateSpouse(user, maritalStatusId, spouse) {
     let bulkUpdates = [];
-    if (maritalStatusId == "2" || maritalStatusId == "5") {
+    if (maritalStatusId == "2" || maritalStatusId == "5" || user.maritalStatusId == '2' || user.maritalStatusId == '5') {
       bulkUpdates.push({
         updateOne: {
           filter: { _id: ObjectID(user._id) },
@@ -818,7 +822,6 @@ class User {
         },
       });
     }
-&nbsp;
     return bulkUpdates;
   }
 &nbsp;
@@ -827,13 +830,13 @@ class User {
     bulkUpdates.push({
       updateOne: {
         filter: { _id: ObjectID(user._id) },
-        update: { $push: { children: child } },
+        update: { $push: { children: {_id: child._id, name: child.name} } },
       },
     });
     bulkUpdates.push({
       updateOne: {
         filter: { _id: ObjectID(child._id) },
-        update: { $push: { parents: user } },
+        update: { $push: { parents: {_id: user._id, name:user.name} } },
       },
     });
     return bulkUpdates;
@@ -844,7 +847,10 @@ class User {
       .find({
         CVR: null,
         _id: { $ne: ObjectID(id) },
-        $or: [{ maritalStatusId: { $nin: ["2", "5", "7"] } }, { spouse: null }],
+        $and: [
+          { maritalStatusId: { $nin: ["2", "5", "7"] } },
+          { spouse: null },
+        ],
       })
       .toArray();
     users = users.filter((user) =&gt; {
@@ -883,7 +889,7 @@ module.exports = User;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Dec 18 2020 14:15:19 GMT+0100 (GMT+01:00)
+                at Wed Dec 23 2020 14:14:04 GMT+0100 (Central European Standard Time)
             </div>
         </div>
         <script src="../prettify.js"></script>

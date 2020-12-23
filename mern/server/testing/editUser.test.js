@@ -161,7 +161,7 @@ describe("edit user", () => {
       {
         updateOne: {
           filter: { _id: user1._id },
-          update: { $push: { children: user4 } },
+          update: { $push: { children: {_id: user4._id, name: user4.name} } },
         },
       },
     ];
