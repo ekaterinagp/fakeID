@@ -72,12 +72,7 @@
         Address is required
       </div>
     </mat-form-field>
-    <!-- <mat-form-field appearance="fill">
-      <mat-radio-group aria-label="" formControlName="isEmployee">
-        <mat-radio-button value="true">Employee</mat-radio-button>
-        <mat-radio-button value="false">Not Employee</mat-radio-button>
-      </mat-radio-group>
-    </mat-form-field> -->
+
     <mat-radio-group
           matNativeControl
           aria-label="Professional Status"
@@ -87,6 +82,13 @@
           <mat-radio-button [value]="false"
             >Not Employee</mat-radio-button
           >
+          <div class="alert alert-danger"
+           *ngIf="
+          createForm.controls.isEmployee.invalid &&
+          !createForm.controls.isEmployee.pristine
+        ">
+        Professional status is required
+      </div>
         </mat-radio-group>
  
     <div class="btncontainer">
