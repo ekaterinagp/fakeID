@@ -87,7 +87,7 @@ class User {
   getMaritalStatus(maritalStatusId) {
     maritalStatusId = parseInt(maritalStatusId);
     if (!maritalStatusId) return null;
-    if (maritalStatusId == "1") return "Single";
+    if (maritalStatusId == 1) return "Single";
     if (maritalStatusId == 2) return "Married";
     if (maritalStatusId == 3) return "Divorced";
     if (maritalStatusId == 4) return "Widow";
@@ -238,7 +238,10 @@ class User {
       .find({
         CVR: null,
         _id: { $ne: ObjectID(id) },
-        $or: [{ maritalStatusId: { $nin: ["2", "5", "7"] } }, { spouse: null }],
+        $and: [
+          { maritalStatusId: { $nin: ["2", "5", "7"] } },
+          { spouse: null },
+        ],
       })
       .toArray();
     users = users.filter((user) => {
