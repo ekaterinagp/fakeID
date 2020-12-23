@@ -43,27 +43,12 @@ router.get("/users/:id/spouses", async (req, res) => {
 
 router.get("/users/:id/children", async (req, res) => {
   let userEntity = new User(db);
-
   let { id } = req.params;
-  try {
-    let users = await userEntity.getAll();
-    let user = users.find((user) => user._id == id);
-
-    if (!user) {
-      return res.status(403).send({ error: "User with this id doesn't exist" });
-    }
-
-    let children = await userEntity.getAvailableChildren(user.id);
-    if (!children.length) {
-      return res.status(204).send({ error: "No children available" });
-    }
-    return res.status(200).send(children);
-  } catch (error) {
-    if (error) {
-      console.log(error);
-      return res.status(500).send({ error: error });
-    }
+  let children = await userEntity.getAvailableChildren(id);
+  if (!children.length) {
+    return res.status(200).send({ error: "No children available" });
   }
+  return res.status(200).send(children);
 });
 
 router.get("/users/:id", async (req, res) => {
@@ -99,29 +84,21 @@ router.put("/users/:id", async (req, res) => {
   let bulkUpdates = [];
 
   let { name, address, maritalStatusId, spouseId, childId } = req.body;
-  console.log(req.body);
-  if (!name) {
-    return res.status(403).send({ error: "name is required" });
-  }
-
-  if (!address) {
-    return res.status(403).send({ error: "address is required" });
-  }
 
   if (spouseId) {
     let spouse = await userEntity.findById(spouseId);
     if (!spouse) {
       return res.status(400).send({ error: "User does not exist" });
     }
-    if (maritalStatusId == "2" || maritalStatusId == "5") {
+        if (maritalStatusId == "2" || maritalStatusId == "5") {
       if (
         user.spouse &&
         user.spouse.length > 0 &&
-        user.spouse[0]._id == ObjectID(spouseId)
+        user.spouse._id == ObjectID(spouseId)
       )
         return res.send({ message: "user already has a spouse" });
     }
-    // delete spouse.spouse
+    delete spouse.spouse;
 
     bulkUpdates.push(...userEntity.updateSpouse(user, maritalStatusId, spouse));
   }
@@ -130,6 +107,14 @@ router.put("/users/:id", async (req, res) => {
     let child = await userEntity.findById(childId);
     if (!child) {
       return res.status(400).send({ error: "User does not exist" });
+    }
+    
+
+    if(child.parents.length === 2){
+      return res.status(400).send({ error: "Child has two parents" });
+    }
+    if(child.parents.some(parent => id == parent._id)){
+      return res.status(400).send({ error: "already this users child" });
     }
     if (userEntity.calculateAge(child.dateOfBirth) >= 18) {
       return res
