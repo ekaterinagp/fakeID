@@ -221,13 +221,13 @@ class User {
     bulkUpdates.push({
       updateOne: {
         filter: { _id: ObjectID(user._id) },
-        update: { $push: { children: {_id: child._id, name: child.name} } },
+        update: { $push: { children: child } },
       },
     });
     bulkUpdates.push({
       updateOne: {
         filter: { _id: ObjectID(child._id) },
-        update: { $push: { parents: {_id: user._id, name:user.name} } },
+        update: { $push: { parents: user } },
       },
     });
     return bulkUpdates;
