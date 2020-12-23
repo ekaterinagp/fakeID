@@ -102,28 +102,22 @@ export class EditUserComponent implements OnInit, OnDestroy {
   getSpouses(): void {
     let id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.editUserService
-        .getSpouses(id)
-        .pipe(first())
-        .subscribe((data: any[]) => {
-          console.log(data);
-          this.spouses = data;
-          console.log(this.spouses);
-        });
+      this.editUserService.getSpouses(id).subscribe((data: any[]) => {
+        console.log(data);
+        this.spouses = data;
+        console.log(this.spouses);
+      });
     }
   }
 
   getChildren(): void {
     let id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.editUserService
-        .getChildren(id)
-        .pipe(first())
-        .subscribe((data: any[]) => {
-          console.log(data);
-          this.children = data;
-          console.log(this.children);
-        });
+      this.editUserService.getChildren(id).subscribe((data: any[]) => {
+        console.log(data);
+        this.children = data;
+        console.log(this.children);
+      });
     }
   }
 

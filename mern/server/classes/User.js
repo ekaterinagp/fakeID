@@ -239,7 +239,10 @@ class User {
       .find({
         CVR: null,
         _id: { $ne: ObjectID(id) },
-        $or: [{ maritalStatusId: { $nin: ["2", "5", "7"] } }, { spouse: null }],
+        $and: [
+          { maritalStatusId: { $nin: ["2", "5", "7"] } },
+          { spouse: null },
+        ],
       })
       .toArray();
     users = users.filter((user) => {
