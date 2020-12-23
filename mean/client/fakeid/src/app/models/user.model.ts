@@ -25,6 +25,7 @@ export class User {
     public age: number,
     public address: string,
     public gender: string,
+    public genderIdentification: string,
     public maritalStatus: string,
     public CVR: string,
     public companyName: string,

@@ -72,6 +72,22 @@
         Address is required
       </div>
     </mat-form-field>
+    <!-- <mat-form-field appearance="fill">
+      <mat-radio-group aria-label="" formControlName="isEmployee">
+        <mat-radio-button value="true">Employee</mat-radio-button>
+        <mat-radio-button value="false">Not Employee</mat-radio-button>
+      </mat-radio-group>
+    </mat-form-field> -->
+    <mat-radio-group
+          matNativeControl
+          aria-label="Professional Status"
+          formControlName="isEmployee"
+        >
+          <mat-radio-button [value]="true">Employee</mat-radio-button>
+          <mat-radio-button [value]="false"
+            >Not Employee</mat-radio-button
+          >
+        </mat-radio-group>
  
     <div class="btncontainer">
       <button class="btn-secondary"

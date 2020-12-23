@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
@@ -62,7 +62,10 @@ moment.updateLocale('da', {
   ],
   providers: [
     DatePipe,
-    { provide: MAT_DATE_LOCALE, useValue: 'da-DK' },
+    [
+      { provide: MAT_DATE_LOCALE, useValue: 'da-DK' },
+      { provide: LOCALE_ID, useValue: 'da-DK' },
+    ],
     MatDatepickerModule,
     MatNativeDateModule,
   ],
