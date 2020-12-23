@@ -1,5 +1,5 @@
 
-<app-filters></app-filters>
+<app-filters (sortByEvent)="handleSort($event)" (searchUsers)="handleSearch($event)"></app-filters>
 
 <div class="usersContainer" *ngFor='let user of users'>
     <div class="singleUser" >

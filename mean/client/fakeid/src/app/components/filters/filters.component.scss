@@ -1,3 +1,5 @@
+
+
 .topContainer{
     margin:2rem 5rem;
     .searchBar, .mat-form-field{
@@ -13,5 +15,15 @@
     }
     .sorterTitle{
         cursor: pointer;
+        button{
+            width:100%;
+            margin:.5rem 1rem;
+            color: white;
+            background-color: #258191;
+        }
+    }
+    .mat-expansion-panel-header-title{
+        margin:auto;
+        flex-grow: 0;
     }
 }

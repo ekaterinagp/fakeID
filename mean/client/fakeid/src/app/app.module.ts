@@ -25,6 +25,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIcon, MatIconModule } from "@angular/material/icon";
+import { MatExpansionModule } from "@angular/material/expansion";
 import {
   MatMomentDateModule,
   MomentDateAdapter,
@@ -73,7 +74,8 @@ const CUSTOM_DATE_FORMAT = {
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatIconModule
+    MatIconModule,
+    MatExpansionModule
   ],
   declarations: [
     AppComponent,

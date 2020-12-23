@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { FormControl } from "@angular/forms";
 
@@ -9,16 +9,17 @@ import { FormControl } from "@angular/forms";
   styleUrls: ['./filters.component.scss']
 })
 export class FiltersComponent implements OnInit {
-  users: User[] = []
 
+  @Output() sortByEvent = new EventEmitter<string>()
+  @Output() searchEvent = new EventEmitter<string>()
+
+  
+  // users: User[] = [];
+  // sortedUsers: User[] = []
+  panelOpenState = false;
   searchText = new FormControl("");
   age = new FormControl("");
   gender = new FormControl("");
-
-  sortArrows = {
-    sortByName: false,
-    sortByAge: false,
-  };
 
   constructor() { }
 
@@ -26,19 +27,11 @@ export class FiltersComponent implements OnInit {
   }
 
   sortUsers(sortBy: string) {
-    // this.changeArrows(sortBy);
-
-    if (sortBy == "sortByName") {
-      this.sortArrows.sortByAge = false;
-      this.sortUsersByName();
-    }
- 
-    if (sortBy == "sortByIsAge") {
-      // this.activeSort.sortByIsChild = true;
-      this.sortArrows.sortByName = false;
-      this.sortUsersByAge();
-    }
+      this.sortByEvent.emit(sortBy)
   }
-  sortUsersByName() {}
-  sortUsersByAge() {}
+
+  searchUsers(searchString: string){
+    this.searchEvent.emit(searchString)
+  }
+
 }
