@@ -5,7 +5,11 @@ import { DatePipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,7 +24,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-
+import {
+  MatMomentDateModule,
+  MomentDateAdapter,
+} from '@angular/material-moment-adapter';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import * as moment from 'moment';
@@ -36,6 +43,18 @@ moment.updateLocale('da', {
     LLLL: 'dddd [d.] D. MMMM YYYY [kl.] HH:mm',
   },
 });
+
+const CUSTOM_DATE_FORMAT = {
+  parse: {
+    dateInput: 'DD/MM/YYYY',
+  },
+  display: {
+    dateInput: 'DD-MM-YYYY',
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'DD/MM/YYYY',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 @NgModule({
   imports: [
     BrowserModule,
@@ -65,6 +84,8 @@ moment.updateLocale('da', {
     [
       { provide: MAT_DATE_LOCALE, useValue: 'da-DK' },
       { provide: LOCALE_ID, useValue: 'da-DK' },
+      { provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMAT },
+      { provide: DateAdapter, useClass: MomentDateAdapter },
     ],
     MatDatepickerModule,
     MatNativeDateModule,
