@@ -31,7 +31,7 @@
         <div>
           <mat-select
             matNativeControl
-            formControlName="spouse"
+            formControlName="spouseId"
             class="form-control"
         
         
@@ -51,42 +51,29 @@
         <div>
           <mat-select
             matNativeControl
-            formControlName="maritialStatus"
+            formControlName="maritalStatusId"
             class="form-control"
           >
             <mat-option
               *ngFor="let status of maritalStatuses"
             
-              [value]="status"
+              [value]="status.statusId"
             >
-              {{ status }}
+              {{ status.status }}
           
             </mat-option>
           </mat-select>
         </div>
       </mat-form-field>
     </div> 
-    <!-- <mat-radio-group
-      matNativeControl
-      aria-label="Status"
-      formControlName="maritialStatus"
-    >
-      <mat-radio-button [value]="Married">Married</mat-radio-button>
-      <mat-radio-button [value]="Single">Single</mat-radio-button>
-      <mat-radio-button [value]="Divorced">Divorced</mat-radio-button>
-      <mat-radio-button [value]="Widow">Widow</mat-radio-button>
-      <mat-radio-button [value]="Registered Partnership">Registered Partnership</mat-radio-button>
-      <mat-radio-button [value]="Abolition of Registered Partnership">Abolition of Registered Partnership</mat-radio-button>
-      <mat-radio-button [value]="Deceased">Deceased</mat-radio-button>
-      <mat-radio-button [value]="Unknown">Unknown</mat-radio-button>
-    </mat-radio-group> -->
+   
 <div *ngIf="!user.isChild">
   <mat-form-field class="formItem" appearance="fill">
     <strong> Children </strong>
     <div>
       <mat-select
         matNativeControl
-        formControlName="children"
+        formControlName="childId"
         class="form-control"
       >
         <mat-option
@@ -164,6 +151,14 @@
       [readonly]="true"
       [value]="user?.spouse !==null ? user?.spouse?.name : 'No spouse'"
     /></a> 
+  </mat-form-field> 
+  <mat-form-field class="formItem" *ngIf=" user && user?.CVR ==null && !user?.isChild ">
+    <mat-label>Marital status</mat-label>
+    <input
+      matInput
+      [readonly]="true"
+      [value]=" user?.maritalStatus "
+    />
   </mat-form-field> 
   <mat-form-field class="formItem">
     <mat-label>Address</mat-label>

@@ -32,6 +32,9 @@ export class User {
       _id: string;
       name: string | undefined;
     },
+    public spouseId: string,
+    public childId: string,
+    public maritalStatusId: string,
     public children: [
       {
         _id: string;

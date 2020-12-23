@@ -26,16 +26,17 @@ export class EditUserComponent implements OnInit, OnDestroy {
   children: User[] = [];
   subs = new Subscription();
   maritalStatuses = [
-    'Married',
-    'Single',
-    'Divorced',
-    'Widow',
-    'Registered Partnership',
-    'Abolition of Registered Partnership',
-    'Deceased',
-    'Unknown',
+    { statusId: 5, status: 'Married' },
+    { statusId: 8, status: 'Unknown' },
+    { statusId: 1, status: 'Single' },
+    { statusId: 3, status: 'Divorced' },
+    { statusId: 4, status: 'Widow' },
+    { statusId: 5, status: 'Registered Partnership' },
+    { statusId: 6, status: 'Abolition of Registered Partnership' },
+    { statusId: 7, status: 'Deceased' },
   ];
   spouseToAdd: any;
+  childToAdd: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -47,9 +48,9 @@ export class EditUserComponent implements OnInit, OnDestroy {
       name: ['', Validators.required],
       address: ['', Validators.required],
       formattedDate: ['', Validators.required],
-      maritialStatus: [],
-      spouse: [''],
-      children: [''],
+      maritalStatusId: [],
+      spouseId: [''],
+      childId: [''],
     });
   }
 
@@ -87,10 +88,8 @@ export class EditUserComponent implements OnInit, OnDestroy {
           name: this.user.name,
           dateOfBirth: this.user.formattedDate,
           address: this.user.address,
-          maritialStatus: this.user.maritialStatus,
+          maritalStatusId: this.user.maritialStatus,
         });
-        console.log(this.user);
-        console.log(this.editForm);
       });
     }
   }
@@ -128,36 +127,35 @@ export class EditUserComponent implements OnInit, OnDestroy {
     }
   }
 
-  // getSelectedOptionText(event: any) {
-  //   console.log(event);
-  //   let selectElementText =
-  //     event.target['mat-options'][event.target['mat-options'].selectedIndex]
-  //       .text;
-  //   console.log(selectElementText);
-  // }
-
   getSpouseToAdd(id: string) {
-    this.spouses.forEach((one) => {
-      if (id == one._id) {
-        return one;
-      } else {
-        return null;
-      }
-    });
+    console.log(this.spouses);
+    return (this.spouseToAdd = this.spouses.find((spouse) => id == spouse._id));
+  }
+
+  getChildToAdd(id: string) {
+    console.log(this.children);
+    return (this.childToAdd = this.children.find((child) => id == child._id));
   }
 
   onSubmit() {
     console.log(this.editForm.value);
-    if (this.editForm.value.spouse._id) {
-      this.spouseToAdd = this.getSpouseToAdd(this.editForm.value.spouse._id);
-    }
+    // if (this.editForm.value.spouseId) {
+    //   this.spouseToAdd = this.getSpouseToAdd(this.editForm.value.spouseId);
+    // }
+    // if(this.editForm.value.child){
+    //   this.childToAdd=this.getChildToAdd(this.editForm.value.child)
+    // }
+    console.log(this.editForm.value);
+    console.log(this.spouseToAdd);
+
     this.editUserService
       .updateUser({
         name: this.editForm.value.name,
         _id: this.user._id,
         address: this.editForm.value.address,
-        maritalStatus: this.editForm.value.maritialStatus,
-        spouse: this.spouseToAdd,
+        maritalStatusId: this.editForm.value.maritalStatusId,
+        spouseId: this.editForm.value.spouseId,
+        childId: this.editForm.value.childId,
       } as User)
       .subscribe((_) => console.log('updated'));
   }

@@ -96,7 +96,7 @@ router.put("/users/:id", async (req, res) => {
   let bulkUpdates = [];
 
   let { name, address, maritalStatusId, spouseId, childId } = req.body;
-
+  console.log(req.body);
   if (!name) {
     return res.status(403).send({ error: "name is required" });
   }
