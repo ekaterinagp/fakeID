@@ -12,42 +12,42 @@ Developing applications that use nemID for authenticating and getting users pers
 
 
 ## Getting started with FakeID:
-    In order to run the application locally, make sure you have met the abovementioned prerequisites.
+In order to run the application locally, make sure you have met the abovementioned prerequisites.
 
 ### LAMP project:
 
-The project should be saved in the htdocs folder in your Xampp/Mamp (If you are using Wamp, the folder is called www)
-Open Xampp/Mamp/Wamp and start Apache and MySQL servers.
-Open your browser and visit: localhost/fakeid/lamp/
-If you want to view the application with data, you can import the database using phpMyAdmin
-Open http://localhost/phpmyadmin/
-Click import in the top bar.
-   select fakeid.sql in the lamp directory and press go.
+- The project should be saved in the htdocs folder in your Xampp/Mamp (If you are using Wamp, the folder is called www)
+- Open Xampp/Mamp/Wamp and start Apache and MySQL servers.
+- Open your browser and visit: localhost/fakeid/lamp/
+- If you want to view the application with data, you can import the database using phpMyAdmin
+- Open http://localhost/phpmyadmin/
+- Click import in the top bar.
+- select fakeid.sql in the lamp directory and press go.
 
 
 ### MERN stack
- Open a terminal and navigate to fakeid/mern/server.
+ - Open a terminal and navigate to fakeid/mern/server.
  Install packages:
- - npm i.
- Start the server:
- - nodemon server.js
- Open another terminal and navigate to fakeid/mern/client/fakeid.
- Install packages:
- - npm i .
+     - npm i.
+ - Start the server:
+    - nodemon server.js
+ - Open another terminal and navigate to fakeid/mern/client/fakeid.
+- Install packages:
+    - npm i .
  start the React application, it will open automatically in your browser.
- - npm run start
+    - npm run start
 
 ### MEAN stack
- Open a terminal and navigate to fakeid/mean/server.
+ - Open a terminal and navigate to fakeid/mean/server.
  Install packages:
- - npm i.
- Start the server:
- - nodemon server.js
- Open another terminal and navigate to fakeid/mean/client/fakeid.
- Install packages:
- - npm i .
+     - npm i.
+ - Start the server:
+    - nodemon server.js
+ - Open another terminal and navigate to fakeid/mean/client/fakeid.
+- Install packages:
+    - npm i .
  start the Angular application, it will open automatically in your browser.
- - ng serve --open
+    - ng serve --open
 
 ## Using FakeID:
     To create new users, press create in the top navigation bar.
