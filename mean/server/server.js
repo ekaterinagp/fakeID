@@ -1,5 +1,7 @@
 const express = require("express");
 
+require('dotenv').config();
+
 const app = express();
 
 const cors = require('cors')
@@ -20,7 +22,7 @@ app.use(cors())
 //     return callback(null, true);
 //   }
 // }));
-
+console.log(process.env)
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
@@ -32,7 +34,7 @@ const MongoClient = require('mongodb').MongoClient
 const dbName ='fakeid'
 global.db = ''
 global.userCollection;
-let url = process.env.MONGO_DB || 'mongodb://localhost:27017'
+let url = process.env.MONGO_DB
 
 // Connecting to server
 MongoClient.connect(url, { useUnifiedTopology: true } ,(err, client) => {
