@@ -1,2 +1,5 @@
 [1223/090223.548:ERROR:directory_reader_win.cc(43)] FindFirstFile: Den angivne sti blev ikke fundet. (0x3)
 [1228/095430.467:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1228/133816.203:ERROR:process_reader_win.cc(108)] process 10096 not found
+[1228/133816.203:ERROR:exception_snapshot_win.cc(99)] thread ID 15072 not found in process
+[1228/133816.204:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: Der blev foretaget et forsøg på at få adgang til en eksisterende proces. (0xc000010a)
