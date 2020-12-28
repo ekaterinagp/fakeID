@@ -31,11 +31,11 @@
             <div class="sorters">
                 <h3>Sort By</h3>
                 <div class="sorterTitle">
-                    <button mat-raised-button (click)="sortUsers('sortByName')">Name </button>
+                    <button id="sortByName" mat-raised-button (click)="sortUsers('sortByName')">Name </button>
                 </div>
                        
                 <div class="sorterTitle">
-                    <button mat-raised-button (click)="sortUsers('sortByAge')">Age </button>
+                    <button id="sortByAge" mat-raised-button (click)="sortUsers('sortByAge')">Age </button>
                 </div>
             </div>
         </div>
@@ -46,8 +46,8 @@
 </div>
 
 
-<div class="usersContainer" *ngFor='let user of sortedUsers'>
-    <div class="singleUser" >
+<div class="usersContainer" >
+    <div class="singleUser" *ngFor='let user of sortedUsers'>
         <h3>{{user.name}}</h3>
         <p>{{user.isChild?"Child":"Adult"}}</p>
         <p>{{user.gender}}</p>
