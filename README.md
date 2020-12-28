@@ -5,10 +5,10 @@ Developing applications that use nemID for authenticating and getting users pers
 
 
 ## Prerequisites:
-    Before you begin, ensure you have met the following requirements, the application can be run on Windows/Mac/Linux OSs.
+Before you begin, ensure you have met the following requirements, the application can be run on Windows/Mac/Linux OSs.
 
-    You have installed Xampp/Wamp/Mamp.
-    You have installed the PHP v. 7 or higher, Angular Cli v. 11 and NodeJS vs 14.
+- You have installed Xampp/Wamp/Mamp.
+- You have installed the PHP v. 7 or higher, Angular Cli v. 11 and NodeJS vs 14.
 
 
 ## Getting started with FakeID:
@@ -28,36 +28,54 @@ In order to run the application locally, make sure you have met the abovemention
 ### MERN stack
  - Open a terminal and navigate to fakeid/mern/server.
  Install packages:
-     - npm i.
+ ```
+ npm i
+ ```
  - Start the server:
-    - nodemon server.js
+ ```
+nodemon server.js
+```
  - Open another terminal and navigate to fakeid/mern/client/fakeid.
 - Install packages:
-    - npm i .
- start the React application, it will open automatically in your browser.
-    - npm run start
+ ```
+ npm i
+```
+ - start the React application, it will open automatically in your browser.
+ ```
+   npm run start
+ ```
 
 ### MEAN stack
  - Open a terminal and navigate to fakeid/mean/server.
- Install packages:
-        npm i.
+ - Install packages:
+ ```
+ npm i
+ ```
  - Start the server:
-    - nodemon server.js
+ ```
+nodemon server.js
+```
  - Open another terminal and navigate to fakeid/mean/client/fakeid.
 - Install packages:
-    - npm i .
- start the Angular application, it will open automatically in your browser.
-    - ng serve --open
-
+ ```
+ npm i
+```
+ - start the Angular application, it will open automatically in your browser.
+ ```
+   ng serve --open
+ ```
+ 
 ## Using FakeID:
-    To create new users, press create in the top navigation bar.
-    To edit users press the edit button for each user and change their name and/or address. If the user is not a child or an employee you can also change their marital status, add spouses (if not in a relationshin) and children.
+
+To create new users, press create in the top navigation bar.
+ To edit users press the edit button for each user and change their name and/or address. If the user is not a child or an employee you can also change their marital status, add spouses (if not in a relationshin) and children.
 
 ## Contributing to FakeID?
 
 
 ## Testing 
-    In order to run tests you will need to download PHPUnit other testing frameworks used will be downloaded once npm i is run in each folder.
+In order to run tests you will need to download PHPUnit other testing frameworks used will be downloaded once npm i is run in each folder. 
+Please remember to update tests as needed.
 
     E2e tests are found in a cypress folder in the root directory of each stack (client/fakeid for MERN and MEAN). the first time they are run you will have to type in the terminal (in the appropriate directory):
  ```
@@ -82,7 +100,6 @@ vendor/bin/phpunit
     Project Link: https://github.com/ekaterinagp/fakeID
 
 ## License
-This project uses the following license: 
-[MIT](https://choosealicense.com/licenses/mit/)
+This project uses the following license: [MIT](https://choosealicense.com/licenses/mit/)
 
 
