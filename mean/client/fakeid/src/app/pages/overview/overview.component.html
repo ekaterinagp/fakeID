@@ -1,6 +1,53 @@
 
-<div class="usersContainer" *ngFor='let user of users'>
-    <div class="singleUser" >
+<div class="topContainer">
+
+<div class="form-group searchBar">
+    <mat-form-field class="example-full-width">
+    <mat-label>Search by name</mat-label>
+    <input
+        matInput
+        placeholder="Search by name"
+        class="form-control"
+        id="search-text"
+        aria-describedby="search-text"
+        [formControl]="searchText"
+        autofocus
+    />
+    </mat-form-field>
+</div>
+
+    
+    <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            SHOW FILTERS
+          </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <div class="filtersAndSorters">
+            <div class="filters">
+                <h3>Filters go here</h3>
+            </div>
+            <div class="sorters">
+                <h3>Sort By</h3>
+                <div class="sorterTitle">
+                    <button id="sortByName" [ngClass]="{'clicked': sorters.sortByName }"  mat-raised-button (click)="sortUsers('sortByName')">Name </button>
+                </div>
+                       
+                <div class="sorterTitle">
+                    <button id="sortByAge" [ngClass]="{'clicked': sorters.sortByAge }" mat-raised-button (click)="sortUsers('sortByAge')">Age </button>
+                </div>
+            </div>
+        </div>
+
+      </mat-expansion-panel>       
+        
+
+</div>
+
+
+<div class="usersContainer" >
+    <div class="singleUser" *ngFor='let user of sortedUsers'>
         <h3>{{user.name}}</h3>
         <p>{{user.isChild?"Child":"Adult"}}</p>
         <p>{{user.gender}}</p>

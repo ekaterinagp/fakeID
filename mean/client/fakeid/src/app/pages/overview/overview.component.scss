@@ -13,6 +13,43 @@
         }
         a{
             margin: auto .5rem;
+            background: #255b91;
         }
+    }
+}
+
+
+.topContainer{
+    .searchBar, .mat-form-field{
+        width: 80%;
+        margin:auto;
+    }
+    .searchBar{
+        margin: 2rem auto 1rem;
+    }
+    .mat-form-field{
+        display: block;
+    }
+    margin:2rem 5rem;
+   
+    .filtersAndSorters{
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+    }
+    .sorterTitle{
+        cursor: pointer;
+        button{
+            width:100%;
+            margin:.5rem 1rem;
+            color: white;
+            background-color: #258191;
+        }
+    }
+    .mat-expansion-panel-header-title{
+        margin:auto;
+        flex-grow: 0;
+    }
+    button.clicked{
+        background-color: darken(#258191, 15%) !important;
     }
 }
