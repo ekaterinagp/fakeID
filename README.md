@@ -40,7 +40,9 @@ In order to run the application locally, make sure you have met the abovemention
 ### MEAN stack
  - Open a terminal and navigate to fakeid/mean/server.
  Install packages:
-     - npm i.
+ ```
+ npm i.
+ ```
  - Start the server:
     - nodemon server.js
  - Open another terminal and navigate to fakeid/mean/client/fakeid.
