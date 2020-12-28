@@ -42,7 +42,7 @@ nodemon server.js
 ```
  - start the React application, it will open automatically in your browser.
  ```
-   npm run start
+ npm run start
  ```
 
 ### MEAN stack
@@ -62,7 +62,7 @@ nodemon server.js
 ```
  - start the Angular application, it will open automatically in your browser.
  ```
-   ng serve --open
+ ng serve --open
  ```
  
 ## Using FakeID:
@@ -77,13 +77,14 @@ To create new users, press create in the top navigation bar.
 In order to run tests you will need to download PHPUnit other testing frameworks used will be downloaded once npm i is run in each folder. 
 Please remember to update tests as needed.
 
-    E2e tests are found in a cypress folder in the root directory of each stack (client/fakeid for MERN and MEAN). the first time they are run you will have to type in the terminal (in the appropriate directory):
+ E2e tests are found in a cypress folder in the root directory of each stack (client/fakeid for MERN and MEAN). the first time they are run you will have to type in the terminal (in the appropriate directory):
  ```
  ./node_modules/.bin/cypress run
  ```
-    Then you can select which of the test files you want to run (ignore the example folder). Keep in mind that the tests are made with specific data in mind, and it might not match the data on your machine, so feel free to change accordingly.
 
-    To run Unit tests for backend:
+Then you can select which of the test files you want to run (ignore the example folder). Keep in mind that the tests are made with specific data in mind, and it might not match the data on your machine, so feel free to change accordingly.
+
+To run Unit tests for backend:
 #### In LAMP:
  ```
 vendor/bin/phpunit
@@ -95,9 +96,9 @@ vendor/bin/phpunit
 
 
 ## Contact
-    Elísabet Valsdóttir : elberoest@gmail.com and Ekaterina Gerhardt Petersen : katya.korinka@gmail.com.
+Elísabet Valsdóttir : elberoest@gmail.com and Ekaterina Gerhardt Petersen : katya.korinka@gmail.com.
 
-    Project Link: https://github.com/ekaterinagp/fakeID
+Project Link: https://github.com/ekaterinagp/fakeID
 
 ## License
 This project uses the following license: [MIT](https://choosealicense.com/licenses/mit/)
