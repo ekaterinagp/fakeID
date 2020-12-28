@@ -13,7 +13,7 @@ function show_selected(type) {
   let value = selector[selector.selectedIndex].value;
   console.log(value);
   if (!value) {
-    return 0;
+    return null;
   }
   return value;
 }
@@ -36,10 +36,11 @@ function getDataToUpdate(id) {
     console.log("spouse");
     spouseToUpdate = userToUpdate[0].spouse_id;
   }
-  let changeStatus;
+  let changeStatus = null;
   let statusToUpdate = show_selected("statusSelect");
   let childToUpdate = show_selected("childSelect");
-  if (statusToUpdate == 3 || 4 || 6 || 7 || 1 || 8) {
+  if (statusToUpdate == 3 || statusToUpdate == 4 || statusToUpdate == 6 || statusToUpdate == 7 || statusToUpdate == 1 || statusToUpdate == 8) {
+    console.log('updated status')
     changeStatus = "updatestatusForSpouse";
     spouseToUpdate = null;
   }
@@ -63,6 +64,7 @@ function getDataToUpdate(id) {
 async function submitUpdateForm(user) {
   event.preventDefault();
   console.log(user);
+  // return
 
   const response = await fetch(path + "api/users/" + user.id, {
     method: "POST",
@@ -71,7 +73,7 @@ async function submitUpdateForm(user) {
 
   console.log(response);
   const data = await response.json();
-  if (response.status) {
+  if (response.status === 200) {
     createNotification("success", "User updated");
   } else {
     createNotification("error", response.message);

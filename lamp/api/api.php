@@ -249,8 +249,6 @@ function updateUser($id)
 
 
 
-
-
     if ($statement->execute($data)) {
         $response = ['status' => 1, 'message' => 'user updated '];
         echo json_encode($response);
