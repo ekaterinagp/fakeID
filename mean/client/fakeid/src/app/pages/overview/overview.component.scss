@@ -35,6 +35,25 @@
     .filtersAndSorters{
         display: grid;
         grid-template-columns: 3fr 1fr;
+        grid-gap: 1rem;
+        .filters{
+            display: grid;
+            >div{
+                h3{
+                    margin: .5rem 0 0 ;
+                    font-weight: bold;
+                }
+                mat-button-toggle-group{
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    row-gap: .5rem;
+            } 
+            }
+            >button{
+                margin: 1rem auto;
+                justify-self: center;
+            }
+        }
     }
     .sorterTitle{
         cursor: pointer;
@@ -52,4 +71,7 @@
     button.clicked{
         background-color: darken(#258191, 15%) !important;
     }
+}
+.mat-expansion-panel:not([class*=mat-elevation-z]){
+    box-shadow: none !important;
 }

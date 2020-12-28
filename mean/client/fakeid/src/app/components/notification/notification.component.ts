@@ -10,8 +10,10 @@ import { DialogDataUser } from '../../models/user.model';
 export class NotificationComponent {
   constructor(
     public dialogRef: MatDialogRef<NotificationComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogDataUser
+    @Inject(MAT_DIALOG_DATA) public data: DialogDataUser,
   ) {}
+
+  
 
   close() {
     this.dialogRef.close();

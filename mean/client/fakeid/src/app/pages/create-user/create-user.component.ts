@@ -90,6 +90,7 @@ export class CreateUserComponent implements OnInit, OnDestroy {
       } as User)
       .subscribe((_) => {
         console.log('updated');
+        this.createForm.reset()
         this.openDialog();
       });
   }

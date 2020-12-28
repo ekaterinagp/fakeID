@@ -1,13 +1,13 @@
 <div class="pageTitle">
   <h1>Create user</h1>
-  <h4 (click)="goBack()">Go back</h4>
+  <!-- <h4 (click)="goBack()">Go back</h4> -->
 </div>
 <div class="createContainer">
   <form [formGroup]="createForm" class="createForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="">
       <mat-label for="name">Name</mat-label>
       <input matInput
-             placeholder="Ex. Donald Duck"
+             placeholder="Ex. Donald Larsen"
              id="name"
              class="form-control"
 
@@ -21,7 +21,7 @@
       </div>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <mat-form-field >
       <mat-label for="birth">Date of birth</mat-label>
       <input matInput
              [matDatepicker]="picker"
@@ -41,7 +41,7 @@
         Birth date is required
       </div>
     </mat-form-field>
-    <mat-form-field appearance="fill">
+    <mat-form-field >
       <mat-label>Gender</mat-label>
       <mat-select class="form-control" formControlName="gender" id="gender">
         <mat-option *ngFor="let gender of genders" [value]="gender">
@@ -56,7 +56,7 @@
         Gender is required
       </div>
     </mat-form-field>
-    <mat-form-field appearance="fill">
+    <mat-form-field >
       <mat-label>Address</mat-label>
       <mat-select class="form-control address" formControlName="address">
         <mat-option *ngFor="let address of addresses"
@@ -94,7 +94,8 @@
     <div class="btncontainer">
       <button class="btn-secondary"
               type="submit"
-              [disabled]="!createForm.valid">
+              [disabled]="!createForm.valid"
+              mat-raised-button>
         Save
       </button>
     </div>
