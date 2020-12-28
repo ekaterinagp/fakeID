@@ -38,11 +38,16 @@ require_once(__DIR__ . '/components/menu.php');
   } else {
     $User = new UserNotEmployee();
     // echo json_encode($User);
+    
+    $isChild = $User->isChild($user->date_of_birth);
     $classHide = 'class="hidden"';
     $maritalStatus = $User->getMaritalStatus($user->marital_status_id);
     $class = ' class=""';
     $companyName = '';
     $title = "User";
+    if($isChild){
+      $class = 'class="hidden"';
+    }
   }
 
 
@@ -76,7 +81,6 @@ require_once(__DIR__ . '/components/menu.php');
   echo '<div class="user"><h3>Name</h3><p>' . $user->name . '</p>
   <h3>Date of birth</h3><p>' . $User->formatBirthday($user->date_of_birth) . '</p>
   <h3>Address</h3><p>' . $User->setAddress($address) . '</p>
-  
   <h3>CPR</h3><p>' . $user->CPR . '</p>
   <div ' . $classHide . '>
   <h3>CVR</h3><p>' . $user->CVR . '</p>
@@ -127,7 +131,7 @@ require_once(__DIR__ . '/components/menu.php');
   </div>
 
 
-  <div class=" <?php if ($companyName || $user->marital_status_id == 2 || $user->marital_status_id == 5) {
+  <div class=" <?php if ($companyName || $user->marital_status_id == 2 || $user->marital_status_id == 5 || $isChild) {
                   echo 'hidden';
                 } else {
                   echo 'form-field';
@@ -145,7 +149,7 @@ require_once(__DIR__ . '/components/menu.php');
     </select>
     <label for=""> Available spouses</label>
   </div>
-  <div class=" <?php if ($companyName) {
+  <div class=" <?php if ($companyName || $isChild) {
                   echo 'hidden';
                 } else {
                   echo 'form-field';
@@ -165,7 +169,7 @@ require_once(__DIR__ . '/components/menu.php');
   </div>
 
 
-  <div class=" <?php if ($companyName) {
+  <div class=" <?php if ($companyName || $isChild) {
                   echo 'hidden';
                 } else {
                   echo 'form-field';
