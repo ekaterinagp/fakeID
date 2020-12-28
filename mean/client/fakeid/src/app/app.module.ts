@@ -33,7 +33,6 @@ import {
 import { MatNativeDateModule } from '@angular/material/core';
 
 import * as moment from 'moment';
-import { FiltersComponent } from './components/filters/filters.component';
 
 moment.updateLocale('da', {
   longDateFormat: {
@@ -83,7 +82,6 @@ const CUSTOM_DATE_FORMAT = {
     MenuComponent,
     CreateUserComponent,
     EditUserComponent,
-    FiltersComponent,
   ],
   providers: [
     DatePipe,

@@ -18,7 +18,7 @@ export class OverviewComponent implements OnInit {
   usersSub: Subscription = new Subscription();
   searchSub = new Subscription;
   searchText = new FormControl("");
-
+  panelOpenState = false;
   sorters = {
     sortByName: false,
     sortByAge: false,
@@ -41,9 +41,10 @@ export class OverviewComponent implements OnInit {
     .pipe(debounceTime(300))
     .subscribe((res: string) => {
       console.log(res)
-      this.users.filter((user) =>
+      this.sortedUsers = this.users.filter((user) =>
           user.name.toLowerCase().includes(res.toLowerCase())
       );
+
       console.log(this.sortedUsers)
 
       // if (this.filtered) {
@@ -62,17 +63,17 @@ export class OverviewComponent implements OnInit {
   }
 
   changeSorters(sortBy: string):void {
-    if(sortBy === 'sortByAge'){
+      if(sortBy == 'sortByAge'){
       this.sorters.sortByAge = !this.sorters.sortByAge
       this.sorters.sortByName = false
     }
-    if(sortBy === 'sortByName'){
+    if(sortBy == 'sortByName'){
       this.sorters.sortByName = !this.sorters.sortByName
       this.sorters.sortByAge = false
     }    
   }
 
-  handleSort(sortBy:string) :void{
+  sortUsers(sortBy:string) :void{
     this.changeSorters(sortBy);
     if(this.sorters.sortByAge){
       this.sortUsersByAge()
