@@ -5,10 +5,10 @@ Developing applications that use nemID for authenticating and getting users pers
 
 
 ## Prerequisites:
-Before you begin, ensure you have met the following requirements, the application can be run on Windows/Mac/Linux OSs.
+Before you begin and run this application locally, ensure you have met the following requirements, the application can be run on Windows/Mac/Linux OSs.
 
 - You have installed Xampp/Wamp/Mamp.
-- You have installed the PHP v. 7 or higher, Angular Cli v. 11 and NodeJS vs 14.
+- You have installed Angular Cli v.11 and NodeJS v.14.
 
 
 ## Getting started with FakeID:
@@ -55,7 +55,7 @@ nodemon server.js
  ```
 nodemon server.js
 ```
- - Open another terminal and navigate to fakeid/mean/client/fakeid.
+- Open another terminal and navigate to fakeid/mean/client/fakeid.
 - Install packages:
  ```
  npm i
@@ -77,11 +77,12 @@ To create new users, press create in the top navigation bar.
 In order to run tests you will need to download PHPUnit other testing frameworks used will be downloaded once npm i is run in each folder. 
 Please remember to update tests as needed.
 
-    E2e tests are found in a cypress folder in the root directory of each stack (client/fakeid for MERN and MEAN). the first time they are run you will have to type in the terminal (in the appropriate directory):
+E2e tests are found in a cypress folder in the root directory of each stack (client/fakeid for MERN and MEAN). the first time they are run you will have to type in the terminal (in the appropriate directory):
  ```
  ./node_modules/.bin/cypress run
  ```
-    Then you can select which of the test files you want to run (ignore the example folder). Keep in mind that the tests are made with specific data in mind, and it might not match the data on your machine, so feel free to change accordingly.
+
+Then you can select which of the test files you want to run (ignore the example folder). Keep in mind that the tests are made with specific data in mind, and it might not match the data on your machine, so feel free to change accordingly.
 
     To run Unit tests for backend:
 #### In LAMP:
@@ -95,9 +96,9 @@ vendor/bin/phpunit
 
 
 ## Contact
-    Elísabet Valsdóttir : elberoest@gmail.com and Ekaterina Gerhardt Petersen : katya.korinka@gmail.com.
+Elísabet Valsdóttir : elberoest@gmail.com and Ekaterina Gerhardt Petersen : katya.korinka@gmail.com.
 
-    Project Link: https://github.com/ekaterinagp/fakeID
+Project Link: https://github.com/ekaterinagp/fakeID
 
 ## License
 This project uses the following license: [MIT](https://choosealicense.com/licenses/mit/)
