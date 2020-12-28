@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Observable, of, Subscribable, Subscription } from 'rxjs';
-import { User } from '../models/user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, first, map, take, tap } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,10 +21,7 @@ export class CreateUserService {
     console.log(user);
     return this.http
       .post<User>(this.usersUrl, user, this.httpOptions)
-      .pipe(first())
-      .subscribe((data) => {
-        console.log(data);
-      });
+      .pipe(catchError(this.handleError<any>('created User')));
   }
 
   /**

@@ -1,25 +1,15 @@
+// import { DatePipe, formatCurrency } from '@angular/common';
+import { formatDate, Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder,
-} from '@angular/forms';
-import { User } from '../../models/user.model';
-import { Observable, Subscription } from 'rxjs';
-import { DatePipe, formatCurrency } from '@angular/common';
-import { Location } from '@angular/common';
-import { CreateUserService } from '../../services/create-user.service';
-import { formatDate } from '@angular/common';
-import * as moment from 'moment';
-
-import {
-  MAT_DATE_FORMATS,
-  DateAdapter,
-  MAT_DATE_LOCALE,
-} from '@angular/material/core';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment';
+import { NotificationComponent } from 'src/app/components/notification/notification.component';
+import { DialogTextUser, User } from '../../models/user.model';
+import { CreateUserService } from '../../services/create-user.service';
+
 moment.locale('da');
 
 @Component({
@@ -37,11 +27,12 @@ export class CreateUserComponent implements OnInit, OnDestroy {
   dateToAdd: any;
 
   constructor(
-    public datepipe: DatePipe,
+    // public datepipe: DatePipe,
     private fb: FormBuilder,
     private location: Location,
     private route: ActivatedRoute,
     private router: Router,
+    public dialog: MatDialog,
     private createUserService: CreateUserService
   ) {
     this.createForm = this.fb.group({
@@ -88,13 +79,27 @@ export class CreateUserComponent implements OnInit, OnDestroy {
       address: this.createForm.value.address,
     };
 
-    this.createUserService.addUser({
-      name: this.createForm.value.name,
-      dateOfBirth: formattedDate,
-      address: this.createForm.value.address,
-      genderIdentification:
-        this.createForm.value.gender == 'Female' ? '0002' : '0001',
-      isEmployee: this.createForm.value.isEmployee,
-    } as User);
+    this.createUserService
+      .addUser({
+        name: this.createForm.value.name,
+        dateOfBirth: formattedDate,
+        address: this.createForm.value.address,
+        genderIdentification:
+          this.createForm.value.gender == 'Female' ? '0002' : '0001',
+        isEmployee: this.createForm.value.isEmployee,
+      } as User)
+      .subscribe((_) => {
+        console.log('updated');
+        this.openDialog();
+      });
+  }
+
+  openDialog() {
+    this.dialog.open(NotificationComponent, {
+      panelClass: 'custom-dialog-container',
+      data: {
+        text: DialogTextUser.create,
+      },
+    });
   }
 }
