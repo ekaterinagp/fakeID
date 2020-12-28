@@ -26,7 +26,61 @@
         </mat-expansion-panel-header>
         <div class="filtersAndSorters">
             <div class="filters">
-                <h3>Filters go here</h3>
+                <div class="">
+                    <mat-button-toggle-group
+                      name="isChild"
+                      aria-label="isChild"
+                      [formControl]="isChild"
+                    >
+                      <mat-button-toggle value="child" (click)="showChildren()"
+                        >Child</mat-button-toggle
+                      >
+                      <mat-button-toggle value="adult" (click)="showAdults()"
+                        >Adult</mat-button-toggle
+                      >
+                      <mat-button-toggle value="all" (click)="showAll('child')"
+                        >All</mat-button-toggle
+                      >
+                    </mat-button-toggle-group>
+                  </div>
+                  <div class="">
+                    <mat-button-toggle-group
+                      name="gender"
+                      aria-label="gender"
+                      [formControl]="gender"
+                    >
+                      <mat-button-toggle value="female" (click)="showFemale()"
+                        >Female</mat-button-toggle
+                      >
+                      <mat-button-toggle value="male" (click)="showMale()"
+                        >Male</mat-button-toggle
+                      >
+                      <mat-button-toggle value="all" (click)="showAll('gender') "
+                        >All</mat-button-toggle
+                      >
+                    </mat-button-toggle-group>
+                  </div>
+                  <div class="">
+                    <mat-button-toggle-group
+                      name="isCompany"
+                      aria-label="isCompany"
+                      [formControl]="isCompany"
+                    >
+                      <mat-button-toggle value="company" (click)="showCompany()"
+                        >Company</mat-button-toggle
+                      >
+                      <mat-button-toggle value="notCompany" (click)="showNotCompany()"
+                        >Not company</mat-button-toggle
+                      >
+                      <mat-button-toggle value="all" (click)='showAll("company")'
+                        >All</mat-button-toggle
+                      >
+                    </mat-button-toggle-group>
+                  </div>
+
+                  <div class=""><button class="" (click)="resetFilters()">Reset filters</button>
+
+                  </div>
             </div>
             <div class="sorters">
                 <h3>Sort By</h3>
