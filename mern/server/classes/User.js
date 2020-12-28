@@ -87,7 +87,7 @@ class User {
   getMaritalStatus(maritalStatusId) {
     maritalStatusId = parseInt(maritalStatusId);
     if (!maritalStatusId) return null;
-    if (maritalStatusId == "1") return "Single";
+    if (maritalStatusId == 1) return "Single";
     if (maritalStatusId == 2) return "Married";
     if (maritalStatusId == 3) return "Divorced";
     if (maritalStatusId == 4) return "Widow";
@@ -131,7 +131,7 @@ class User {
     if (isEmployee == "false") {
       info.maritalStatusId = 8;
       info.parents = [];
-      info.spouse = null;
+      info.spouse = {};
       info.children = [];
     }
 
@@ -179,7 +179,7 @@ class User {
 
   updateSpouse(user, maritalStatusId, spouse) {
     let bulkUpdates = [];
-    if (maritalStatusId == "2" || maritalStatusId == "5") {
+    if (maritalStatusId == "2" || maritalStatusId == "5" || user.maritalStatusId == '2' || user.maritalStatusId == '5') {
       bulkUpdates.push({
         updateOne: {
           filter: { _id: ObjectID(user._id) },
@@ -213,7 +213,6 @@ class User {
         },
       });
     }
-
     return bulkUpdates;
   }
 

@@ -1,38 +1,32 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { LOCALE_ID, NgModule } from '@angular/core';
-import { DatePipe } from '@angular/common';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatMenuModule } from '@angular/material/menu';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { MatButtonModule } from '@angular/material/button';
 import {
   DateAdapter,
+  MatNativeDateModule,
   MAT_DATE_FORMATS,
   MAT_DATE_LOCALE,
 } from '@angular/material/core';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { OverviewComponent } from './pages/overview/overview.component';
-import { MenuComponent } from './components/menu/menu.component';
-import { CreateUserComponent } from './pages/create-user/create-user.component';
-import { EditUserComponent } from './pages/edit-user/edit-user.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatIcon, MatIconModule } from "@angular/material/icon";
+import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from "@angular/material/expansion";
-import {
-  MatMomentDateModule,
-  MomentDateAdapter,
-} from '@angular/material-moment-adapter';
-import { MatNativeDateModule } from '@angular/material/core';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import * as moment from 'moment';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { NotificationComponent } from './components/notification/notification.component';
+import { CreateUserComponent } from './pages/create-user/create-user.component';
+import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { OverviewComponent } from './pages/overview/overview.component';
 
 moment.updateLocale('da', {
   longDateFormat: {
@@ -71,9 +65,9 @@ const CUSTOM_DATE_FORMAT = {
     BrowserAnimationsModule,
     MatSelectModule,
     MatRadioModule,
+    MatDialogModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatIconModule,
     MatExpansionModule
   ],
   declarations: [
@@ -82,9 +76,9 @@ const CUSTOM_DATE_FORMAT = {
     MenuComponent,
     CreateUserComponent,
     EditUserComponent,
+    NotificationComponent,
   ],
   providers: [
-    DatePipe,
     [
       { provide: MAT_DATE_LOCALE, useValue: 'da-DK' },
       { provide: LOCALE_ID, useValue: 'da-DK' },

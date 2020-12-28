@@ -1,17 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-
-import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Observable, Subscription } from 'rxjs';
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder,
-} from '@angular/forms';
-import { User } from '../../models/user.model';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { NotificationComponent } from '../../components/notification/notification.component';
+import { DialogTextUser, User } from '../../models/user.model';
 import { EditUserService } from '../../services/edit-user.service';
-import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-user',
@@ -25,6 +20,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
   spouses: User[] = [];
   children: User[] = [];
   subs = new Subscription();
+  data = 'User updated';
   maritalStatuses = [
     { statusId: 2, status: 'Married' },
     { statusId: 8, status: 'Unknown' },
@@ -42,7 +38,8 @@ export class EditUserComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private editUserService: EditUserService,
-    private location: Location
+    private location: Location,
+    public dialog: MatDialog
   ) {
     this.editForm = this.fb.group({
       name: ['', Validators.required],
@@ -151,6 +148,18 @@ export class EditUserComponent implements OnInit, OnDestroy {
         spouseId: this.editForm.value.spouseId,
         childId: this.editForm.value.childId,
       } as User)
-      .subscribe((_) => console.log('updated'));
+      .subscribe((_) => {
+        console.log('updated');
+        this.openDialog();
+      });
+  }
+
+  openDialog() {
+    this.dialog.open(NotificationComponent, {
+      panelClass: 'custom-dialog-container',
+      data: {
+        text: DialogTextUser.update,
+      },
+    });
   }
 }
