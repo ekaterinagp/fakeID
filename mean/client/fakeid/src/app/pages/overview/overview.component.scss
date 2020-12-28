@@ -49,4 +49,7 @@
         margin:auto;
         flex-grow: 0;
     }
+    button.clicked{
+        background-color: darken(#258191, 15%) !important;
+    }
 }

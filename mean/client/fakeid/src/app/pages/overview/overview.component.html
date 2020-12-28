@@ -31,11 +31,11 @@
             <div class="sorters">
                 <h3>Sort By</h3>
                 <div class="sorterTitle">
-                    <button id="sortByName" mat-raised-button (click)="sortUsers('sortByName')">Name </button>
+                    <button id="sortByName" [ngClass]="{'clicked': sorters.sortByName }"  mat-raised-button (click)="sortUsers('sortByName')">Name </button>
                 </div>
                        
                 <div class="sorterTitle">
-                    <button id="sortByAge" mat-raised-button (click)="sortUsers('sortByAge')">Age </button>
+                    <button id="sortByAge" [ngClass]="{'clicked': sorters.sortByAge }" mat-raised-button (click)="sortUsers('sortByAge')">Age </button>
                 </div>
             </div>
         </div>
