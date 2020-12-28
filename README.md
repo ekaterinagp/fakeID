@@ -5,10 +5,10 @@ Developing applications that use nemID for authenticating and getting users pers
 
 
 ## Prerequisites:
-    Before you begin, ensure you have met the following requirements, the application can be run on Windows/Mac/Linux OSs.
+Before you begin, ensure you have met the following requirements, the application can be run on Windows/Mac/Linux OSs.
 
-    You have installed Xampp/Wamp/Mamp.
-    You have installed the PHP v. 7 or higher, Angular Cli v. 11 and NodeJS vs 14.
+   - You have installed Xampp/Wamp/Mamp.
+   - You have installed the PHP v. 7 or higher, Angular Cli v. 11 and NodeJS vs 14.
 
 
 ## Getting started with FakeID:
@@ -28,14 +28,14 @@ In order to run the application locally, make sure you have met the abovemention
 ### MERN stack
  - Open a terminal and navigate to fakeid/mern/server.
  Install packages:
-     - npm i.
+        npm i.
  - Start the server:
-    - nodemon server.js
+        nodemon server.js
  - Open another terminal and navigate to fakeid/mern/client/fakeid.
 - Install packages:
-    - npm i .
+        npm i .
  start the React application, it will open automatically in your browser.
-    - npm run start
+        npm run start
 
 ### MEAN stack
  - Open a terminal and navigate to fakeid/mean/server.
