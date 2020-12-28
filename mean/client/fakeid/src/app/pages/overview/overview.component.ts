@@ -75,7 +75,6 @@ export class OverviewComponent implements OnInit {
   }
 
   sortUsers( sortBy:string) :void{
-    // event.target.parentElement.nextElementSibling.firstChild
     this.changeSorters(sortBy);
     if(this.sorters.sortByAge){
       this.sortUsersByAge()
