@@ -82,6 +82,7 @@ vendor/bin/phpunit
     Project Link: https://github.com/ekaterinagp/fakeID
 
 ## License
-This project uses the following license: <license_name>.
+This project uses the following license: 
+[MIT](https://choosealicense.com/licenses/mit/)
 
 
