@@ -23,7 +23,7 @@
    
     <div *ngIf=" user?.CVR==null && !user?.isChild">
     <div *ngIf="!user.spouse ">
-      <mat-form-field class="formItem" appearance="fill">
+      <mat-form-field class="formItem" >
         <strong> Spouse </strong>
         <div>
           <mat-select
@@ -42,7 +42,7 @@
         </div>
       </mat-form-field>
     </div> 
-    <mat-form-field class="formItem" appearance="fill">
+    <mat-form-field class="formItem">
       <strong> Marital Status </strong>
       <div>
         <mat-select
