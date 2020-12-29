@@ -96,7 +96,7 @@ vendor/bin/phpunit
 
 
 ## Contact
-Elísabet Valsdóttir : elberoest@gmail.com and Ekaterina Gerhardt Petersen : katya.korinka@gmail.com.
+Elísabet Valsdóttir : elberoest@gmail.com and Ekaterina Gerhardt Petersen : katya.koriakina@gmail.com.
 
 Project Link: https://github.com/ekaterinagp/fakeID
 
