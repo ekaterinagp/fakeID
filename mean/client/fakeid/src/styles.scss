@@ -26,3 +26,40 @@ form{
       cursor: pointer;
     }
   }
+
+
+ input#name, .titleStrong, .mat-form-field-flex, .mat-form-field-infix input {
+      padding-left:0 !important;
+  }
+
+.mat-dialog-container{
+  width: 50vw !important;
+  height: 100px !important;
+  position: fixed !important;
+  top: 0;
+  left: 25vw;
+  color: white;
+  background-color: #519e78;
+  }
+  .cdk-overlay-backdrop.cdk-overlay-backdrop-showing{
+    opacity: 0 !important;
+  }
+  button.btn-modal{
+    margin: 0 0 0 80% !important;
+    padding:0 !important;
+    position: absolute !important;
+    top: 0;
+    right: 0;
+    color:white !important;
+    background: none !important;
+
+  }
+  .mat-dialog-actions{
+    min-height: 0 !important;
+    position:relative;
+
+}
+.mat-dialog-content h4{
+  text-align: center;
+  padding:1rem 0 0 ;
+}
