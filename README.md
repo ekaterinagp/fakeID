@@ -15,7 +15,7 @@ Before you begin and run this application locally, ensure you have met the follo
 ## Getting started with FakeID:
 In order to run the application locally, make sure you have met the abovementioned prerequisites.
 
-### LAMP project:
+### LAMP stack:
 
 - The project should be saved in the htdocs folder in your Xampp/Mamp (If you are using Wamp, the folder is called www)
 - Open Xampp/Mamp/Wamp and start Apache and MySQL servers.
