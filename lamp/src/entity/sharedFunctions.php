@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__ . "/../../utilities/connection.php");
+require_once(__DIR__ . "/User.php");
 class SharedFunctions
 {
 
@@ -106,7 +107,17 @@ class SharedFunctions
     if ($statement->execute()) {
       $spouses = $statement->fetchAll(PDO::FETCH_ASSOC);
       $conn = null;
-      return $spouses;
+
+      $User = new User();
+      $spouseArray = [];
+      foreach ($spouses as $spouse) {
+        echo json_encode($spouse);
+        $userAge = $User->calculateAge($spouse['date_of_birth']);
+        if($userAge >= 18){
+          array_push($spouseArray, $spouse);
+        }
+      }
+      return $spouseArray;
     }
     //@codeCoverageIgnoreStart
   }
@@ -190,7 +201,7 @@ class SharedFunctions
 
   function getAllAvailableChildren($id)
   {
-    $sql = " SELECT * FROM user LEFT JOIN family_relation ON  user.id=family_relation.child_id GROUP BY user.id HAVING COUNT(user.id) < 2";
+    $sql = "SELECT * FROM user LEFT JOIN family_relation ON user.id=family_relation.child_id GROUP BY user.id HAVING COUNT(user.id) < 2";
     $conn  = new Database();
     $statement = $conn->connectToDatabase()->prepare($sql);
 
@@ -198,36 +209,42 @@ class SharedFunctions
     if ($statement->execute()) {
       $children = $statement->fetchAll(PDO::FETCH_ASSOC);
       $conn = null;
-      $functions = new SharedFunctions();
-      $newFunction = new SharedFunctions();
-      $ageToCompare = $newFunction->getUserAge($id, $children);
-      $spouse = $functions->getSpouseByID($id)[0];
+      // $functions = new SharedFunctions();
+      // $newFunction = new SharedFunctions();
+      $User = new User();
+      // $ageToCompare = $newFunction->getUserAge($id, $children);
+      // $spouse = $functions->getSpouseByID($id)[0];
 
       $tempArray = [];
       $newArray = [];
       foreach ($children as $child) {
-
-        if ($child['id'] !== $id && $child['CVR'] == null && $child['id'] !== $spouse['id'] && $child['parent_id'] !== $id) {
-          $userAge = (int)(substr($child['date_of_birth'], -2));
-
-          $year = "20" . $userAge;
-          $child['age'] = (int)date("Y") - (int)$year;
-
-
-          if ($userAge > 20) {
-            $year = "19" . $userAge;
-            $child['age'] = (int)date("Y") - (int)$year;
-          }
-
-          array_push($tempArray, $child);
+        echo json_encode($child);
+        $userAge = $User->calculateAge($child['date_of_birth']);
+        if($userAge < 18 && $child['parent_id'] != $id){
+          array_push($newArray, $child);
         }
+
+        // if ($child['id'] !== $id && $child['CVR'] == null && $child['id'] !== $spouse['id'] && $child['parent_id'] !== $id) {
+        //   $userAge = (int)(substr($child['date_of_birth'], -2));
+
+        //   $year = "20" . $userAge;
+        //   $child['age'] = (int)date("Y") - (int)$year;
+
+
+        //   if ($userAge > 20) {
+        //     $year = "19" . $userAge;
+        //     $child['age'] = (int)date("Y") - (int)$year;
+        //   }
+
+        //   array_push($tempArray, $child);
+        // }
       }
       // echo json_encode($tempArray);
-      foreach ($tempArray as $user) {
-        if ($ageToCompare - $user['age'] > 18) {
-          array_push($newArray, $user);
-        }
-      }
+      // foreach ($tempArray as $user) {
+      //   if ($ageToCompare - $user['age'] > 18) {
+      //     array_push($newArray, $user);
+      //   }
+      // }
 
       return $newArray;
     }

@@ -2,18 +2,22 @@ import React, { useEffect, useState } from "react";
 
 import './../css/filters.css'
 
+const filtersInitialState = {
+  female: false,
+  male: false,
+  child: false,
+  adult: false,
+  employee: false,
+  notEmployee: false,
+  married: false,
+  unknown: false,
+  ageSort: false,
+  nameSort: false
+}
+
 export default function Filters(props) {
   const [filters, setFilters] = useState({
-    female: false,
-    male: false,
-    child: false,
-    adult: false,
-    employee: false,
-    notEmployee: false,
-    married: false,
-    unknown: false,
-    ageSort: false,
-    nameSort: false
+ filtersInitialState
   });
   
 
@@ -96,6 +100,9 @@ export default function Filters(props) {
       }));
     }
   };
+  const clearFilters = () => {
+    setFilters(filtersInitialState)
+  }
 
   const handleSort = (event) => {
     setFilters(values => ({...values, [event.target.name]: event.target.checked}))
@@ -220,7 +227,9 @@ export default function Filters(props) {
           <label htmlFor="male">Male</label>
         </div>
 
+
     </div>
+        <button className="clearFilters" onClick={clearFilters}>Clear Filters</button>
 
     </div>
 

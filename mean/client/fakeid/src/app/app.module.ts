@@ -18,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip'
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import * as moment from 'moment';
@@ -71,6 +72,7 @@ const CUSTOM_DATE_FORMAT = {
     MatNativeDateModule,
     MatExpansionModule,
     MatButtonToggleModule,
+    MatTooltipModule
   ],
   declarations: [
     AppComponent,
