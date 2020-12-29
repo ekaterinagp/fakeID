@@ -82,7 +82,7 @@ Please remember to update tests as needed.
  ./node_modules/.bin/cypress run
  ```
 
-Then you can select which of the test files you want to run (ignore the example folder). Keep in mind that the tests are made with specific data in mind, and it might not match the data on your machine, so feel free to change accordingly.
+Then you can select which of the test files you want to run (ignore the example folder). Be aware that the tests are made for specific data, and it might not match the data on your machine, so feel free to change accordingly.
 
 To run Unit tests for backend:
 #### In LAMP:
