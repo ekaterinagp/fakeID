@@ -20,6 +20,7 @@ In order to run the application locally, make sure you have met the abovemention
 - The project should be saved in the htdocs folder in your Xampp/Mamp (If you are using Wamp, the folder is called www)
 - Open Xampp/Mamp/Wamp and start Apache and MySQL servers.
 - Open your browser and visit: localhost/fakeid/lamp/
+
 - If you want to view the application with data, you can import the database using phpMyAdmin
 - Open http://localhost/phpmyadmin/
 - Click import in the top bar.
@@ -76,14 +77,11 @@ If you want to view the MERN and MEAN app with ready made data, you can import o
  mongoimport --db fakeid --collection users --drop --file <path-to-file>fakeid.json
  ```
 
-
  
 ## Using FakeID:
 
 To create new users, press create in the top navigation bar.
  To edit users press the edit button for each user and change their name and/or address. If the user is not a child or an employee you can also change their marital status, add spouses (if not in a relationshin) and children.
-
-## Contributing to FakeID?
 
 
 ## Testing 
@@ -95,9 +93,9 @@ E2e tests are found in a cypress folder in the root directory of each stack (cli
  ./node_modules/.bin/cypress run
  ```
 
-Then you can select which of the test files you want to run (ignore the example folder). Keep in mind that the tests are made with specific data in mind, and it might not match the data on your machine, so feel free to change accordingly.
+Then you can select which of the test files you want to run (ignore ones in the example folder). Keep in mind that the tests are made with specific data in mind, and it might not match the data on your machine, so feel free to change accordingly.
 
-    To run Unit tests for backend:
+### To run Unit tests for backend:
 #### In LAMP:
  ```
 vendor/bin/phpunit
