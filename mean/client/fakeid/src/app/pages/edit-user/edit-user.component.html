@@ -9,7 +9,7 @@
     *ngIf="user;"
     [formGroup]="editForm"
     class="edit"
-    (ngSubmit)="onSubmit()"
+    (ngSubmit)="onSubmit($event)"
   >
     <mat-form-field class="formItem">
       <strong class="titleStrong"> Name</strong>
