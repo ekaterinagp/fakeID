@@ -37,12 +37,15 @@ input.mat-input-element {
   display:grid;
   margin:1rem auto 5rem;
 }
-.viewContainer>button{
-  margin:0 0 1rem;
-  background:#255b91;
-  color:white;
-  padding:0 2rem;
-  justify-self: right;
+
+.viewContainer{
+    >button{
+    margin:0 0 1rem;
+    background:#255b91;
+    color:white;
+    padding:0 2rem;
+    justify-self: right;
+  }
 }
 
 .bgImage {
