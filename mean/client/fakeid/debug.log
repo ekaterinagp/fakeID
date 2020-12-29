@@ -3,3 +3,8 @@
 [1228/133816.203:ERROR:process_reader_win.cc(108)] process 10096 not found
 [1228/133816.203:ERROR:exception_snapshot_win.cc(99)] thread ID 15072 not found in process
 [1228/133816.204:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: Der blev foretaget et forsøg på at få adgang til en eksisterende proces. (0xc000010a)
+[1229/130104.065:ERROR:process_reader_win.cc(151)] SuspendThread: Adgang nægtet. (0x5)
+[1229/130104.068:ERROR:exception_snapshot_win.cc(99)] thread ID 13800 not found in process
+[1229/132656.200:ERROR:process_reader_win.cc(151)] SuspendThread: Adgang nægtet. (0x5)
+[1229/132656.202:ERROR:exception_snapshot_win.cc(99)] thread ID 16256 not found in process
+[1229/132656.202:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: Der blev foretaget et forsøg på at få adgang til en eksisterende proces. (0xc000010a)

@@ -1,5 +1,5 @@
 <div class="pageTitle">
-  <h1> {{user?.name}} </h1>
+  <h1 class="nameTitle"> {{user?.name}} </h1>
   <h3>{{user?.CVR ? "Employee profile" : null}}</h3>
   <!-- <h4 (click)="goBack()">Go back</h4> -->
 </div>
@@ -142,10 +142,11 @@
     <mat-label>Date of birth</mat-label>
     <input matInput [readonly]="true" [value]="user?.formattedDate" />
   </mat-form-field>
-  <mat-form-field class="formItem" *ngIf=" user && !user?.CVR  && !user?.isChild ">
+  <mat-form-field class="formItem " *ngIf=" user && !user?.CVR  && !user?.isChild ">
     <mat-label>Spouse</mat-label>
     <a routerLink="/edit/{{ user?.spouse?._id }}"> <input
       matInput
+      class="pointer"
       [readonly]="true"
       [value]="user?.spouse !==null ? user?.spouse?.name : 'No spouse'"
     /></a> 
@@ -171,7 +172,7 @@
     </div>
 
     <div *ngFor="let parent of user?.parents" class="shortTableGrid">
-      <span>
+      <span  class="pointer">
         <a routerLink="/edit/{{ parent?._id }}">
           {{ parent.name }}
         </a>
@@ -189,7 +190,7 @@
     </div>
 
     <div *ngFor="let child of user?.children" class="shortTableGrid">
-      <span>
+      <span  class="pointer">
         <a routerLink="/edit/{{ child._id }}">
           {{ child.name }}
         </a>
