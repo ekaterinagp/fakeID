@@ -8,7 +8,7 @@ Developing applications that use nemID for authenticating and getting users pers
 Before you begin, ensure you have met the following requirements, the application can be run on Windows/Mac/Linux OSs.
 
 - You have installed Xampp/Wamp/Mamp.
-- You have installed the PHP v. 7 or higher, Angular Cli v. 11 and NodeJS vs 14.
+- You have installed the PHP v. 7 or higher, Angular Cli v. 11 and NodeJS v. 14.
 
 
 ## Getting started with FakeID:
