@@ -257,8 +257,8 @@ class User {
     let users = await this.collection
       .find({
         CVR: null,
-        maritalStatusId: { $in: [8, , "8", null] },
-        $or: [{ "parents._id": { $ne: ObjectID(id) } }, { parents: null }],
+        maritalStatusId: { $in: [8, , "8", null, 'null'] },
+        // $or: [{ "parents._id": { $ne: ObjectID(id) } }, { parents: null }],
       })
       .toArray();
 

@@ -19,7 +19,7 @@ router.get("/users", async (req, res) => {
 router.get("/users/:id/spouses", async (req, res) => {
   let userEntity = new User(db);
   let { id } = req.params;
-  console.log(req.params);
+  // console.log(req.params);
   try {
     let users = await userEntity.getAll();
     let user = users.find((user) => user._id == id);
@@ -27,11 +27,11 @@ router.get("/users/:id/spouses", async (req, res) => {
       return res.status(403).send({ error: "User with this id doesn't exist" });
     }
     let spouses = await userEntity.getAvailableSpouses(id);
-    console.log(spouses);
+    // console.log(spouses);
     if (!spouses.length) {
       return res.status(200).send({ error: "No spouses available" });
     }
-    console.log(spouses);
+    // console.log(spouses);
     return res.status(200).send(spouses);
   } catch (error) {
     if (error) {
