@@ -1,7 +1,7 @@
 # fakeID
-FakeID is an application that allows developers to do to create fake user data for applications.
+FakeID is an application that allows developers to create fake user data for applications.
 
-Developing applications that use nemID for authenticating and getting users personal information can be complicated, as it cannot be done without using real data. FakeID is meant to replace NemID in the development stages of those applications so that no real user data is used or compromised.
+Developing applications that use nemID for authenticating and getting users personal information can be complicated, as it cannot be done without using real data. FakeID is meant to replace NemID in the development and testing stages of those applications so that no real user data is used or compromised.
 
 
 ## Prerequisites:
