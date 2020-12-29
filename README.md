@@ -8,6 +8,7 @@ Developing applications that use nemID for authenticating and getting users pers
 Before you begin and run this application locally, ensure you have met the following requirements, the application can be run on Windows/Mac/Linux OSs.
 
 - You have installed Xampp/Wamp/Mamp.
+- You have installed Mongo shell
 - You have installed Angular Cli v.11 and NodeJS v.14.
 
 
@@ -64,6 +65,18 @@ nodemon server.js
  ```
    ng serve --open
  ```
+
+
+If you want to view the MERN and MEAN app with ready made data, you can import our data file. the easiest way would be to use Mongo Compass but it is also possible using Mongo Shell
+- Mongo Compass:
+  - create a databases fakeid with the collection users
+  - select the collection and press add data in the top left corner, then select the file in the mern server folder.
+- Mongo shell
+ ```
+ mongoimport --db fakeid --collection users --drop --file <path-to-file>fakeid.json
+ ```
+
+
  
 ## Using FakeID:
 
