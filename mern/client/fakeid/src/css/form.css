@@ -4,6 +4,12 @@ form{
     display:grid;
     grid-template-columns: 1fr;
   }
+  .createPage{
+    width: 100%;
+    margin:auto;
+    max-width: 700px;
+    background: #f5f5f5;
+  }
   .formField{
     display: grid;
     grid-template-columns: 1fr;

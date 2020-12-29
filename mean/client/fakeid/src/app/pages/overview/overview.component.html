@@ -17,16 +17,18 @@
 </div>
 
     
-    <mat-expansion-panel hideToggle>
+    <mat-expansion-panel hideToggle #thisPanel>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            SHOW FILTERS
+            {{ !thisPanel.expanded ? 'SHOW FILTERS' : 'HIDE FILTERS' }}
           </mat-panel-title>
 
         </mat-expansion-panel-header>
         <div class="filtersAndSorters">
             <div class="filters">
                 <div class="">
+                  <h3>Age</h3>
+
                     <mat-button-toggle-group
                       name="isChild"
                       aria-label="isChild"
@@ -44,6 +46,8 @@
                     </mat-button-toggle-group>
                   </div>
                   <div class="">
+                    <h3>Gender</h3>
+
                     <mat-button-toggle-group
                       name="gender"
                       aria-label="gender"
@@ -61,16 +65,17 @@
                     </mat-button-toggle-group>
                   </div>
                   <div class="">
+                    <h3>Employee Status</h3>
                     <mat-button-toggle-group
                       name="isCompany"
                       aria-label="isCompany"
                       [formControl]="isCompany"
                     >
                       <mat-button-toggle value="company" (click)="showCompany()"
-                        >Company</mat-button-toggle
+                        >Employee</mat-button-toggle
                       >
                       <mat-button-toggle value="notCompany" (click)="showNotCompany()"
-                        >Not company</mat-button-toggle
+                        >Not Employee</mat-button-toggle
                       >
                       <mat-button-toggle value="all" (click)='showAll("company")'
                         >All</mat-button-toggle
@@ -78,9 +83,8 @@
                     </mat-button-toggle-group>
                   </div>
 
-                  <div class=""><button class="" (click)="resetFilters()">Reset filters</button>
+                <button mat-raised-button class="" (click)="resetFilters()">Reset filters</button>
 
-                  </div>
             </div>
             <div class="sorters">
                 <h3>Sort By</h3>

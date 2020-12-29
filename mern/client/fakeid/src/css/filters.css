@@ -49,3 +49,8 @@ label[for=abolition_of_registered_partnership]{
   font-weight: bold;
 
 }
+
+
+.clearFilters{
+  grid-column: 2/-1;
+}

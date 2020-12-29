@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+// html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
@@ -11,7 +11,18 @@ $linkButtonColor: #255b91;
 box-sizing: border-box;
 }
 
-mat-dialog-containe.ng-tns-c67-14.ng-trigger.ng-trigger-dialogContainer.ng-star-inserted{
-    width: 500px !important;
+form{
+    max-width: 500px;
+    width: 100%;
+    margin:auto;
 }
 
+
+.pageTitle{
+    margin: 1rem 4rem;
+    padding-bottom: 0;
+    h4{
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }

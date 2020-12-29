@@ -1,7 +1,7 @@
-<div>
+<div class="pageTitle">
   <h1> {{user?.name}} </h1>
   <h3>{{user?.CVR ? "Employee profile" : null}}</h3>
-  <h4 (click)="goBack()">Go back</h4>
+  <!-- <h4 (click)="goBack()">Go back</h4> -->
 </div>
 
  <div class="editContainer" *ngIf="!showEditContent">
@@ -63,22 +63,19 @@
     </mat-form-field>
    
 <div *ngIf="!user.isChild">
-  <mat-form-field class="formItem" appearance="fill">
+  <mat-form-field class="formItem">
     <strong> Children </strong>
     <div>
       <mat-select
         matNativeControl
         formControlName="childId"
-        class="form-control"
-      >
-        <mat-option
-          *ngFor="let child of children"
-        
-          [value]="child._id"
-        >
+        class="form-control">
+
+        <mat-option *ngFor="let child of children"        
+          [value]="child._id">
           {{ child.name }}
-      
         </mat-option>
+
       </mat-select>
     </div>
   </mat-form-field>
@@ -90,16 +87,14 @@
       </mat-form-field>
     </div>
   </div> 
-    <mat-form-field class="formItem" appearance="fill">
+    <mat-form-field class="formItem" >
       <strong> Address </strong>
       <div>
         <mat-select
           matNativeControl
           formControlName="address"
-          class="form-control"
-        >
-          <mat-option
-         
+          class="form-control">
+          <mat-option       
           [value]=
           "'Lygten 17, 2400 Norrebro'"
           >
@@ -119,8 +114,8 @@
  
 
    <div class="btncontainer">
-      <button class="btn-secondary" type="submit">Save</button>
-      <button class="btn-secondary" type="button" (click)="ShowHideEdit()">
+      <button mat-raised-button class="btn-secondary" type="submit">Save</button>
+      <button mat-raised-button class="btn-secondary" type="button" (click)="ShowHideEdit()">
         Cancel
       </button>
     </div>
@@ -129,7 +124,11 @@
 
 
 <form class="viewContainer" *ngIf="showEditContent">
-  <mat-form-field class="formItem" appearance="fill">
+  <button mat-raised-button (click)="ShowHideEdit()">
+    EDIT
+  </button>
+  
+  <mat-form-field class="formItem">
     <mat-label>Name</mat-label>
     <input matInput [value]="user?.name" [readonly]="true" />
   </mat-form-field>
@@ -182,7 +181,7 @@
     <h3>Children</h3>
     <div class="tableTop">
       <span>NAME</span> <span>GENDER</span><span>AGE</span>
-      <span>OTHER PARENT</span>
+      <!-- <span>OTHER PARENT</span> -->
     </div>
 
     <div *ngFor="let child of user?.children" class="shortTableGrid">
@@ -197,9 +196,7 @@
     </div>
   </div> 
 
-  <div class="btncontainer">
-    <button class="btn-secondary" disabeled (click)="ShowHideEdit()">
-      EDIT
-    </button>
-  </div>
+  <!-- <div class="btncontainer">
+ 
+  </div> -->
 </form>
