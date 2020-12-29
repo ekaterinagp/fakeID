@@ -12,7 +12,7 @@ export default function InfoIcon(){
 		" />
         </g>
       </svg>
-      <span className="tooltiptext">This application is made in the MERN stack and some more stuff aboot that ay mates</span>
+      <span className="tooltiptext">This application is made in the MERN stack</span>
     </div>
     )
 }
