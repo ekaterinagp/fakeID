@@ -86,6 +86,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
           dateOfBirth: this.user.formattedDate,
           address: this.user.address,
           maritalStatusId: this.user.maritialStatus,
+          spouseId: this.user.spouse? this.user.spouse._id : ''
         });
       });
     }
@@ -128,8 +129,10 @@ export class EditUserComponent implements OnInit, OnDestroy {
     return (this.childToAdd = this.children.find((child) => id == child._id));
   }
 
-  onSubmit() {
+  onSubmit(event:any) {
+    event.preventDefault()
     console.log(this.editForm.value);
+    // return
     // if (this.editForm.value.spouseId) {
     //   this.spouseToAdd = this.getSpouseToAdd(this.editForm.value.spouseId);
     // }
@@ -148,18 +151,25 @@ export class EditUserComponent implements OnInit, OnDestroy {
         spouseId: this.editForm.value.spouseId,
         childId: this.editForm.value.childId,
       } as User)
-      .subscribe((_) => {
-        console.log('updated');
-        this.openDialog();
+      .subscribe((data:any) => {
+        console.log(data)
+        if(data.hasOwnProperty('message')){
+          this.openDialog(data.message);
+
+        }else{
+          console.log('updated');
+          this.openDialog(DialogTextUser.update);
+        }
       });
   }
 
-  openDialog() {
+  openDialog(message:string) {
     this.dialog.open(NotificationComponent, {
       panelClass: 'custom-dialog-container',
       data: {
-        text: DialogTextUser.update,
+        text: message,
       },
+  
     });
   }
 }
