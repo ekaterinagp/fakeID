@@ -1,5 +1,6 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+
 .container {
   margin: 0 15%;
   background-color: white;
@@ -24,19 +25,6 @@ input.mat-input-element {
   height: 30px;
 }
 
-.pageTitle {
-  margin: 0 7%;
-  padding: 2em 0;
-
-  & h1 {
-    margin-bottom: 0;
-  }
-
-  & h4 {
-    margin-top: 0;
-    padding-top: 5px;
-  }
-}
 
 /*.mat-form-field-wrapper{
     outline:none !important
@@ -46,12 +34,18 @@ input.mat-input-element {
   display: grid;
 }
 .viewContainer, .editContainer{
-  margin:0 auto;
-  max-width: 500px;
+  display:grid;
+  margin:1rem auto 5rem;
 }
-.viewContainer .btncontainer button {
-  background-color: dimgrey;
-  color: white;
+
+.viewContainer{
+    >button{
+    margin:0 0 1rem;
+    background:#255b91;
+    color:white;
+    padding:0 2rem;
+    justify-self: right;
+  }
 }
 
 .bgImage {
@@ -80,11 +74,14 @@ input.mat-input-element {
     & button {
       width: auto;
       justify-self: end;
+      background:lighten( #255b91, 25%);
+      color:white;
+      padding:0 2rem;
     }
-
+    
     & button:nth-child(1) {
-      background-color: dimgrey;
-      color: white;
+      // background-color: dimgrey;
+      background:#255b91;
       justify-self: start;
     }
   }

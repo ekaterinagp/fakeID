@@ -1,7 +1,7 @@
-<div>
+<div class="pageTitle">
   <h1> {{user?.name}} </h1>
   <h3>{{user?.CVR ? "Employee profile" : null}}</h3>
-  <h4 (click)="goBack()">Go back</h4>
+  <!-- <h4 (click)="goBack()">Go back</h4> -->
 </div>
 
  <div class="editContainer" *ngIf="!showEditContent">
@@ -20,22 +20,17 @@
         formControlName="name"
       />
     </mat-form-field>
-    <mat-form-field class="formItem">
-      <strong class="titleStrong"> Date of birth </strong>
-      <input matInput [readonly]="true" [value]="user?.formattedDate" />
-    </mat-form-field>
-    <div *ngIf=" user?.CVR==null">
-    <div *ngIf="!user.spouse">
-      <mat-form-field class="formItem" appearance="fill">
+   
+    <div *ngIf=" user?.CVR==null && !user?.isChild">
+    <div *ngIf="!user.spouse ">
+      <mat-form-field class="formItem" >
         <strong> Spouse </strong>
         <div>
           <mat-select
             matNativeControl
             formControlName="spouseId"
             class="form-control"
-        
-        
-          >
+            >
             <mat-option
               *ngFor="let spouse of spouses"
               id="spouse._id"
@@ -46,44 +41,41 @@
           </mat-select>
         </div>
       </mat-form-field>
-      <mat-form-field class="formItem" appearance="fill">
-        <strong> Marital Status </strong>
-        <div>
-          <mat-select
-            matNativeControl
-            formControlName="maritalStatusId"
-            class="form-control"
-          >
-            <mat-option
-              *ngFor="let status of maritalStatuses"
-            
-              [value]="status.statusId"
-            >
-              {{ status.status }}
-          
-            </mat-option>
-          </mat-select>
-        </div>
-      </mat-form-field>
     </div> 
+    <mat-form-field class="formItem">
+      <strong> Marital Status </strong>
+      <div>
+        <mat-select
+          matNativeControl
+          formControlName="maritalStatusId"
+          class="form-control"
+        >
+          <mat-option
+            *ngFor="let status of maritalStatuses"
+          
+            [value]="status.statusId"
+          >
+            {{ status.status }}
+        
+          </mat-option>
+        </mat-select>
+      </div>
+    </mat-form-field>
    
 <div *ngIf="!user.isChild">
-  <mat-form-field class="formItem" appearance="fill">
+  <mat-form-field class="formItem">
     <strong> Children </strong>
     <div>
       <mat-select
         matNativeControl
         formControlName="childId"
-        class="form-control"
-      >
-        <mat-option
-          *ngFor="let child of children"
-        
-          [value]="child._id"
-        >
+        class="form-control">
+
+        <mat-option *ngFor="let child of children"        
+          [value]="child._id">
           {{ child.name }}
-      
         </mat-option>
+
       </mat-select>
     </div>
   </mat-form-field>
@@ -95,16 +87,14 @@
       </mat-form-field>
     </div>
   </div> 
-    <mat-form-field class="formItem" appearance="fill">
+    <mat-form-field class="formItem" >
       <strong> Address </strong>
       <div>
         <mat-select
           matNativeControl
           formControlName="address"
-          class="form-control"
-        >
-          <mat-option
-         
+          class="form-control">
+          <mat-option       
           [value]=
           "'Lygten 17, 2400 Norrebro'"
           >
@@ -124,8 +114,8 @@
  
 
    <div class="btncontainer">
-      <button class="btn-secondary" type="submit">Save</button>
-      <button class="btn-secondary" type="button" (click)="ShowHideEdit()">
+      <button mat-raised-button class="btn-secondary" type="submit">Save</button>
+      <button mat-raised-button class="btn-secondary" type="button" (click)="ShowHideEdit()">
         Cancel
       </button>
     </div>
@@ -134,7 +124,11 @@
 
 
 <form class="viewContainer" *ngIf="showEditContent">
-  <mat-form-field class="formItem" appearance="fill">
+  <button mat-raised-button (click)="ShowHideEdit()">
+    EDIT
+  </button>
+  
+  <mat-form-field class="formItem">
     <mat-label>Name</mat-label>
     <input matInput [value]="user?.name" [readonly]="true" />
   </mat-form-field>
@@ -165,7 +159,7 @@
     <input matInput [readonly]="true" [value]="user?.address" />
   </mat-form-field>
 
-  <div class="profiles" *ngIf="user?.parents?.length && user?.CVR==null" >
+  <div class="profiles" *ngIf="user?.parents?.length && user?.CVR==null && user?.isChild" >
     <h3>Parents</h3>
     <div class="tableTop">
       <span>NAME</span> <span>GENDER</span><span>AGE</span>
@@ -187,7 +181,7 @@
     <h3>Children</h3>
     <div class="tableTop">
       <span>NAME</span> <span>GENDER</span><span>AGE</span>
-      <span>OTHER PARENT</span>
+      <!-- <span>OTHER PARENT</span> -->
     </div>
 
     <div *ngFor="let child of user?.children" class="shortTableGrid">
@@ -202,9 +196,7 @@
     </div>
   </div> 
 
-  <div class="btncontainer">
-    <button class="btn-secondary" disabeled (click)="ShowHideEdit()">
-      EDIT
-    </button>
-  </div>
+  <!-- <div class="btncontainer">
+ 
+  </div> -->
 </form>

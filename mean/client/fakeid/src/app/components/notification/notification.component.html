@@ -1,9 +1,8 @@
-<strong><h2 mat-dialog-title>FakeId</h2></strong>
+<mat-dialog-actions>
+  <button class="btn-modal" (click)="close()">x</button>
+</mat-dialog-actions>
 
 <mat-dialog-content class="mat-typography">
-  <p>{{data.text}}</p>
+  <h4>{{data.text}}</h4>
 </mat-dialog-content>
 
-<mat-dialog-actions>
-  <button class="btn-modal" (click)="close()">Close</button>
-</mat-dialog-actions>

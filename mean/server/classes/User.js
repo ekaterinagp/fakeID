@@ -115,9 +115,8 @@ class User {
       return { status: 400, response: { error: "gender not available" } };
     }
     info.CPR = dateOfBirth + genderIdentification;
-
-    if (isEmployee == "true") {
-      let age = this.calculateAge(dateOfBirth);
+    let age = this.calculateAge(dateOfBirth);
+  if (isEmployee || isEmployee == "true") {
       if (age < 18) {
         return {
           status: 400,
@@ -128,12 +127,11 @@ class User {
       info.companyName = "EE A/S";
     }
     delete info.isEmployee;
-
-    info.maritalStatusId = 8;
-    info.maritalStatus = "Unknown";
     info.parents = [];
     info.spouse = null;
     info.children = [];
+    info.maritalStatusId = 8;
+    info.maritalStatus = "Unknown";
 
     try {
       const result = await this.collection.insertOne({ ...info });
@@ -257,15 +255,17 @@ class User {
     let users = await this.collection
       .find({
         CVR: null,
-        maritalStatusId: { $in: [8, , "8", null] },
-        $or: [{ "parents._id": { $ne: ObjectID(id) } }, { parents: null }],
+        maritalStatusId: { $in: [8, , "8", null, 'null'] },
+        // $or: [{ "parents._id": { $ne: ObjectID(id) } }, { parents: null }],
       })
       .toArray();
 
     let children = users.filter((user) => {
       let userAge = this.calculateAge(user.dateOfBirth);
       if (userAge < 18) {
-        return user;
+        if( user.parents.length < 2) {
+          return user;
+          }
       }
     });
     return children;
