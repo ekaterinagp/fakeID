@@ -6,8 +6,9 @@
     background:#3b7ab6;
     .linkContainer{
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
         text-align: right;
+        align-items: center;
     }
     a{
         text-decoration: none;
@@ -15,5 +16,17 @@
     }
     .active{
         text-decoration: underline;
+    }
+    button{
+        width:20px;
+        height:20px;
+        background:none;
+        color :white;
+        border-radius: 50%;
+        border: 1px solid white;
+        padding:0;
+        min-width: 0;
+        line-height: initial;
+        justify-self: center;
     }
 }

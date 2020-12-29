@@ -69,10 +69,10 @@ export default function Overview() {
   };
 
   return (
-    <div>
+    <div class="createPage">
       {notification ? <Notification {...notification} /> : null}
 
-      <form ref={myForm}>
+      <form ref={myForm} >
         <h2>Create User</h2>
         <div className="formField">
           <label htmlFor="name">Name</label>

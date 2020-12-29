@@ -11,6 +11,15 @@
 
 .btncontainer {
   display: grid;
+  button{
+    margin:2rem auto;
+    background:#255b91;
+    color:white;
+    padding:0 2rem;
+  }
+  button:disabled{
+    background:dimgray;
+  }
 }
 
 .btncontainer .btn-secondary {
@@ -19,4 +28,10 @@
 
 .alert {
   color: red;
+}
+
+mat-radio-group{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
 }

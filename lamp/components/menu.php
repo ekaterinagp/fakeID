@@ -28,7 +28,7 @@
 		" />
         </g>
       </svg>
-      <span class="tooltiptext">This application is made in the LAMP stack and some more stuff aboot that ay mates</span>
+      <span class="tooltiptext">This application is made in the LAMP stack.</span>
     </div>
   </div>
 </header>

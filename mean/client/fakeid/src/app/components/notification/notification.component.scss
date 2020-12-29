@@ -1,16 +1,15 @@
 .btn-modal {
   cursor: pointer;
+  border:none;
   text-transform: uppercase;
   position: relative;
   transition: all 0.3s;
   /* font-size: 16px; */
   margin: 0.5em;
-  border: 1px solid #c3c0c0;
   color: grey;
   background-color: white;
   padding: 0.5em;
   text-align: center;
-  border-radius: 18%;
   margin: 0 40%;
 }
 
