@@ -24,6 +24,25 @@
       <strong class="titleStrong"> Date of birth </strong>
       <input matInput [readonly]="true" [value]="user?.formattedDate" />
     </mat-form-field>
+    <mat-form-field class="formItem" appearance="fill">
+      <strong> Marital Status </strong>
+      <div>
+        <mat-select
+          matNativeControl
+          formControlName="maritalStatusId"
+          class="form-control"
+        >
+          <mat-option
+            *ngFor="let status of maritalStatuses"
+          
+            [value]="status.statusId"
+          >
+            {{ status.status }}
+        
+          </mat-option>
+        </mat-select>
+      </div>
+    </mat-form-field>
     <div *ngIf=" user?.CVR==null">
     <div *ngIf="!user.spouse">
       <mat-form-field class="formItem" appearance="fill">
@@ -44,25 +63,7 @@
           </mat-select>
         </div>
       </mat-form-field>
-      <mat-form-field class="formItem" appearance="fill">
-        <strong> Marital Status </strong>
-        <div>
-          <mat-select
-            matNativeControl
-            formControlName="maritalStatusId"
-            class="form-control"
-          >
-            <mat-option
-              *ngFor="let status of maritalStatuses"
-            
-              [value]="status.statusId"
-            >
-              {{ status.status }}
-          
-            </mat-option>
-          </mat-select>
-        </div>
-      </mat-form-field>
+    
     </div> 
    
 <div *ngIf="!user.isChild">
@@ -141,7 +142,7 @@
     <mat-label>Date of birth</mat-label>
     <input matInput [readonly]="true" [value]="user?.formattedDate" />
   </mat-form-field>
-  <mat-form-field class="formItem" *ngIf=" user && user?.CVR ==null && !user?.isChild ">
+  <mat-form-field class="formItem" *ngIf=" user && !user?.CVR  && !user?.isChild ">
     <mat-label>Spouse</mat-label>
     <a routerLink="/edit/{{ user?.spouse?._id }}"> <input
       matInput
@@ -184,7 +185,7 @@
     <h3>Children</h3>
     <div class="tableTop">
       <span>NAME</span> <span>GENDER</span><span>AGE</span>
-      <!-- <span>OTHER PARENT</span> -->
+    
     </div>
 
     <div *ngFor="let child of user?.children" class="shortTableGrid">
@@ -199,7 +200,5 @@
     </div>
   </div> 
 
-  <!-- <div class="btncontainer">
  
-  </div> -->
 </form>

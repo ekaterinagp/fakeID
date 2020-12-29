@@ -22,14 +22,14 @@ export class EditUserComponent implements OnInit, OnDestroy {
   subs = new Subscription();
   data = 'User updated';
   maritalStatuses = [
-    { statusId: 2, status: 'Married' },
-    { statusId: 8, status: 'Unknown' },
-    { statusId: 1, status: 'Single' },
-    { statusId: 3, status: 'Divorced' },
-    { statusId: 4, status: 'Widow' },
-    { statusId: 5, status: 'Registered Partnership' },
-    { statusId: 6, status: 'Abolition of Registered Partnership' },
-    { statusId: 7, status: 'Deceased' },
+    { statusId: '2', status: 'Married' },
+    { statusId: '8', status: 'Unknown' },
+    { statusId: '1', status: 'Single' },
+    { statusId: '3', status: 'Divorced' },
+    { statusId: '4', status: 'Widow' },
+    { statusId: '5', status: 'Registered Partnership' },
+    { statusId: '6', status: 'Abolition of Registered Partnership' },
+    { statusId: '7', status: 'Deceased' },
   ];
   spouseToAdd: any;
   childToAdd: any;
@@ -45,7 +45,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
       name: ['', Validators.required],
       address: ['', Validators.required],
       formattedDate: ['', Validators.required],
-      maritalStatusId: [],
+      maritalStatusId: '',
       spouseId: [''],
       childId: [''],
     });
@@ -85,7 +85,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
           name: this.user.name,
           dateOfBirth: this.user.formattedDate,
           address: this.user.address,
-          maritalStatusId: this.user.maritialStatus,
+          maritalStatusId: this.user.maritalStatusId,
         });
       });
     }
