@@ -27,7 +27,6 @@ router.get("/users/:id/spouses", async (req, res) => {
       return res.status(403).send({ error: "User with this id doesn't exist" });
     }
     let spouses = await userEntity.getAvailableSpouses(id);
-    // console.log(spouses);
     if (!spouses.length) {
       return res.status(200).send({ error: "No spouses available" });
     }
@@ -109,10 +108,10 @@ router.put("/users/:id", async (req, res) => {
       return res.status(400).send({ error: "User does not exist" });
     }
   
-   if(child.parents.length >= 2){
+   if(child.parents && child.parents.length >= 2){
       return res.status(400).send({ error: "Child has two parents" });
     }
-    if(child.parents.some(parent => id == parent._id)){
+    if(child.parents && child.parents.some(parent => id == parent._id)){
       return res.status(400).send({ error: "Already this users child" });
     }
     if (userEntity.calculateAge(child.dateOfBirth) >= 18) {
@@ -128,7 +127,7 @@ router.put("/users/:id", async (req, res) => {
     const response = await userCollection.bulkWrite(bulkUpdates, {
       ordered: true,
     });
-    console.log(response);
+    // console.log(response);
     return res.status(200).send({ response });
   } catch (err) {
     if (err) {

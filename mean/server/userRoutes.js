@@ -108,10 +108,10 @@ router.put("/users/:id", async (req, res) => {
       return res.status(400).send({ error: "User does not exist" });
     }
   
-   if(child.parents.length >= 2){
+   if(child.parents && child.parents.length >= 2){
       return res.status(400).send({ error: "Child has two parents" });
     }
-    if(child.parents.some(parent => id == parent._id)){
+    if(child.parents && child.parents.some(parent => id == parent._id)){
       return res.status(400).send({ error: "Already this users child" });
     }
     if (userEntity.calculateAge(child.dateOfBirth) >= 18) {

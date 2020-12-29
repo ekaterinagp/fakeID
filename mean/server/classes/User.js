@@ -115,9 +115,8 @@ class User {
       return { status: 400, response: { error: "gender not available" } };
     }
     info.CPR = dateOfBirth + genderIdentification;
-
-    if (isEmployee == "true") {
-      let age = this.calculateAge(dateOfBirth);
+    let age = this.calculateAge(dateOfBirth);
+  if (isEmployee || isEmployee == "true") {
       if (age < 18) {
         return {
           status: 400,
@@ -128,12 +127,11 @@ class User {
       info.companyName = "EE A/S";
     }
     delete info.isEmployee;
-
-    info.maritalStatusId = 8;
-    info.maritalStatus = "Unknown";
     info.parents = [];
     info.spouse = null;
     info.children = [];
+    info.maritalStatusId = 8;
+    info.maritalStatus = "Unknown";
 
     try {
       const result = await this.collection.insertOne({ ...info });

@@ -20,12 +20,9 @@
         formControlName="name"
       />
     </mat-form-field>
-    <mat-form-field class="formItem">
-      <strong class="titleStrong"> Date of birth </strong>
-      <input matInput [readonly]="true" [value]="user?.formattedDate" />
-    </mat-form-field>
-    <div *ngIf=" user?.CVR==null">
-    <div *ngIf="!user.spouse">
+   
+    <div *ngIf=" user?.CVR==null && !user?.isChild">
+    <div *ngIf="!user.spouse ">
       <mat-form-field class="formItem" appearance="fill">
         <strong> Spouse </strong>
         <div>
@@ -33,9 +30,7 @@
             matNativeControl
             formControlName="spouseId"
             class="form-control"
-        
-        
-          >
+            >
             <mat-option
               *ngFor="let spouse of spouses"
               id="spouse._id"
@@ -165,7 +160,7 @@
     <input matInput [readonly]="true" [value]="user?.address" />
   </mat-form-field>
 
-  <div class="profiles" *ngIf="user?.parents?.length && user?.CVR==null" >
+  <div class="profiles" *ngIf="user?.parents?.length && user?.CVR==null && user?.isChild" >
     <h3>Parents</h3>
     <div class="tableTop">
       <span>NAME</span> <span>GENDER</span><span>AGE</span>
