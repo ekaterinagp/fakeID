@@ -263,7 +263,9 @@ class User {
     let children = users.filter((user) => {
       let userAge = this.calculateAge(user.dateOfBirth);
       if (userAge < 18) {
-        return user;
+        if( user.parents.length < 2) {
+          return user;
+          }
       }
     });
     return children;
