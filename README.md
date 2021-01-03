@@ -33,19 +33,23 @@ In order to run the application locally, make sure you have met the abovemention
  ```
  npm i
  ```
- - Start the server:
+  - Start the server:
  ```
 nodemon server.js
 ```
- - Open another terminal and navigate to fakeid/mern/client/fakeid.
+ - Open a another terminal and start a mongo server:
+ ```
+mongod
+ ```
+- Open another terminal and navigate to fakeid/mern/client/fakeid.
 - Install packages:
  ```
- npm i
+npm i
 ```
  - start the React application, it will open automatically in your browser.
- ```
- npm run start
- ```
+```
+npm run start
+```
 
 ### MEAN stack
  - Open a terminal and navigate to fakeid/mean/server.
@@ -53,9 +57,13 @@ nodemon server.js
  ```
  npm i
  ```
- - Start the server:
+ - Start the backend server:
  ```
 nodemon server.js
+ ```
+ - Open a another terminal and start a mongo server:
+```
+mongod
 ```
 - Open another terminal and navigate to fakeid/mean/client/fakeid.
 - Install packages:
