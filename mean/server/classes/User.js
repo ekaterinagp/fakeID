@@ -287,8 +287,7 @@ class User {
       .find({
         CVR: null,
         maritalStatusId: { $in: [8, , "8", null, 'null'] },
-        $or: [{ "parents._id": { $ne: ObjectID(id) } }, { parents: null }],
-       
+        "parents._id": { $ne: ObjectID(id) }
       })
       .toArray();
 
