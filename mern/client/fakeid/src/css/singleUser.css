@@ -13,9 +13,14 @@
   .userInfo{
     padding:0 1rem 1rem 1rem;
   }
-  .userInfo p{
+  .userInfo p, .userInfo a{
+    text-decoration: none;
+    color:black;
     margin-top:.1rem;
     padding-left:1rem;
+  }
+  .userInfo a:visited{
+    color:black;
   }
   .userInfo h4{
     padding-left:1rem;

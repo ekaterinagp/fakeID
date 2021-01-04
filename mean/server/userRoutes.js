@@ -93,6 +93,7 @@ router.put("/users/:id", async (req, res) => {
       if (
         user.spouse &&
         user.spouse._id == spouseId
+        && user.maritalStatusId != maritalStatusId
       )
         return res.send({ message: "user already has a spouse" });
       }
