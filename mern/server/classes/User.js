@@ -170,8 +170,39 @@ class User {
             },
           },
         },
+      
       },
     ];
+
+    if(user.parents){
+      // console.log('update child in parents')
+      bulkUpdates.push({
+        updateMany: {
+          filter: { "children._id": user._id },
+          update: { "$set": { "children.$.name": name } }
+      }}
+      )
+    }
+    if(user.spouse){
+      // console.log('update spouse in user')
+      bulkUpdates.push({
+        updateOne: {
+          filter: { "spouse._id": user._id },
+          update: { "$set": { "spouse.name": name } }
+      }}
+      )
+
+    }
+    if(user.children){
+      // console.log('update parents in child')
+      bulkUpdates.push({
+        updateMany: {
+          filter: { "parents._id": ObjectID(user._id) },
+          update: { "$set": { "parents.$.name": name } }
+      }}
+      )
+      
+    }
     return bulkUpdates;
   }
 
@@ -219,13 +250,13 @@ class User {
     bulkUpdates.push({
       updateOne: {
         filter: { _id: ObjectID(user._id) },
-        update: { $push: { children: child } },
+        update: { $push: { children: {_id: child._id, name: child.name, age: child.age, gender: child.gender} } },
       },
     });
     bulkUpdates.push({
       updateOne: {
         filter: { _id: ObjectID(child._id) },
-        update: { $push: { parents: user } },
+        update: { $push: { parents: {_id: user._id, name: user.name, age: user.age, gender: user.gender } } },
       },
     });
     return bulkUpdates;
