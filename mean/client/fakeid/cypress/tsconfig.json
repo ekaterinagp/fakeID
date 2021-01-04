@@ -3,5 +3,6 @@
   "include": ["../node_modules/cypress", "**/*.ts"],
   "compilerOptions": {
     "sourceMap": false
-  }
+  },
+  "types": ["cypress"]
 }

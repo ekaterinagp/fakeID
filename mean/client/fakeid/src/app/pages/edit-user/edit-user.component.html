@@ -43,7 +43,7 @@
         </mat-select>
       </div>
     </mat-form-field>
-    <div *ngIf=" user?.CVR==null">
+    <div *ngIf="!user?.CVR">
     <div *ngIf="!user.spouse">
       <mat-form-field class="formItem" appearance="fill">
         <strong> Spouse </strong>
@@ -142,16 +142,16 @@
     <mat-label>Date of birth</mat-label>
     <input matInput [readonly]="true" [value]="user?.formattedDate" />
   </mat-form-field>
-  <mat-form-field class="formItem " *ngIf=" user && !user?.CVR  && !user?.isChild ">
+  <mat-form-field class="formItem" *ngIf="user && !user?.CVR  && !user?.isChild">
     <mat-label>Spouse</mat-label>
     <a routerLink="/edit/{{ user?.spouse?._id }}"> <input
       matInput
-      class="pointer"
+      class="pointer spouse"
       [readonly]="true"
       [value]="user?.spouse !==null ? user?.spouse?.name : 'No spouse'"
     /></a> 
   </mat-form-field> 
-  <mat-form-field class="formItem" *ngIf=" user && user?.CVR ==null && !user?.isChild ">
+  <mat-form-field class="formItem" *ngIf="user && !user?.CVR && !user?.isChild">
     <mat-label>Marital status</mat-label>
     <input
       matInput
@@ -164,7 +164,7 @@
     <input matInput [readonly]="true" [value]="user?.address" />
   </mat-form-field>
 
-  <div class="profiles" *ngIf="user?.parents?.length && user?.CVR==null" >
+  <div class="profiles" *ngIf="user?.parents?.length && !user?.CVR" >
     <h3>Parents</h3>
     <div class="tableTop">
       <span>NAME</span> <span>GENDER</span><span>AGE</span>
@@ -172,7 +172,7 @@
     </div>
 
     <div *ngFor="let parent of user?.parents" class="shortTableGrid">
-      <span  class="pointer">
+      <span  class="pointer parentClick">
         <a routerLink="/edit/{{ parent?._id }}">
           {{ parent.name }}
         </a>
@@ -190,7 +190,7 @@
     </div>
 
     <div *ngFor="let child of user?.children" class="shortTableGrid">
-      <span  class="pointer">
+      <span  class="pointer childClick">
         <a routerLink="/edit/{{ child._id }}">
           {{ child.name }}
         </a>

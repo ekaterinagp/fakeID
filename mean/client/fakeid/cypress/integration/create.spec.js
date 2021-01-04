@@ -24,7 +24,7 @@ describe("Create a not employee user male", () => {
     cy.get("mat-select[formControlName=address]")
       .click()
       .get("mat-option")
-      .contains("Lygten 3cd 7, 2400 Norrebro")
+      .contains("Lygten 37, 2400 Norrebro")
       .click();
     cy.get("mat-radio-group[formControlName=isEmployee]")
       .children()
@@ -60,7 +60,7 @@ describe("Create a not employee user female", () => {
     cy.get("mat-select[formControlName=address]")
       .click()
       .get("mat-option")
-      .contains("Lygten 17, 2400 Norrebro")
+      .eq(1)
       .click();
     cy.get("mat-radio-group[formControlName=isEmployee]")
       .children()
@@ -89,7 +89,7 @@ describe("check inline html notifications", () => {
 });
 
 describe("check notifications", () => {
-  it("type name and borthday and then remove and remove it then", () => {
+  it("type name and birthday and then remove it", () => {
     cy.get('input[id="name"]').type("Blabla");
     cy.get('input[id="name"]').clear();
     cy.get(".alert").contains("Name is required");

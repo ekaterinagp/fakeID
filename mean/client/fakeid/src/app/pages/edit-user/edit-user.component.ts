@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -38,7 +37,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private editUserService: EditUserService,
-    private location: Location,
     public dialog: MatDialog
   ) {
     this.editForm = this.fb.group({
@@ -63,10 +61,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subs.unsubscribe();
-  }
-
-  goBack(): void {
-    this.location.back();
   }
 
   getUser(): void {
@@ -99,43 +93,40 @@ export class EditUserComponent implements OnInit, OnDestroy {
   getSpouses(): void {
     let id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.editUserService.getSpouses(id).subscribe((data: any[]) => {
+      this.editUserService.getSpouses(id).subscribe((data) => {
         console.log(data);
         this.spouses = data;
         console.log(this.spouses);
       });
+    } else {
+      null;
     }
   }
 
   getChildren(): void {
     let id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.editUserService.getChildren(id).subscribe((data: any[]) => {
+      this.editUserService.getChildren(id).subscribe((data) => {
         console.log(data);
         this.children = data;
         console.log(this.children);
       });
+    } else {
+      null;
     }
   }
 
-  getSpouseToAdd(id: string) {
-    console.log(this.spouses);
-    return (this.spouseToAdd = this.spouses.find((spouse) => id == spouse._id));
-  }
+  // getSpouseToAdd(id: string) {
+  //   console.log(this.spouses);
+  //   return (this.spouseToAdd = this.spouses.find((spouse) => id == spouse._id));
+  // }
 
-  getChildToAdd(id: string) {
-    console.log(this.children);
-    return (this.childToAdd = this.children.find((child) => id == child._id));
-  }
+  // getChildToAdd(id: string) {
+  //   console.log(this.children);
+  //   return (this.childToAdd = this.children.find((child) => id == child._id));
+  // }
 
   onSubmit() {
-    console.log(this.editForm.value);
-    // if (this.editForm.value.spouseId) {
-    //   this.spouseToAdd = this.getSpouseToAdd(this.editForm.value.spouseId);
-    // }
-    // if(this.editForm.value.child){
-    //   this.childToAdd=this.getChildToAdd(this.editForm.value.child)
-    // }
     console.log(this.editForm.value);
     console.log(this.spouseToAdd);
 
