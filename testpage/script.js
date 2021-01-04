@@ -55,7 +55,7 @@ async function displayUser(user) {
     document.querySelector('.maritalStatus').textContent = getMaritalStatus(user.marital_status_id)
     if(user.spouse_id){
         const spouse = await getLampUser(spouse_id)
-
+        
     }
 }
 
