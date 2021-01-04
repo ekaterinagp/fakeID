@@ -57,7 +57,7 @@ class SharedFunctions
 
   function getAddressByID($id)
   {
-    $sql = "SELECT * FROM address WHERE id=$id";
+    $sql = "SELECT * FROM address WHERE address_id=$id";
     $conn  = new Database();
     $statement = $conn->connectToDatabase()->prepare($sql);
     if ($statement->execute()) {

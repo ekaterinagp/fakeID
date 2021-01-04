@@ -54,7 +54,7 @@ function getUsers($id = 0)
     $sql = "SELECT * FROM user";
 
     if ($id != null) {
-        $sql = "SELECT * FROM user WHERE user.id = $id";
+        $sql = "SELECT * FROM user INNER JOIN address ON user.address_id = address.address_id WHERE user.id = $id";
     }
     $statement = $conn->connectToDatabase()->prepare($sql);
     $statement->execute();
