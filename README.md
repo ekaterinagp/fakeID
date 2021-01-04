@@ -19,7 +19,7 @@ In order to run the application locally, make sure to have met the abovementione
 
 ### LAMP stack:
 
-- The project should be saved in the htdocs folder in XAMPP/MAMP (If you are using WAMP, the folder is called www)
+- The project should be saved in the htdocs folder in XAMPP/MAMP (If using WAMP, the folder is called www)
 - Open XAMPP/WAMP/MAMP and start Apache and MySQL servers.
 - Open a browser and visit: localhost/fakeid/lamp/
 
@@ -99,15 +99,15 @@ In order to run tests([PHPUnit](https://phpunit.de/getting-started/phpunit-9.htm
 Please remember to update tests as needed.
 
  E2e tests are found in a cypress folder in the root directory of each stack (client/fakeid for MERN and MEAN). To run open a terminal (in the appropriate directory):
+   ```
+npm run cypress
+ ```
+ or
  ```
  ./node_modules/.bin/cypress run
  ```
- or
-  ```
-npm run cypress
- ```
 
-Then select a test file to run. Be aware that the tests are made for specific data, and it might not match the data on the machine, so feel free to change accordingly.
+Then select a test file to run. Be aware that the tests are made for specific data, and it might not match the data on each machine, so feel free to change accordingly.
 
 ## To run Unit tests for backend:
 #### In LAMP:
