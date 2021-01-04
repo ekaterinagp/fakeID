@@ -9,7 +9,8 @@ Before you begin and run this application locally, ensure you have met the follo
 
 - Xampp/Wamp/Mamp installed.
 - Mongo shell installed
-- PHP v. 7 or higher, Angular Cli v. 11 and NodeJS v. 14 installed.
+- PHP v. 7 or higher, Angular Cli v. 11 and NodeJS v. 14 installed
+- Nodemon installed
 
 
 ## Getting started with FakeID:
