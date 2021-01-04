@@ -7,9 +7,9 @@ Developing applications that use nemID for authenticating and getting users pers
 ## Prerequisites:
 Before you begin and run this application locally, ensure you have met the following requirements, the application can be run on Windows/Mac/Linux OSs.
 
-- You have installed Xampp/Wamp/Mamp.
-- You have installed Mongo shell
-- You have installed the PHP v. 7 or higher, Angular Cli v. 11 and NodeJS v. 14.
+- Xampp/Wamp/Mamp installed.
+- Mongo shell installed
+- PHP v. 7 or higher, Angular Cli v. 11 and NodeJS v. 14 installed.
 
 
 ## Getting started with FakeID:
