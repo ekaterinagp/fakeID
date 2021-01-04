@@ -199,7 +199,7 @@ export default function Overview() {
               <NavLink className="button" to={"/user/" + user._id}>
                 Edit
               </NavLink>
-              <button>Login</button>
+              <a className="button" href={"http://localhost/fakeid/testpage/user.html?mern="+user._id} >Login</a >
             </div>
           );
         })}
