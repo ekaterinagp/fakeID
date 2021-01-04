@@ -1,4 +1,5 @@
 import React from "react";
+import {  NavLink  } from "react-router-dom";
 
 export default function UserInfo(user) {
   console.log(user.gender);
@@ -27,7 +28,7 @@ export default function UserInfo(user) {
         <>
           <h4>Parents</h4>
           {user.parents.map((parent) => {
-            return <p key={parent._id + parent.name}>{parent.name}</p>;
+            return <NavLink to={'/user/'+ parent._id} key={parent._id + parent.name}>{parent.name}</NavLink>;
           })}
         </>
       ) : null}
@@ -35,7 +36,7 @@ export default function UserInfo(user) {
       {!user.CVR && user.spouse && user.spouse !== null ? (
         <>
           <h4>Spouse</h4>
-          <p>{user.spouse.name}</p>
+          <NavLink to={'/user/' + user.spouse._id}>{user.spouse.name}</NavLink>
         </>
       ) : null}
 
@@ -43,7 +44,7 @@ export default function UserInfo(user) {
         <>
           <h4>Children</h4>
           {user.children.map((child, i) => {
-            return <p key={i}> {child.name}</p>;
+            return <NavLink to={'/user/'+child._id} key={i}> {child.name}</NavLink>;
           })}
         </>
       ) : null}

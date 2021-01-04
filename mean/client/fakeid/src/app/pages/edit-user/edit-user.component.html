@@ -1,7 +1,7 @@
 <div class="pageTitle">
   <h1 class="nameTitle"> {{user?.name}} </h1>
   <h3>{{user?.CVR ? "Employee profile" : null}}</h3>
-  <!-- <h4 (click)="goBack()">Go back</h4> -->
+
 </div>
 
  <div class="editContainer" *ngIf="!showEditContent">
@@ -9,7 +9,7 @@
     *ngIf="user;"
     [formGroup]="editForm"
     class="edit"
-    (ngSubmit)="onSubmit()"
+    (ngSubmit)="onSubmit($event)"
   >
     <mat-form-field class="formItem">
       <strong class="titleStrong"> Name</strong>
@@ -51,8 +51,8 @@
           <mat-select
             matNativeControl
             formControlName="spouseId"
-            class="form-control"     
-          >
+            class="form-control"
+            >
             <mat-option
               *ngFor="let spouse of spouses"
               id="spouse._id"
@@ -65,6 +65,25 @@
       </mat-form-field>
     
     </div> 
+    <mat-form-field class="formItem">
+      <strong> Marital Status </strong>
+      <div>
+        <mat-select
+          matNativeControl
+          formControlName="maritalStatusId"
+          class="form-control"
+        >
+          <mat-option
+            *ngFor="let status of maritalStatuses"
+          
+            [value]="status.statusId"
+          >
+            {{ status.status }}
+        
+          </mat-option>
+        </mat-select>
+      </div>
+    </mat-form-field>
    
 <div *ngIf="!user.isChild">
   <mat-form-field class="formItem">
@@ -164,7 +183,7 @@
     <input matInput [readonly]="true" [value]="user?.address" />
   </mat-form-field>
 
-  <div class="profiles" *ngIf="user?.parents?.length && !user?.CVR" >
+  <div class="profiles" *ngIf="user?.parents?.length && user?.CVR==null && user?.isChild" >
     <h3>Parents</h3>
     <div class="tableTop">
       <span>NAME</span> <span>GENDER</span><span>AGE</span>

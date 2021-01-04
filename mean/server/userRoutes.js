@@ -19,7 +19,7 @@ router.get("/users", async (req, res) => {
 router.get("/users/:id/spouses", async (req, res) => {
   let userEntity = new User(db);
   let { id } = req.params;
-  console.log(req.params);
+  // console.log(req.params);
   try {
     let users = await userEntity.getAll();
     let user = users.find((user) => user._id == id);
@@ -27,11 +27,10 @@ router.get("/users/:id/spouses", async (req, res) => {
       return res.status(403).send({ error: "User with this id doesn't exist" });
     }
     let spouses = await userEntity.getAvailableSpouses(id);
-    console.log(spouses);
     if (!spouses.length) {
       return res.status(200).send({ error: "No spouses available" });
     }
-    console.log(spouses);
+    // console.log(spouses);
     return res.status(200).send(spouses);
   } catch (error) {
     if (error) {
@@ -94,12 +93,14 @@ router.put("/users/:id", async (req, res) => {
       if (
         user.spouse &&
         user.spouse._id == spouseId
+        && user.maritalStatusId != maritalStatusId
       )
         return res.send({ message: "user already has a spouse" });
       }
     if(userEntity.calculateAge(spouse.dateOfBirth) < 18){
       return res.send({ message: "Children cannot be spouses" });
     }
+    
     bulkUpdates.push(...userEntity.updateSpouse(user, maritalStatusId, spouse));
   }
 
@@ -109,10 +110,10 @@ router.put("/users/:id", async (req, res) => {
       return res.status(400).send({ error: "User does not exist" });
     }
   
-   if(child.parents.length >= 2){
+   if(child.parents && child.parents.length >= 2){
       return res.status(400).send({ error: "Child has two parents" });
     }
-    if(child.parents.some(parent => id == parent._id)){
+    if(child.parents && child.parents.some(parent => id == parent._id)){
       return res.status(400).send({ error: "Already this users child" });
     }
     if (userEntity.calculateAge(child.dateOfBirth) >= 18) {
@@ -124,11 +125,12 @@ router.put("/users/:id", async (req, res) => {
   }
 
   bulkUpdates.push(...userEntity.updateUser(user, req.body));
+  // console.log(bulkUpdates)
   try {
     const response = await userCollection.bulkWrite(bulkUpdates, {
       ordered: true,
     });
-    console.log(response);
+    // console.log(response);
     return res.status(200).send({ response });
   } catch (err) {
     if (err) {

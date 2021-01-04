@@ -115,9 +115,8 @@ class User {
       return { status: 400, response: { error: "gender not available" } };
     }
     info.CPR = dateOfBirth + genderIdentification;
-
-    if (isEmployee == "true") {
-      let age = this.calculateAge(dateOfBirth);
+    let age = this.calculateAge(dateOfBirth);
+  if (isEmployee || isEmployee == "true") {
       if (age < 18) {
         return {
           status: 400,
@@ -128,12 +127,11 @@ class User {
       info.companyName = "EE A/S";
     }
     delete info.isEmployee;
-    if (isEmployee == "false") {
-      info.maritalStatusId = 8;
-      info.parents = [];
-      info.spouse = {};
-      info.children = [];
-    }
+    info.parents = [];
+    info.spouse = null;
+    info.children = [];
+    info.maritalStatusId = 8;
+    info.maritalStatus = "Unknown";
 
     try {
       const result = await this.collection.insertOne({ ...info });
@@ -172,14 +170,49 @@ class User {
             },
           },
         },
+      
       },
     ];
+
+    if(user.parents){
+      // console.log('update child in parents')
+      bulkUpdates.push({
+        updateMany: {
+          filter: { "children._id": user._id },
+          update: { "$set": { "children.$.name": name } }
+      }}
+      )
+    }
+    if(user.spouse){
+      // console.log('update spouse in user')
+      bulkUpdates.push({
+        updateOne: {
+          filter: { "spouse._id": user._id },
+          update: { "$set": { "spouse.name": name } }
+      }}
+      )
+
+    }
+    if(user.children){
+      // console.log('update parents in child')
+      bulkUpdates.push({
+        updateMany: {
+          filter: { "parents._id": ObjectID(user._id) },
+          update: { "$set": { "parents.$.name": name } }
+      }}
+      )
+      
+    }
     return bulkUpdates;
   }
 
   updateSpouse(user, maritalStatusId, spouse) {
+    console.log(maritalStatusId, user.maritalStatusId, spouse)
     let bulkUpdates = [];
-    if (maritalStatusId == "2" || maritalStatusId == "5" || user.maritalStatusId == '2' || user.maritalStatusId == '5') {
+    if (maritalStatusId == "2" 
+    || maritalStatusId == "5" 
+    || maritalStatusId == 2 
+    || maritalStatusId == 5 ) {
       bulkUpdates.push({
         updateOne: {
           filter: { _id: ObjectID(user._id) },
@@ -221,13 +254,13 @@ class User {
     bulkUpdates.push({
       updateOne: {
         filter: { _id: ObjectID(user._id) },
-        update: { $push: { children: child } },
+        update: { $push: { children: {_id: child._id, name: child.name, age: child.age, gender: child.gender} } },
       },
     });
     bulkUpdates.push({
       updateOne: {
         filter: { _id: ObjectID(child._id) },
-        update: { $push: { parents: user } },
+        update: { $push: { parents: {_id: user._id, name: user.name, age: user.age, gender: user.gender } } },
       },
     });
     return bulkUpdates;
@@ -257,15 +290,17 @@ class User {
     let users = await this.collection
       .find({
         CVR: null,
-        maritalStatusId: { $in: [8, , "8", null] },
-        $or: [{ "parents._id": { $ne: ObjectID(id) } }, { parents: null }],
+        maritalStatusId: { $in: [8, , "8", null, 'null'] },
+        "parents._id": { $ne: ObjectID(id) }
       })
       .toArray();
 
     let children = users.filter((user) => {
       let userAge = this.calculateAge(user.dateOfBirth);
       if (userAge < 18) {
-        return user;
+        if( user.parents.length < 2) {
+          return user;
+          }
       }
     });
     return children;
