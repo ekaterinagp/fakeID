@@ -1,0 +1,11 @@
+{
+    "name": "vendor/testpage",
+    "description": "testpage for fakeid",
+    "authors": [
+        {
+            "name": "elisabetros",
+            "email": "32452401+elisabetros@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
