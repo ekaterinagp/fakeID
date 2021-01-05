@@ -7,15 +7,16 @@ const pathname = baseUrl.pathname;
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 let path = configurePath()
+console.log('path')
 
 async function configureParams(){
     console.log(document.referrer)
-    if(document.referrer !== 'http://localhost/fakeid/lamp/'
-     && document.referrer !== 'https://fakeid-lamp.herokuapp.com/'
-     && document.referrer !== 'http://localhost:4200/'
-     && document.referrer !== 'https://fakeid-mean.herokuapp.com/'
-     && document.referrer !== 'http://localhost:3000/'
-     && document.referrer !== 'https://fakeid-mern.herokuapp.com/'
+    if(!document.referrer.includes('localhost/fakeid/lamp/')
+     && !document.referrer.includes('fakeid-lamp.herokuapp.com/')
+     && !document.referrer.includes('localhost:4200/')
+     && !document.referrer.includes('fakeid-mean.herokuapp.com/')
+     && !document.referrer.includes('localhost:3000/')
+     && !document.referrer.includes('fakeid-mern.herokuapp.com/')
      ){
         displayError()
         return
@@ -180,7 +181,6 @@ function getMaritalStatus(status){
     return "Unknown";
 }
 function configurePath() {
-    console.log(urlParams)
     if (pathname.includes("/fakeid/testpage/")) {
         if(urlParams.has('lamp')){
             return "/fakeid/lamp/api";
@@ -189,7 +189,7 @@ function configurePath() {
         }
     } else {
         if(urlParams.has('lamp')){
-            return  "https://fakeid-lamp.herokuapp.com/api";
+            return "https://fakeid-lamp.herokuapp.com/api";
         }else{
             return "https://fakeid-mern.herokuapp.com";
         }
