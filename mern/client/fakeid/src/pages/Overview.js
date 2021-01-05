@@ -64,7 +64,6 @@ export default function Overview() {
   // console.log(url);
   
   useEffect(() => {
-    let isFetching = true;
     const fetchUsers = async () => {
       const response = await fetch(`${url}/users`);
       const data = await response.json();
@@ -74,7 +73,6 @@ export default function Overview() {
       setLoading(false);
     };
     fetchUsers();
-    return () => (isFetching = false);
   }, [url]);
   
   const configureUrl = (id) => {
@@ -82,7 +80,7 @@ export default function Overview() {
     if(process.env.NODE_ENV === 'development'){
       link = 'http://localhost/fakeid/testpage'
     }else{
-      link = 'fakeid'
+      link = 'https://fakeid-testpage.herokuapp.com'
     }
     return `${link}/user.html?mern=${id}`
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { User } from '../../models/user.model';
 import { OverviewService } from '../../services/overview.service';
 
@@ -11,6 +12,9 @@ import { OverviewService } from '../../services/overview.service';
   styleUrls: ['./overview.component.scss'],
 })
 export class OverviewComponent implements OnInit {
+
+  public testPageUrl =environment.testPageUrl
+
   users: User[] = [];
   sortedUsers: User[] = [];
   usersSub: Subscription = new Subscription();
