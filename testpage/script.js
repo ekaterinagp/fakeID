@@ -40,7 +40,7 @@ async function getUser(id){
     let endpoint = path + "/users/" +id ;
     return new Promise((resolve, reject) => {
         fetch(endpoint)
-        .then((res) => {console.log(res);res.json()})
+        .then((res) => res.json())
         .then((user) => {
             resolve(user);
             console.log(user);
