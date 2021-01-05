@@ -75,7 +75,7 @@ const displayUsers = (users) => {
       console.log('send user data', user.name)
       console.log(document.referrer)
       if (path === '/'){
-        window.location = '' + user.id
+        window.location = 'https://fakeid-testpage.herokuapp.com//user.html?lamp=' + user.id
         console.log('deployment, redirect to to herokuþ.. user.html')
       }else{
         console.log('local environment, redirect to /fakeid/testpage/user.html')
