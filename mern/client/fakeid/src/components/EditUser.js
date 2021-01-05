@@ -99,10 +99,19 @@ export default function EditUser(props) {
     console.log(data);
     if (!data.error) {
       props.updateUser(values);
+      let filteredChildren = availableChildren.filter(child =>  child._id !== values.childId
+      )
+      setChildren(filteredChildren)
       props.onNotification({
         message: "User updated",
         type: "success",
       });
+
+      setValues((values) => ({
+        ...values,
+        childId: null,
+      }));
+      
     } else {
       props.onNotification({
         message: "Something went wrong, please try again",
@@ -205,7 +214,7 @@ export default function EditUser(props) {
               onChange={handleChange}
               defaultValue="Add child"
             >
-              <option value="Add child" disabled>
+              <option value="Add child" >
                 Select Child
               </option>
               {availableChildren && availableChildren.length ? (

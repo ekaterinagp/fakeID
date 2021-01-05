@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -22,14 +21,14 @@ export class EditUserComponent implements OnInit, OnDestroy {
   subs = new Subscription();
   data = 'User updated';
   maritalStatuses = [
-    { statusId: 2, status: 'Married' },
-    { statusId: 8, status: 'Unknown' },
-    { statusId: 1, status: 'Single' },
-    { statusId: 3, status: 'Divorced' },
-    { statusId: 4, status: 'Widow' },
-    { statusId: 5, status: 'Registered Partnership' },
-    { statusId: 6, status: 'Abolition of Registered Partnership' },
-    { statusId: 7, status: 'Deceased' },
+    { statusId: '2', status: 'Married' },
+    { statusId: '8', status: 'Unknown' },
+    { statusId: '1', status: 'Single' },
+    { statusId: '3', status: 'Divorced' },
+    { statusId: '4', status: 'Widow' },
+    { statusId: '5', status: 'Registered Partnership' },
+    { statusId: '6', status: 'Abolition of Registered Partnership' },
+    { statusId: '7', status: 'Deceased' },
   ];
   spouseToAdd: any;
   childToAdd: any;
@@ -38,14 +37,13 @@ export class EditUserComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private editUserService: EditUserService,
-    private location: Location,
     public dialog: MatDialog
   ) {
     this.editForm = this.fb.group({
       name: ['', Validators.required],
       address: ['', Validators.required],
       formattedDate: ['', Validators.required],
-      maritalStatusId: [],
+      maritalStatusId: '',
       spouseId: [''],
       childId: [''],
     });
@@ -65,10 +63,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
     this.subs.unsubscribe();
   }
 
-  goBack(): void {
-    this.location.back();
-  }
-
   getUser(): void {
     let id = this.route.snapshot.paramMap.get('id');
     console.log(id);
@@ -86,7 +80,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
           dateOfBirth: this.user.formattedDate,
           address: this.user.address,
           maritalStatusId: this.user.maritialStatus,
-          spouseId: this.user.spouse? this.user.spouse._id : ''
+          spouseId: this.user.spouse ? this.user.spouse._id : '',
         });
       });
     }
@@ -100,45 +94,41 @@ export class EditUserComponent implements OnInit, OnDestroy {
   getSpouses(): void {
     let id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.editUserService.getSpouses(id).subscribe((data: any[]) => {
+      this.editUserService.getSpouses(id).subscribe((data) => {
         console.log(data);
         this.spouses = data;
         console.log(this.spouses);
       });
+    } else {
+      null;
     }
   }
 
   getChildren(): void {
     let id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.editUserService.getChildren(id).subscribe((data: any[]) => {
+      this.editUserService.getChildren(id).subscribe((data) => {
         console.log(data);
         this.children = data;
         console.log(this.children);
       });
+    } else {
+      null;
     }
   }
 
-  getSpouseToAdd(id: string) {
-    console.log(this.spouses);
-    return (this.spouseToAdd = this.spouses.find((spouse) => id == spouse._id));
-  }
+  // getSpouseToAdd(id: string) {
+  //   console.log(this.spouses);
+  //   return (this.spouseToAdd = this.spouses.find((spouse) => id == spouse._id));
+  // }
 
-  getChildToAdd(id: string) {
-    console.log(this.children);
-    return (this.childToAdd = this.children.find((child) => id == child._id));
-  }
+  // getChildToAdd(id: string) {
+  //   console.log(this.children);
+  //   return (this.childToAdd = this.children.find((child) => id == child._id));
+  // }
 
-  onSubmit(event:any) {
-    event.preventDefault()
-    console.log(this.editForm.value);
-    // return
-    // if (this.editForm.value.spouseId) {
-    //   this.spouseToAdd = this.getSpouseToAdd(this.editForm.value.spouseId);
-    // }
-    // if(this.editForm.value.child){
-    //   this.childToAdd=this.getChildToAdd(this.editForm.value.child)
-    // }
+  onSubmit(event: any) {
+    event.preventDefault();
     console.log(this.editForm.value);
     console.log(this.spouseToAdd);
 
@@ -151,25 +141,23 @@ export class EditUserComponent implements OnInit, OnDestroy {
         spouseId: this.editForm.value.spouseId,
         childId: this.editForm.value.childId,
       } as User)
-      .subscribe((data:any) => {
-        console.log(data)
-        if(data.hasOwnProperty('message')){
+      .subscribe((data: any) => {
+        console.log(data);
+        if (data.hasOwnProperty('message')) {
           this.openDialog(data.message);
-
-        }else{
+        } else {
           console.log('updated');
           this.openDialog(DialogTextUser.update);
         }
       });
   }
 
-  openDialog(message:string) {
+  openDialog(message: string) {
     this.dialog.open(NotificationComponent, {
       panelClass: 'custom-dialog-container',
       data: {
         text: message,
       },
-  
     });
   }
 }

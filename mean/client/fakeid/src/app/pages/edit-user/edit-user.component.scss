@@ -1,6 +1,5 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-
 .container {
   margin: 0 15%;
   background-color: white;
@@ -25,7 +24,6 @@ input.mat-input-element {
   height: 30px;
 }
 
-
 /*.mat-form-field-wrapper{
     outline:none !important
 }*/
@@ -33,17 +31,18 @@ input.mat-input-element {
 .formItem {
   display: grid;
 }
-.viewContainer, .editContainer{
-  display:grid;
-  margin:1rem auto 5rem;
+.viewContainer,
+.editContainer {
+  display: grid;
+  margin: 1rem auto 5rem;
 }
 
-.viewContainer{
-    >button{
-    margin:0 0 1rem;
-    background:#255b91;
-    color:white;
-    padding:0 2rem;
+.viewContainer {
+  > button {
+    margin: 0 0 1rem;
+    background: #255b91;
+    color: white;
+    padding: 0 2rem;
     justify-self: right;
   }
 }
@@ -74,14 +73,14 @@ input.mat-input-element {
     & button {
       width: auto;
       justify-self: end;
-      background:lighten( #255b91, 25%);
-      color:white;
-      padding:0 2rem;
+      background: lighten(#255b91, 25%);
+      color: white;
+      padding: 0 2rem;
     }
-    
+
     & button:nth-child(1) {
       // background-color: dimgrey;
-      background:#255b91;
+      background: #255b91;
       justify-self: start;
     }
   }
@@ -115,4 +114,12 @@ input.mat-input-element {
 a {
   text-decoration: none;
   color: black;
+}
+
+.nameTitle {
+  text-align: center;
+}
+
+.pointer {
+  cursor: pointer;
 }

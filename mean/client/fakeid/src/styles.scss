@@ -1,38 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
 
 // html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 
 $actionButtonColor: #258191;
 $linkButtonColor: #255b91;
 
-*{
-box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-form{
-    max-width: 500px;
-    width: 100%;
-    margin:auto;
+form {
+  max-width: 500px;
+  width: 100%;
+  margin: auto;
 }
 
-
-.pageTitle{
-    margin: 1rem 4rem;
-    padding-bottom: 0;
-    h4{
-      text-decoration: underline;
-      cursor: pointer;
-    }
+.pageTitle {
+  margin: 1rem 4rem;
+  padding-bottom: 0;
+  h4 {
+    text-decoration: underline;
+    cursor: pointer;
   }
+}
 
-
- input#name, .titleStrong, .mat-form-field-flex, .mat-form-field-infix input {
-      padding-left:0 !important;
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: rgba(255, 255, 255, 0) !important;
+}
+.pageTitle {
+  margin: 1rem 4rem;
+  padding-bottom: 0;
+  h4 {
+    text-decoration: underline;
+    cursor: pointer;
   }
+}
 
-.mat-dialog-container{
+input#name,
+.titleStrong,
+.mat-form-field-flex,
+.mat-form-field-infix input {
+  padding-left: 0 !important;
+}
+
+.mat-dialog-container {
   width: 50vw !important;
   height: 100px !important;
   position: fixed !important;
@@ -40,26 +56,24 @@ form{
   left: 25vw;
   color: white;
   background-color: #519e78;
-  }
-  .cdk-overlay-backdrop.cdk-overlay-backdrop-showing{
-    opacity: 0 !important;
-  }
-  button.btn-modal{
-    margin: 0 0 0 80% !important;
-    padding:0 !important;
-    position: absolute !important;
-    top: 0;
-    right: 0;
-    color:white !important;
-    background: none !important;
-
-  }
-  .mat-dialog-actions{
-    min-height: 0 !important;
-    position:relative;
-
 }
-.mat-dialog-content h4{
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+  opacity: 0 !important;
+}
+button.btn-modal {
+  margin: 0 0 0 80% !important;
+  padding: 0 !important;
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  color: white !important;
+  background: none !important;
+}
+.mat-dialog-actions {
+  min-height: 0 !important;
+  position: relative;
+}
+.mat-dialog-content h4 {
   text-align: center;
-  padding:1rem 0 0 ;
+  padding: 1rem 0 0;
 }

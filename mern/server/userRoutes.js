@@ -93,12 +93,14 @@ router.put("/users/:id", async (req, res) => {
       if (
         user.spouse &&
         user.spouse._id == spouseId
+        && user.maritalStatusId != maritalStatusId
       )
         return res.send({ message: "user already has a spouse" });
       }
     if(userEntity.calculateAge(spouse.dateOfBirth) < 18){
       return res.send({ message: "Children cannot be spouses" });
     }
+    
     bulkUpdates.push(...userEntity.updateSpouse(user, maritalStatusId, spouse));
   }
 
@@ -123,6 +125,7 @@ router.put("/users/:id", async (req, res) => {
   }
 
   bulkUpdates.push(...userEntity.updateUser(user, req.body));
+  // console.log(bulkUpdates)
   try {
     const response = await userCollection.bulkWrite(bulkUpdates, {
       ordered: true,

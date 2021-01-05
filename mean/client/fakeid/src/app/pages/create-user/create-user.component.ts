@@ -47,52 +47,30 @@ export class CreateUserComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
   ngOnDestroy(): void {}
 
-  goBack(): void {
-    this.location.back();
-  }
+  // goBack(): void {
+  //   this.location.back();
+  // }
 
   onSubmit() {
-    if (
-      !this.createForm.value.name ||
-      !this.createForm.value.dateOfBirth ||
-      !this.createForm.value.address ||
-      !this.createForm.value.gender
-    ) {
-      console.log('all fields are required');
-      return;
-    }
-
     let date = this.createForm.get('dateOfBirth');
-    const dateValue = date?.value;
-
-    const formattedDate = formatDate(dateValue, 'ddMMyy', 'en-GB');
-
-    // let date1 = this.createForm.value.dateOfBirth;
-    // this.dateToAdd = date?.patchValue(
-    //   this.datepipe.transform(date.value, 'ddMMyy')
-    // );
-
-    let us = {
-      name: this.createForm.value.name,
-      dateOfBirth: formattedDate,
-      gender: this.createForm.value.gender,
-      address: this.createForm.value.address,
-    };
-
-    this.createUserService
-      .addUser({
-        name: this.createForm.value.name,
-        dateOfBirth: formattedDate,
-        address: this.createForm.value.address,
-        genderIdentification:
-          this.createForm.value.gender == 'Female' ? '0002' : '0001',
-        isEmployee: this.createForm.value.isEmployee,
-      } as User)
-      .subscribe((_) => {
-        console.log('updated');
-        this.createForm.reset()
-        this.openDialog();
-      });
+    // const dateValue = date?.value;
+    if (date) {
+      const formattedDate = formatDate(date.value, 'ddMMyy', 'en-GB');
+      this.createUserService
+        .addUser({
+          name: this.createForm.value.name,
+          dateOfBirth: formattedDate,
+          address: this.createForm.value.address,
+          genderIdentification:
+            this.createForm.value.gender == 'Female' ? '0002' : '0001',
+          isEmployee: this.createForm.value.isEmployee,
+        } as User)
+        .subscribe((_) => {
+          console.log('updated');
+          this.createForm.reset();
+          this.openDialog();
+        });
+    }
   }
 
   openDialog() {

@@ -1,21 +1,3 @@
-// export interface User {
-//   _id: string;
-//   name: string;
-//   dateOfBirth: string;
-//   age: number;
-//   address: string;
-//   gender: string;
-//   maritalStatus: string;
-//   CVR: string;
-//   companyName: string;
-//   spouse: object;
-//   children: Array<object>;
-//   parents: Array<object>;
-//   isChild: string;
-//   isEmployee: boolean;
-//   [x: string]: any;
-// }
-
 export class User {
   [x: string]: any;
   constructor(

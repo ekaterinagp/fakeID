@@ -48,13 +48,7 @@
           {{ gender }}
         </mat-option>
       </mat-select>
-      <div class="alert alert-danger"
-           *ngIf="
-          createForm.controls.gender.invalid &&
-          !createForm.controls.gender.pristine
-        ">
-        Gender is required
-      </div>
+   
     </mat-form-field>
     <mat-form-field >
       <mat-label>Address</mat-label>
@@ -64,13 +58,7 @@
           {{ address }}  
         </mat-option>
       </mat-select>
-      <div class="alert alert-danger"
-           *ngIf="
-          createForm.controls.address.invalid &&
-          !createForm.controls.address.pristine
-        ">
-        Address is required
-      </div>
+    
     </mat-form-field>
 
     <mat-radio-group
@@ -82,13 +70,7 @@
           <mat-radio-button [value]="false"
             >Not Employee</mat-radio-button
           >
-          <div class="alert alert-danger"
-           *ngIf="
-          createForm.controls.isEmployee.invalid &&
-          !createForm.controls.isEmployee.pristine
-        ">
-        Professional status is required
-      </div>
+       
         </mat-radio-group>
  
     <div class="btncontainer">
