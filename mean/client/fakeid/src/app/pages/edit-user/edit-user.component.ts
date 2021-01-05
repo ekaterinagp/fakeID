@@ -79,7 +79,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
           name: this.user.name,
           dateOfBirth: this.user.formattedDate,
           address: this.user.address,
-          maritalStatusId: this.user.maritialStatus,
+          maritalStatusId: this.user.maritalStatusId,
           spouseId: this.user.spouse ? this.user.spouse._id : '',
         });
       });
