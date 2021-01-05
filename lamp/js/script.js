@@ -29,6 +29,7 @@ function getUserById(id) {
   });
 }
 
+
 // function getId(id) {
 //   console.log(id);
 //   // getUserById(id);
@@ -69,8 +70,20 @@ const displayUsers = (users) => {
     maritalStatus.textContent = getMaritalStatus(user.marital_status_id);
     let button = document.createElement("a");
     button.href = "user.php?id=" + user.id;
-    let button1 = document.createElement("a");
-    button1.href = "";
+    let button1 = document.createElement("button");
+    button1.addEventListener('click',async () => {
+      console.log('send user data', user.name)
+      console.log(document.referrer)
+      if (path === '/'){
+        window.location = '' + user.id
+        console.log('deployment, redirect to to herokuþ.. user.html')
+      }else{
+        console.log('local environment, redirect to /fakeid/testpage/user.html')
+        window.location = '/fakeid/testpage/user.html?lamp=' + user.id
+        // let loggedInUser = await getUserById(user.id)
+        // console.log(loggedInUser)
+      }
+    })
 
     button.className = "editBtn";
     button.textContent = "Edit";

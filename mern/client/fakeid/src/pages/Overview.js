@@ -50,7 +50,6 @@ export function getNotEmployees(users) {
 //   filteredUsers = getEmployees(filteredUsers);
 //   return filteredUsers[0];
 // }
-
 export default function Overview() {
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState();
@@ -60,24 +59,31 @@ export default function Overview() {
     style: { maxHeight: 0 },
     btnText: "Show filters",
   });
-
+  
   const url = process.env.REACT_APP_API_URL;
   // console.log(url);
-
+  
   useEffect(() => {
-    let isFetching = true;
     const fetchUsers = async () => {
       const response = await fetch(`${url}/users`);
       const data = await response.json();
-
+      
       setUsers(data);
       setDisplayUsers(data);
       setLoading(false);
     };
     fetchUsers();
-    return () => (isFetching = false);
   }, [url]);
-
+  
+  const configureUrl = (id) => {
+    let link;
+    if(process.env.NODE_ENV === 'development'){
+      link = 'http://localhost/fakeid/testpage'
+    }else{
+      link = 'https://fakeid-testpage.herokuapp.com'
+    }
+    return `${link}/user.html?mern=${id}`
+  }
   if (loading) {
     return <div className="loader">LOADING</div>;
   }
@@ -199,7 +205,7 @@ export default function Overview() {
               <NavLink className="button" to={"/user/" + user._id}>
                 Edit
               </NavLink>
-              <button>Login</button>
+              <a className="button" href={configureUrl(user._id)} >Login</a >
             </div>
           );
         })}

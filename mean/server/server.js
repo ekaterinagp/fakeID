@@ -4,9 +4,9 @@ const app = express();
 
 const cors = require('cors')
 
-const allowedOrigins = ['http://localhost:4200','https://fakeid-mean.herokuapp.com', 'https://fakeid-mean-server.herokuapp.com'];
+const allowedOrigins = ['http://localhost:4200','https://fakeid-mean.herokuapp.com', 'https://fakeid-mean-server.herokuapp.com', 'http://localhost'];
 
-// app.use(cors())
+app.use(cors())
 app.use(cors({ 
   credentials:true,
   origin: function(origin, callback){

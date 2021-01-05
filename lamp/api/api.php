@@ -7,6 +7,7 @@ $sharedFunctions = new SharedFunctions();
 $request_method = $_SERVER["REQUEST_METHOD"];
 
 
+
 header('Content-Type: application/json');
 
 if (isset($_SERVER['QUERY_STRING']) && $request_method == 'GET') {
@@ -16,10 +17,17 @@ if (isset($_SERVER['QUERY_STRING']) && $request_method == 'GET') {
 switch ($request_method) {
     case 'GET':
         // Retrive users
-        if (!empty($_GET["id"])) {
-            $id = intval($_GET["id"]);
+
+        if(!empty($_GET['relation'])){
+            $id = $_GET['id'];
+            $relation = $_GET['relation'];
+            getFamilyRelation($id, $relation);
+        }
+        else if(!empty($_GET['id'])){
+            $id = $_GET['id'];
             getUsers($id);
-        } else {
+        }
+        else {
             getUsers();
         }
         break;
@@ -47,14 +55,14 @@ switch ($request_method) {
 
 function getUsers($id = 0)
 {
-    $users = new SharedFunctions();
-    $users = $users->getAllUsers();
+    // $users = new SharedFunctions();
+    // $users = $users->getAllUsers();
     global $conn;
 
     $sql = "SELECT * FROM user";
 
     if ($id != null) {
-        $sql = "SELECT * FROM user WHERE user.id = $id";
+        $sql = "SELECT * FROM user INNER JOIN address ON address.address_id= user.address_id WHERE user.id = $id";
     }
     $statement = $conn->connectToDatabase()->prepare($sql);
     $statement->execute();
@@ -64,6 +72,29 @@ function getUsers($id = 0)
     return $users;
 }
 
+function getFamilyRelation($id, $relation){
+    global $conn;
+    $sql = '';
+    if($relation === 'children'){
+        $sql = "SELECT * FROM user 
+        INNER JOIN family_relation ON child_id=user.id 
+        WHERE family_relation.parent_id=$id 
+        GROUP BY user.id";
+    }else{
+        $sql = "SELECT * FROM user 
+        INNER JOIN family_relation ON parent_id=user.id 
+        WHERE family_relation.child_id=$id 
+        GROUP BY user.id";
+    }
+   
+
+    $statement = $conn->connectToDatabase()->prepare($sql);
+    $statement->execute();
+    $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $conn = null;
+    echo json_encode($users);
+    return $users;
+}
 
 //###### CREATE NEW USER  ##########
 

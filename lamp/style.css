@@ -145,6 +145,8 @@ button, .loginBtn, .editBtn{
   color: white;
   box-shadow: 1px 5px 10px rgba(0,0,0,.3);
   text-align: center;
+  line-height: 20px;
+  font-size: .8rem;
 }
 
 a.active{
