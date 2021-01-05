@@ -1,6 +1,6 @@
 <div class="pageTitle">
   <h1 class="nameTitle"> {{user?.name}} </h1>
-  <h3>{{user?.CVR ? "Employee profile" : null}}</h3>
+  <h3 class="nameTitle">{{user?.CVR ? "Employee profile" : null}}</h3>
 
 </div>
 
@@ -24,7 +24,7 @@
       <strong class="titleStrong"> Date of birth </strong>
       <input matInput [readonly]="true" [value]="user?.formattedDate" />
     </mat-form-field>
-    <mat-form-field class="formItem" appearance="fill">
+    <mat-form-field class="formItem" appearance="fill" *ngIf="!user?.CVR">
       <strong> Marital Status </strong>
       <div>
         <mat-select
