@@ -117,16 +117,6 @@ export class EditUserComponent implements OnInit, OnDestroy {
     }
   }
 
-  // getSpouseToAdd(id: string) {
-  //   console.log(this.spouses);
-  //   return (this.spouseToAdd = this.spouses.find((spouse) => id == spouse._id));
-  // }
-
-  // getChildToAdd(id: string) {
-  //   console.log(this.children);
-  //   return (this.childToAdd = this.children.find((child) => id == child._id));
-  // }
-
   onSubmit(event: any) {
     event.preventDefault();
     console.log(this.editForm.value);
@@ -149,6 +139,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
           console.log('updated');
           this.openDialog(DialogTextUser.update);
         }
+        window.location.reload();
       });
   }
 
