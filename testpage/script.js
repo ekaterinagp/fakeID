@@ -83,7 +83,7 @@ async function displayUser(user) {
         /^(\d{2})(\d{2})/,
         "$1-$2-"
       );
-    document.querySelector('.address').textContent =  user.streetBuildingName? `${user.streetBuildingName} ${user.streetName}`: user.address
+    document.querySelector('.address').textContent =  user.streetBuildingName? `${user.streetName} ${user.streetBuildingName}, ${user.postCode} ${user.district}`: user.address
     document.querySelector('.gender').textContent = user.genderValue? getGender(user.genderValue) : user.gender
     if(!user.CVR){
         document.querySelector('.maritalStatus p').textContent = getMaritalStatus(user.maritalStatusId)
@@ -199,6 +199,7 @@ function configurePath() {
 function displayError(){
     let body = document.querySelector('body')
     let error = document.createElement('h1')
+    error.className = 'error'
     error.textContent = 'You do not have access to view this page'
     error.style.color = 'red';
     body.append(error)

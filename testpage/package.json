@@ -1,0 +1,15 @@
+{
+  "name": "testpage",
+  "version": "1.0.0",
+  "description": "test page for fakeid",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress": "cypress open"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cypress": "^6.2.0"
+  }
+}

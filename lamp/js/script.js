@@ -74,14 +74,12 @@ const displayUsers = (users) => {
     button1.addEventListener('click',async () => {
       console.log('send user data', user.name)
       console.log(document.referrer)
-      if(document.referrer.includes('testPage')){
-        if (path === '/'){
-          window.location = '' + user.id
-          console.log('deployment, redirect to to herokuþ.. user.html')
-        }else{
-          console.log('local environment, redirect to /fakeid/testpage/user.html')
-          window.location = '/fakeid/testpage/user.html?lamp=' + user.id
-        }
+      if (path === '/'){
+        window.location = '' + user.id
+        console.log('deployment, redirect to to herokuþ.. user.html')
+      }else{
+        console.log('local environment, redirect to /fakeid/testpage/user.html')
+        window.location = '/fakeid/testpage/user.html?lamp=' + user.id
         // let loggedInUser = await getUserById(user.id)
         // console.log(loggedInUser)
       }
