@@ -8,7 +8,7 @@ var distDir = __dirname + "/dist/fakeid/";
 app.use(express.static(distDir));
 
 app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname + '/dist/index.html'));
+    res.sendFile(path.join(__dirname + '/dist/fakeid/index.html'));
   });
 
 app.listen(process.env.PORT || 8080);
