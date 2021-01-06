@@ -27,5 +27,10 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
+  },
+  "paths": {
+    "moment": [
+      "../node_modules/moment/min/moment.min.js"
+    ]
   }
 }
