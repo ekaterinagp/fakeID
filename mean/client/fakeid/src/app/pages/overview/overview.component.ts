@@ -12,8 +12,7 @@ import { OverviewService } from '../../services/overview.service';
   styleUrls: ['./overview.component.scss'],
 })
 export class OverviewComponent implements OnInit {
-
-  public testPageUrl =environment.testPageUrl
+  public testPageUrl = environment.testPageUrl;
 
   users: User[] = [];
   sortedUsers: User[] = [];
@@ -60,14 +59,6 @@ export class OverviewComponent implements OnInit {
         );
 
         console.log(this.sortedUsers);
-
-        // if (this.filtered) {
-        // } else {
-        //   this.sortedUsers = this.users.filter((user) =>
-        //     user.commonName.toLowerCase().includes(res.toLowerCase())
-        //   );
-        //   console.log(this.sortedUsers);
-        // }
       });
   }
 
@@ -220,7 +211,6 @@ export class OverviewComponent implements OnInit {
     }
 
     if (this.filtersApplied.isFemale) {
-      // this.showFemale();
       this.filtered = this.sortedUsers.filter(this.isFemale);
 
       this.sortedUsers = this.filtered;

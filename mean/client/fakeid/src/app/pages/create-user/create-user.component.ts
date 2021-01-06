@@ -27,7 +27,6 @@ export class CreateUserComponent implements OnInit, OnDestroy {
   dateToAdd: any;
 
   constructor(
-    // public datepipe: DatePipe,
     private fb: FormBuilder,
     private location: Location,
     private route: ActivatedRoute,
@@ -47,13 +46,8 @@ export class CreateUserComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
   ngOnDestroy(): void {}
 
-  // goBack(): void {
-  //   this.location.back();
-  // }
-
   onSubmit() {
     let date = this.createForm.get('dateOfBirth');
-    // const dateValue = date?.value;
     if (date) {
       const formattedDate = formatDate(date.value, 'ddMMyy', 'en-GB');
       this.createUserService
