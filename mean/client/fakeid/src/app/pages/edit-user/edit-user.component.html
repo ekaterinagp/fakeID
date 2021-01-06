@@ -16,7 +16,7 @@
       <input
         matInput
         id="name"
-        class="form-control"
+     
         formControlName="name"
       />
     </mat-form-field>
@@ -33,7 +33,7 @@
           <mat-select
             matNativeControl
             formControlName="spouseId"
-            class="form-control"
+           
             >
             <mat-option
               *ngFor="let spouse of spouses"
@@ -53,7 +53,7 @@
         <mat-select
           matNativeControl
           formControlName="maritalStatusId"
-          class="form-control"
+         
         >
           <mat-option
             *ngFor="let status of maritalStatuses"
@@ -74,7 +74,7 @@
       <mat-select
         matNativeControl
         formControlName="childId"
-        class="form-control">
+      >
 
         <mat-option *ngFor="let child of children"        
           [value]="child._id">
@@ -98,7 +98,7 @@
         <mat-select
           matNativeControl
           formControlName="address"
-          class="form-control">
+         >
           <mat-option       
           [value]=
           "'Lygten 17, 2400 Norrebro'"

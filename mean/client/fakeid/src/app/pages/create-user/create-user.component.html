@@ -8,7 +8,7 @@
       <input matInput
              placeholder="Ex. Donald Larsen"
              id="name"
-             class="form-control"
+        
 
              formControlName="name" />
       <div class="alert alert-danger"
@@ -27,7 +27,7 @@
              id="dateOfBirth"
            
            
-             class="form-control"
+         
              formControlName="dateOfBirth" /> 
       <mat-datepicker-toggle matSuffix
       [for]="picker"></mat-datepicker-toggle>
@@ -42,7 +42,7 @@
     </mat-form-field>
     <mat-form-field >
       <mat-label>Gender</mat-label>
-      <mat-select class="form-control" formControlName="gender" id="gender">
+      <mat-select  formControlName="gender" id="gender">
         <mat-option *ngFor="let gender of genders" [value]="gender">
           {{ gender }}
         </mat-option>
@@ -51,7 +51,7 @@
     </mat-form-field>
     <mat-form-field >
       <mat-label>Address</mat-label>
-      <mat-select class="form-control address" formControlName="address">
+      <mat-select class="address" formControlName="address">
         <mat-option *ngFor="let address of addresses"
        [value]="address">
           {{ address }}  

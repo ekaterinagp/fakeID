@@ -1,10 +1,9 @@
 // import { DatePipe, formatCurrency } from '@angular/common';
-import { formatDate, Location } from '@angular/common';
+import { formatDate } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { NotificationComponent } from 'src/app/components/notification/notification.component';
 import { DialogTextUser, User } from '../../models/user.model';
@@ -28,9 +27,7 @@ export class CreateUserComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private location: Location,
-    private route: ActivatedRoute,
-    private router: Router,
+
     public dialog: MatDialog,
     private createUserService: CreateUserService
   ) {
