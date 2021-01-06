@@ -1,9 +1,11 @@
 import { HttpClientModule } from '@angular/common/http';
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {
+  DateAdapter,
   MatNativeDateModule,
   MAT_DATE_FORMATS,
   MAT_DATE_LOCALE,
@@ -29,7 +31,7 @@ import { OverviewComponent } from './pages/overview/overview.component';
 
 const CUSTOM_DATE_FORMAT = {
   parse: {
-    dateInput: 'DD/MM/YYYY',
+    dateInput: 'DD.MM.YYYY',
   },
   display: {
     dateInput: 'DD-MM-YYYY',
@@ -70,7 +72,8 @@ const CUSTOM_DATE_FORMAT = {
   providers: [
     [
       { provide: MAT_DATE_LOCALE, useValue: 'da-DK' },
-      { provide: LOCALE_ID, useValue: 'da-DK' },
+
+      { provide: DateAdapter, useClass: MomentDateAdapter },
       { provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMAT },
     ],
     MatDatepickerModule,

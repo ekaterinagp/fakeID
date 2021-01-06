@@ -4,11 +4,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
-// import 'moment/locale/da';
 // import * as moment from 'moment';
 import { NotificationComponent } from 'src/app/components/notification/notification.component';
 import { DialogTextUser, User } from '../../models/user.model';
 import { CreateUserService } from '../../services/create-user.service';
+
 // moment.locale('da');
 
 @Component({
@@ -45,6 +45,7 @@ export class CreateUserComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     let date = this.createForm.get('dateOfBirth');
+
     if (date) {
       const formattedDate = formatDate(date.value, 'ddMMyy', 'en-GB');
       this.createUserService
