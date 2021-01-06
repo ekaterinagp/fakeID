@@ -11,10 +11,7 @@
   background-color: #6f6f6f;
   color: white;
   position: relative;
-  // display: flex;
-  // flex-direction: column;
   justify-content: center;
-  // padding-left: 1rem;
   & p {
     margin-bottom: 0;
   }
@@ -23,10 +20,6 @@
 input.mat-input-element {
   height: 30px;
 }
-
-/*.mat-form-field-wrapper{
-    outline:none !important
-}*/
 
 .formItem {
   display: grid;
@@ -79,7 +72,6 @@ input.mat-input-element {
     }
 
     & button:nth-child(1) {
-      // background-color: dimgrey;
       background: #255b91;
       justify-self: start;
     }
