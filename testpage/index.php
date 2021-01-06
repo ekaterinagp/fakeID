@@ -1,17 +1,19 @@
+
+
+<!DOCTYPE html>
 <?php 
-if($_SERVER["REMOTE_ADDR"]=="127.0.0.1"){
+$local;
+if($_SERVER["REMOTE_ADDR"]=="::1"){
     $local = True;
     }else{
     
         $local = False;
-    }
+}
 
 // include_once('home.html'); 
 
 
 ?>
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

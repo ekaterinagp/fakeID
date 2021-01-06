@@ -39,3 +39,14 @@ a{
 a:visited{
     color:black;
 }
+
+.userPage{
+    margin:0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.userPage a{
+    align-self: start;
+    margin-top: 2rem;
+
+}

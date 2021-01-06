@@ -6,7 +6,7 @@ const cors = require('cors')
 
 // const allowedOrigins = ['http://localhost:3000','https://fakeid-mern.herokuapp.com', 'http://localhost', 'https://fakeid-mern-server.herokuapp.com', 'https://fakeid-testpage.herokuapp.com', 'https://fakeid-testpage.herokuapp.com/'];
 
-app.use(cors())
+app.use(cors());
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())

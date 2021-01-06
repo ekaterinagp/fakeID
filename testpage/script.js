@@ -191,7 +191,7 @@ function configurePath() {
         if(urlParams.has('lamp')){
             return "https://fakeid-lamp.herokuapp.com/api";
         }else{
-            return "https://fakeid-mern.herokuapp.com";
+            return "https://fakeid-mern-server.herokuapp.com";
         }
     }
   }
